@@ -44,7 +44,15 @@ function addToCart(prod) {
 }
 function goCheckout(prod) {
   addToCart(prod);
-  router.push({ path: '/cart' });
+  const query = prod?.attribute === 'COLD_CHAIN'
+    ? { type: 'cold-chain' }
+    : {};
+  router.push({
+    path: '/cart',
+    query: {
+      ...query
+    }
+  });
 }
 </script>
 <template>

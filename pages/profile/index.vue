@@ -20,9 +20,17 @@ const inputVIPCode = ref('');
 const inputSVIPCode = ref('');
 
 const currentLevel = computed(() => {
-  if (authUser.value.SVIPActivated) return 'SVIP';
-  else if (authUser.value.VIPActivated) return 'VIP';
-  else return '普通會員';
+  switch (authUser.value?.memberLevel) {
+  case 'VIP':
+    return 'VIP';
+  case 'SVIP':
+    return 'SVIP';
+  default:
+    return '普通會員';
+  }
+  // if (authUser.value.SVIPActivated) return 'SVIP';
+  // else if (authUser.value.VIPActivated) return 'VIP';
+  // else return '普通會員';
 });
 
 // const allowActivateVIP = computed(() => clickedFB.value && clickedYT.value);
@@ -46,6 +54,7 @@ async function updatePermission() {
     authStore.updateUser(res.data);
     clickedFB.value = res.data?.FacebookGroupActivated;
     clickedYT.value = res.data?.YouTubeChannelActivated;
+    clickedIG.value = res.data?.IGFollowActivated;
   } catch (error) {
     authStore.logout();
   }
@@ -193,7 +202,7 @@ async function activateProfileByType(type) {
               <label>姓名*</label>
               <input
                 id="auth-realname"
-                v-model="authUser.realname"
+                v-model="authUser.nickname"
                 type="text"
                 placeholder="姓名*"
                 class="form-control"
@@ -201,7 +210,7 @@ async function activateProfileByType(type) {
                 required
               >
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
               <label>暱稱*</label>
               <input
                 id="auth-nickname"
@@ -212,7 +221,7 @@ async function activateProfileByType(type) {
                 name=""
                 required
               >
-            </div>
+            </div> -->
             <div class="form-group">
               <label>Email*</label>
               <input
@@ -316,13 +325,13 @@ async function activateProfileByType(type) {
           <a href="#" data-toggle="modal" data-target="#vipdesc"><i class="fa-solid fa-circle-question" /> <u>查看升等方式</u></a>
         </h3>
         <div class="row level_content">
-          <div v-if="!authUser.VIPActivated">
+          <div v-if="authUser.memberLevel === 'NORMAL'">
             <h4>我要解鎖成為<span>VIP</span>：<span class="level_tips">『A.綁定VIP推薦人』+『B.按讚WO粉絲團或C.訂閱WO頻道』，即可成為VIP!</span></h4>
           </div>
-          <div v-else>
+          <div v-if="authUser.memberLevel === 'VIP'">
             <h4>我要解鎖成為<span>SVIP</span>：<span class="level_tips">『D.綁定SVIP激活碼』或『B.按讚WO粉絲團+C.訂閱WO頻道』，即可成為SVIP!</span></h4>
           </div>
-          <div v-if="!authUser.VIPActivated" class="col-sm-6 border-right">
+          <div v-if="authUser.memberLevel === 'NORMAL'" class="col-sm-6 border-right">
             <h5>A.VIP推薦人<span class="level_tips">(綁定推薦人帳號後將無法解鎖！)</span></h5>
             <form id="vip_rec" action="javascript:;" class="form-group">
               <input v-show="!authUser.VIPActivated" v-model="inputVIPCode" type="text" placeholder="請輸入VIP推薦帳號 (會員帳號)" class="form-control">
@@ -332,7 +341,13 @@ async function activateProfileByType(type) {
               </button>
             </form>
           </div>
-          <div v-else class="col-sm-6 border-right">
+          <div
+            :class="{
+              inactive: authUser.memberLevel === 'SVIP',
+              'display-none': authUser.memberLevel === 'NORMAL'}
+            "
+            class="col-sm-6 border-right svip-code"
+          >
             <h5>D.SVIP激活碼<span class="level_tips">(綁定推薦人帳號後將無法解鎖！)</span></h5>
             <form id="svip_rec" action="javascript:;" class="form-group">
               <input v-show="!authUser.SVIPActivated" v-model="inputSVIPCode" type="text" placeholder="請輸入SVIP激活碼" class="form-control">
@@ -428,5 +443,14 @@ async function activateProfileByType(type) {
   color: #000;
   font-weight: 400;
   margin-bottom: 8px;
+}
+.svip-code {
+  &.inactive {
+    opacity: 0;
+    pointer-events: none;
+  }
+  &.display-none {
+    display: none;
+  }
 }
 </style>

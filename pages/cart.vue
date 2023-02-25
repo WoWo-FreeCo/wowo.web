@@ -9,12 +9,12 @@ const cartType = ref('normal');
 
 watch(routes, (_new) => {
   updateCartType();
-  console.log(cartStore?.merch.filter(e => e.attribute === 'CODE_CHAIN'));
+  console.log(cartStore?.merch.filter(e => e.attribute === 'COLD_CHAIN'));
 });
 
 const currentMerch = computed(() => {
   if (cartType.value === 'cold-chain') {
-    return cartStore?.merch.filter(e => e.attribute === 'CODE_CHAIN');
+    return cartStore?.merch.filter(e => e.attribute === 'COLD_CHAIN');
   } else {
     return cartStore?.merch.filter(e => e.attribute === 'GENERAL');
   }
@@ -37,10 +37,10 @@ onMounted(() => {
 });
 
 const getCurrentPriceByAuth = (item) => {
-  if (authStore.user?.SVIPActivated) {
+  if (authStore?.user?.memberLevel === 'SVIP') {
     return item?.svipPrice;
   }
-  if (authStore.user?.VIPActivated) {
+  if (authStore?.user?.memberLevel === 'VIP') {
     return item?.vipPrice;
   }
   if (authStore.status.loggedIn) {
@@ -58,6 +58,11 @@ function updateCartType() {
     cartType.value = 'normal';
     break;
   }
+}
+
+function deleteItem(item) {
+  cartStore.merch = cartStore.merch.filter(e => e.id !== item.id);
+  // console.log(item);
 }
 
 function goCheckout() {
@@ -136,7 +141,7 @@ function goCheckout() {
                 價錢 ${{ getCurrentPriceByAuth(item) }}<!--此顯示當下會員等級的價格就好-->
               </td>
               <td class="cart_price text-right">
-                <button type="button" class="del_btn">
+                <button type="button" class="del_btn" @click="deleteItem(item)">
                   <i class="fa-solid fa-trash-can" />
                 </button><!--點擊刪除此商品-->
               </td>
@@ -158,9 +163,11 @@ function goCheckout() {
         </div>
       </form>
 
-      <div v-show="cartStore?.merch.length" class="alert alert-warning alert-common" role="alert">
-        <!--購物車提醒字樣, 純文字, 沒寫不出現-->
+      <div v-show="currentMerch.length" class="alert alert-warning alert-common" role="alert">
         運送提醒，ex：宅配填寫到貨時間
+      </div>
+      <div v-show="currentMerch.length" class="alert alert-warning alert-common" role="alert">
+        貼心提醒: 一般常溫商品,無法與冷鍊商品同時出貨, 敬請分開結帳,謝謝您
       </div>
       <!--購物清單,空的不顯示 end--->
     </div>

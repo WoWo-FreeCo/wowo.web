@@ -1,0 +1,71 @@
+[
+  {
+    "id": 0,
+    "username": "user1",
+    "nickname": "user1",
+    "realname": "Some Real Name",
+    "email": "user1@example.com",
+    "mobile": "09777666555",
+    "tele": "033663333",
+    "recommendedUser": "admin",
+    "address1": "Required Somewhere",
+    "address2": "",
+    "address3": "",
+    "password": "12345678",
+    "level": "一般用戶",
+    "details": {
+      "favorite": [],
+      "consumption": [],
+      "returnGoods": [],
+      "history": [],
+      "bonusPoint": 0
+    },
+    "avatar": {
+      "url": "https://picsum.photos/300/300?1"
+    }
+  },
+  {
+    "id": 1,
+    "username": "user2",
+    "nickname": "user2",
+    "realname": "Some Real Name",
+    "email": "user2@example.com",
+    "mobile": "09777666555",
+    "tele": "033663333",
+    "recommendedUser": "admin",
+    "address1": "Required Somewhere",
+    "address2": "",
+    "address3": "",
+    "password": "12345678",
+    "level": "VIP",
+    "details": {
+      "favorite": [],
+      "consumption": [],
+      "returnGoods": [],
+      "history": [],
+      "bonusPoint": 0
+    }
+  },
+  {
+    "id": 2,
+    "username": "user3",
+    "nickname": "user3",
+    "realname": "Some Real Name",
+    "email": "user3@example.com",
+    "mobile": "09777666555",
+    "tele": "033663333",
+    "recommendedUser": "admin",
+    "address1": "Required Somewhere",
+    "address2": "",
+    "address3": "",
+    "password": "12345678",
+    "level": "SVIP",
+    "details": {
+      "favorite": [],
+      "consumption": [],
+      "returnGoods": [],
+      "history": [],
+      "bonusPoint": 0
+    }
+  }
+]

@@ -1,0 +1,152 @@
+[
+  {
+    "id": 0,
+    "name": "Diamond 紅鑽",
+    "label": "堅果",
+    "type": "normal",
+    "thumbnail": {
+      "url": "http://www.tonghsing.com.tw/ezfiles/679/1679/plugin/ec/pictures/813/ecprod_273369_9086192_64703.jpg"
+    },
+    "slideSet": [
+      {
+        "img": "http://www.tonghsing.com.tw/ezfiles/679/1679/plugin/ec/pictures/813/ecprod_273369_9086192_64703.jpg"
+      },
+      {
+        "img": "http://www.tonghsing.com.tw/ezfiles/679/1679/plugin/ec/pictures/813/ecprod_273369_9086192_64703.jpg"
+      },
+      {
+        "img": "http://www.tonghsing.com.tw/ezfiles/679/1679/plugin/ec/pictures/813/ecprod_273369_9086192_64703.jpg"
+      },
+      {
+        "img": "http://www.tonghsing.com.tw/ezfiles/679/1679/plugin/ec/pictures/813/ecprod_273369_9086192_64703.jpg"
+      }
+    ],
+    "price": {
+      "market": 999,
+      "member": 899,
+      "vip": 799,
+      "svip": 749
+    },
+    "brief": "熱銷30組"
+  },
+  {
+    "id": 1,
+    "name": "Graceland 優蒂",
+    "label": "果乾",
+    "type": "normal",
+    "thumbnail": {
+      "url": "http://www.tonghsing.com.tw/ezfiles/679/1679/plugin/ec/pictures/499/ecprod_273964_1620890_80517.jpg"
+    },
+    "slideSet": [
+      {
+        "img": "http://www.tonghsing.com.tw/ezfiles/679/1679/plugin/ec/pictures/499/ecprod_273964_1620890_80517.jpg"
+      },
+      {
+        "img": "http://www.tonghsing.com.tw/ezfiles/679/1679/plugin/ec/pictures/499/ecprod_273964_1620890_80517.jpg"
+      },
+      {
+        "img": "http://www.tonghsing.com.tw/ezfiles/679/1679/plugin/ec/pictures/499/ecprod_273964_1620890_80517.jpg"
+      },
+      {
+        "img": "http://www.tonghsing.com.tw/ezfiles/679/1679/plugin/ec/pictures/499/ecprod_273964_1620890_80517.jpg"
+      }
+    ],
+    "price": {
+      "market": 60,
+      "member": 50,
+      "vip": 40,
+      "svip": 30
+    },
+    "brief": "熱銷100組"
+  },
+  {
+    "id": 2,
+    "name": "Corona 可樂拿 (切丁蕃茄)",
+    "label": "義式食材",
+    "type": "coldChain",
+    "thumbnail": {
+      "url": "http://www.tonghsing.com.tw/ezfiles/679/1679/plugin/ec/pictures/176/ecprod_274145_4099650_40770.jpg"
+    },
+    "slideSet": [
+      {
+        "img": "http://www.tonghsing.com.tw/ezfiles/679/1679/plugin/ec/pictures/176/ecprod_274145_4099650_40770.jpg"
+      },
+      {
+        "img": "http://www.tonghsing.com.tw/ezfiles/679/1679/plugin/ec/pictures/176/ecprod_274145_4099650_40770.jpg"
+      },
+      {
+        "img": "http://www.tonghsing.com.tw/ezfiles/679/1679/plugin/ec/pictures/176/ecprod_274145_4099650_40770.jpg"
+      },
+      {
+        "img": "http://www.tonghsing.com.tw/ezfiles/679/1679/plugin/ec/pictures/176/ecprod_274145_4099650_40770.jpg"
+      }
+    ],
+    "price": {
+      "market": 2999,
+      "member": 2799,
+      "vip": 2699,
+      "svip": 2499
+    },
+    "brief": "熱銷150組"
+  },
+  {
+    "id": 3,
+    "name": "Open Country(全脂奶粉)",
+    "label": "乳製品",
+    "type": "normal",
+    "thumbnail": {
+      "url": "http://www.tonghsing.com.tw/ezfiles/679/1679/plugin/ec/pictures/29/ecprod_274066_5732156_61465.jpg"
+    },
+    "slideSet": [
+      {
+        "img": "http://www.tonghsing.com.tw/ezfiles/679/1679/plugin/ec/pictures/29/ecprod_274066_5732156_61465.jpg"
+      },
+      {
+        "img": "http://www.tonghsing.com.tw/ezfiles/679/1679/plugin/ec/pictures/29/ecprod_274066_5732156_61465.jpg"
+      },
+      {
+        "img": "http://www.tonghsing.com.tw/ezfiles/679/1679/plugin/ec/pictures/29/ecprod_274066_5732156_61465.jpg"
+      },
+      {
+        "img": "http://www.tonghsing.com.tw/ezfiles/679/1679/plugin/ec/pictures/29/ecprod_274066_5732156_61465.jpg"
+      }
+    ],
+    "price": {
+      "market": 2999,
+      "member": 2799,
+      "vip": 2699,
+      "svip": 2499
+    },
+    "brief": "熱銷150組"
+  },
+  {
+    "id": 4,
+    "name": "Terrazze (冷壓粹取初榨)",
+    "label": "義式食材",
+    "type": "coldChain",
+    "thumbnail": {
+      "url": "http://www.tonghsing.com.tw/ezfiles/679/1679/plugin/ec/pictures/956/ecprod_274139_7255577_39307.jpg"
+    },
+    "slideSet": [
+      {
+        "img": "http://www.tonghsing.com.tw/ezfiles/679/1679/plugin/ec/pictures/956/ecprod_274139_7255577_39307.jpg"
+      },
+      {
+        "img": "http://www.tonghsing.com.tw/ezfiles/679/1679/plugin/ec/pictures/956/ecprod_274139_7255577_39307.jpg"
+      },
+      {
+        "img": "http://www.tonghsing.com.tw/ezfiles/679/1679/plugin/ec/pictures/956/ecprod_274139_7255577_39307.jpg"
+      },
+      {
+        "img": "http://www.tonghsing.com.tw/ezfiles/679/1679/plugin/ec/pictures/956/ecprod_274139_7255577_39307.jpg"
+      }
+    ],
+    "price": {
+      "market": 2999,
+      "member": 2799,
+      "vip": 2699,
+      "svip": 2499
+    },
+    "brief": "熱銷150組"
+  }
+]

@@ -33,7 +33,8 @@ async function confirmReg() {
     router.push({ path: '/login' });
     alert('恭喜你註冊成功，即將跳轉登入頁');
   } catch (error) {
-    alert('請輸入正確的資訊與必填欄位');
+    // console.log(error.data);
+    alert(error.data?.message || '請輸入正確的資訊與必填欄位');
   }
 }
 </script>

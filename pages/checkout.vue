@@ -19,6 +19,8 @@ const totalPrice = computed({
   }
 });
 
+const rewardCredit = computed(() => authStore?.user?.rewardCredit || 0);
+
 const currentMerch = computed(() => {
   if (cartType.value === 'cold-chain') {
     return cartStore?.merch.filter(e => e.attribute !== 'GENERAL');
@@ -43,10 +45,10 @@ function updateCartType() {
 }
 
 const getCurrentPriceByAuth = (item) => {
-  if (authStore.user?.SVIPActivated) {
+  if (authStore?.user?.memberLevel === 'SVIP') {
     return item?.svipPrice;
   }
-  if (authStore.user?.VIPActivated) {
+  if (authStore?.user?.memberLevel === 'VIP') {
     return item?.vipPrice;
   }
   if (authStore.status.loggedIn) {
@@ -83,7 +85,7 @@ function sendResult() {
             </td>
             <td class="cart_price text-right">
               <span>市價 ${{ item?.price?.market }}</span>
-              SVIP價 ${{ getCurrentPriceByAuth(item) }}
+              價錢 ${{ getCurrentPriceByAuth(item) }}
             </td>
           </tr>
         </tbody>
@@ -107,7 +109,7 @@ function sendResult() {
             <label class="radio form-check">
               <input type="radio" name="payment" value="" checked> 信用卡
             </label>
-            <label class="radio form-check">
+            <!-- <label class="radio form-check">
               <input type="radio" name="payment" value=""> ATM 轉帳
             </label>
             <label class="radio form-check">
@@ -118,7 +120,7 @@ function sendResult() {
             </label>
             <label class="radio form-check">
               <input type="radio" name="payment" value=""> 貨到付款
-            </label>
+            </label> -->
           </div>
           <div v-else>
             <label class="radio form-check">
@@ -128,33 +130,56 @@ function sendResult() {
         </div>
       </div>
       <div class="cart_info">
-        <h5>紅利扣點 (目前可用紅利：100點)</h5>
+        <h5>紅利扣點 (目前可用紅利：{{ rewardCredit }} 點)</h5>
         <div class="checkout-form">
           <input
             id=""
             v-model="bonusCut"
             type="number"
+            min="0"
+            :max="rewardCredit"
             placeholder="請輸入本次預使用紅利"
             class="form-control"
             name=""
           >
         </div>
       </div>
-      <div id="ship_market_form" class="cart_info d_none">
-        <h5>收件人資訊</h5>
+      <!-- <div id="ship_market_form" class="cart_info d_none">
+        <h5>收件人資訊aa</h5>
         <div class="ship_info">
           <input id="ship_name1" type="text" placeholder="姓名*" class="form-control" name="">
           <input id="ship_phone1" type="text" placeholder="手機*" class="form-control" name="">
           <input id="ship_marketname" type="text" placeholder="請選擇門市*" class="form-control" name="">
         </div>
-      </div>
+      </div> -->
       <div id="ship_home_form" class="cart_info">
         <h5>收件人資訊</h5>
         <div class="ship_info">
-          <input id="ship_name2" type="text" placeholder="姓名*" class="form-control" name="">
-          <input id="ship_phone2" type="text" placeholder="手機*" class="form-control" name="">
-          <input id="ship_address" type="text" placeholder="地址*" class="form-control" name="">
-          <input id="shipday" type="text" placeholder="請選擇可收貨日期" class="form-control" name="">
+          <input
+            id="ship_name2"
+            v-model="authStore.user.nickname"
+            type="text"
+            placeholder="姓名*"
+            class="form-control"
+            name=""
+          >
+          <input
+            id="ship_phone2"
+            v-model="authStore.user.cellphone"
+            type="text"
+            placeholder="手機*"
+            class="form-control"
+            name=""
+          >
+          <input
+            id="ship_address"
+            v-model="authStore.user.addressOne"
+            type="text"
+            placeholder="地址*"
+            class="form-control"
+            name=""
+          >
+          <input id="shipday" type="datetime-local" placeholder="請選擇可收貨日期" class="form-control" name="">
         </div>
       </div>
       <div class="cart_info checkout-form">
@@ -183,7 +208,7 @@ function sendResult() {
         <h5>付款明細</h5>
         <ul class="cart_check">
           <li>
-            商品金額小計 (共{{ cartStore?.merch.length }}項商品)：${{ totalPrice }}
+            商品金額小計 (共{{ currentMerch.length }}項商品)：${{ totalPrice }}
           </li>
           <li>
             運費：免運

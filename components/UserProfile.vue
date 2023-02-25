@@ -47,7 +47,9 @@ onMounted(() => {
       </div>
       <ul class="member_btnli">
         <li>
-          <a href="signpoint.html" target="new" class="btn btn-check"><i class="fa-regular fa-calendar-check" />我要簽到</a>
+          <NuxtLink to="/bonus-point" class="btn btn-check">
+            <i class="fa-regular fa-calendar-check" />我要簽到
+          </NuxtLink>
         </li>
         <li>
           <!-- <a href="myprofile.html#member_vip" class="btn btn-check"><i class="fa-regular fa-circle-up" />我要升等</a>低於SVIP才顯示此按鈕 -->

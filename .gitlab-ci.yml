@@ -1,0 +1,27 @@
+stages:
+  - build
+  - deploy
+
+develop-build:
+  stage: build
+  only:
+    - develop
+  script:
+    - echo "build for develop"
+    - npm install
+    - npm run build
+    - echo 'build completed'
+
+develop-deploy:
+  stage: deploy
+  only:
+    - develop
+  script:
+    - echo "deploy to develop server"
+    - sshpass -p ${SSH_PASSWORD} ssh -o StrictHostKeyChecking=no root@172.104.104.171
+    - cd /var/www/wowo.web
+    - git pull
+    - ${GIT_USERNAME}
+    - ${GIT_PASSWORD}
+    - pm2 restart index
+    - echo 'deploy completed'

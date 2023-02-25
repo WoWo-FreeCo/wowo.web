@@ -148,12 +148,12 @@ function addToCart(prod) {
                   {{ item.brief }}
                 </div>
                 <div class="product_img">
-                  <NuxtLink :to="`/product?id=${item?.id}`" target="_blank">
+                  <NuxtLink :to="`/product?id=${item?.id}`">
                     <img :src="item?.thumbnail?.url || '/products/p'+(item.id-10)+'.jpg'" alt="">
                   </NuxtLink>
                 </div>
                 <h3>
-                  <NuxtLink :to="`/product?id=${item?.id}`" target="_blank">
+                  <NuxtLink :to="`/product?id=${item?.id}`">
                     {{ item.name }}
                   </NuxtLink>
                 </h3>
@@ -186,20 +186,23 @@ function addToCart(prod) {
             </div>
           </div><!--tab 1 end-->
         </div>
-        <a href="/shop" class="btn btn-main btn-large btn-more mt-50">更多商品</a>
+        <NuxtLink to="/shop" class="btn btn-main btn-large btn-more mt-50">
+          更多商品
+        </NuxtLink>
       </div>
     </section>
 
     <!-----------------------底部廣告, 沒有限定幾則, 建議尺寸1900*325, 可輸入指定連結----------------------->
     <div class="index_ad">
       <!--1-->
-      <a href="/bid" target="new"><!--指定連結-->
+      <NuxtLink to="/bid">
+        <!--指定連結-->
         <img src="@/assets/images/ad/1.jpg" alt="">
-      </a><!--1 end-->
+      </NuxtLink><!--1 end-->
       <!--2-->
-      <a href="/bid" target="new">
+      <NuxtLink to="/bid">
         <img src="@/assets/images/ad/1.jpg" alt="">
-      </a><!--2 end-->
+      </NuxtLink><!--2 end-->
     </div>
     <!--  -->
     <!-- bell Modal -->

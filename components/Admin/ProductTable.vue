@@ -1,6 +1,6 @@
 <script setup>
 import { NButton, useDialog, useMessage } from 'naive-ui';
-import { GET_ALL_PRODUCT } from '@/apis/requestURL';
+import { GET_ALL_PRODUCT, DELETE_PRODUCT } from '@/apis/requestURL';
 
 const runtimeConfig = useRuntimeConfig();
 const dialog = useDialog();
@@ -114,8 +114,19 @@ function handlerAction(item, type = '') {
       ),
       positiveText: '確定',
       negativeText: '取消',
-      onPositiveClick: () => {
-        message.success(`已刪除 ${item.name}`);
+      onPositiveClick: async() => {
+        try {
+          await $fetch(`${runtimeConfig.public.apiBase}/${DELETE_PRODUCT(item.id)}`, {
+            method: 'DELETE',
+            headers: {
+              authorization: 'Bearer ' + localStorage.getItem('accessToken')
+            }
+          });
+          message.success(`已刪除 ${item.name}`);
+          fetchProd();
+        } catch (error) {
+          message.error(`發生錯誤 ${error.message}`);
+        }
       },
       onNegativeClick: () => {
         message.info('已取消本次操作');

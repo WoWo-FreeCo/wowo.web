@@ -1,5 +1,6 @@
 <script setup>
 const authStore = useAuthStore();
+const pageStauts = usePageStatusStore();
 const authUser = computed(() => authStore?.user);
 
 onMounted(() => {
@@ -7,7 +8,7 @@ onMounted(() => {
 });
 
 function shareAccount() {
-  console.log(authStore.user.email);
+  pageStauts.toggleShareAccount(true);
 }
 
 </script>

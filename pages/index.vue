@@ -1,29 +1,13 @@
 <script setup>
 import { GET_PRODUCT_CATEGORY, GET_ALL_PRODUCT, GET_HOME_BANNER } from '@/apis/requestURL';
 
-// import mockProduct from '@/mocks/mockProducts.json';
-// import mockLabel from '@/mocks/mockLabels.json';
-
-import slide1 from '@/assets/images/slider/wo_index_01.jpg';
-import slide2 from '@/assets/images/slider/wo_index_02.jpg';
-import slide3 from '@/assets/images/slider/wo_index_03.jpg';
-import slide4 from '@/assets/images/slider/wo_index_04.jpg';
-
 const runtimeConfig = useRuntimeConfig();
-
-const slideItems = [
-  { id: 0, url: '/bonus-point', img: slide1 },
-  { id: 1, url: '/', img: slide2 },
-  { id: 2, url: '/', img: slide3 },
-  { id: 3, url: '/', img: slide4 }
-];
 
 const defaultCategory = {
   id: -1,
   name: '所有產品'
 };
 
-// const currentCategory = ref(defaultCategory.name);
 const currentCategoryId = ref(defaultCategory.id);
 
 const prodCategories = ref([]);

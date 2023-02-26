@@ -18,7 +18,7 @@ const createColumns = () => [
   },
   {
     title: '內容',
-    key: 'contents'
+    key: 'content'
   },
   {
     title: '操作',
@@ -54,9 +54,9 @@ onMounted(async() => {
 
 async function fetchItem() {
   try {
-    const res = await $fetch(`${runtimeConfig.public.apiBase}/${GET_ALL_PRODUCT}`);
-    const { data } = res;
-    items.value = data;
+    const res = await $fetch(`${runtimeConfig.public.apiBase}/${GET_WEB_PAGES}`);
+    const { content } = res;
+    items.value = content;
   } catch (error) {
     //
   }
@@ -80,7 +80,7 @@ function handleCheck(rowKeys) {
   checkedRowKeys.value = rowKeys;
 }
 
-function createProd() {
+function createItem() {
   // creatorToggle.value = true;
   // pageStatus.toggleAdminOverlay(true);
 }
@@ -89,7 +89,7 @@ function createProd() {
 <template>
   <div style="position: relative;">
     <n-space horizontal>
-      <n-button disabled="" type="primary" style="margin: 12px;" @click="createProd">
+      <n-button disabled="" type="primary" style="margin: 12px;" @click="createItem">
         新建頁尾
       </n-button>
     </n-space>

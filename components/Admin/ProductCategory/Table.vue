@@ -109,7 +109,7 @@ function handleCheck(rowKeys) {
   checkedRowKeys.value = rowKeys;
 }
 
-function createProd() {
+function createItem() {
   creatorToggle.value = true;
   pageStatus.toggleAdminOverlay(true);
 }
@@ -118,7 +118,7 @@ function createProd() {
 <template>
   <div style="position: relative;">
     <n-space horizontal>
-      <n-button type="primary" style="margin: 12px;" @click="createProd">
+      <n-button type="primary" style="margin: 12px;" @click="createItem">
         新建產品類別
       </n-button>
     </n-space>

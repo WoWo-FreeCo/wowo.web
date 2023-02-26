@@ -1,6 +1,6 @@
 <script setup>
 import { NButton, useDialog, useMessage } from 'naive-ui';
-import { GET_ALL_PRODUCT, DELETE_PRODUCT } from '@/apis/requestURL';
+import { GET_ALL_PRODUCT, DELETE_PRODUCT, GET_PRODUCT_CATEGORY } from '@/apis/requestURL';
 
 const runtimeConfig = useRuntimeConfig();
 const dialog = useDialog();
@@ -24,7 +24,8 @@ const createColumns = () => [
   },
   {
     title: '分類',
-    key: 'category'
+    render: row => categories.value.find(e => e.id === row.categoryId)?.name
+    // key: 'categoryId'
   },
   {
     title: '售價',
@@ -76,6 +77,7 @@ const createColumns = () => [
 // }
 
 const products = ref([]);
+const categories = ref([]);
 const columns = ref(createColumns());
 const checkedRowKeys = ref([]);
 const rowKey = row => row.id;
@@ -86,6 +88,22 @@ const pagination = ref({
 onMounted(() => {
   fetchItem();
 });
+
+onMounted(async() => {
+  await nextTick();
+  fetchItem();
+  fetchCategories();
+});
+
+async function fetchCategories() {
+  try {
+    const res = await $fetch(`${runtimeConfig.public.apiBase}/${GET_PRODUCT_CATEGORY}`);
+    const { data } = res;
+    categories.value = data;
+  } catch (error) {
+    //
+  }
+}
 
 async function fetchItem() {
   try {

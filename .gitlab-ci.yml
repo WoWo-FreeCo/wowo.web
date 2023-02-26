@@ -14,7 +14,13 @@ develop-build:
   only:
     - develop
   before_script:
-    - apt-get update -qq && apt-get install -y -qq sshpass
+    - 'command -v ssh-agent >/dev/null || ( apk add --update openssh )' 
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - ssh-keyscan 172.104.104.171 >> ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
   script:
     - echo "build for develop"
     # - npm install
@@ -27,7 +33,8 @@ develop-deploy:
     - develop
   script:
     - echo "deploy to develop server"
-    - sshpass -p ${SSH_PASSWORD} ssh -o StrictHostKeyChecking=no root@172.104.104.171
+    # - sshpass -p ${SSH_PASSWORD} ssh -o StrictHostKeyChecking=no root@172.104.104.171
+    - ssh root@172.104.104.171
     - cd /var/www/wowo.web
     - git pull
     - ${GIT_USERNAME}

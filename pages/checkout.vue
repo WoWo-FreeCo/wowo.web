@@ -65,6 +65,10 @@ function sendResult() {
   });
 }
 
+function onBounsCutChanged() {
+  bonusCut.value = bonusCut.value > rewardCredit.value ? rewardCredit.value : bonusCut.value;
+}
+
 </script>
 
 <template>
@@ -141,6 +145,7 @@ function sendResult() {
             placeholder="請輸入本次預使用紅利"
             class="form-control"
             name=""
+            @change="onBounsCutChanged"
           >
         </div>
       </div>

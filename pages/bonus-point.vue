@@ -30,7 +30,8 @@ async function fetchDailySequence() {
 }
 
 function dailyClickHandler(item) {
-  pageStatus.toggleVideoDialog(true);
+  console.log(item);
+  // pageStatus.toggleVideoDialog(true);
 }
 </script>
 
@@ -58,7 +59,7 @@ function dailyClickHandler(item) {
 
           <ul class="signpoint_li">
             <div>
-              <li v-for="day in dailyCheck" :key="day.index" @click="dailyClickHandler(item)">
+              <li v-for="day in dailyCheck" :key="day.index" @click="dailyClickHandler(day)">
                 <span>+1</span>
                 <a href="javascript:;">
                   <i class="fa-solid fa-p" />

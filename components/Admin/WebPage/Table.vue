@@ -1,6 +1,6 @@
 <script setup>
 import { NButton, useDialog, useMessage } from 'naive-ui';
-import { GET_ALL_PRODUCT, DELETE_PRODUCT, GET_PRODUCT_CATEGORY } from '@/apis/requestURL';
+import { GET_ALL_PRODUCT } from '@/apis/requestURL';
 
 const runtimeConfig = useRuntimeConfig();
 const dialog = useDialog();
@@ -12,52 +12,19 @@ const editorToggle = ref(false);
 const currentItem = ref({});
 
 const createColumns = () => [
-  // {
-  //   type: 'selection',
-  //   disabled(row) {
-  //     return row.name === 'Edward King 3';
-  //   }
-  // },
   {
-    title: '名稱',
+    title: '頁尾名稱',
     key: 'name'
   },
   {
-    title: '分類',
-    render: row => categories.value.find(e => e.id === row.categoryId)?.name
-    // key: 'categoryId'
-  },
-  {
-    title: '售價',
-    key: 'price'
-  },
-  {
-    title: '會員價',
-    key: 'memberPrice'
-  },
-  {
-    title: 'VIP價',
-    key: 'vipPrice'
-  },
-  {
-    title: 'SVIP價錢',
-    key: 'svipPrice'
+    title: '內容',
+    key: 'contents'
   },
   {
     title: '操作',
     key: 'actions',
     render(row) {
       return [h(
-        NButton,
-        {
-          type: 'error',
-          strong: true,
-          tertiary: true,
-          size: 'small',
-          onClick: () => handlerAction(row, 'del')
-        },
-        { default: () => '刪除' }
-      ), h(
         NButton,
         {
           type: 'info',
@@ -88,18 +55,7 @@ const pagination = ref({
 onMounted(async() => {
   await nextTick();
   fetchItem();
-  fetchCategories();
 });
-
-async function fetchCategories() {
-  try {
-    const res = await $fetch(`${runtimeConfig.public.apiBase}/${GET_PRODUCT_CATEGORY}`);
-    const { data } = res;
-    categories.value = data;
-  } catch (error) {
-    //
-  }
-}
 
 async function fetchItem() {
   try {
@@ -114,31 +70,6 @@ async function fetchItem() {
 function handlerAction(item, type = '') {
   if (!type) return;
   switch (type) {
-  case 'del':
-    dialog.warning({
-      title: `是否確定要刪除 ${item.name}`,
-      content: '',
-      positiveText: '確定',
-      negativeText: '取消',
-      onPositiveClick: async() => {
-        try {
-          await $fetch(`${runtimeConfig.public.apiBase}/${DELETE_PRODUCT(item.id)}`, {
-            method: 'DELETE',
-            headers: {
-              authorization: 'Bearer ' + localStorage.getItem('accessToken')
-            }
-          });
-          message.success(`已刪除 ${item.name}`);
-          fetchItem();
-        } catch (error) {
-          message.error(`發生錯誤 ${error.message}`);
-        }
-      },
-      onNegativeClick: () => {
-        message.info('已取消本次操作');
-      }
-    });
-    break;
   case 'edit':
     currentItem.value = item;
     editorToggle.value = true;
@@ -155,16 +86,16 @@ function handleCheck(rowKeys) {
 }
 
 function createProd() {
-  creatorToggle.value = true;
-  pageStatus.toggleAdminOverlay(true);
+  // creatorToggle.value = true;
+  // pageStatus.toggleAdminOverlay(true);
 }
 </script>
 
 <template>
   <div style="position: relative;">
     <n-space horizontal>
-      <n-button type="primary" style="margin: 12px;" @click="createProd">
-        新建產品
+      <n-button disabled="" type="primary" style="margin: 12px;" @click="createProd">
+        新建頁尾
       </n-button>
     </n-space>
     <n-data-table

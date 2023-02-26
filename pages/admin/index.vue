@@ -9,6 +9,7 @@ enum SiderCategory {
   Product = 'product-management',
   ProductCategory = 'product-category-management',
   HomeBanner = 'home-banner-management',
+  WebPage = 'web-page-management',
   Account = 'account-management',
   Order = 'order-management'
 }
@@ -56,6 +57,11 @@ const menuOptions = ref([
       },
       {
         icon: renderIcon(EllipsisHorizontal),
+        label: '頁尾資訊',
+        key: SiderCategory.WebPage + '-all'
+      },
+      {
+        icon: renderIcon(EllipsisHorizontal),
         label: '所有用戶',
         key: SiderCategory.Account + '-all'
       },
@@ -94,7 +100,7 @@ function onTableUpdate(evt: any) {
               >
                 <n-menu
                   v-model:value="selectedItem"
-                  default-expand-all="true"
+                  :default-expand-all="true"
                   :inverted="inverted"
                   :collapsed-width="64"
                   :collapsed-icon-size="22"
@@ -105,6 +111,7 @@ function onTableUpdate(evt: any) {
               <AdminProductTable v-show="selectedItem.includes(SiderCategory.Product)" />
               <AdminProductCategoryTable v-show="selectedItem.includes(SiderCategory.ProductCategory)" />
               <AdminHomeBannerTable v-show="selectedItem.includes(SiderCategory.HomeBanner)" />
+              <AdminWebPageTable v-show="selectedItem.includes(SiderCategory.WebPage)" />
               <AdminAccountsTable v-show="selectedItem.includes(SiderCategory.Account)" />
               <AdminOrderTable v-show="selectedItem.includes(SiderCategory.Order)" />
               <!-- <n-layout style="max-height: 320px" /> -->

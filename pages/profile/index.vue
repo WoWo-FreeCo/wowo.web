@@ -28,12 +28,17 @@ const currentLevel = computed(() => {
   default:
     return '普通會員';
   }
-  // if (authUser.value.SVIPActivated) return 'SVIP';
-  // else if (authUser.value.VIPActivated) return 'VIP';
-  // else return '普通會員';
 });
 
-// const allowActivateVIP = computed(() => clickedFB.value && clickedYT.value);
+const inputField = ref({
+  nickname: authStore.user?.nickname,
+  password: authStore.user?.password,
+  telephone: authStore.user?.telephone,
+  cellphone: authStore.user?.cellphone,
+  addressOne: authStore.user?.addressOne,
+  addressTwo: authStore.user?.addressTwo,
+  addressThree: authStore.user?.addressThree
+});
 
 onMounted(() => {
   if (!authStore.status.loggedIn) {
@@ -147,6 +152,9 @@ async function activateProfileByType(type) {
   }
   updatePermission();
 }
+function updateProfile() {
+  alert('更新功能尚未完成，請稍等');
+}
 </script>
 <template>
   <div class="full_height mt185ptb30 pt0">
@@ -194,7 +202,7 @@ async function activateProfileByType(type) {
       <div class="col-sm-9 pl20pr30">
         <div class="contact-form">
           <!----------------!沒改!---------------->
-          <form id="" method="post" action="">
+          <form id="" action="javascript:;">
             <h4 class="mb-20">
               會員基本資訊
             </h4>
@@ -202,7 +210,7 @@ async function activateProfileByType(type) {
               <label>姓名*</label>
               <input
                 id="auth-realname"
-                v-model="authUser.nickname"
+                v-model="inputField.nickname"
                 type="text"
                 placeholder="姓名*"
                 class="form-control"
@@ -239,7 +247,7 @@ async function activateProfileByType(type) {
               <label>密碼*</label>
               <input
                 id="auth-password"
-                v-model="authUser.password"
+                v-model="inputField.password"
                 type="password"
                 placeholder="密碼*"
                 class="form-control"
@@ -252,7 +260,7 @@ async function activateProfileByType(type) {
               <label>手機*</label>
               <input
                 id="auth-mobile"
-                v-model="authUser.telephone"
+                v-model="inputField.cellphone"
                 type="text"
                 placeholder="手機*"
                 class="form-control"
@@ -264,7 +272,7 @@ async function activateProfileByType(type) {
               <label>市話*</label>
               <input
                 id="auth-tele"
-                v-model="authUser.telephone"
+                v-model="inputField.telephone"
                 type="text"
                 placeholder="市話*"
                 class="form-control"
@@ -276,7 +284,7 @@ async function activateProfileByType(type) {
               <label>送貨地址*</label>
               <input
                 id="auth-address1"
-                v-model="authUser.addressOne"
+                v-model="inputField.addressOne"
                 type="text"
                 placeholder="送貨地址*"
                 class="form-control"
@@ -288,7 +296,7 @@ async function activateProfileByType(type) {
               <label>送貨地址2</label>
               <input
                 id="auth-address2"
-                v-model="authUser.addressTwo"
+                v-model="inputField.addressTwo"
                 type="text"
                 placeholder="送貨地址2"
                 class="form-control"
@@ -299,7 +307,7 @@ async function activateProfileByType(type) {
               <label>送貨地址3</label>
               <input
                 id="auth-address3"
-                v-model="authUser.addressThree"
+                v-model="inputField.addressThree"
                 type="text"
                 placeholder="送貨地址3"
                 class="form-control"
@@ -310,7 +318,13 @@ async function activateProfileByType(type) {
               <button type="reset" class="btn btn-main btn-default">
                 取消重填
               </button>
-              <input id="edit-confirm" type="submit" class="btn btn-main btn-bag" value="確認送出">
+              <input
+                id="edit-confirm"
+                type="submit"
+                class="btn btn-main btn-bag"
+                value="確認送出"
+                @click="updateProfile"
+              >
             </div>
           </form>
         </div>

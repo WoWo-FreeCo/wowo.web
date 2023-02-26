@@ -11,45 +11,6 @@ const cartStore = useCartStore();
 const bonusCut = ref(0);
 const cartType = ref(ProductType.General);
 
-const inputField = ref({
-  attribute: cartType,
-  consignee: {
-    deliveryType: 'HOME',
-    addressDetailOne: '民生东路三段156号',
-    city: '台北市',
-    district: '中正區',
-    email: 'yummy.123@gmail.com',
-    idNo: 'F123456789',
-    idType: '1',
-    cellphone: '0912345678',
-    name: '張大郎',
-    province: '台灣',
-    remark: '假文（收件备注）',
-    stationCode: '999854',
-    stationName: '金全',
-    town: '仁愛里',
-    zipCode: '100001',
-    senderRemark: '假文（寄件备注）'
-  },
-  invoiceParams: {
-    customerName: '王小明',
-    customerEmail: 'abc@gmail.com',
-    customerPhone: '0987654321',
-    customerAddr: '台北市延平南路85號4樓',
-    customerIdentifier: '00000000',
-    carruerType: '',
-    carruerNum: '',
-    donation: '0',
-    loveCode: ''
-  },
-  products: [
-    {
-      id: 1,
-      quantity: 1
-    }
-  ]
-});
-
 const totalPrice = computed({
   get: () => {
     return currentMerch.value.reduce(
@@ -99,6 +60,45 @@ const getCurrentPriceByAuth = (item) => {
   }
   return item?.price;
 };
+
+const inputField = ref({
+  attribute: cartType,
+  consignee: {
+    deliveryType: 'HOME',
+    addressDetailOne: '民生东路三段156号',
+    city: '台北市',
+    district: '中正區',
+    email: 'yummy.123@gmail.com',
+    idNo: 'F123456789',
+    idType: '1',
+    cellphone: '0912345678',
+    name: '張大郎',
+    province: '台灣',
+    remark: '假文（收件备注）',
+    stationCode: '999854',
+    stationName: '金全',
+    town: '仁愛里',
+    zipCode: '100001',
+    senderRemark: '假文（寄件备注）'
+  },
+  invoiceParams: {
+    customerName: '王小明',
+    customerEmail: 'abc@gmail.com',
+    customerPhone: '0987654321',
+    customerAddr: '台北市延平南路85號4樓',
+    customerIdentifier: '00000000',
+    carruerType: '',
+    carruerNum: '',
+    donation: '0',
+    loveCode: ''
+  },
+  products: currentMerch.value.map((e) => {
+    return {
+      id: e.id,
+      quantity: e.amount
+    };
+  })
+});
 
 async function sendResult() {
   try {

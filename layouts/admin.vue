@@ -1,5 +1,9 @@
+<script setup>
+const pageStatus = usePageStatusStore();
+</script>
 <template>
   <div class="layout--admin">
+    <AdminOverlay v-show="pageStatus.adminOverlayToggle" />
     <slot />
   </div>
 </template>

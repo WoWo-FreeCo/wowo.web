@@ -9,7 +9,7 @@ stages:
   - deploy
 
 develop-build:
-  image: node:lts-gallium
+  image: docker:latest
   stage: build
   only:
     - develop

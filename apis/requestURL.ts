@@ -16,6 +16,7 @@ export const POST_HOME_BANNER = `${API_VERSION_PREFIX}/admin/home-banner`;
 export const POST_PRODUCT = `${API_VERSION_PREFIX}/admin/product`;
 export const POST_PRODUCT_CATEGORY = `${API_VERSION_PREFIX}/admin/product-category`;
 export const POST_USER_ACTIVATATION = `${API_VERSION_PREFIX}/user/activity/activate`;
+export const POST_PAYMENT = `${API_VERSION_PREFIX}/payment`;
 
 export const UPDATE_HOME_BANNER = (_id: number) => `${API_VERSION_PREFIX}/admin/home-banner/${_id}`;
 export const UPDATE_PRODUCT = (_id: number) => `${API_VERSION_PREFIX}/admin/product/${_id}`;

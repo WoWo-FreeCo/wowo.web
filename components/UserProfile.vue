@@ -1,9 +1,15 @@
 <script setup>
 const authStore = useAuthStore();
+const authUser = computed(() => authStore?.user);
 
 onMounted(() => {
   console.log(authStore.user);
 });
+
+function shareAccount() {
+  console.log(authStore.user.email);
+}
+
 </script>
 <template>
   <div class="user_profile">
@@ -32,7 +38,7 @@ onMounted(() => {
               <!--會員等級icon, vip及普通會員分別為 <span class="badge_member badge_vip">VIP</span>, <span class="badge_member badge_normal">普通會員</span>-->
             </li>
             <li>
-              <span>我的帳號：{{ authStore?.user?.username }}</span>
+              <span>我的帳號：{{ authStore?.user?.email }}</span>
             </li>
             <li>
               <span>我的推薦者：{{ authStore?.user?.recommendCode }}</span>
@@ -51,14 +57,15 @@ onMounted(() => {
             <i class="fa-regular fa-calendar-check" />我要簽到
           </NuxtLink>
         </li>
-        <li>
+
+        <li v-if="authUser.memberLevel !== 'SVIP'">
           <!-- <a href="myprofile.html#member_vip" class="btn btn-check"><i class="fa-regular fa-circle-up" />我要升等</a>低於SVIP才顯示此按鈕 -->
           <NuxtLink to="/profile#member_vip" class="btn btn-check">
             <i class="fa-regular fa-circle-up" />我要升等
           </NuxtLink>
           <a href="#" data-toggle="modal" data-target="#vipdesc" class="lvdesc_a">等級說明</a>
         </li>
-        <li>
+        <li @click="shareAccount()">
           <a href="#" data-toggle="modal" data-target="#shareaccount" class="btn btn-check"><i class="fa-solid fa-share-nodes" />分享帳號</a>
         </li>
       </ul>

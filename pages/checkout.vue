@@ -105,28 +105,15 @@ function sendResult() {
       <div class="cart_info">
         <h5>付款方式</h5>
         <div class="checkout-form">
-          <div v-if="cartType === 'normal'">
-            <label class="radio form-check">
-              <input type="radio" name="payment" value="" checked> 信用卡
-            </label>
-            <!-- <label class="radio form-check">
-              <input type="radio" name="payment" value=""> ATM 轉帳
-            </label>
-            <label class="radio form-check">
-              <input type="radio" name="payment" value=""> 超商條碼付款
-            </label>
-            <label class="radio form-check">
-              <input type="radio" name="payment" value=""> 超商代碼付款
-            </label>
-            <label class="radio form-check">
-              <input type="radio" name="payment" value=""> 貨到付款
-            </label> -->
-          </div>
-          <div v-else>
-            <label class="radio form-check">
-              <input type="radio" name="payment" value="" checked> 轉帳匯款
-            </label>
-          </div>
+          <label class="radio form-check">
+            <input type="radio" name="payment" value="" checked> 信用卡
+          </label>
+          <label class="radio form-check">
+            <input type="radio" name="payment" value=""> 超商條碼付款
+          </label>
+          <label class="radio form-check">
+            <input type="radio" name="payment" value=""> 超商代碼付款
+          </label>
         </div>
       </div>
       <div class="cart_info">
@@ -179,7 +166,14 @@ function sendResult() {
             class="form-control"
             name=""
           >
-          <input id="shipday" type="datetime-local" placeholder="請選擇可收貨日期" class="form-control" name="">
+          <input
+            v-if="cartType === 'normal'"
+            id="shipday"
+            type="datetime-local"
+            placeholder="請選擇可收貨日期"
+            class="form-control"
+            name=""
+          >
         </div>
       </div>
       <div class="cart_info checkout-form">

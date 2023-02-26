@@ -20,6 +20,10 @@ function logout() {
   authStore.updateUser({});
   router.push({ path: '/' });
 }
+
+function menuClose() {
+  menuToggle.value = ref(false);
+}
 </script>
 
 <template>
@@ -96,22 +100,22 @@ function logout() {
         <span />
         <span />
         <ul id="menu">
-          <li>
+          <li @click="menuClose">
             <NuxtLink to="/aboutlovin">
               關於LOVIN樂恋
             </NuxtLink>
           </li>
-          <li>
+          <li @click="menuClose">
             <NuxtLink to="/shop">
               產品介紹
             </NuxtLink>
           </li>
-          <li>
+          <li @click="menuClose">
             <NuxtLink to="/bonus-point">
               我要賺紅利
             </NuxtLink>
           </li>
-          <li>
+          <li @click="menuClose">
             <NuxtLink to="/activity">
               WO活動
             </NuxtLink>

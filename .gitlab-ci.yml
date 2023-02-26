@@ -26,6 +26,7 @@ develop-deploy:
     - develop
   script:
     - echo "deploy to develop server"
+    - ssh-keygen 172.104.104.171
     - ssh -tt root@172.104.104.171
     - ${SSH_PASSWORD}
     - cd /var/www/wowo.web

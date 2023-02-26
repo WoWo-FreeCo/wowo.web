@@ -45,7 +45,7 @@ const createColumns = () => [
   }
 ];
 
-const products = ref([]);
+const items = ref([]);
 const columns = ref(createColumns());
 const checkedRowKeys = ref([]);
 const rowKey = row => row.id;
@@ -61,7 +61,7 @@ async function fetchItem() {
   try {
     const res = await $fetch(`${runtimeConfig.public.apiBase}/${GET_PRODUCT_CATEGORY}`);
     const { data } = res;
-    products.value = data;
+    items.value = data;
   } catch (error) {
     //
   }
@@ -124,7 +124,7 @@ function createProd() {
     </n-space>
     <n-data-table
       :columns="columns"
-      :data="products"
+      :data="items"
       :pagination="pagination"
       :row-key="rowKey"
       style="padding: 0 12px 16px 0"

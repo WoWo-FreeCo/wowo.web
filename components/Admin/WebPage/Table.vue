@@ -1,6 +1,6 @@
 <script setup>
 import { NButton, useDialog, useMessage } from 'naive-ui';
-import { GET_ALL_PRODUCT } from '@/apis/requestURL';
+import { GET_WEB_PAGES } from '@/apis/requestURL';
 
 const runtimeConfig = useRuntimeConfig();
 const dialog = useDialog();
@@ -39,12 +39,7 @@ const createColumns = () => [
   }
 ];
 
-// function renderIcon(icon) {
-//   return () => h(NIcon, null, { default: () => h(icon) });
-// }
-
-const products = ref([]);
-const categories = ref([]);
+const items = ref([]);
 const columns = ref(createColumns());
 const checkedRowKeys = ref([]);
 const rowKey = row => row.id;
@@ -61,7 +56,7 @@ async function fetchItem() {
   try {
     const res = await $fetch(`${runtimeConfig.public.apiBase}/${GET_ALL_PRODUCT}`);
     const { data } = res;
-    products.value = data;
+    items.value = data;
   } catch (error) {
     //
   }
@@ -100,7 +95,7 @@ function createProd() {
     </n-space>
     <n-data-table
       :columns="columns"
-      :data="products"
+      :data="items"
       :pagination="pagination"
       :row-key="rowKey"
       style="padding: 0 12px 16px 0"

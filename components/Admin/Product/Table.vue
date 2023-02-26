@@ -76,7 +76,7 @@ const createColumns = () => [
 //   return () => h(NIcon, null, { default: () => h(icon) });
 // }
 
-const products = ref([]);
+const items = ref([]);
 const categories = ref([]);
 const columns = ref(createColumns());
 const checkedRowKeys = ref([]);
@@ -105,7 +105,7 @@ async function fetchItem() {
   try {
     const res = await $fetch(`${runtimeConfig.public.apiBase}/${GET_ALL_PRODUCT}`);
     const { data } = res;
-    products.value = data;
+    items.value = data;
   } catch (error) {
     //
   }
@@ -169,7 +169,7 @@ function createProd() {
     </n-space>
     <n-data-table
       :columns="columns"
-      :data="products"
+      :data="items"
       :pagination="pagination"
       :row-key="rowKey"
       style="padding: 0 12px 16px 0"

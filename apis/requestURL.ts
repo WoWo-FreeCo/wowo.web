@@ -6,6 +6,7 @@ export const GET_ADMIN_PROFILE = `${API_VERSION_PREFIX}/admin/user/profile`;
 export const GET_ADMIN_ORDERS = `${API_VERSION_PREFIX}/admin/order`;
 export const GET_PRODUCT = (_categoryId: '') => `${API_VERSION_PREFIX}/product?categoryId=${_categoryId}`;
 export const GET_ALL_PRODUCT = `${API_VERSION_PREFIX}/product`;
+export const GET_WEB_PAGES = `${API_VERSION_PREFIX}/web-page`;
 export const GET_PRODUCT_CATEGORY = `${API_VERSION_PREFIX}/product-category`;
 export const GET_DAILY_SEQUENCE = `${API_VERSION_PREFIX}/check-content/sequence`;
 export const GET_HOME_BANNER = `${API_VERSION_PREFIX}/home-banner`;

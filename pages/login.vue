@@ -84,15 +84,15 @@ function rediectPath() {
 
         <div class="social_login">
           使用：
-          <a href="" class="btn btn-check bg-facebook" style="margin: 0 3px;">
+          <a href="" class="btn btn-check bg-facebook" style="margin: 3px;">
             <i class="fa-brands fa-facebook-f" />
             facebook帳號登入
           </a>
-          <a href="" class="btn btn-check bg-google" style="margin: 0 3px;">
+          <a href="" class="btn btn-check bg-google" style="margin: 3px;">
             <i class="fa-brands fa-google-plus-g" />
             Google帳號登入
           </a>
-          <a href="" class="btn btn-check bg-line" style="margin: 0 3px;">
+          <a href="" class="btn btn-check bg-line" style="margin: 3px;">
             <i class="fa-brands fa-line" />
             Line帳號登入
           </a>

@@ -2856,6 +2856,9 @@ signpoint
   .signpoint_li li {
     width: calc(50% - 3px);
   }
+  .footer .social_icon {
+    justify-content: center;
+  }
 }
 .signpoint_li li.mission_lock {
   background:#c28000;

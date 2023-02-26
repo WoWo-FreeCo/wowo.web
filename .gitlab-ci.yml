@@ -9,7 +9,7 @@ stages:
   - deploy
 
 develop-build:
-  image: alpine:latest
+  image: docker:latest
   stage: build
   only:
     - develop

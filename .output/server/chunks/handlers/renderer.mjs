@@ -1,7 +1,8 @@
 import { createRenderer } from 'vue-bundle-renderer/runtime';
-import { e as eventHandler, u as useNitroApp, a as useRuntimeConfig, g as getQuery, c as createError, b as getRouteRules } from '../nitro/node-server.mjs';
+import { eventHandler, getQuery, createError } from 'h3';
 import { renderToString } from 'vue/server-renderer';
 import { joinURL } from 'ufo';
+import { u as useNitroApp, a as useRuntimeConfig, g as getRouteRules } from '../nitro/node-server.mjs';
 import 'node-fetch-native/polyfill';
 import 'http';
 import 'https';
@@ -13,6 +14,7 @@ import 'scule';
 import 'ohash';
 import 'unstorage';
 import 'defu';
+import 'radix3';
 import 'node:fs';
 import 'node:url';
 import 'pathe';

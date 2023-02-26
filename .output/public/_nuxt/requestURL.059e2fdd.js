@@ -1,1 +1,0 @@
-const s="api/v1",t=`${s}/user/profile`,c=`${s}/admin/user/profile`,e=`${s}/product`,o=`${s}/product-category`,E=`${s}/check-content/sequence`,a=`${s}/user/register`,n=`${s}/user/login`,_=`${s}/admin/user/login`,r=`${s}/user/activity/activate`;export{_ as A,e as G,r as P,n as U,c as a,E as b,o as c,t as d,a as e};

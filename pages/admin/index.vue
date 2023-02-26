@@ -94,6 +94,7 @@ function onTableUpdate(evt: any) {
               >
                 <n-menu
                   v-model:value="selectedItem"
+                  default-expand-all="true"
                   :inverted="inverted"
                   :collapsed-width="64"
                   :collapsed-icon-size="22"

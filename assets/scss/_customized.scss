@@ -2,3 +2,14 @@
   opacity: 0;
   pointer-events: none;
 }
+.swiper-wrapper {
+  a {
+    display: block;
+    width: 100%;
+    > img {
+      width: 100%;
+    }
+  }
+  .swiper-slide {
+  }
+}

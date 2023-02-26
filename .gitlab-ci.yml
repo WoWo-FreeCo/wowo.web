@@ -16,8 +16,8 @@ develop-build:
     - develop
   script:
     - echo "build for develop"
-    - npm install
-    - npm run build
+    # - npm install
+    # - npm run build
     - echo 'build completed'
 
 develop-deploy:
@@ -26,16 +26,16 @@ develop-deploy:
     - develop
   before_script:
     ## Install ssh-agent if not already installed, it is required by Docker.
-    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    # - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
     ## Run ssh-agent (inside the build environment)
-    - eval $(ssh-agent -s)
-    - mkdir -p ~/.ssh
-    - echo -e "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
-    - chmod 600 ~/.ssh/id_rsa
-    - ssh-add ~/.ssh/id_rsa
+    # - eval $(ssh-agent -s)
+    # - mkdir -p ~/.ssh
+    # - echo -e "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+    # - chmod 600 ~/.ssh/id_rsa
+    # - ssh-add ~/.ssh/id_rsa
   script:
     - echo "deploy to develop server"
-    - ssh -tt root@172.104.104.171
+    - ssh -T root@172.104.104.171
     - $SSH_PASSWORD
     - echo "$SSH_PASSWORD"
     - cd var/www/wowo.web && git pull

@@ -35,12 +35,9 @@ develop-deploy:
     # - ssh-add ~/.ssh/id_rsa
   script:
     - echo "deploy to develop server"
-    # - ssh -T root@172.104.104.171
-    - ssh -T StrictHostKeyChecking=no root@172.104.104.171
-    - echo "$SSH_PASSWORD"
-    - $SSH_PASSWORD
+    - apk add --update --no-cache openssh sshpass aws-cli
+    - sshpass -p $SSH_PASSWORD ssh -o StrictHostKeyChecking=no ubuntu@172.104.104.171
     - cd var/www/wowo.web && git pull
-    - git pull
     - $GIT_USERNAME
     - $GIT_PASSWORD
     - pm2 restart index

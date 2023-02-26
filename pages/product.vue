@@ -25,12 +25,19 @@ async function fetchProd() {
     const res = await $fetch(`${runtimeConfig.public.apiBase}/${GET_ALL_PRODUCT}`);
     const { data } = res;
     products.value = data;
-    currentProduct.value = data?.find(e => e.id === parseInt(route.query.id));
+    const _prod = data?.find(e => e.id === parseInt(route.query.id));
+    if (!_prod) return redirectToIndex();
+    currentProduct.value = _prod;
   } catch (error) {
-    //
     console.log(error);
+    redirectToIndex();
   }
   loading.value = false;
+}
+function redirectToIndex() {
+  router.push({
+    path: '/'
+  });
 }
 
 function addToCart(prod) {

@@ -1,5 +1,5 @@
 <script setup>
-import { GET_PRODUCT_CATEGORY, GET_ALL_PRODUCT } from '@/apis/requestURL';
+import { GET_PRODUCT_CATEGORY, GET_ALL_PRODUCT, GET_HOME_BANNER } from '@/apis/requestURL';
 
 // import mockProduct from '@/mocks/mockProducts.json';
 // import mockLabel from '@/mocks/mockLabels.json';
@@ -28,6 +28,7 @@ const currentCategoryId = ref(defaultCategory.id);
 
 const prodCategories = ref([]);
 const products = ref([]);
+const homeBanner = ref([]);
 
 const cartStore = useCartStore();
 
@@ -55,10 +56,21 @@ onMounted(async() => {
 });
 
 function fetchData() {
+  fetchHomeBanner();
   fetchProdCategories();
   fetchProd();
 }
 
+async function fetchHomeBanner() {
+  try {
+    const res = await $fetch(`${runtimeConfig.public.apiBase}/${GET_HOME_BANNER}`);
+    const { data } = res;
+    homeBanner.value = data;
+    console.log(data);
+  } catch (error) {
+    //
+  }
+}
 async function fetchProdCategories() {
   try {
     const res = await $fetch(`${runtimeConfig.public.apiBase}/${GET_PRODUCT_CATEGORY}`);
@@ -95,13 +107,14 @@ function addToCart(prod) {
 <template>
   <div>
     <Swiper
+      v-if="homeBanner"
       class="swiper-root"
       :modules="[SwiperAutoplay, SwiperEffectCreative]"
       :slides-per-view="1"
       :loop="true"
       :effect="'creative'"
       :autoplay="{
-        delay: 4000,
+        delay: 8000,
         disableOnInteraction: true,
       }"
       :creative-effect="{
@@ -114,8 +127,8 @@ function addToCart(prod) {
         },
       }"
     >
-      <SwiperSlide v-for="slide in slideItems" :key="slide">
-        <NuxtLink :to="`${slide.url}`">
+      <SwiperSlide v-for="slide in homeBanner" :key="slide.id">
+        <NuxtLink :to="`${slide.href}`">
           <img :src="slide.img" alt="">
         </NuxtLink>
       </SwiperSlide>

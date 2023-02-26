@@ -317,7 +317,7 @@ async function activateProfileByType(type) {
       </div>
     </div>
 
-    <div class="bg_left2">
+    <div id="member_vip_root" class="bg_left2">
       <!----------------!!!!!!!!!!!!此2區塊有做修改!!!!!!!!!!!!---------------->
       <div id="member_vip" class="level_frame">
         <h3 class="level_tl">

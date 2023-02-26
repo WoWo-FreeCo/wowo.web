@@ -183,13 +183,13 @@ function createProd() {
     <AdminProductDialogCreator
       v-if="creatorToggle"
       @close-dialog="creatorToggle = false"
-      @fetch-prod="fetchItem"
+      @fetch-item="fetchItem"
     />
     <AdminProductDialogEditor
       v-if="editorToggle"
       :current-item="currentItem"
       @close-dialog="editorToggle = false"
-      @fetch-prod="fetchItem"
+      @fetch-item="fetchItem"
     />
   </div>
 </template>

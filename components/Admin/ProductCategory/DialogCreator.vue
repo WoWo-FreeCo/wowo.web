@@ -2,7 +2,7 @@
 import { useMessage } from 'naive-ui';
 import { POST_PRODUCT_CATEGORY } from '@/apis/requestURL';
 
-const emits = defineEmits(['closeDialog', 'fetchProd']);
+const emits = defineEmits(['closeDialog', 'fetchItem']);
 
 const pageStatus = usePageStatusStore();
 
@@ -48,7 +48,7 @@ async function handlePositiveClick() {
       body: formValue.value
     });
     message.success('已成功建立產品類別');
-    emits('fetchProd');
+    emits('fetchItem');
   } catch (error) {
     message.error(`發生錯誤，${error.message}`);
   }

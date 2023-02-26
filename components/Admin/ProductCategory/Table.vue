@@ -134,13 +134,13 @@ function createProd() {
     <AdminProductCategoryDialogCreator
       v-if="creatorToggle"
       @close-dialog="creatorToggle = false"
-      @fetch-prod="fetchItem"
+      @fetch-item="fetchItem"
     />
     <AdminProductCategoryDialogEditor
       v-if="editorToggle"
       :current-item="currentItem"
       @close-dialog="editorToggle = false"
-      @fetch-prod="fetchItem"
+      @fetch-item="fetchItem"
     />
   </div>
 </template>

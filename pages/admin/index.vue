@@ -8,6 +8,7 @@ import {
 enum SiderCategory {
   Account = 'account-management',
   Product = 'product-management',
+  ProductCategory = 'product-category-management',
   Order = 'order-management'
 }
 
@@ -37,6 +38,11 @@ const menuOptions = ref([
     key: 'manager-list',
     icon: renderIcon(Person),
     children: [
+      {
+        icon: renderIcon(EllipsisHorizontal),
+        label: '所有產品分類',
+        key: SiderCategory.ProductCategory + '-all'
+      },
       {
         icon: renderIcon(EllipsisHorizontal),
         label: '所有產品',
@@ -90,6 +96,7 @@ function onTableUpdate(evt: any) {
                 />
               </n-layout-sider>
               <AdminProductTable v-show="selectedItem.includes(SiderCategory.Product)" />
+              <AdminProductCategoryTable v-show="selectedItem.includes(SiderCategory.ProductCategory)" />
               <AdminAccountsTable v-show="selectedItem.includes(SiderCategory.Account)" />
               <AdminOrderTable v-show="selectedItem.includes(SiderCategory.Order)" />
               <!-- <n-layout style="max-height: 320px" /> -->

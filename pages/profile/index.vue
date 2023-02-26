@@ -222,7 +222,7 @@ async function activateProfileByType(type) {
                 required
               >
             </div> -->
-            <div class="form-group">
+            <!-- <div class="form-group">
               <label>Email*</label>
               <input
                 id="auth-email"
@@ -234,7 +234,7 @@ async function activateProfileByType(type) {
                 required
               >
               <span class="level_tips">此信箱為會員識別憑證及通知用，一旦註冊成功將無法再做修改，請確認後填寫。</span>
-            </div>
+            </div> -->
             <div class="form-group">
               <label>密碼*</label>
               <input
@@ -343,15 +343,29 @@ async function activateProfileByType(type) {
           </div>
           <div
             :class="{
-              inactive: authUser.memberLevel === 'SVIP',
-              'display-none': authUser.memberLevel === 'NORMAL'}
-            "
+              'display-none': authUser.memberLevel === 'NORMAL'
+            }"
             class="col-sm-6 border-right svip-code"
           >
             <h5>D.SVIP激活碼<span class="level_tips">(綁定推薦人帳號後將無法解鎖！)</span></h5>
             <form id="svip_rec" action="javascript:;" class="form-group">
-              <input v-show="!authUser.SVIPActivated" v-model="inputSVIPCode" type="text" placeholder="請輸入SVIP激活碼" class="form-control">
-              <button type="button" class="btn btn-block" :class="{'btn-check': !authUser.SVIPActivated, 'btn-default': authUser.SVIPActivated}" :disabled="authUser.SVIPActivated" @click="activateProfileByType('svip')">
+              <input
+                v-show="!authUser.SVIPActivated"
+                v-model="inputSVIPCode"
+                type="text"
+                placeholder="請輸入SVIP激活碼"
+                class="form-control"
+                :disabled="authUser.memberLevel === 'SVIP'"
+              >
+              <button
+                type="button"
+                class="btn btn-block"
+                :class="{
+                  'btn-check': !authUser.SVIPActivated,
+                  'btn-default': authUser.SVIPActivated}"
+                :disabled="authUser.SVIPActivated || authUser.memberLevel === 'SVIP'"
+                @click="activateProfileByType('svip')"
+              >
                 <i v-show="authUser.SVIPActivated" class="fa-solid fa-circle-check" />
                 {{ !authUser.SVIPActivated ? '前往綁定' : '已綁定' }}
               </button>

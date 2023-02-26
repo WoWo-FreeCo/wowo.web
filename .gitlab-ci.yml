@@ -25,17 +25,17 @@ develop-deploy:
   only:
     - develop
   before_script:
-    - 'command -v ssh-agent >/dev/null || ( apk add --update openssh )' 
+    ## Install ssh-agent if not already installed, it is required by Docker.
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    ## Run ssh-agent (inside the build environment)
     - eval $(ssh-agent -s)
-    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
-    - echo "$SSH_PASSWORD"
     - mkdir -p ~/.ssh
-    - chmod 700 ~/.ssh
-    - ssh-keyscan 172.104.104.171 >> ~/.ssh/known_hosts
-    - chmod 644 ~/.ssh/known_hosts
+    - echo -e "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+    - chmod 600 ~/.ssh/id_rsa
+    - ssh-add ~/.ssh/id_rsa
   script:
     - echo "deploy to develop server"
-    - ssh root@172.104.104.171
+    - ssh -tt root@172.104.104.171
     - $SSH_PASSWORD
     - echo "$SSH_PASSWORD"
     - cd var/www/wowo.web && git pull

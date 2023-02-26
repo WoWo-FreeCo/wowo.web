@@ -7,7 +7,9 @@ const dialog = useDialog();
 const message = useMessage();
 const pageStatus = usePageStatusStore();
 
-const prodDialogToggle = ref(false);
+const creatorToggle = ref(false);
+const editorToggle = ref(false);
+const currentItem = ref({});
 
 const createColumns = () => [
   // {
@@ -134,7 +136,9 @@ function handlerAction(item, type = '') {
     });
     break;
   case 'edit':
-    console.log('edit');
+    currentItem.value = item;
+    editorToggle.value = true;
+    pageStatus.toggleAdminOverlay(true);
     break;
   default:
     break;
@@ -147,7 +151,7 @@ function handleCheck(rowKeys) {
 }
 
 function createProd() {
-  prodDialogToggle.value = true;
+  creatorToggle.value = true;
   pageStatus.toggleAdminOverlay(true);
 }
 </script>
@@ -169,8 +173,14 @@ function createProd() {
       @update:checked-row-keys="handleCheck"
     />
     <AdminProductDialogCreator
-      v-if="prodDialogToggle"
-      @close-dialog="prodDialogToggle = false"
+      v-if="creatorToggle"
+      @close-dialog="creatorToggle = false"
+      @fetch-prod="fetchProd"
+    />
+    <AdminProductDialogEditor
+      v-if="editorToggle"
+      :current-item="currentItem"
+      @close-dialog="editorToggle = false"
       @fetch-prod="fetchProd"
     />
   </div>

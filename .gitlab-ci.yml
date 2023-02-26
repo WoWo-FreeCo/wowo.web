@@ -36,9 +36,9 @@ develop-deploy:
   script:
     - echo "deploy to develop server"
     # - ssh -T root@172.104.104.171
-    - ssh -o StrictHostKeyChecking=no root@172.104.104.171
-    - $SSH_PASSWORD
+    - ssh -T StrictHostKeyChecking=no root@172.104.104.171
     - echo "$SSH_PASSWORD"
+    - $SSH_PASSWORD
     - cd var/www/wowo.web && git pull
     - git pull
     - $GIT_USERNAME

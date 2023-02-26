@@ -3,26 +3,33 @@ import { NButton, useDialog, useMessage } from 'naive-ui';
 import { GET_WEB_PAGES } from '@/apis/requestURL';
 
 const runtimeConfig = useRuntimeConfig();
-const dialog = useDialog();
+// const dialog = useDialog();
 const message = useMessage();
 const pageStatus = usePageStatusStore();
 
-const creatorToggle = ref(false);
+// const creatorToggle = ref(false);
 const editorToggle = ref(false);
 const currentItem = ref({});
 
 const createColumns = () => [
   {
     title: '頁尾名稱',
-    key: 'name'
+    key: 'name',
+    width: 100,
+    ellipsis: true
   },
   {
     title: '內容',
-    key: 'content'
+    key: 'content',
+    width: '50%',
+    ellipsis: true,
+    style: 'backgroundColor: red'
   },
   {
     title: '操作',
     key: 'actions',
+    width: 100,
+    ellipsis: true,
     render(row) {
       return [h(
         NButton,
@@ -88,6 +95,10 @@ function createItem() {
 
 <template>
   <div style="position: relative;">
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css"
+      rel="stylesheet"
+    >
     <n-space horizontal>
       <n-button disabled="" type="primary" style="margin: 12px;" @click="createItem">
         新建頁尾
@@ -102,16 +113,17 @@ function createItem() {
       max-height="100vh"
       @update:checked-row-keys="handleCheck"
     />
-    <AdminProductDialogCreator
+    <!-- <AdminWebPageDialogCreator
       v-if="creatorToggle"
       @close-dialog="creatorToggle = false"
       @fetch-item="fetchItem"
-    />
-    <AdminProductDialogEditor
+    /> -->
+    <AdminWebPageDialogEditor
       v-if="editorToggle"
       :current-item="currentItem"
       @close-dialog="editorToggle = false"
       @fetch-item="fetchItem"
     />
+    <!-- ! Rich text -->
   </div>
 </template>

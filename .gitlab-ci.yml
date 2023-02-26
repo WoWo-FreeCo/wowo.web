@@ -7,7 +7,7 @@ cache:
     - server/node_modules/
 
 stages:
-  - build
+  # - build
   - deploy
 
 develop-build:
@@ -26,10 +26,9 @@ develop-deploy:
     - develop
   script:
     - echo "deploy to develop server"
-    - ssh-keygen -R 172.104.104.171
-    - ssh -tt root@172.104.104.171
+    - ssh root@172.104.104.171
     - ${SSH_PASSWORD}
-    - cd /var/www/wowo.web
+    - cd var/www/wowo.web && git pull
     - git pull
     - ${GIT_USERNAME}
     - ${GIT_PASSWORD}

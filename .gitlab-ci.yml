@@ -24,13 +24,20 @@ develop-deploy:
   stage: deploy
   only:
     - develop
+  before_script:
+    - 'command -v ssh-agent >/dev/null || ( apk add --update openssh )' 
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+    - echo "$SSH_PASSWORD"
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    - ssh-keyscan 172.104.104.171 >> ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
   script:
     - echo "deploy to develop server"
-    - ssh root@172.104.104.171
-    - ${SSH_PASSWORD}
     - cd var/www/wowo.web && git pull
     - git pull
-    - ${GIT_USERNAME}
-    - ${GIT_PASSWORD}
+    - $GIT_USERNAME
+    - $GIT_PASSWORD
     - pm2 restart index
     - echo 'deploy completed'

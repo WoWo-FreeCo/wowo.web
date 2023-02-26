@@ -98,7 +98,7 @@ function addToCart(prod) {
       :loop="true"
       :effect="'creative'"
       :autoplay="{
-        delay: 8000,
+        delay: 4000,
         disableOnInteraction: true,
       }"
       :creative-effect="{

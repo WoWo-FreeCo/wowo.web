@@ -69,7 +69,7 @@ function closeDialog() {
 <template>
   <n-dialog
     :style="{...dialogStyle}"
-    title="建立產品"
+    title="建立橫幅"
     content=""
     negative-text="取消"
     positive-text="建立"

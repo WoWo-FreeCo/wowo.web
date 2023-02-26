@@ -9,15 +9,15 @@ stages:
   - deploy
 
 develop-build:
-  image: docker:latest
+  image: ubuntu:latest
   stage: build
   only:
     - develop
   script:
     - echo "build for develop"
-    - npm install
-    - npm run build
-    - echo 'build completed'
+    # - npm install
+    # - npm run build
+    # - echo 'build completed'
 
 develop-deploy:
   stage: deploy

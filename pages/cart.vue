@@ -1,21 +1,24 @@
 <script setup>
+import { ProductType } from '@/constants/common';
+
 const routes = useRoute();
 const router = useRouter();
 
 const authStore = useAuthStore();
 const cartStore = useCartStore();
 
-const cartType = ref('normal');
+const cartType = ref(ProductType.General);
 
 watch(routes, (_new) => {
   updateCartType();
-  console.log(cartStore?.merch.filter(e => e.attribute === 'COLD_CHAIN'));
+  // console.log(cartStore?.merch.filter(e => e.attribute === 'COLD_CHAIN'));
 });
 
 const currentMerch = computed(() => {
-  if (cartType.value === 'cold-chain') {
+  switch (cartType.value) {
+  case ProductType.ColdChain:
     return cartStore?.merch.filter(e => e.attribute === 'COLD_CHAIN');
-  } else {
+  default:
     return cartStore?.merch.filter(e => e.attribute === 'GENERAL');
   }
 });
@@ -52,10 +55,10 @@ const getCurrentPriceByAuth = (item) => {
 function updateCartType() {
   switch (routes.query.type) {
   case 'cold-chain':
-    cartType.value = 'cold-chain';
+    cartType.value = ProductType.ColdChain;
     break;
   default:
-    cartType.value = 'normal';
+    cartType.value = ProductType.General;
     break;
   }
 }
@@ -76,12 +79,12 @@ function goCheckout() {
       <!--購物車類別, 這裡不用動-->
       <ul class="list-inline dashboard-menu text-center">
         <li>
-          <NuxtLink to="/cart" :class="{active: cartType === 'normal'}">
+          <NuxtLink to="/cart" :class="{active: cartType === ProductType.General}">
             一般商品
           </NuxtLink>
         </li>
         <li>
-          <NuxtLink to="/cart?type=cold-chain" :class="{active: cartType === 'cold-chain'}">
+          <NuxtLink to="/cart?type=cold-chain" :class="{active: cartType === ProductType.ColdChain}">
             冷鍊商品
           </NuxtLink>
         </li>

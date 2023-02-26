@@ -23,7 +23,8 @@ const defaultCategory = {
   name: '所有產品'
 };
 
-const currentCategory = ref(defaultCategory.name);
+// const currentCategory = ref(defaultCategory.name);
+const currentCategoryId = ref(defaultCategory.id);
 
 const prodCategories = ref([]);
 const products = ref([]);
@@ -32,12 +33,12 @@ const cartStore = useCartStore();
 
 let currentProduct = ref([]);
 
-watch(currentCategory, (_new) => {
-  if (_new === defaultCategory.name) {
+watch(currentCategoryId, (_new) => {
+  if (_new === defaultCategory.id) {
     currentProduct = products.value;
     return;
   }
-  currentProduct = products.value.filter(e => e.category === _new);
+  currentProduct = products.value.filter(e => e.categoryId === _new);
   console.log(products.value);
 });
 
@@ -127,8 +128,8 @@ function addToCart(prod) {
             <li
               v-for="category in prodCategories"
               :key="category.id"
-              :class="{active: currentCategory === category?.name}"
-              @click="currentCategory = category?.name"
+              :class="{active: currentCategoryId === category?.id}"
+              @click="currentCategoryId = category?.id"
             >
               <a href="javascript:;" data-toggle="tab">{{ category.name }}</a>
             </li>

@@ -222,6 +222,20 @@ async function activateProfileByType(type) {
                 required
               >
             </div> -->
+            <!-- <div class="form-group">
+              <label>Email*</label>
+              <input
+                id="auth-email"
+                v-model="authUser.email"
+                type="email"
+                placeholder="Email*"
+                class="form-control"
+                name=""
+                required
+              >
+              <span class="level_tips">此信箱為會員識別憑證及通知用，一旦註冊成功將無法再做修改，請確認後填寫。</span>
+            </div> -->
+            >>>>>>> fix/start-20230226
             <div class="form-group">
               <label>密碼*</label>
               <input
@@ -330,8 +344,8 @@ async function activateProfileByType(type) {
           </div>
           <div
             :class="{
-              'display-none': authUser.memberLevel === 'NORMAL'}
-            "
+              'display-none': authUser.memberLevel === 'NORMAL'
+            }"
             class="col-sm-6 border-right svip-code"
           >
             <h5>A.SVIP激活碼<span class="level_tips">(綁定推薦人帳號後將無法解鎖！)</span></h5>
@@ -344,7 +358,15 @@ async function activateProfileByType(type) {
                 class="form-control"
                 :disabled="authUser.memberLevel === 'SVIP'"
               >
-              <button type="button" class="btn btn-block" :class="{'btn-check': !authUser.SVIPActivated, 'btn-default': authUser.SVIPActivated}" :disabled="authUser.SVIPActivated || authUser.memberLevel === 'SVIP'" @click="activateProfileByType('svip')">
+              <button
+                type="button"
+                class="btn btn-block"
+                :class="{
+                  'btn-check': !authUser.SVIPActivated,
+                  'btn-default': authUser.SVIPActivated}"
+                :disabled="authUser.SVIPActivated || authUser.memberLevel === 'SVIP'"
+                @click="activateProfileByType('svip')"
+              >
                 <i v-show="authUser.SVIPActivated" class="fa-solid fa-circle-check" />
                 {{ !authUser.SVIPActivated ? '前往綁定' : '已綁定' }}
               </button>

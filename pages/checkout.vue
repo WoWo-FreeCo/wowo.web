@@ -1,12 +1,54 @@
 <script setup>
-const routes = useRoute();
-const router = useRouter();
+import { POST_PAYMENT } from '@/apis/requestURL';
+import { ProductType } from '@/constants/common';
 
+const routes = useRoute();
+// const router = useRouter();
+const runtimeConfig = useRuntimeConfig();
 const authStore = useAuthStore();
 const cartStore = useCartStore();
 
 const bonusCut = ref(0);
-const cartType = ref('normal');
+const cartType = ref(ProductType.General);
+
+const inputField = ref({
+  attribute: cartType,
+  consignee: {
+    deliveryType: 'HOME',
+    addressDetailOne: '民生东路三段156号',
+    city: '台北市',
+    district: '中正區',
+    email: 'yummy.123@gmail.com',
+    idNo: 'F123456789',
+    idType: '1',
+    cellphone: '0912345678',
+    name: '張大郎',
+    province: '台灣',
+    remark: '假文（收件备注）',
+    stationCode: '999854',
+    stationName: '金全',
+    town: '仁愛里',
+    zipCode: '100001',
+    senderRemark: '假文（寄件备注）'
+  },
+  invoiceParams: {
+    customerName: '王小明',
+    customerEmail: 'abc@gmail.com',
+    customerPhone: '0987654321',
+    customerAddr: '台北市延平南路85號4樓',
+    customerIdentifier: '00000000',
+    carruerType: '',
+    carruerNum: '',
+    donation: '0',
+    loveCode: ''
+  },
+  products: [
+    {
+      id: 1,
+      quantity: 1
+    }
+  ]
+});
 
 const totalPrice = computed({
   get: () => {
@@ -22,9 +64,10 @@ const totalPrice = computed({
 const rewardCredit = computed(() => authStore?.user?.rewardCredit || 0);
 
 const currentMerch = computed(() => {
-  if (cartType.value === 'cold-chain') {
-    return cartStore?.merch.filter(e => e.attribute !== 'GENERAL');
-  } else {
+  switch (cartType.value) {
+  case ProductType.ColdChain:
+    return cartStore?.merch.filter(e => e.attribute === 'COLD_CHAIN');
+  default:
     return cartStore?.merch.filter(e => e.attribute === 'GENERAL');
   }
 });
@@ -36,10 +79,10 @@ onMounted(() => {
 function updateCartType() {
   switch (routes.query.type) {
   case 'cold-chain':
-    cartType.value = 'cold-chain';
+    cartType.value = ProductType.ColdChain;
     break;
   default:
-    cartType.value = 'normal';
+    cartType.value = ProductType.General;
     break;
   }
 }
@@ -57,12 +100,35 @@ const getCurrentPriceByAuth = (item) => {
   return item?.price;
 };
 
-function sendResult() {
-  alert('恭喜購買完成！歡迎繼續選購');
-  cartStore.merch = [];
-  router.push({
-    path: '/shop'
-  });
+async function sendResult() {
+  try {
+    const res = await $fetch(`${runtimeConfig.public.apiBase}/${POST_PAYMENT}`, {
+      method: 'POST',
+      body: inputField.value,
+      headers: {
+        authorization: 'Bearer ' + localStorage.getItem('accessToken')
+      }
+    });
+    // const { data } = res;
+    const div = document.createElement('credit-div');
+    div.innerHTML = res;
+    div.id = 'credit-payment';
+    document.body.appendChild(div);
+    document.getElementById('_form_aiochk').submit();
+    console.log(res);
+  } catch (error) {
+    console.log(error);
+  }
+
+  // alert('恭喜購買完成！歡迎繼續選購');
+  // cartStore.merch = [];
+  // router.push({
+  //   path: '/shop'
+  // });
+}
+
+function onBounsCutChanged() {
+  bonusCut.value = bonusCut.value > rewardCredit.value ? rewardCredit.value : bonusCut.value;
 }
 
 </script>
@@ -97,7 +163,7 @@ function sendResult() {
           <label class="radio form-check">
             <input type="radio" name="shipping" value="ship_home" checked> 宅配到府
           </label>
-          <label v-show="cartType === 'normal'" class="radio form-check">
+          <label v-show="cartType === ProductType.ColdChain" class="radio form-check">
             <input type="radio" name="shipping" value="ship_market"> 超商取貨
           </label>
         </div>
@@ -105,15 +171,28 @@ function sendResult() {
       <div class="cart_info">
         <h5>付款方式</h5>
         <div class="checkout-form">
-          <label class="radio form-check">
-            <input type="radio" name="payment" value="" checked> 信用卡
-          </label>
-          <label class="radio form-check">
-            <input type="radio" name="payment" value=""> 超商條碼付款
-          </label>
-          <label class="radio form-check">
-            <input type="radio" name="payment" value=""> 超商代碼付款
-          </label>
+          <div v-if="cartType === ProductType.General">
+            <label class="radio form-check">
+              <input type="radio" name="payment" value="" checked> 信用卡
+            </label>
+            <!-- <label class="radio form-check">
+              <input type="radio" name="payment" value=""> ATM 轉帳
+            </label>
+            <label class="radio form-check">
+              <input type="radio" name="payment" value=""> 超商條碼付款
+            </label>
+            <label class="radio form-check">
+              <input type="radio" name="payment" value=""> 超商代碼付款
+            </label>
+            <label class="radio form-check">
+              <input type="radio" name="payment" value=""> 貨到付款
+            </label> -->
+          </div>
+          <div v-else>
+            <label class="radio form-check">
+              <input type="radio" name="payment" value="" checked> 信用卡
+            </label>
+          </div>
         </div>
       </div>
       <div class="cart_info">
@@ -128,6 +207,7 @@ function sendResult() {
             placeholder="請輸入本次預使用紅利"
             class="form-control"
             name=""
+            @change="onBounsCutChanged"
           >
         </div>
       </div>

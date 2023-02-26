@@ -1,11 +1,13 @@
 import { defineStore } from 'pinia';
 
 type State = {
-  bellMessageToggle: boolean
+  bellMessageToggle: boolean,
+  adminOverlayToggle: boolean
 }
 
 const initialState: State = {
-  bellMessageToggle: false
+  bellMessageToggle: false,
+  adminOverlayToggle: false
 };
 
 export const usePageStatusStore = defineStore({
@@ -17,6 +19,9 @@ export const usePageStatusStore = defineStore({
   actions: {
     toggleBellMessage(_toggle: boolean) {
       this.bellMessageToggle = _toggle;
+    },
+    toggleAdminOverlay(_toggle: boolean) {
+      this.adminOverlayToggle = _toggle;
     }
   }
 });

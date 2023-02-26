@@ -35,6 +35,9 @@ develop-deploy:
     - chmod 644 ~/.ssh/known_hosts
   script:
     - echo "deploy to develop server"
+    - ssh root@172.104.104.171
+    - $SSH_PASSWORD
+    - echo "$SSH_PASSWORD"
     - cd var/www/wowo.web && git pull
     - git pull
     - $GIT_USERNAME

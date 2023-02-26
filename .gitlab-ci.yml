@@ -25,6 +25,7 @@ develop-deploy:
     - develop
   script:
     - echo "deploy to develop server"
+    - apk add --update --no-cache openssh aws-cli
     - sshpass -p ${SSH_PASSWORD} ssh -o StrictHostKeyChecking=no root@172.104.104.171
     - cd /var/www/wowo.web
     - git pull

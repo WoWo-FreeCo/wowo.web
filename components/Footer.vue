@@ -6,12 +6,11 @@
       <!--客戶要可自己編輯footer, 這裡以下是編輯器-->
       <div class="row">
         <div class="col-md-4 text-left">
+          全台最大堅果電商平台 你今天WO了沒<br>
           同興實業股份有限公司<br>
-          營業時間：週二至週日 上午11:00-晚間20:00<br>
           客服專線：022371110、02-23711183<br>
-          聯絡信箱：mlin@tonghsing.com.tw<br>
+          客服信箱：mlin@tonghsing.com.tw<br>
           公司地址：台北市延平南路85號4樓<br>
-          Line ID：test123
         </div>
         <div class="col-md-8 text-right">
           <ul class="footer-menu">
@@ -63,7 +62,7 @@
         </div>
       </div><!--這裡以下是編輯器 end-->
 
-      <p>Copyright &copy;2022 Developed by <a href="">Weshin</a></p>
+      <p>Copyright &copy;2023 Developed by <a href="">Weshin</a></p>
     </div>
   </footer>
 </template>

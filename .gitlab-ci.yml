@@ -15,7 +15,9 @@ develop-build:
     - develop
   script:
     - echo "build for develop"
-    - apt-get install sshpass
+    - sudo apt-get update
+    - apt-cache search sshpass
+    - sudo apt-get install sshpass
     # - npm install
     # - npm run build
     # - echo 'build completed'

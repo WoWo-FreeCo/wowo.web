@@ -9,7 +9,7 @@ stages:
   - deploy
 
 develop-build:
-  image: ubuntu:latest
+  image: alpine:latest
   stage: build
   only:
     - develop

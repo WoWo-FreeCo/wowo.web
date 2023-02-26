@@ -143,6 +143,7 @@ function closeDialog() {
     positive-text="建立"
     transform-origin="center"
     @positive-click="handlePositiveClick"
+    @close="handleNegativeClick"
     @negative-click="handleNegativeClick"
   >
     <n-form

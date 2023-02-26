@@ -22,6 +22,8 @@ const pageStatus = usePageStatusStore();
 </template>
 <style scoped lang="scss">
 .layout--default {
+  display: flex;
+  flex-direction: column;
   width: 100%;
   height: 100%;
 }

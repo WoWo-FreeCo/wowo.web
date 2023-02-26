@@ -1,8 +1,8 @@
 <script setup>
 import { useMessage } from 'naive-ui';
-import { GET_PRODUCT_CATEGORY, UPDATE_PRODUCT_CATEGORY } from '@/apis/requestURL';
+import { UPDATE_HOME_BANNER } from '@/apis/requestURL';
 
-const emits = defineEmits(['closeDialog', 'fetchProd']);
+const emits = defineEmits(['closeDialog', 'fetchItem']);
 const props = defineProps({
   currentItem: {
     default: () => ({}),
@@ -32,61 +32,34 @@ const dialogStyle = {
 const size = ref('medium');
 
 const formValue = ref({
-  name: props.currentItem?.name,
-  price: props.currentItem?.price,
-  memberPrice: props.currentItem?.memberPrice,
-  vipPrice: props.currentItem?.vipPrice,
-  svipPrice: props.currentItem?.svipPrice,
-  skuId: props.currentItem?.skuId,
-  categoryId: props.currentItem?.categoryId,
-  attribute: props.currentItem?.attribute
+  img: props.currentItem?.img,
+  href: props.currentItem?.href
 });
 
 const rules = {
-  name: {
+  img: {
     required: true,
-    message: '請輸入產品類別名稱',
+    message: '請輸入圖片連結',
     trigger: 'blur'
+  },
+  href: {
+    required: true,
+    message: '請輸入橫幅子網址'
   }
 };
-
-onMounted(async() => {
-  await nextTick();
-  fetchData();
-});
-
-function fetchData() {
-  fetchCategories();
-}
-
-async function fetchCategories() {
-  try {
-    const res = await $fetch(`${runtimeConfig.public.apiBase}/${GET_PRODUCT_CATEGORY}`);
-    const { data } = res;
-    categoryOptions.value = data.map((e) => {
-      return {
-        ...e,
-        label: e.name,
-        value: e.id
-      };
-    });
-  } catch (error) {
-    //
-  }
-}
 
 async function handlePositiveClick() {
   console.log(formValue.value);
   try {
-    await $fetch(`${runtimeConfig.public.apiBase}/${UPDATE_PRODUCT_CATEGORY(props.currentItem?.id)}`, {
+    await $fetch(`${runtimeConfig.public.apiBase}/${UPDATE_HOME_BANNER(props.currentItem?.id)}`, {
       method: 'PUT',
       headers: {
         authorization: 'Bearer ' + localStorage.getItem('accessToken')
       },
       body: formValue.value
     });
-    message.success('已成功更新產品類別');
-    emits('fetchProd');
+    message.success('已成功更新橫幅');
+    emits('fetchItem');
   } catch (error) {
     message.error(`發生錯誤，${error.message}`);
   }
@@ -103,7 +76,7 @@ function closeDialog() {
 <template>
   <n-dialog
     :style="{...dialogStyle}"
-    title="編輯產品類別"
+    title="編輯橫幅"
     content=""
     negative-text="取消"
     positive-text="更新"
@@ -118,8 +91,11 @@ function closeDialog() {
       :rules="rules"
       :size="size"
     >
-      <n-form-item label="產品類別名稱" path="name" style="width:280px">
-        <n-input v-model:value="formValue.name" placeholder="請輸入產品類別名稱" />
+      <n-form-item label="橫幅圖片連結" path="img" style="width:280px">
+        <n-input v-model:value="formValue.img" placeholder="請輸入圖片連結" />
+      </n-form-item>
+      <n-form-item label="橫幅前往的網址" path="href" style="width:280px">
+        <n-input v-model:value="formValue.href" placeholder="請輸入子網址" />
       </n-form-item>
     </n-form>
   </n-dialog>

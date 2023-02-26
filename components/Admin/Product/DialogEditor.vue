@@ -3,7 +3,7 @@ import { useMessage } from 'naive-ui';
 import { ProductType } from '@/constants/common';
 import { GET_PRODUCT_CATEGORY, UPDATE_PRODUCT } from '@/apis/requestURL';
 
-const emits = defineEmits(['closeDialog', 'fetchProd']);
+const emits = defineEmits(['closeDialog', 'fetchItem']);
 const props = defineProps({
   currentItem: {
     default: () => ({}),
@@ -126,7 +126,7 @@ async function handlePositiveClick() {
       body: formValue.value
     });
     message.success('已成功更新產品');
-    emits('fetchProd');
+    emits('fetchItem');
   } catch (error) {
     message.error(`發生錯誤，${error.message}`);
   }

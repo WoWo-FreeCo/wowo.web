@@ -6,9 +6,10 @@ import {
 } from '@vicons/ionicons5';
 
 enum SiderCategory {
-  Account = 'account-management',
   Product = 'product-management',
   ProductCategory = 'product-category-management',
+  HomeBanner = 'home-banner-management',
+  Account = 'account-management',
   Order = 'order-management'
 }
 
@@ -47,6 +48,11 @@ const menuOptions = ref([
         icon: renderIcon(EllipsisHorizontal),
         label: '所有產品',
         key: SiderCategory.Product + '-all'
+      },
+      {
+        icon: renderIcon(EllipsisHorizontal),
+        label: '所有橫幅',
+        key: SiderCategory.HomeBanner + '-all'
       },
       {
         icon: renderIcon(EllipsisHorizontal),
@@ -97,6 +103,7 @@ function onTableUpdate(evt: any) {
               </n-layout-sider>
               <AdminProductTable v-show="selectedItem.includes(SiderCategory.Product)" />
               <AdminProductCategoryTable v-show="selectedItem.includes(SiderCategory.ProductCategory)" />
+              <AdminHomeBannerTable v-show="selectedItem.includes(SiderCategory.HomeBanner)" />
               <AdminAccountsTable v-show="selectedItem.includes(SiderCategory.Account)" />
               <AdminOrderTable v-show="selectedItem.includes(SiderCategory.Order)" />
               <!-- <n-layout style="max-height: 320px" /> -->

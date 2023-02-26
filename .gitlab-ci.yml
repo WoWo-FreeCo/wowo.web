@@ -13,15 +13,13 @@ develop-build:
   stage: build
   only:
     - develop
+  before_script:
+    - apt-get update -qq && apt-get install -y -qq sshpass
   script:
     - echo "build for develop"
-    - apt-get update
-    - apt-cache search sshpass
-    - apt-get install sshpass
-    - Y
     # - npm install
     # - npm run build
-    # - echo 'build completed'
+    - echo 'build completed'
 
 develop-deploy:
   stage: deploy

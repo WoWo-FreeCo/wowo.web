@@ -1,7 +1,9 @@
 const API_VERSION_PREFIX = 'api/v1';
 
 export const GET_PROFILE = `${API_VERSION_PREFIX}/user/profile`;
+export const GET_USER_ORDERS = `${API_VERSION_PREFIX}/order`;
 export const GET_ADMIN_PROFILE = `${API_VERSION_PREFIX}/admin/user/profile`;
+export const GET_ADMIN_ORDERS = `${API_VERSION_PREFIX}/admin/order`;
 export const GET_PRODUCT = (_categoryId: '') => `${API_VERSION_PREFIX}/product?categoryId=${_categoryId}`;
 export const GET_ALL_PRODUCT = `${API_VERSION_PREFIX}/product`;
 export const GET_PRODUCT_CATEGORY = `${API_VERSION_PREFIX}/product-category`;

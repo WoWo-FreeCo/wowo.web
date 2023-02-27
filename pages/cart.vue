@@ -128,7 +128,7 @@ function goCheckout() {
 
         <table class="cart_list">
           <tbody>
-            <tr v-for="item in currentMerch" :key="item.id">
+            <tr v-for="item in currentMerch" :key="item.id" class="prod-tr">
               <td class="cart_img">
                 <a href="/product" target="new">
                   <img :src="item?.thumbnail?.url || '/products/p'+(item.id-10)+'.jpg'">
@@ -156,7 +156,11 @@ function goCheckout() {
                 </n-input-number>
               </td>
               <td class="cart_price text-right">
-                <span>市價 ${{ item?.price?.market }}</span>
+                <span
+                  v-show="authStore.user?.memberLevel && authStore.user?.memberLevel !== 'NORMAL'"
+                >
+                  市價 ${{ item?.price }}
+                </span>
                 價錢 ${{ getCurrentPriceByAuth(item) }}<!--此顯示當下會員等級的價格就好-->
               </td>
               <td class="cart_price text-right">
@@ -217,5 +221,13 @@ function goCheckout() {
   width: 20px;
   height: 20px;
   border-radius: 50%;
+}
+.prod-tr {
+  // min-height: 100px;
+  // display: flex;
+  // justify-content: space-between;
+  // .cart_price {
+  //   align-self: center;
+  // }
 }
 </style>

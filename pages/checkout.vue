@@ -178,7 +178,7 @@ async function sendResult() {
     <form id="checkout_form" action="javascript:;" class="cart_container">
       <table class="cart_list">
         <tbody>
-          <tr v-for="item in currentMerch" :key="item.id">
+          <tr v-for="item in currentMerch" :key="item.id" class="prod-tr">
             <td class="cart_img">
               <img :src="item?.thumbnail?.url || '/products/p'+(item.id-10)+'.jpg'">
             </td>
@@ -190,7 +190,9 @@ async function sendResult() {
               <span>滿件免運</span>
             </td>
             <td class="cart_price text-right">
-              <span>市價 ${{ item?.price?.market }}</span>
+              <span
+                v-show="authStore.user?.memberLevel && authStore.user?.memberLevel !== 'NORMAL'"
+              >市價 ${{ item?.price }}</span>
               價錢 ${{ getCurrentPriceByAuth(item) }}
             </td>
           </tr>
@@ -399,3 +401,12 @@ async function sendResult() {
     </form>
   </div>
 </template>
+<style lang="scss" scoped>
+.prod-tr {
+  display: flex;
+  justify-content: space-between;
+  .cart_price {
+    align-self: flex-end;
+  }
+}
+</style>

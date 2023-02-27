@@ -136,7 +136,9 @@ async function acceptDailyCheck(item) {
               :class="{
                 sign: day.accepted,
                 'no-cursor': day.accepted || day.index !== nextDayIndex,
-                'inactive': day.index > nextDayIndex
+                'inactive': day.index > nextDayIndex,
+                'mission': day.isMission,
+                'mission-accepted': day.accepted && day.isMission
               }"
               @click="dailyClickHandler(day)"
             >
@@ -146,28 +148,17 @@ async function acceptDailyCheck(item) {
                   class="fa-solid"
                   :class="{
                     'fa-p': !day.isMission,
-                    'fa-lock': day.isMission
+                    'fa-lock': day.isMission,
+                    'fa-unlock': day.accepted && day.isMission
                   }"
                 />
               </a>
               <span class="sign_day">{{ dayText(day) }}</span>
             </li>
-            <!-- <li class="sign">
-              <span>+1</span>
-              <i class="fa-solid fa-p" />
-              <span class="sign_day">已簽到</span>
-            </li> -->
             <!-- <li class="mission_lock sign">
               <span>+1</span>
               <i class="fa-solid fa-unlock" />
               <span class="sign_day">任務已解鎖</span>
-            </li> -->
-            <!-- <li>
-              <span>+1</span>
-              <a href="javascript:;">
-                <i class="fa-solid fa-p" />
-              </a>
-              <span class="sign_day">簽到</span>
             </li> -->
             <!-- <li class="mission_lock">
               <span>+1</span>
@@ -199,6 +190,17 @@ async function acceptDailyCheck(item) {
   width: 108px;
   margin: 4px 4px;
   cursor: pointer;
+  &.mission {
+    background-color: #c28000;
+    i {
+      color: #fff;
+      background-color: transparent !important;
+      font-size: 30px;
+    }
+  }
+  &.mission-accepted {
+    background-color: #bbb;
+  }
   &.no-cursor {
     pointer-events: none;
   }

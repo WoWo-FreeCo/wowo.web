@@ -48,7 +48,7 @@ function menuClose() {
               <span v-show="cartStore?.merch.length > 0" class="badge badge-pink">{{ cartStore?.merch.length }}</span>
             </NuxtLink>
           </li>
-          <li v-show="isLoggedIn" class="top_bell">
+          <li v-show="isLoggedIn && false" class="top_bell">
             <a href="javascript:;" @click="pageStatus.toggleBellMessage(true)">
               <i class="fa-regular fa-bell" />
               <span v-if="messagesAmount" class="badge badge-green bell_bounce">{{ messagesAmount }}</span>

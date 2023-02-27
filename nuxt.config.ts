@@ -8,7 +8,8 @@ export default defineNuxtConfig({
         { src: 'https://wowjs.uk/dist/wow.min.js', body: true }
       ],
       link: [
-        { rel: 'icon', type: 'image/png', href: '/favicon.png' }
+        { rel: 'icon', type: 'image/png', href: '/favicon.png' },
+        { rel: 'stylesheet', type: 'text/css', href: 'https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css' }
       ]
     }
   },

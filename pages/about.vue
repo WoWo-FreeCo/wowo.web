@@ -24,8 +24,8 @@ async function fetchWebPage() {
 </script>
 <template>
   <div>
-    <!--此背景圖在後台可更換,替換style="background: url('背景圖路徑');" 若未上傳以目前圖片代替, 建議尺寸1900*280-->
-    <section class="page-header">
+    <iframe src="https://lovin.tw/aboutlovin/" />
+    <!-- <section class="page-header">
       <div class="container">
         <h1>關於我們</h1>
         <ol class="breadcrumb">
@@ -37,12 +37,17 @@ async function fetchWebPage() {
       </div>
     </section>
 
-    <section class="section full_height">
+    <section class="section full_height html-container-root">
       <div class="html-container" />
-    </section>
+    </section> -->
   </div>
 </template>
 <style lang="scss" scoped>
+iframe {
+  width: 100%;
+  height: 100vh;
+  display: block;
+}
 .section {
   padding: 0 20px;
 }

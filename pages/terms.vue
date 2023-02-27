@@ -37,7 +37,7 @@ async function fetchWebPage() {
       </div>
     </section>
 
-    <section class="section full_height">
+    <section class="section full_height html-container-root">
       <div class="html-container" />
     </section>
   </div>

@@ -95,10 +95,6 @@ function createItem() {
 
 <template>
   <div style="position: relative;">
-    <link
-      href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css"
-      rel="stylesheet"
-    >
     <n-space horizontal>
       <n-button disabled="" type="primary" style="margin: 12px;" @click="createItem">
         新建頁尾

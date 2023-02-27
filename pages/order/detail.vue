@@ -22,6 +22,16 @@ const orderStatus = computed(() => {
   switch (curOrder.value?.orderStatus) {
   case 'WAIT_PAYMENT':
     return '待付款';
+  case 'WAIT_DELIVER':
+    return '運送中';
+  case 'WAIT_RECEIVE':
+    return '待取貨';
+  case 'COMPLETED':
+    return '已完成';
+  case 'CANCELLED':
+    return '已取消';
+  case 'REVOKED':
+    return '退貨';
   default:
     return curOrder.value.orderStatus;
   }

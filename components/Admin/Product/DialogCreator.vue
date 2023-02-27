@@ -112,12 +112,18 @@ async function fetchCategories() {
 async function handlePositiveClick() {
   console.log(formValue.value);
   try {
+    const body = {
+      ...formValue.value
+    };
+    if (formValue.value.attribute === ProductType.ColdChain) {
+      delete body.skuId;
+    }
     await $fetch(`${runtimeConfig.public.apiBase}/${POST_PRODUCT}`, {
       method: 'POST',
       headers: {
         authorization: 'Bearer ' + localStorage.getItem('accessToken')
       },
-      body: formValue.value
+      body
     });
     message.success('已成功建立產品');
     emits('fetchItem');
@@ -167,14 +173,17 @@ function closeDialog() {
       <n-form-item label="SVIP價" path="svipPrice">
         <n-input-number v-model:value="formValue.svipPrice" min="0" placeholder="請輸入產品的SVIP價錢" />
       </n-form-item>
-      <n-form-item label="產品編號" path="skuId">
-        <n-input v-model:value="formValue.skuId" placeholder="請輸入產品編號" />
+      <n-form-item label="產品運送類別 *">
+        <n-select v-model:value="formValue.attribute" :options="attrOptions" />
+      </n-form-item>
+      <n-form-item v-show="formValue.attribute !== ProductType.ColdChain" label="產品編號" path="skuId">
+        <n-input
+          v-model:value="formValue.skuId"
+          placeholder="請輸入產品編號"
+        />
       </n-form-item>
       <n-form-item label="產品分類 *">
         <n-select v-model:value="formValue.categoryId" :options="categoryOptions" />
-      </n-form-item>
-      <n-form-item label="產品運送類別 *">
-        <n-select v-model:value="formValue.attribute" :options="attrOptions" />
       </n-form-item>
     </n-form>
   </n-dialog>

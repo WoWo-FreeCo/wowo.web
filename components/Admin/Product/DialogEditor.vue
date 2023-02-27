@@ -118,12 +118,18 @@ async function fetchCategories() {
 async function handlePositiveClick() {
   console.log(formValue.value);
   try {
+    const body = {
+      ...formValue.value
+    };
+    if (formValue.value.attribute === ProductType.ColdChain) {
+      delete body.skuId;
+    }
     await $fetch(`${runtimeConfig.public.apiBase}/${UPDATE_PRODUCT(props.currentItem?.id)}`, {
       method: 'PUT',
       headers: {
         authorization: 'Bearer ' + localStorage.getItem('accessToken')
       },
-      body: formValue.value
+      body
     });
     message.success('已成功更新產品');
     emits('fetchItem');

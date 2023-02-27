@@ -191,7 +191,8 @@ function onBounsCutChanged() {
       <div class="cart_info">
         <h5>紅利扣點 (目前可用紅利：{{ rewardCredit }} 點)</h5>
         <div class="checkout-form">
-          <input
+          <n-input-number v-model:value="bonusCut" min="0" :max="rewardCredit" :style="{ width: '150px', margin: '4px 0 4px 15px' }" />
+          <!-- <input
             id=""
             v-model="bonusCut"
             type="number"
@@ -201,7 +202,7 @@ function onBounsCutChanged() {
             class="form-control"
             name=""
             @change="onBounsCutChanged"
-          >
+          > -->
         </div>
       </div>
       <!-- <div id="ship_market_form" class="cart_info d_none">

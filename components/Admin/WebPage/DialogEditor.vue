@@ -24,7 +24,7 @@ const dialogStyle = {
   zIndex: 3,
   width: '820px',
   maxWidth: '90vw',
-  maxHeight: '85vh',
+  maxHeight: '95vh',
   overflowY: 'auto'
 };
 

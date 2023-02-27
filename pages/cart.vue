@@ -194,11 +194,14 @@ function goCheckout() {
   </div>
 </template>
 <style lang="scss" scoped>
+.dashboard-menu li {
+  margin: 0 12px;
+}
 .type-name {
   position: relative;
 }
 .cart-amount {
-  top: 50%;
+  top: 0;
   right: -10px;
   translate: 0 -50%;
   position: absolute;

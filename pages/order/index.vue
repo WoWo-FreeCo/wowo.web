@@ -10,6 +10,15 @@ const orders = ref([]);
 
 const curProdType = ref(ProductType.General);
 
+const curOrders = computed(() => {
+  switch (curProdType.value) {
+  case ProductType.ColdChain:
+    return orders.value?.filter(e => e.attribute === ProductType.ColdChain);
+  default:
+    return orders.value?.filter(e => e.attribute === ProductType.General);
+  }
+});
+
 const orderStatus = (order) => {
   if (order?.orderStatus === 'WAIT_PAYMENT') return '等待付款';
   else return order.orderStatus;
@@ -118,7 +127,7 @@ async function fetchData() {
               </tr>
             </thead>
             <tbody>
-              <tr v-for="order in orders" :key="order.id">
+              <tr v-for="order in curOrders" :key="order.id">
                 <td data-th="訂單編號">
                   {{ order?.id }}
                 </td>

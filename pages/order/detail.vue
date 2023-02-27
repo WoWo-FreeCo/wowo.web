@@ -81,7 +81,7 @@ async function fetchData() {
       <div class="container">
         <div class="order_div">
           <div class="order_tl">
-            訂單編號：<span>P202112260001</span>
+            訂單編號：<span>{{ curOrder?.id }}</span>
             <a href="#" data-toggle="modal" data-target="#back" class="back_span">我要退貨</a>
           </div>
           <ul>
@@ -140,9 +140,9 @@ async function fetchData() {
           </li>
         </ul>
         <div class="text-center mb-20 mt-20">
-          <button type="button" class="btn btn-main btn-default" onclick="location.href='order.html'">
+          <NuxtLink to="/order" type="button" class="btn btn-main btn-default">
             回上一頁
-          </button>
+          </NuxtLink>
           <button type="button" class="btn btn-main btn-default" data-toggle="modal" data-target="#cancel">
             取消訂單
           </button>

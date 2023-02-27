@@ -22,7 +22,7 @@ function close() {
   <!--video Modal -->
   <div
     id="videoModal"
-    class="video-dialog-container"
+    class="video-dialog-container animate__fadeIn animate__animated animation-duration-1"
     tabindex="-1"
     role="dialog"
     aria-labelledby="videoModalLabel"

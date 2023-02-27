@@ -1,6 +1,5 @@
 <script setup>
 import { useMessage } from 'naive-ui';
-import { prop } from 'dom7';
 import { UPDATE_WEB_PAGES } from '@/apis/requestURL';
 
 const emits = defineEmits(['closeDialog', 'fetchItem']);

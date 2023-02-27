@@ -7,9 +7,7 @@ const pageStatus = usePageStatusStore();
     <Header />
     <slot />
     <!-- Modal -->
-    <transition name="fade">
-      <BellMessage v-show="pageStatus.bellMessageToggle" />
-    </transition>
+    <BellMessage v-show="pageStatus.bellMessageToggle" />
     <transition name="fade">
       <VideoDialogue v-if="pageStatus.videoDialogToggle" />
     </transition>

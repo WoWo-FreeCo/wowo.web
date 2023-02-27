@@ -21,7 +21,7 @@ function closeBellMessage() {
 <template>
   <div
     id="bell-message-container"
-    class="bell-message-container"
+    class="bell-message-container animate__fadeIn animate__animated animation-duration-1"
     tabindex="-1"
     role="dialog"
     aria-labelledby="bellCenterTitle"

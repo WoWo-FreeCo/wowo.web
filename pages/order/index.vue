@@ -8,6 +8,8 @@ const runtimeConfig = useRuntimeConfig();
 
 const orders = ref([]);
 
+const curProdType = ref(ProductType.General);
+
 const orderStatus = (order) => {
   if (order?.orderStatus === 'WAIT_PAYMENT') return '等待付款';
   else return order.orderStatus;
@@ -54,7 +56,24 @@ async function fetchData() {
         <ProfileSidebar />
         <div class="col-sm-9 pl20pr30">
           <ul class="list-inline dashboard-menu">
-            <li><a href="order.html" class="active">一般商品</a></li>
+            <li>
+              <a
+                class="pointer"
+                :class="{active: curProdType === ProductType.General}"
+                @click="curProdType = ProductType.General"
+              >
+                一般商品
+              </a>
+            </li>
+            <li>
+              <a
+                class="pointer"
+                :class="{active: curProdType === ProductType.ColdChain}"
+                @click="curProdType = ProductType.ColdChain"
+              >
+                冷鏈商品
+              </a>
+            </li>
           </ul>
 
           <div class="select r0t0">
@@ -183,3 +202,8 @@ async function fetchData() {
     </section>
   </div>
 </template>
+<style lang="scss" scoped>
+.pointer {
+  cursor: pointer;
+}
+</style>

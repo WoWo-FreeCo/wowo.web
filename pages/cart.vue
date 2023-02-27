@@ -17,10 +17,17 @@ watch(routes, (_new) => {
 const currentMerch = computed(() => {
   switch (cartType.value) {
   case ProductType.ColdChain:
-    return cartStore?.merch.filter(e => e.attribute === 'COLD_CHAIN');
+    return cartStore?.merch.filter(e => e.attribute === ProductType.ColdChain);
   default:
-    return cartStore?.merch.filter(e => e.attribute === 'GENERAL');
+    return cartStore?.merch.filter(e => e.attribute === ProductType.General);
   }
+});
+
+const coldMerch = computed(() => {
+  return cartStore?.merch.filter(e => e.attribute === ProductType.ColdChain);
+});
+const generalMerch = computed(() => {
+  return cartStore?.merch.filter(e => e.attribute === ProductType.General);
 });
 
 const totalPrice = computed({
@@ -79,13 +86,23 @@ function goCheckout() {
       <!--購物車類別, 這裡不用動-->
       <ul class="list-inline dashboard-menu text-center">
         <li>
-          <NuxtLink to="/cart" :class="{active: cartType === ProductType.General}">
+          <NuxtLink
+            to="/cart"
+            class="type-name"
+            :class="{active: cartType === ProductType.General}"
+          >
             一般商品
+            <span v-show="generalMerch.length" class="cart-amount">{{ generalMerch.length }}</span>
           </NuxtLink>
         </li>
         <li>
-          <NuxtLink to="/cart?type=cold-chain" :class="{active: cartType === ProductType.ColdChain}">
+          <NuxtLink
+            to="/cart?type=cold-chain"
+            class="type-name"
+            :class="{active: cartType === ProductType.ColdChain}"
+          >
             冷鍊商品
+            <span v-show="coldMerch.length" class="cart-amount">{{ coldMerch.length }}</span>
           </NuxtLink>
         </li>
         <!-- <li>
@@ -176,3 +193,22 @@ function goCheckout() {
     </div>
   </div>
 </template>
+<style lang="scss" scoped>
+.type-name {
+  position: relative;
+}
+.cart-amount {
+  top: 50%;
+  right: -10px;
+  translate: 0 -50%;
+  position: absolute;
+  display: block;
+  line-height: 20px;
+  font-size: 12px;
+  color: #fff;
+  background-color: #fb693c;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+</style>

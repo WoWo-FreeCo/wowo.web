@@ -113,7 +113,7 @@ function goCheckout() {
       </ul><!--購物車類別 end-->
 
       <!--購物車空的顯示-->
-      <div v-show="!cartStore?.merch.length" class="text-center" style="margin: 72px 0;">
+      <div v-show="!currentMerch.length" class="text-center" style="margin: 72px 0;">
         <i class="fa-solid fa-cart-shopping" />
         <h2 class="text-center">
           購物車沒有東西
@@ -124,7 +124,7 @@ function goCheckout() {
       </div><!--購物車空的顯示 end-->
 
       <!--購物清單,空的不顯示-->
-      <form v-if="cartStore?.merch.length" method="post" action="javascript:;">
+      <form v-if="currentMerch.length" method="post" action="javascript:;">
         <div>共{{ currentMerch.length }}項商品</div>
 
         <table class="cart_list">
@@ -177,7 +177,12 @@ function goCheckout() {
           <NuxtLink type="button" class="btn btn-main btn-bag" to="/shop">
             繼續購物
           </NuxtLink>
-          <button type="submit" class="btn btn-main btn-check" @click="goCheckout">
+          <button
+            type="submit"
+            class="btn btn-main btn-check"
+            :disabled="currentMerch.length <= 0"
+            @click="goCheckout"
+          >
             下一步
           </button>
         </div>

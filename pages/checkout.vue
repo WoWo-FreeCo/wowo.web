@@ -1,9 +1,9 @@
 <script setup>
 import { POST_PAYMENT } from '@/apis/requestURL';
-import { ProductType } from '@/constants/common';
+import { ProductType, PaymentType, DeliverType } from '@/constants/common';
 
 const routes = useRoute();
-// const router = useRouter();
+const router = useRouter();
 const runtimeConfig = useRuntimeConfig();
 const authStore = useAuthStore();
 const cartStore = useCartStore();
@@ -33,8 +33,14 @@ const currentMerch = computed(() => {
   }
 });
 
-onMounted(() => {
+onMounted(async() => {
   updateCartType();
+  await nextTick();
+  if (currentMerch.value <= 0) {
+    router.push({
+      path: '/'
+    });
+  }
 });
 
 function updateCartType() {
@@ -62,30 +68,31 @@ const getCurrentPriceByAuth = (item) => {
 };
 
 const inputField = ref({
-  attribute: cartType,
+  attribute: cartType.value,
+  choosePayment: PaymentType.CreditOneTime,
   consignee: {
-    deliveryType: 'HOME',
-    addressDetailOne: '民生东路三段156号',
-    city: '台北市',
-    district: '中正區',
-    email: 'yummy.123@gmail.com',
-    idNo: 'F123456789',
-    idType: '1',
-    cellphone: '0912345678',
-    name: '張大郎',
+    deliveryType: DeliverType.Home, // HOME
+    addressDetailOne: authStore.user?.addressOne,
+    city: '', // 城市
+    district: '', // 區
+    email: authStore.user?.email,
+    idNo: '', // 身分證字號
+    idType: '1', //
+    cellphone: authStore.user?.cellphone,
+    name: authStore.user?.nickname,
     province: '台灣',
-    remark: '假文（收件备注）',
-    stationCode: '999854',
-    stationName: '金全',
-    town: '仁愛里',
-    zipCode: '100001',
-    senderRemark: '假文（寄件备注）'
+    remark: '', // 收件備註
+    senderRemark: '', // 寄件備註
+    stationCode: '999854', // 超商代碼 / 條碼?
+    stationName: '金全', // 超商名稱?
+    town: '', // 城鎮名
+    zipCode: '' // 郵遞區號
   },
   invoiceParams: {
-    customerName: '王小明',
-    customerEmail: 'abc@gmail.com',
-    customerPhone: '0987654321',
-    customerAddr: '台北市延平南路85號4樓',
+    customerName: authStore.user?.nickname,
+    customerEmail: authStore.user?.email,
+    customerPhone: authStore.user?.cellphone,
+    customerAddr: authStore.user?.addressOne,
     customerIdentifier: '00000000',
     carruerType: '',
     carruerNum: '',
@@ -101,6 +108,8 @@ const inputField = ref({
 });
 
 async function sendResult() {
+  console.log(inputField.value);
+
   try {
     const res = await $fetch(`${runtimeConfig.public.apiBase}/${POST_PAYMENT}`, {
       method: 'POST',
@@ -156,10 +165,22 @@ async function sendResult() {
         <h5>寄送方式</h5>
         <div class="checkout-form">
           <label class="radio form-check">
-            <input type="radio" name="shipping" value="ship_home" checked> 宅配到府
+            <input
+              v-model="inputField.consignee.deliveryType"
+              type="radio"
+              name="shipping"
+              :value="DeliverType.Home"
+            >
+            宅配到府
           </label>
           <label v-show="cartType === ProductType.General" class="radio form-check">
-            <input type="radio" name="shipping" value="ship_market"> 超商取貨
+            <input
+              v-model="inputField.consignee.deliveryType"
+              type="radio"
+              name="shipping"
+              :value="DeliverType.Store"
+            >
+            超商取貨
           </label>
         </div>
       </div>
@@ -167,13 +188,28 @@ async function sendResult() {
         <h5>付款方式</h5>
         <div class="checkout-form">
           <label class="radio form-check">
-            <input type="radio" name="payment" value="" checked> 信用卡
+            <input
+              v-model="inputField.choosePayment"
+              type="radio"
+              name="payment"
+              :value="PaymentType.CreditOneTime"
+            > 信用卡
           </label>
           <label class="radio form-check">
-            <input type="radio" name="payment" value=""> 超商條碼付款
+            <input
+              v-model="inputField.choosePayment"
+              type="radio"
+              name="payment"
+              :value="PaymentType.BarCode"
+            > 超商條碼付款
           </label>
           <label class="radio form-check">
-            <input type="radio" name="payment" value=""> 超商代碼付款
+            <input
+              v-model="inputField.choosePayment"
+              type="radio"
+              :value="PaymentType.Cvs"
+              name="payment"
+            > 超商代碼付款
           </label>
           <!-- <label class="radio form-check">
             <input type="radio" name="payment" value=""> ATM 轉帳
@@ -265,7 +301,14 @@ async function sendResult() {
       </div>
       <div class="cart_info checkout-form">
         <h5>訂單備註</h5>
-        <textarea id="" rows="6" placeholder="請輸入內容" class="form-control" name="" />
+        <textarea
+          id=""
+          v-model="inputField.consignee.remark"
+          rows="6"
+          placeholder="請輸入訂單備註內容"
+          class="form-control"
+          name=""
+        />
       </div>
       <div class="cart_info">
         <h5>付款明細</h5>

@@ -177,7 +177,7 @@ async function sendResult() {
 
   try {
     const redirectURL = process.env.NODE_ENV === 'development'
-      ? 'http://127.0.0.1:3000/order?payment=successful'
+      ? 'http://localhost:3000/order?payment=successful'
       : `${runtimeConfig.public.baseUrl}/order?payment=successful`;
     const res = await $fetch(
       `${runtimeConfig.public.apiBase}/${POST_PAYMENT}?order_result_url=${redirectURL}`
@@ -206,7 +206,10 @@ async function sendResult() {
   // });
 }
 function getEMAPData() {
-  window.open('https://emap.presco.com.tw/c2cemap.ashx?eshopid=870&&servicetype=1&url=http://localhost:3000/cvs_callback');
+  const baseURL = process.env.NODE_ENV === 'development'
+    ? 'http://localhost:3000'
+    : `${runtimeConfig.public.baseUrl}`;
+  window.open(`https://emap.presco.com.tw/c2cemap.ashx?eshopid=870&&servicetype=1&url=${baseURL}/cvs_callback`);
 }
 </script>
 

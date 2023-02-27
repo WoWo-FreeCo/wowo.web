@@ -15,7 +15,6 @@ const path = computed(() => route.path);
               role="button"
               data-toggle="collapse"
               data-parent="#member_menu"
-              href="#collapseOne"
               aria-controls="collapseOne"
             >
               會員資料

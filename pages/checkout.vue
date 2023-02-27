@@ -1,9 +1,11 @@
 <script setup>
+import { useMessage } from 'naive-ui';
 import { POST_PAYMENT, POST_PAYMENT_PRE } from '@/apis/requestURL';
 import { ProductType, PaymentType, DeliverType } from '@/constants/common';
 
 const routes = useRoute();
 const router = useRouter();
+const message = useMessage();
 const runtimeConfig = useRuntimeConfig();
 const authStore = useAuthStore();
 const cartStore = useCartStore();
@@ -152,6 +154,7 @@ async function sendResult() {
           authorization: 'Bearer ' + localStorage.getItem('accessToken')
         }
       });
+    message.loading('即將導向付款頁面，請稍候...');
     const div = document.createElement('credit-div');
     div.innerHTML = res;
     div.id = 'credit-payment';

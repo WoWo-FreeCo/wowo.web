@@ -45,7 +45,7 @@ const deliverFee = computed(() => {
 
 const totalPrice = computed(() => {
   return curOrder.value?.items?.reduce(
-    (total, cur) => total + cur.price, 0
+    (total, cur) => total + cur.price * cur.quantity, 0
   );
 });
 
@@ -53,7 +53,7 @@ const realProd = computed(() => curOrder.value?.items?.filter(e => e.productId !
 
 const realProdPrice = computed(() => {
   return realProd.value?.reduce(
-    (total, cur) => total + cur.price, 0
+    (total, cur) => total + cur.price * cur.quantity, 0
   );
 });
 
@@ -126,11 +126,11 @@ async function fetchData() {
                   <h5>{{ prod.name }}</h5>
                 </NuxtLink>
                 <div class="product-quantity">
-                  X1
+                  X {{ prod.quantity }}
                 </div>
               </td>
               <td class="cart-price text-right">
-                <span>價錢 ${{ prod?.price }}</span>
+                <span>${{ prod?.price * prod?.quantity }}</span>
               </td>
             </tr>
           </tbody>

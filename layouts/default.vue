@@ -11,7 +11,7 @@ const pageStatus = usePageStatusStore();
       <BellMessage v-show="pageStatus.bellMessageToggle" />
     </transition>
     <transition name="fade">
-      <VideoDialogue v-show="pageStatus.videoDialogToggle" />
+      <VideoDialogue v-if="pageStatus.videoDialogToggle" />
     </transition>
     <transition name="fade">
       <ShareAccount v-show="pageStatus.shareAccountToggle" />

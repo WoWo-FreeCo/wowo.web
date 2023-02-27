@@ -2,6 +2,7 @@ const API_VERSION_PREFIX = 'api/v1';
 
 export const GET_PROFILE = `${API_VERSION_PREFIX}/user/profile`;
 export const GET_USER_ORDERS = `${API_VERSION_PREFIX}/order`;
+export const GET_USER_DAILY_SEQUENCE = `${API_VERSION_PREFIX}/user/activity/daily-check/record`;
 export const GET_ADMIN_PROFILE = `${API_VERSION_PREFIX}/admin/user/profile`;
 export const GET_ADMIN_ORDERS = `${API_VERSION_PREFIX}/admin/order`;
 export const GET_PRODUCT = (_categoryId: '') => `${API_VERSION_PREFIX}/product?categoryId=${_categoryId}`;
@@ -19,6 +20,7 @@ export const POST_HOME_BANNER = `${API_VERSION_PREFIX}/admin/home-banner`;
 export const POST_PRODUCT = `${API_VERSION_PREFIX}/admin/product`;
 export const POST_PRODUCT_CATEGORY = `${API_VERSION_PREFIX}/admin/product-category`;
 export const POST_USER_ACTIVATATION = `${API_VERSION_PREFIX}/user/activity/activate`;
+export const POST_USER_DAILY_CHECK = (_id: number) => `${API_VERSION_PREFIX}/user/activity/daily-check/${_id}`;
 export const POST_PAYMENT = `${API_VERSION_PREFIX}/payment`;
 
 export const UPDATE_HOME_BANNER = (_id: number) => `${API_VERSION_PREFIX}/admin/home-banner/${_id}`;

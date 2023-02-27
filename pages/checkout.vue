@@ -126,11 +126,6 @@ async function sendResult() {
   //   path: '/shop'
   // });
 }
-
-function onBounsCutChanged() {
-  bonusCut.value = bonusCut.value > rewardCredit.value ? rewardCredit.value : bonusCut.value;
-}
-
 </script>
 
 <template>

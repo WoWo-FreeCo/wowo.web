@@ -83,43 +83,39 @@ function onTableUpdate(evt: any) {
 
 <template>
   <client-only>
-    <n-message-provider>
-      <n-dialog-provider>
-        <n-space vertical>
-          <n-layout>
-            <n-layout class="sider-layout" has-sider style="height: 100vh; background-color: #fff;">
-              <n-layout-sider
-                bordered
-                show-trigger
-                collapse-mode="width"
-                :collapsed-width="64"
-                :width="200"
-                content-style="padding-left: 0;"
-                :native-scrollbar="true"
-                :inverted="inverted"
-              >
-                <n-menu
-                  v-model:value="selectedItem"
-                  :default-expand-all="true"
-                  :inverted="inverted"
-                  :collapsed-width="64"
-                  :collapsed-icon-size="22"
-                  :options="menuOptions"
-                  @update:value="onTableUpdate"
-                />
-              </n-layout-sider>
-              <AdminProductTable v-show="selectedItem.includes(SiderCategory.Product)" />
-              <AdminProductCategoryTable v-show="selectedItem.includes(SiderCategory.ProductCategory)" />
-              <AdminHomeBannerTable v-show="selectedItem.includes(SiderCategory.HomeBanner)" />
-              <AdminWebPageTable v-show="selectedItem.includes(SiderCategory.WebPage)" />
-              <AdminAccountsTable v-show="selectedItem.includes(SiderCategory.Account)" />
-              <AdminOrderTable v-show="selectedItem.includes(SiderCategory.Order)" />
-              <!-- <n-layout style="max-height: 320px" /> -->
-            </n-layout>
-          </n-layout>
-        </n-space>
-      </n-dialog-provider>
-    </n-message-provider>
+    <n-space vertical>
+      <n-layout>
+        <n-layout class="sider-layout" has-sider style="height: 100vh; background-color: #fff;">
+          <n-layout-sider
+            bordered
+            show-trigger
+            collapse-mode="width"
+            :collapsed-width="64"
+            :width="200"
+            content-style="padding-left: 0;"
+            :native-scrollbar="true"
+            :inverted="inverted"
+          >
+            <n-menu
+              v-model:value="selectedItem"
+              :default-expand-all="true"
+              :inverted="inverted"
+              :collapsed-width="64"
+              :collapsed-icon-size="22"
+              :options="menuOptions"
+              @update:value="onTableUpdate"
+            />
+          </n-layout-sider>
+          <AdminProductTable v-show="selectedItem.includes(SiderCategory.Product)" />
+          <AdminProductCategoryTable v-show="selectedItem.includes(SiderCategory.ProductCategory)" />
+          <AdminHomeBannerTable v-show="selectedItem.includes(SiderCategory.HomeBanner)" />
+          <AdminWebPageTable v-show="selectedItem.includes(SiderCategory.WebPage)" />
+          <AdminAccountsTable v-show="selectedItem.includes(SiderCategory.Account)" />
+          <AdminOrderTable v-show="selectedItem.includes(SiderCategory.Order)" />
+          <!-- <n-layout style="max-height: 320px" /> -->
+        </n-layout>
+      </n-layout>
+    </n-space>
   </client-only>
 </template>
 

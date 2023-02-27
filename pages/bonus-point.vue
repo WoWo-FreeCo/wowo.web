@@ -1,15 +1,33 @@
 <script setup>
-// TODO: 目前為假資料，需串接登入後的會員資料
-// const bonusPoint = ref(0);
-// const loggedInTimes = ref(0);
-import { GET_DAILY_SEQUENCE } from '@/apis/requestURL';
+import { useMessage } from 'naive-ui';
+import {
+  GET_PROFILE,
+  GET_DAILY_SEQUENCE,
+  GET_USER_DAILY_SEQUENCE,
+  POST_USER_DAILY_CHECK
+} from '@/apis/requestURL';
 
+const message = useMessage();
 const router = useRouter();
 const authStore = useAuthStore();
 const pageStatus = usePageStatusStore();
 
 const runtimeConfig = useRuntimeConfig();
 const dailyCheck = ref([]);
+
+const acceptedCount = computed(() => {
+  return dailyCheck.value.reduce((total, cur) => total + (cur?.accepted ? 1 : 0), 0);
+});
+
+const nextDayIndex = computed(() => acceptedCount.value);
+
+const dayText = (day) => {
+  if (day?.accepted) {
+    if (day?.isMission) return '任務已解鎖';
+    else return '已簽到';
+  } else if (day?.isMission) return '任務解鎖';
+  else return '簽到';
+};
 
 onMounted(() => {
   if (!authStore.status.loggedIn) {
@@ -24,14 +42,67 @@ onMounted(() => {
 });
 
 async function fetchDailySequence() {
-  const res = await $fetch(`${runtimeConfig.public.apiBase}/${GET_DAILY_SEQUENCE}`);
-  dailyCheck.value = res.data;
-  console.log(res);
+  try {
+    const dailyAll = await $fetch(`${runtimeConfig.public.apiBase}/${GET_DAILY_SEQUENCE}`);
+    const dailySelf = await $fetch(`${runtimeConfig.public.apiBase}/${GET_USER_DAILY_SEQUENCE}`, {
+      headers: {
+        authorization: 'Bearer ' + localStorage.getItem('accessToken')
+      }
+    });
+    const _result = dailyAll.data.map((_day) => {
+      const _matchDay = dailySelf.data.find(e => e.index === _day.index);
+      return {
+        ..._day,
+        accepted: !!_matchDay
+      };
+    });
+    dailyCheck.value = _result;
+    console.log(dailyCheck.value);
+  } catch (error) {
+    console.log(error);
+  }
+  updatePermission();
 }
 
-function dailyClickHandler(item) {
-  console.log(item);
-  // pageStatus.toggleVideoDialog(true);
+async function updatePermission() {
+  try {
+    const accessToken = localStorage.getItem('accessToken');
+    const res = await $fetch(`${runtimeConfig.public.apiBase}/${GET_PROFILE}`, {
+      method: 'GET',
+      headers: { Authorization: 'Bearer ' + accessToken }
+    });
+    authStore.loginSuccess(accessToken);
+    authStore.updateUser(res.data);
+  } catch (error) {
+    authStore.logout();
+  }
+}
+
+async function dailyClickHandler(item) {
+  if (item.accepted) return;
+  if (item.isMission) {
+    pageStatus.toggleVideoDialog(true);
+    await new Promise((resolve) => {
+      setTimeout(() => resolve(), 5000);
+    });
+  }
+  acceptDailyCheck(item);
+}
+async function acceptDailyCheck(item) {
+  try {
+    await $fetch(`${runtimeConfig.public.apiBase}/${POST_USER_DAILY_CHECK(item.index)}`, {
+      method: 'POST',
+      headers: {
+        authorization: 'Bearer ' + localStorage.getItem('accessToken')
+      }
+    });
+    message.success(`簽到成功 紅利 +${item.credit}`, {
+      duration: 2000
+    });
+  } catch (error) {
+    message.error(error?.data?.data?.message || '簽到失敗');
+  }
+  fetchDailySequence();
 }
 </script>
 
@@ -49,7 +120,7 @@ function dailyClickHandler(item) {
         </a><!--顯示目前此會員剩餘紅利-->
       </h4>
       <div class="text-center">
-        已累計簽到：{{ 0 }}次
+        已累計簽到：{{ acceptedCount }}次
 
         <div id="signpoint">
           <div class="mb-20">
@@ -58,15 +129,29 @@ function dailyClickHandler(item) {
           </div>
 
           <ul class="signpoint_li">
-            <div>
-              <li v-for="day in dailyCheck" :key="day.index" @click="dailyClickHandler(day)">
-                <span>+1</span>
-                <a href="javascript:;">
-                  <i class="fa-solid fa-p" />
-                </a>
-                <span class="sign_day">簽到</span>
-              </li>
-            </div>
+            <li
+              v-for="day in dailyCheck"
+              :key="day.index"
+              class="day-slot"
+              :class="{
+                sign: day.accepted,
+                'no-cursor': day.accepted || day.index !== nextDayIndex,
+                'inactive': day.index > nextDayIndex
+              }"
+              @click="dailyClickHandler(day)"
+            >
+              <span>+{{ day.credit }}</span>
+              <a href="javascript:;">
+                <i
+                  class="fa-solid"
+                  :class="{
+                    'fa-p': !day.isMission,
+                    'fa-lock': day.isMission
+                  }"
+                />
+              </a>
+              <span class="sign_day">{{ dayText(day) }}</span>
+            </li>
             <!-- <li class="sign">
               <span>+1</span>
               <i class="fa-solid fa-p" />
@@ -102,13 +187,23 @@ function dailyClickHandler(item) {
 <style lang="scss" scoped>
 .signpoint_content {
   padding: 32px 12px;
+  margin: 0 auto 32px auto;
 }
 .signpoint_li {
   display: flex;
-  gap: 8px;
   flex-wrap: wrap;
+  width: 1200px;
+
 }
-li {
+.day-slot {
+  width: 108px;
   margin: 4px 4px;
+  cursor: pointer;
+  &.no-cursor {
+    pointer-events: none;
+  }
+  &.inactive {
+    opacity: 0.4;
+  }
 }
 </style>

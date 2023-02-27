@@ -139,7 +139,6 @@ const inputField = ref({
 
 async function sendResult() {
   console.log(inputField.value);
-
   try {
     const redirectURL = 'https://wo.wowo.tw/profile';
     const res = await $fetch(
@@ -151,7 +150,6 @@ async function sendResult() {
           authorization: 'Bearer ' + localStorage.getItem('accessToken')
         }
       });
-    // const { data } = res;
     const div = document.createElement('credit-div');
     div.innerHTML = res;
     div.id = 'credit-payment';

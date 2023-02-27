@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="app">
     <NuxtLayout>
       <n-message-provider>
         <n-dialog-provider>
@@ -9,3 +9,9 @@
     </NuxtLayout>
   </div>
 </template>
+<style lang="scss" scoped>
+#app {
+  width: 100%;
+  height: 100%;
+}
+</style>

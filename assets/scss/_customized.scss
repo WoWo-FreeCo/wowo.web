@@ -13,3 +13,26 @@
   .swiper-slide {
   }
 }
+.ProseMirror {
+  height: 300px;
+  max-height: 80vh;
+  overflow-y: auto;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+  outline: none;
+
+  > p:first-child {
+    margin-top: 0.5em;
+  }
+
+  > h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    &:first-child {
+      margin-top: 0.5em;
+    }
+  }
+}

@@ -6,6 +6,7 @@ import { GET_DAILY_SEQUENCE } from '@/apis/requestURL';
 
 const router = useRouter();
 const authStore = useAuthStore();
+const pageStatus = usePageStatusStore();
 
 const runtimeConfig = useRuntimeConfig();
 const dailyCheck = ref([]);
@@ -28,6 +29,10 @@ async function fetchDailySequence() {
   console.log(res);
 }
 
+function dailyClickHandler(item) {
+  console.log(item);
+  // pageStatus.toggleVideoDialog(true);
+}
 </script>
 
 <template>
@@ -54,7 +59,7 @@ async function fetchDailySequence() {
 
           <ul class="signpoint_li">
             <div>
-              <li v-for="day in dailyCheck" :key="day.index">
+              <li v-for="day in dailyCheck" :key="day.index" @click="dailyClickHandler(day)">
                 <span>+1</span>
                 <a href="javascript:;">
                   <i class="fa-solid fa-p" />

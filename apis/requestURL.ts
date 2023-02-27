@@ -6,6 +6,7 @@ export const GET_ADMIN_PROFILE = `${API_VERSION_PREFIX}/admin/user/profile`;
 export const GET_ADMIN_ORDERS = `${API_VERSION_PREFIX}/admin/order`;
 export const GET_PRODUCT = (_categoryId: '') => `${API_VERSION_PREFIX}/product?categoryId=${_categoryId}`;
 export const GET_ALL_PRODUCT = `${API_VERSION_PREFIX}/product`;
+export const GET_WEB_PAGES = `${API_VERSION_PREFIX}/web-page`;
 export const GET_PRODUCT_CATEGORY = `${API_VERSION_PREFIX}/product-category`;
 export const GET_DAILY_SEQUENCE = `${API_VERSION_PREFIX}/check-content/sequence`;
 export const GET_HOME_BANNER = `${API_VERSION_PREFIX}/home-banner`;
@@ -23,6 +24,7 @@ export const POST_PAYMENT = `${API_VERSION_PREFIX}/payment`;
 export const UPDATE_HOME_BANNER = (_id: number) => `${API_VERSION_PREFIX}/admin/home-banner/${_id}`;
 export const UPDATE_PRODUCT = (_id: number) => `${API_VERSION_PREFIX}/admin/product/${_id}`;
 export const UPDATE_PRODUCT_CATEGORY = (_id: number) => `${API_VERSION_PREFIX}/admin/product-category/${_id}`;
+export const UPDATE_WEB_PAGES = (_id: number) => `${API_VERSION_PREFIX}/admin/web-page/${_id}`;
 
 export const DELETE_HOME_BANNER = (_id: number) => `${API_VERSION_PREFIX}/admin/home-banner/${_id}`;
 export const DELETE_PRODUCT = (_id: number) => `${API_VERSION_PREFIX}/admin/product/${_id}`;

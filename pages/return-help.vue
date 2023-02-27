@@ -14,7 +14,7 @@ function fetchData() {
 
 async function fetchWebPage() {
   try {
-    const res = await $fetch(`${runtimeConfig.public.apiBase}/${GET_WEB_PAGES}/1`);
+    const res = await $fetch(`${runtimeConfig.public.apiBase}/${GET_WEB_PAGES}/3`);
     const htmlContainer = document.querySelector('.html-container');
     htmlContainer.innerHTML = res;
   } catch (error) {
@@ -27,11 +27,11 @@ async function fetchWebPage() {
     <!--此背景圖在後台可更換,替換style="background: url('背景圖路徑');" 若未上傳以目前圖片代替, 建議尺寸1900*280-->
     <section class="page-header">
       <div class="container">
-        <h1>關於我們</h1>
+        <h1>退換貨說明</h1>
         <ol class="breadcrumb">
           <li><a href="/">Home</a></li>
           <li class="active">
-            關於我們
+            退換貨說明
           </li>
         </ol>
       </div>

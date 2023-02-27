@@ -27,7 +27,7 @@
               <a href="/faq">常見問題</a>
             </li>
             <li>
-              <a href="/faq">退換貨說明</a>
+              <a href="/return-help">退換貨說明</a>
             </li>
             <li>
               <a href="/privacy">隱私權政策</a>

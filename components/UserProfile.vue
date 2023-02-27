@@ -1,5 +1,6 @@
 <script setup>
 const authStore = useAuthStore();
+const pageStauts = usePageStatusStore();
 const authUser = computed(() => authStore?.user);
 
 onMounted(() => {
@@ -7,7 +8,10 @@ onMounted(() => {
 });
 
 function shareAccount() {
-  console.log(authStore.user.email);
+  pageStauts.toggleShareAccount(true);
+}
+function scrollToBottom() {
+  document.querySelector('#member_vip_root').scrollIntoView();
 }
 
 </script>
@@ -60,9 +64,9 @@ function shareAccount() {
 
         <li v-if="authUser.memberLevel !== 'SVIP'">
           <!-- <a href="myprofile.html#member_vip" class="btn btn-check"><i class="fa-regular fa-circle-up" />我要升等</a>低於SVIP才顯示此按鈕 -->
-          <NuxtLink to="/profile#member_vip" class="btn btn-check">
+          <div class="btn btn-check" @click="scrollToBottom">
             <i class="fa-regular fa-circle-up" />我要升等
-          </NuxtLink>
+          </div>
           <a href="#" data-toggle="modal" data-target="#vipdesc" class="lvdesc_a">等級說明</a>
         </li>
         <li @click="shareAccount()">

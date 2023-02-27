@@ -1,36 +1,37 @@
 <script setup>
 import { NButton, useDialog, useMessage } from 'naive-ui';
-import { GET_PRODUCT_CATEGORY, DELETE_PRODUCT_CATEGORY } from '@/apis/requestURL';
+import { GET_WEB_PAGES } from '@/apis/requestURL';
 
 const runtimeConfig = useRuntimeConfig();
-const dialog = useDialog();
+// const dialog = useDialog();
 const message = useMessage();
 const pageStatus = usePageStatusStore();
 
-const creatorToggle = ref(false);
+// const creatorToggle = ref(false);
 const editorToggle = ref(false);
 const currentItem = ref({});
 
 const createColumns = () => [
   {
-    title: '名稱',
-    key: 'name'
+    title: '頁尾名稱',
+    key: 'name',
+    width: 100,
+    ellipsis: true
+  },
+  {
+    title: '內容',
+    key: 'content',
+    width: '50%',
+    ellipsis: true,
+    style: 'backgroundColor: red'
   },
   {
     title: '操作',
     key: 'actions',
+    width: 100,
+    ellipsis: true,
     render(row) {
       return [h(
-        NButton,
-        {
-          type: 'error',
-          strong: true,
-          tertiary: true,
-          size: 'small',
-          onClick: () => handlerAction(row, 'del')
-        },
-        { default: () => '刪除' }
-      ), h(
         NButton,
         {
           type: 'info',
@@ -53,15 +54,16 @@ const pagination = ref({
   pageSize: 20
 });
 
-onMounted(() => {
+onMounted(async() => {
+  await nextTick();
   fetchItem();
 });
 
 async function fetchItem() {
   try {
-    const res = await $fetch(`${runtimeConfig.public.apiBase}/${GET_PRODUCT_CATEGORY}`);
-    const { data } = res;
-    items.value = data;
+    const res = await $fetch(`${runtimeConfig.public.apiBase}/${GET_WEB_PAGES}`);
+    const { content } = res;
+    items.value = content;
   } catch (error) {
     //
   }
@@ -70,31 +72,6 @@ async function fetchItem() {
 function handlerAction(item, type = '') {
   if (!type) return;
   switch (type) {
-  case 'del':
-    dialog.warning({
-      title: `是否確定要刪除 ${item.name}`,
-      content: '',
-      positiveText: '確定',
-      negativeText: '取消',
-      onPositiveClick: async() => {
-        try {
-          await $fetch(`${runtimeConfig.public.apiBase}/${DELETE_PRODUCT_CATEGORY(item.id)}`, {
-            method: 'DELETE',
-            headers: {
-              authorization: 'Bearer ' + localStorage.getItem('accessToken')
-            }
-          });
-          message.success(`已刪除 ${item.name}`);
-          fetchItem();
-        } catch (error) {
-          message.error(`發生錯誤 ${error.message}`);
-        }
-      },
-      onNegativeClick: () => {
-        message.info('已取消本次操作');
-      }
-    });
-    break;
   case 'edit':
     currentItem.value = item;
     editorToggle.value = true;
@@ -103,6 +80,7 @@ function handlerAction(item, type = '') {
   default:
     break;
   }
+  console.log(item);
 }
 
 function handleCheck(rowKeys) {
@@ -110,16 +88,20 @@ function handleCheck(rowKeys) {
 }
 
 function createItem() {
-  creatorToggle.value = true;
-  pageStatus.toggleAdminOverlay(true);
+  // creatorToggle.value = true;
+  // pageStatus.toggleAdminOverlay(true);
 }
 </script>
 
 <template>
   <div style="position: relative;">
+    <link
+      href="https://cdn.jsdelivr.net/npm/remixicon@2.2.0/fonts/remixicon.css"
+      rel="stylesheet"
+    >
     <n-space horizontal>
-      <n-button type="primary" style="margin: 12px;" @click="createItem">
-        新建產品類別
+      <n-button disabled="" type="primary" style="margin: 12px;" @click="createItem">
+        新建頁尾
       </n-button>
     </n-space>
     <n-data-table
@@ -131,16 +113,17 @@ function createItem() {
       max-height="100vh"
       @update:checked-row-keys="handleCheck"
     />
-    <AdminProductCategoryDialogCreator
+    <!-- <AdminWebPageDialogCreator
       v-if="creatorToggle"
       @close-dialog="creatorToggle = false"
       @fetch-item="fetchItem"
-    />
-    <AdminProductCategoryDialogEditor
+    /> -->
+    <AdminWebPageDialogEditor
       v-if="editorToggle"
       :current-item="currentItem"
       @close-dialog="editorToggle = false"
       @fetch-item="fetchItem"
     />
+    <!-- ! Rich text -->
   </div>
 </template>

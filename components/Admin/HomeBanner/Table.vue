@@ -65,7 +65,7 @@ const createColumns = () => [
 //   return () => h(NIcon, null, { default: () => h(icon) });
 // }
 
-const products = ref([]);
+const items = ref([]);
 const columns = ref(createColumns());
 const checkedRowKeys = ref([]);
 const rowKey = row => row.id;
@@ -81,7 +81,7 @@ async function fetchItem() {
   try {
     const res = await $fetch(`${runtimeConfig.public.apiBase}/${GET_HOME_BANNER}`);
     const { data } = res;
-    products.value = data;
+    items.value = data;
   } catch (error) {
     //
   }
@@ -130,7 +130,7 @@ function handleCheck(rowKeys) {
   checkedRowKeys.value = rowKeys;
 }
 
-function createProd() {
+function createItem() {
   creatorToggle.value = true;
   pageStatus.toggleAdminOverlay(true);
 }
@@ -139,13 +139,13 @@ function createProd() {
 <template>
   <div style="position: relative;">
     <n-space horizontal>
-      <n-button type="primary" style="margin: 12px;" @click="createProd">
+      <n-button type="primary" style="margin: 12px;" @click="createItem">
         新建橫幅
       </n-button>
     </n-space>
     <n-data-table
       :columns="columns"
-      :data="products"
+      :data="items"
       :pagination="pagination"
       :row-key="rowKey"
       style="padding: 0 12px 16px 0"

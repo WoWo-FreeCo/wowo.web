@@ -1,10 +1,8 @@
 <script setup>
-import { NButton, useDialog, useMessage } from 'naive-ui';
+import { NButton } from 'naive-ui';
 import { GET_WEB_PAGES } from '@/apis/requestURL';
 
 const runtimeConfig = useRuntimeConfig();
-// const dialog = useDialog();
-const message = useMessage();
 const pageStatus = usePageStatusStore();
 
 // const creatorToggle = ref(false);

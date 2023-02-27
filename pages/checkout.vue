@@ -1,5 +1,5 @@
 <script setup>
-import { POST_PAYMENT } from '@/apis/requestURL';
+import { POST_PAYMENT, POST_PAYMENT_PRE } from '@/apis/requestURL';
 import { ProductType, PaymentType, DeliverType } from '@/constants/common';
 
 const routes = useRoute();
@@ -33,15 +33,45 @@ const currentMerch = computed(() => {
   }
 });
 
+const preSettlement = ref({});
+
+const deliverFee = computed(() => {
+  const fee = preSettlement.value?.deliveryFee;
+  return fee <= 0 ? '免運' : fee;
+});
+
 onMounted(async() => {
   updateCartType();
   await nextTick();
   if (currentMerch.value <= 0) {
-    router.push({
-      path: '/'
-    });
+    return router.push({ path: '/' });
   }
+  await fetchData();
 });
+
+async function fetchData() {
+  try {
+    const res = await $fetch(`${runtimeConfig.public.apiBase}/${POST_PAYMENT_PRE}`, {
+      method: 'POST',
+      body: {
+        attribute: cartType.value,
+        products: currentMerch.value.map((e) => {
+          return {
+            id: e.id,
+            quantity: e.amount
+          };
+        })
+      },
+      headers: {
+        authorization: 'Bearer ' + localStorage.getItem('accessToken')
+      }
+    });
+    console.log('pre-settlement, ', res);
+    preSettlement.value = res.data;
+  } catch (error) {
+    //
+  }
+}
 
 function updateCartType() {
   switch (routes.query.type) {
@@ -80,11 +110,11 @@ const inputField = ref({
     idType: '1', //
     cellphone: authStore.user?.cellphone,
     name: authStore.user?.nickname,
-    province: '台灣',
+    province: '',
     remark: '', // 收件備註
     senderRemark: '', // 寄件備註
-    stationCode: '999854', // 超商代碼 / 條碼?
-    stationName: '金全', // 超商名稱?
+    stationCode: '', // 超商代碼 / 條碼?
+    stationName: '', // 超商名稱?
     town: '', // 城鎮名
     zipCode: '' // 郵遞區號
   },
@@ -111,13 +141,16 @@ async function sendResult() {
   console.log(inputField.value);
 
   try {
-    const res = await $fetch(`${runtimeConfig.public.apiBase}/${POST_PAYMENT}`, {
-      method: 'POST',
-      body: inputField.value,
-      headers: {
-        authorization: 'Bearer ' + localStorage.getItem('accessToken')
-      }
-    });
+    const redirectURL = 'https://wo.wowo.tw/profile';
+    const res = await $fetch(
+      `${runtimeConfig.public.apiBase}/${POST_PAYMENT}?order_result_url=${redirectURL}`
+      , {
+        method: 'POST',
+        body: inputField.value,
+        headers: {
+          authorization: 'Bearer ' + localStorage.getItem('accessToken')
+        }
+      });
     // const { data } = res;
     const div = document.createElement('credit-div');
     div.innerHTML = res;
@@ -317,13 +350,13 @@ async function sendResult() {
             商品金額小計 (共{{ currentMerch.length }}項商品)：${{ totalPrice }}
           </li>
           <li>
-            運費：免運
+            運費：{{ deliverFee }}
           </li>
           <li>
             紅利扣點：{{ bonusCut }}
           </li>
           <li class="border_top">
-            訂單總金額：<span>${{ totalPrice - bonusCut }}</span>
+            訂單總金額：<span>${{ totalPrice - bonusCut + deliverFee }}</span>
           </li>
         </ul>
       </div>

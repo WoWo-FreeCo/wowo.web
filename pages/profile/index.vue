@@ -160,45 +160,7 @@ function updateProfile() {
   <div class="full_height mt185ptb30 pt0">
     <UserProfile />
     <div class="row">
-      <div class="col-sm-3 p-0 bg_left">
-        <div id="member_menu" class="panel-group commonAccordion">
-          <div class="panel panel-default">
-            <div id="headingOne" class="panel-heading" role="tab">
-              <h4 class="panel-title">
-                <a
-                  role="button"
-                  data-toggle="collapse"
-                  data-parent="#member_menu"
-                  href="#collapseOne"
-                  aria-expanded="f"
-                  aria-controls="collapseOne"
-                >
-                  會員資料
-                </a>
-              </h4>
-            </div>
-            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-              <ul>
-                <li class="active">
-                  <NuxtLink to="/profile">
-                    基本資料管理
-                  </NuxtLink>
-                </li><!--當下頁面li的class要加active-->
-                <!-- <li><NuxtLink to="order.html">我的消費紀錄</NuxtLink></li>
-                <li><NuxtLink to="mypoint.html">我的紅利點數</NuxtLink></li>
-                <li><NuxtLink to="myback.html">我的退貨紀錄</NuxtLink></li>
-                <li><NuxtLink to="myhistory.html">我的回顧</NuxtLink></li> -->
-                <li>
-                  <NuxtLink to="/favorite">
-                    我的最愛
-                  </NuxtLink>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
+      <ProfileSidebar />
       <div class="col-sm-9 pl20pr30">
         <div class="contact-form">
           <!----------------!沒改!---------------->

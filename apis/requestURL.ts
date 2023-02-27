@@ -2,6 +2,7 @@ const prefix = 'api/v1';
 
 export const GET_PROFILE = `${prefix}/user/profile`;
 export const GET_USER_ORDERS = `${prefix}/order`;
+export const GET_USER_ORDERS_DETAIL = (_id: number) => `${prefix}/order/${_id}/detail`;
 export const GET_USER_DAILY_SEQUENCE = `${prefix}/user/activity/daily-check/record`;
 export const GET_ADMIN_PROFILE = `${prefix}/admin/user/profile`;
 export const GET_ADMIN_ORDERS = `${prefix}/admin/order`;

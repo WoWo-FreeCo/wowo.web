@@ -18,47 +18,7 @@ onMounted(() => {
     <section class="full_height mt185ptb30 pt0">
       <UserProfile />
       <div class="row">
-        <!----------------!!!!!!!!!!!!此整區塊有做修改!!!!!!!!!!!!---------------->
-        <div class="col-sm-3 p-0 bg_left">
-          <div id="member_menu" class="panel-group commonAccordion">
-            <div class="panel panel-default">
-              <div id="headingOne" class="panel-heading" role="tab">
-                <h4 class="panel-title">
-                  <a
-                    role="button"
-                    data-toggle="collapse"
-                    data-parent="#member_menu"
-                    href="#collapseOne"
-                    aria-expanded="false"
-                    aria-controls="collapseOne"
-                  >
-                    會員資料
-                  </a>
-                </h4>
-              </div>
-              <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-                <ul>
-                  <li>
-                    <NuxtLink to="/profile">
-                      基本資料管理
-                    </NuxtLink>
-                  </li>
-                  <!-- <li><NuxtLink to="/order">我的消費紀錄</NuxtLink></li>
-                  <li><NuxtLink to="/mypoint">我的紅利點數</NuxtLink></li>
-                  <li><NuxtLink to="/myback">我的退貨紀錄</NuxtLink></li>
-                  <li><NuxtLink to="/myhistory">我的回顧</NuxtLink></li> -->
-                  <li class="active">
-                    <NuxtLink to="/favorite">
-                      我的最愛
-                    </NuxtLink>
-                  </li>
-                  <!--當下頁面li的class要加active-->
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-
+        <ProfileSidebar />
         <div class="col-sm-9 pl20pr30">
           <h3 class="h3_tl border_bottom">
             按讚好物

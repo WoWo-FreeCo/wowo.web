@@ -1,65 +1,63 @@
 <script setup>
+import { GET_USER_ORDERS } from '@/apis/requestURL';
+import { ProductType } from '@/constants/common';
+
+const authStore = useAuthStore();
+const router = useRouter();
+const runtimeConfig = useRuntimeConfig();
+
+const orders = ref([]);
+
+const orderStatus = (order) => {
+  if (order?.orderStatus === 'WAIT_PAYMENT') return '等待付款';
+  else return order.orderStatus;
+};
+
+const orderAttr = (order) => {
+  if (order?.attribute === ProductType.General) return '一般商品';
+  if (order?.attribute === ProductType.ColdChain) return '冷鏈商品';
+  else return order.attribute;
+};
+
+onMounted(async() => {
+  if (!authStore.status.loggedIn) {
+    return router.push({
+      path: '/login',
+      query: {
+        redirect: '/order'
+      }
+    });
+  }
+  await fetchData();
+});
+
+async function fetchData() {
+  try {
+    const res = await $fetch(`${runtimeConfig.public.apiBase}/${GET_USER_ORDERS}`, {
+      headers: {
+        authorization: 'Bearer ' + localStorage.getItem('accessToken')
+      }
+    });
+    console.log(res);
+    orders.value = res.data;
+  } catch (error) {
+    console.log(error);
+  }
+}
 </script>
+
 <template>
   <div>
     <section class="full_height mt185ptb30 pt0">
       <UserProfile />
       <div class="row">
-        <!----------------!!!!!!!!!!!!此整區塊有做修改!!!!!!!!!!!!---------------->
-
-        <div class="col-sm-3 p-0 bg_left">
-          <div id="member_menu" class="panel-group commonAccordion">
-            <div class="panel panel-default">
-              <div id="headingOne" class="panel-heading" role="tab">
-                <h4 class="panel-title">
-                  <a
-                    role="button"
-                    data-toggle="collapse"
-                    data-parent="#member_menu"
-                    href="#collapseOne"
-                    aria-expanded="false"
-                    aria-controls="collapseOne"
-                  >
-                    會員資料
-                  </a>
-                </h4>
-              </div>
-              <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
-                <ul>
-                  <li>
-                    <NuxtLink to="/profile">
-                      基本資料管理
-                    </NuxtLink>
-                  </li>
-                  <li class="active">
-                    <NuxtLink to="/order">
-                      我的消費紀錄
-                    </NuxtLink>
-                  </li><!--當下頁面li的class要加active-->
-                  <!-- <li><NuxtLink to="mypoint.html">我的紅利點數</NuxtLink></li>
-                  <li><NuxtLink to="myback.html">我的退貨紀錄</NuxtLink></li>
-                  <li><NuxtLink to="myhistory.html">我的回顧</NuxtLink></li> -->
-                  <li>
-                    <NuxtLink to="/favorite">
-                      我的最愛
-                    </NuxtLink>
-                  </li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </div>
-
+        <ProfileSidebar />
         <div class="col-sm-9 pl20pr30">
           <ul class="list-inline dashboard-menu">
-            <!----------------!沒改!---------------->
-            <li><a href="order.html" class="active">一般商品</a></li><!--購物車的一般商品跟冷鍊商品, 在shop-sidebar頁面看到的--><!--當下頁面a的class要加active-->
-            <!-- <li><a href="border.html">競拍活動</a></li>
-            <li><a href="gorder.html">團購活動</a></li> -->
+            <li><a href="order.html" class="active">一般商品</a></li>
           </ul>
 
           <div class="select r0t0">
-            <!----------------!沒改!---------------->
             <select>
               <option selected>
                 訂單狀態
@@ -80,7 +78,6 @@
           </div>
 
           <table class="member_table order_table">
-            <!----------------!沒改!---------------->
             <thead>
               <tr>
                 <th>
@@ -102,32 +99,32 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
+              <tr v-for="order in orders" :key="order.id">
                 <td data-th="訂單編號">
-                  22060629636237
+                  {{ order?.id }}
                 </td>
                 <td data-th="訂單日期">
-                  2022/06/06
+                  {{ order?.createdAt }}
                 </td>
-                <td data-th="付款方式">
-                  信用卡+紅利點數
+                <td data-th="訂單類型">
+                  {{ orderAttr(order) }}
                 </td>
                 <td data-th="訂單金額">
-                  $680
+                  {{ order?.price }}
                 </td>
                 <td data-th="訂單狀態">
-                  已付款
+                  {{ orderStatus(order) }}
                 </td>
                 <td>
-                  <button type="button" class="btn btn-orderdetial" onclick="location.href='order_info.html'">
+                  <NuxtLink :to="`/order/detail?id=${order.id}`" class="btn btn-orderdetial">
                     查看明細
-                  </button>
+                  </NuxtLink>
                   <button type="button" class="btn btn-orderdetial" data-toggle="modal" data-target="#cancel">
                     取消訂單
                   </button>
                 </td>
               </tr>
-              <tr>
+              <!-- <tr>
                 <td data-th="訂單編號">
                   22060629636237
                 </td>
@@ -151,7 +148,7 @@
                     我要退貨
                   </button>
                 </td>
-              </tr>
+              </tr> -->
             </tbody>
           </table>
 

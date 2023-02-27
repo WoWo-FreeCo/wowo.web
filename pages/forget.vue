@@ -76,7 +76,7 @@ function rediectPath() {
     <section class="full_height mt185ptb30">
       <div class="container">
         <h3 class="login_tl">
-          會員登入<br>Login
+          忘記密碼<br>Forget password
         </h3>
         <!-- <n-button @click="error">
           Error
@@ -123,23 +123,9 @@ function rediectPath() {
               >
             </div>
             <div class="text-center">
-              <input id="input-field-submit" type="submit" class="btn btn-main btn-bag" value="我要登入" @click="tryLogin">
+              <input id="input-field-submit" type="submit" class="btn btn-main btn-bag" value="送出" @click="tryLogin">
             </div>
           </form>
-
-          <div class="text-center mt-30">
-            <i class="fa-regular fa-circle-question" />
-            <NuxtLink to="/forget">
-              忘記密碼?
-            </NuxtLink>
-          </div>
-
-          <div class="other_function">
-            沒有帳號?
-            <NuxtLink class="btn btn-block btn-bag" to="/register">
-              會員註冊
-            </NuxtLink>
-          </div>
         </div>
       </div>
     </section>

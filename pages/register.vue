@@ -34,7 +34,7 @@ async function confirmReg() {
     alert('恭喜你註冊成功，即將跳轉登入頁');
   } catch (error) {
     // console.log(error.data);
-    alert(error.data?.message || '請輸入正確的資訊與必填欄位');
+    // alert(error.data?.message || '請輸入正確的資訊與必填欄位');
   }
 }
 </script>
@@ -45,7 +45,7 @@ async function confirmReg() {
         <h3 class="login_tl">
           會員註冊<br>Register
         </h3>
-        <div class="social_login">
+        <!-- <div class="social_login">
           使用：
           <a href="" class="btn btn-check bg-facebook" style="margin: 3px;">
             <i class="fa-brands fa-facebook-f" />
@@ -59,7 +59,7 @@ async function confirmReg() {
             <i class="fa-brands fa-line" />
             Line帳號註冊
           </a>
-        </div>
+        </div> -->
         <div class="contact-form">
           <form id="" action="javascript:;" role="form">
             <div class="form-group">

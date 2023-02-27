@@ -163,7 +163,7 @@ function onBounsCutChanged() {
           <label class="radio form-check">
             <input type="radio" name="shipping" value="ship_home" checked> 宅配到府
           </label>
-          <label v-show="cartType === ProductType.ColdChain" class="radio form-check">
+          <label v-show="cartType === ProductType.General" class="radio form-check">
             <input type="radio" name="shipping" value="ship_market"> 超商取貨
           </label>
         </div>
@@ -171,28 +171,21 @@ function onBounsCutChanged() {
       <div class="cart_info">
         <h5>付款方式</h5>
         <div class="checkout-form">
-          <div v-if="cartType === ProductType.General">
-            <label class="radio form-check">
-              <input type="radio" name="payment" value="" checked> 信用卡
-            </label>
-            <!-- <label class="radio form-check">
-              <input type="radio" name="payment" value=""> ATM 轉帳
-            </label>
-            <label class="radio form-check">
-              <input type="radio" name="payment" value=""> 超商條碼付款
-            </label>
-            <label class="radio form-check">
-              <input type="radio" name="payment" value=""> 超商代碼付款
-            </label>
-            <label class="radio form-check">
-              <input type="radio" name="payment" value=""> 貨到付款
-            </label> -->
-          </div>
-          <div v-else>
-            <label class="radio form-check">
-              <input type="radio" name="payment" value="" checked> 信用卡
-            </label>
-          </div>
+          <label class="radio form-check">
+            <input type="radio" name="payment" value="" checked> 信用卡
+          </label>
+          <label class="radio form-check">
+            <input type="radio" name="payment" value=""> 超商條碼付款
+          </label>
+          <label class="radio form-check">
+            <input type="radio" name="payment" value=""> 超商代碼付款
+          </label>
+          <!-- <label class="radio form-check">
+            <input type="radio" name="payment" value=""> ATM 轉帳
+          </label>
+          <label class="radio form-check">
+            <input type="radio" name="payment" value=""> 貨到付款
+          </label> -->
         </div>
       </div>
       <div class="cart_info">
@@ -247,7 +240,7 @@ function onBounsCutChanged() {
             name=""
           >
           <input
-            v-if="cartType === 'normal'"
+            v-if="cartType === ProductType.General"
             id="shipday"
             type="datetime-local"
             placeholder="請選擇可收貨日期"

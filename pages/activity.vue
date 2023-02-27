@@ -47,7 +47,7 @@ onMounted(() => {
       <!-- ! 正在進行的活動 -->
       <div v-if="activity.ongoing.isEnabled">
         <h2 class="text-center">
-          目前站內沒有任何進行中活動！
+          活動即將開始，敬請期待
         </h2>
         <ul v-if="false" class="nav nav-tabs bbottom_none">
           <li class="active">

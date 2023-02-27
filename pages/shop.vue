@@ -120,7 +120,7 @@ function addToCart(prod) {
           <li><a href="/">Home</a></li>
           <li>產品介紹</li>
           <li class="active">
-            類別名稱
+            {{ prodCategories.find(item => item.id === currentCategoryId)?.name }}
           </li>
         </ol>
 

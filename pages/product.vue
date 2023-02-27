@@ -115,10 +115,6 @@ function goCheckout(prod) {
             <ol class="breadcrumb">
               <li><a href="/">Home</a></li>
               <li><a href="/shop">產品介紹</a></li>
-              <li><a href="/shop">產品類別</a></li><!--此頁產品的類別-->
-              <li class="active">
-                產品名稱
-              </li><!--此頁產品名稱-->
             </ol>
 
             <h2 class="prod-name" title="產品名稱">

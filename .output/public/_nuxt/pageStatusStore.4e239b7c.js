@@ -1,1 +1,0 @@
-import{g as t}from"./entry.975454b2.js";const a={bellMessageToggle:!1,adminOverlayToggle:!1},g=t({id:"pageStatus",state:()=>a,getters:{},actions:{toggleBellMessage(e){this.bellMessageToggle=e},toggleAdminOverlay(e){this.adminOverlayToggle=e}}});export{g as u};

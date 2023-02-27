@@ -54,8 +54,8 @@
           <ul class="list-inline dashboard-menu">
             <!----------------!沒改!---------------->
             <li><a href="order.html" class="active">一般商品</a></li><!--購物車的一般商品跟冷鍊商品, 在shop-sidebar頁面看到的--><!--當下頁面a的class要加active-->
-            <li><a href="border.html">競拍活動</a></li>
-            <li><a href="gorder.html">團購活動</a></li>
+            <!-- <li><a href="border.html">競拍活動</a></li>
+            <li><a href="gorder.html">團購活動</a></li> -->
           </ul>
 
           <div class="select r0t0">

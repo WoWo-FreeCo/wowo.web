@@ -38,15 +38,18 @@ function scrollToBottom() {
           <ul class="user-profile-list">
             <li>
               <h3>{{ authStore?.user?.nickname }}</h3>
-              <span class="badge_member badge_svip">{{ authStore?.user?.level }}</span>
+              <span class="badge_member badge_svip">{{ authStore?.user?.memberLevel }}</span>
               <!--會員等級icon, vip及普通會員分別為 <span class="badge_member badge_vip">VIP</span>, <span class="badge_member badge_normal">普通會員</span>-->
             </li>
             <li>
               <span>我的帳號：{{ authStore?.user?.email }}</span>
             </li>
             <li>
-              <span>我的推薦者：{{ authStore?.user?.recommendCode }}</span>
-              <!--輸入綁定VIP推薦人之後, 輸入的那個帳號會顯示在此-->
+              <span>我的推薦代碼：{{ authStore?.user?.recommendCode }}</span>
+              <!--分享帳號給別人的推薦代碼-->
+            </li>
+            <li style="font-size: 12px; color: red">
+              <span>(使用推薦代碼註冊後，成功消費總金額1%，將會回饋紅利點數給您，推薦越多人賺越多!)</span>
             </li>
             <li>
               <span>紅利點數：{{ authStore?.user?.rewardCredit }}</span>

@@ -82,7 +82,7 @@ function rediectPath() {
           Error
         </n-button> -->
 
-        <div class="social_login">
+        <!-- <div class="social_login">
           使用：
           <a href="" class="btn btn-check bg-facebook" style="margin: 3px;">
             <i class="fa-brands fa-facebook-f" />
@@ -96,7 +96,7 @@ function rediectPath() {
             <i class="fa-brands fa-line" />
             Line帳號登入
           </a>
-        </div>
+        </div> -->
         <div class="contact-form">
           <form id="" method="post" action="javascript:;">
             <div class="form-group">
@@ -128,7 +128,10 @@ function rediectPath() {
           </form>
 
           <div class="text-center mt-30">
-            <i class="fa-regular fa-circle-question" /><a href="forgotten.html">忘記密碼?</a>
+            <i class="fa-regular fa-circle-question" />
+            <NuxtLink to="/forget">
+              忘記密碼?
+            </NuxtLink>
           </div>
 
           <div class="other_function">

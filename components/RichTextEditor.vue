@@ -49,6 +49,7 @@ import TextAlign from '@tiptap/extension-text-align';
 import Underline from '@tiptap/extension-underline';
 import Subscript from '@tiptap/extension-subscript';
 import Superscript from '@tiptap/extension-superscript';
+import Image from '@tiptap/extension-image';
 import CharacterCount from '@tiptap/extension-character-count';
 
 export default {
@@ -105,8 +106,8 @@ export default {
           icon: 'ri-superscript-2',
           active: 'superscript'
         },
-        { slug: 'undo', icon: 'ri-arrow-go-back-line', active: 'undo' },
-        { slug: 'redo', icon: 'ri-arrow-go-forward-line', active: 'redo' },
+        // { slug: 'undo', icon: 'ri-arrow-go-back-line', active: 'undo' },
+        // { slug: 'redo', icon: 'ri-arrow-go-forward-line', active: 'redo' },
         { slug: 'clear', icon: 'ri-format-clear', active: 'clear' },
         { slug: 'code', icon: 'ri-code-view', active: 'code' }
       ]
@@ -143,6 +144,7 @@ export default {
         Underline,
         Subscript,
         Superscript,
+        Image,
         CharacterCount.configure({
           limit: this.maxLimit
         }),

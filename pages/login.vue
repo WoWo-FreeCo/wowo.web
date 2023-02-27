@@ -64,7 +64,9 @@ async function setLoginResponse(data) {
 function rediectPath() {
   const redirectPath = routes.query?.redirect;
   if (redirectPath) {
-    router.push({ path: redirectPath });
+    const query = { ...routes.query };
+    delete query.redirect;
+    router.push({ path: redirectPath, query });
   } else {
     router.push({ path: '/profile' });
   }

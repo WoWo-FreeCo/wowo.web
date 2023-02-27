@@ -1,9 +1,12 @@
 <script setup>
+import { useMessage } from 'naive-ui';
 import { GET_USER_ORDERS } from '@/apis/requestURL';
 import { ProductType } from '@/constants/common';
 
 const authStore = useAuthStore();
+const message = useMessage();
 const router = useRouter();
+const route = useRoute();
 const runtimeConfig = useRuntimeConfig();
 
 const orders = ref([]);
@@ -49,9 +52,14 @@ onMounted(async() => {
     return router.push({
       path: '/login',
       query: {
+        ...route.query,
         redirect: '/order'
       }
     });
+  }
+  if (route.query?.payment === 'successful') {
+    message.success('已成功付款！');
+    router.replace({ query: null });
   }
   await fetchData();
 });

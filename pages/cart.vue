@@ -11,7 +11,6 @@ const cartType = ref(ProductType.General);
 
 watch(routes, (_new) => {
   updateCartType();
-  // console.log(cartStore?.merch.filter(e => e.attribute === 'COLD_CHAIN'));
 });
 
 const currentMerch = computed(() => {

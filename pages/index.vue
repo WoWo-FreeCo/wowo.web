@@ -37,6 +37,7 @@ watch(currentCategoryId, (_new) => {
 onMounted(async() => {
   await nextTick();
   fetchData();
+  console.log(process.env.NODE_ENV, runtimeConfig.public.baseUrl);
 });
 
 function fetchData() {

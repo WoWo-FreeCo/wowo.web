@@ -140,7 +140,9 @@ const inputField = ref({
 async function sendResult() {
   console.log(inputField.value);
   try {
-    const redirectURL = 'https://wo.wowo.tw/profile';
+    const redirectURL = process.env.NODE_ENV === 'development'
+      ? 'http://127.0.0.1:3000/order?payment=successful'
+      : `${runtimeConfig.public.baseUrl}/order?payment=successful`;
     const res = await $fetch(
       `${runtimeConfig.public.apiBase}/${POST_PAYMENT}?order_result_url=${redirectURL}`
       , {

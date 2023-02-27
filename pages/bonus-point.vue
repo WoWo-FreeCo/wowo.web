@@ -205,7 +205,7 @@ async function acceptDailyCheck(item) {
     pointer-events: none;
   }
   &.inactive {
-    opacity: 0.4;
+    opacity: 0.35;
   }
 }
 </style>

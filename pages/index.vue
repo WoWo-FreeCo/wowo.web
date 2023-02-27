@@ -2,6 +2,9 @@
 import { GET_PRODUCT_CATEGORY, GET_ALL_PRODUCT, GET_HOME_BANNER } from '@/apis/requestURL';
 
 const runtimeConfig = useRuntimeConfig();
+const cookie = useCookie('emap_711', {
+  maxAge: 60 * 60 * 24
+});
 
 const defaultCategory = {
   id: -1,
@@ -24,7 +27,6 @@ watch(currentCategoryId, (_new) => {
     return;
   }
   currentProduct = products.value.filter(e => e.categoryId === _new);
-  console.log(products.value);
 });
 
 // useAsyncData('fetch-products', async() => {
@@ -37,7 +39,8 @@ watch(currentCategoryId, (_new) => {
 onMounted(async() => {
   await nextTick();
   fetchData();
-  console.log(process.env.NODE_ENV, runtimeConfig.public.baseUrl);
+  // console.log(process.env.NODE_ENV, runtimeConfig.public.baseUrl);
+  console.log(cookie.value);
 });
 
 function fetchData() {

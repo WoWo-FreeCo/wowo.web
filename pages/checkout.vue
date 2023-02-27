@@ -36,11 +36,20 @@ const currentMerch = computed(() => {
 });
 
 const preSettlement = ref({});
+const store = ref({
+  name: '',
+  id: '',
+  outside: 0,
+  ship: 0,
+  address: ''
+});
 
 const deliverFee = computed(() => {
   const fee = preSettlement.value?.deliveryFee;
   return fee <= 0 ? '免運' : fee;
 });
+
+let timer = null;
 
 onMounted(async() => {
   updateCartType();
@@ -49,6 +58,14 @@ onMounted(async() => {
     return router.push({ path: '/' });
   }
   await fetchData();
+  timer = setInterval(() => {
+    updateStore();
+  }, 1000);
+});
+
+onUnmounted(() => {
+  clearInterval(timer);
+  timer = null;
 });
 
 async function fetchData() {
@@ -73,6 +90,14 @@ async function fetchData() {
   } catch (error) {
     //
   }
+}
+
+function updateStore() {
+  store.value.name = localStorage.getItem('storename');
+  store.value.id = localStorage.getItem('storeid');
+  store.value.address = localStorage.getItem('storeaddress');
+  store.value.ship = localStorage.getItem('ship');
+  store.value.outside = localStorage.getItem('outside');
 }
 
 function updateCartType() {
@@ -140,7 +165,16 @@ const inputField = ref({
 });
 
 async function sendResult() {
-  console.log(inputField.value);
+  const body = {
+    ...inputField.value,
+    consignee: {
+      ...inputField.value.consignee,
+      stationCode: store.value?.id,
+      stationName: store.value?.name
+    }
+  };
+  console.log(body);
+
   try {
     const redirectURL = process.env.NODE_ENV === 'development'
       ? 'http://127.0.0.1:3000/order?payment=successful'
@@ -149,7 +183,7 @@ async function sendResult() {
       `${runtimeConfig.public.apiBase}/${POST_PAYMENT}?order_result_url=${redirectURL}`
       , {
         method: 'POST',
-        body: inputField.value,
+        body,
         headers: {
           authorization: 'Bearer ' + localStorage.getItem('accessToken')
         }
@@ -170,6 +204,9 @@ async function sendResult() {
   // router.push({
   //   path: '/shop'
   // });
+}
+function getEMAPData() {
+  window.open('https://emap.presco.com.tw/c2cemap.ashx?eshopid=870&&servicetype=1&url=http://localhost:3000/cvs_callback');
 }
 </script>
 
@@ -319,6 +356,23 @@ async function sendResult() {
           >
         </div>
       </div>
+      <div v-show="inputField.consignee.deliveryType === DeliverType.Store" class="cart_info checkout-form">
+        <h5>超商取貨資訊</h5>
+        <div class="ship_info">
+          <button @click="getEMAPData">
+            選擇店舖
+          </button>
+        </div>
+        <div class="ship_info">
+          <input id="store-name" v-model="store.name" type="text" class="form-control bold" disabled>
+        </div>
+        <div class="ship_info">
+          <input id="store-address" v-model="store.address" type="text" class="form-control bold" disabled>
+        </div>
+        <!-- <div class="ship_info">
+          <input id="store-id" v-model="store.id" type="text" class="form-control" disabled>
+        </div> -->
+      </div>
       <div class="cart_info checkout-form">
         <h5>發票資訊</h5>
         <div class="ship_info">
@@ -408,5 +462,8 @@ async function sendResult() {
   .cart_price {
     align-self: flex-end;
   }
+}
+.bold {
+  font-weight: bold;
 }
 </style>

@@ -108,7 +108,7 @@ async function confirmReg() {
                 name=""
                 required
               >
-              <span class="level_tips">此信箱為會員識別憑證及通知用，一旦註冊成功將無法再做修改，請確認後填寫。</span>
+              <span class="level_tips">此信箱為登入帳號,及通知驗証使用,請確實填寫</span>
             </div>
             <div class="form-group">
               <label>密碼*</label>

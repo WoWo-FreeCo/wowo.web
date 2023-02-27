@@ -30,10 +30,9 @@ function resetInputs() {
         </ol>
       </div>
     </section>
-    <section class="page-wrapper full_height">
+    <!-- <section class="page-wrapper full_height">
       <div class="container">
         <div class="row">
-          <!-- Contact Form -->
           <div class="contact-form">
             <form id="contact-form-child" action="javascript:;" role="form">
               <div class="form-group">
@@ -96,13 +95,21 @@ function resetInputs() {
               </div>
             </form>
           </div>
-          <!-- ./End Contact Form -->
         </div>
       </div>
-    </section>
+    </section> -->
+    <div>
+      <iframe src="https://lovin.tw/wo-contact/" frameborder="0" />
+    </div>
   </div>
 </template>
 <style lang="scss" scoped>
+iframe {
+  width: 100%;
+  margin-top: 120px;
+  height: 100vh;
+  display: block;
+}
 .page-header {
   background:url('@/assets/images/banner/1.jpg');
   background-size:cover;

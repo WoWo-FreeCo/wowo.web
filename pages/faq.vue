@@ -37,12 +37,22 @@ async function fetchWebPage() {
       </div>
     </section>
 
-    <section class="section full_height html-container-root">
+    <!-- <section class="section full_height html-container-root">
       <div class="html-container" />
-    </section>
+    </section> -->
+
+    <div>
+      <iframe src="https://lovin.tw/wo-faq/" frameborder="0" />
+    </div>
   </div>
 </template>
 <style lang="scss" scoped>
+iframe {
+  width: 100%;
+  margin-top: 120px;
+  height: 100vh;
+  display: block;
+}
 .section {
   padding: 0 20px;
 }

@@ -2846,6 +2846,9 @@ signpoint
     width: calc(25% - 4px);
     margin-bottom:10px;
   }
+  .footer .social_icon {
+    justify-content: center;
+  }
 }
 @media (max-width: 539px) {
   .signpoint_li li {
@@ -2855,9 +2858,6 @@ signpoint
 @media (max-width: 359px) {
   .signpoint_li li {
     width: calc(50% - 3px);
-  }
-  .footer .social_icon {
-    justify-content: center;
   }
 }
 .signpoint_li li.mission_lock {

@@ -39,22 +39,22 @@
           <ul class="footer-menu social_icon">
             <!----------------!!!!!!!!!!!! class 加social_icon !!!!!!!!!!!!---------------->
             <li>
-              <a href="">
+              <a href="https://www.instagram.com/p/Co1EeQHpvmD/?igshid=MDJmNzVkMjY=" target="_blank">
                 <i class="fa-brands fa-instagram" /><!----------------!!!!!!!!!!!! class 移除social_icon !!!!!!!!!!!!---------------->
               </a>
             </li>
             <li>
-              <a href="">
+              <a href="https://www.facebook.com/LOVIN2022" target="_blank">
                 <i class="fa-brands fa-facebook-f" /><!----------------!!!!!!!!!!!! class 移除social_icon !!!!!!!!!!!!---------------->
               </a>
             </li>
-            <li>
+            <!-- <li>
               <a href="">
-                <i class="fa-brands fa-line" /><!----------------!!!!!!!!!!!! class 移除social_icon !!!!!!!!!!!!---------------->
+                <i class="fa-brands fa-line" />
               </a>
-            </li>
+            </li> -->
             <li>
-              <a href="">
+              <a href=" https://youtu.be/9RlTDp0BBUw" target="_blank">
                 <i class="fa-brands fa-youtube" /><!----------------!!!!!!!!!!!! <i class="social_icon fa-brands fa-square-youtube"></i> 改 <i class="fa-brands fa-youtube"></i>!!!!!!!!!!!!---------------->
               </a>
             </li>

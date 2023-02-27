@@ -69,6 +69,11 @@ function rediectPath() {
     router.push({ path: '/profile' });
   }
 }
+
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
 </script>
 
 <template>
@@ -136,9 +141,11 @@ function rediectPath() {
 
           <div class="other_function">
             沒有帳號?
-            <NuxtLink class="btn btn-block btn-bag" to="/register">
-              會員註冊
-            </NuxtLink>
+            <div @click="scrollToTop">
+              <NuxtLink class="btn btn-block btn-bag" to="/register">
+                會員註冊
+              </NuxtLink>
+            </div>
           </div>
         </div>
       </div>

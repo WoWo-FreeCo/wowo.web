@@ -1,7 +1,7 @@
 <script setup>
 import { useMessage } from 'naive-ui';
 import { POST_PAYMENT, POST_PAYMENT_PRE } from '@/apis/requestURL';
-import { ProductType, PaymentType, DeliverType } from '@/constants/common';
+import { ProductType, PaymentType, DeliverType, UICType } from '@/constants/common';
 
 const routes = useRoute();
 const router = useRouter();
@@ -11,6 +11,8 @@ const authStore = useAuthStore();
 const cartStore = useCartStore();
 
 const bonusCut = ref(0);
+const useTaxId = ref(false);
+const useUic = ref(false);
 const cartType = ref(ProductType.General);
 
 const totalPrice = computed({
@@ -150,8 +152,8 @@ const inputField = ref({
     customerEmail: authStore.user?.email,
     customerPhone: authStore.user?.cellphone,
     customerAddr: authStore.user?.addressOne,
-    customerIdentifier: '00000000',
-    carruerType: '',
+    customerIdentifier: '',
+    carruerType: UICType.Member,
     carruerNum: '',
     donation: '0',
     loveCode: ''
@@ -164,15 +166,33 @@ const inputField = ref({
   })
 });
 
-async function sendResult() {
+function preprocessInput() {
   const body = {
     ...inputField.value,
     consignee: {
       ...inputField.value.consignee,
-      stationCode: store.value?.id,
-      stationName: store.value?.name
+      stationCode: inputField.value.consignee.deliveryType ===
+      DeliverType.Store
+        ? store.value?.id
+        : '',
+      stationName: inputField.value.consignee.deliveryType ===
+      DeliverType.Store
+        ? store.value?.name
+        : ''
+    },
+    invoiceParams: {
+      ...inputField.value.invoiceParams,
+      carruerType: useUic.value ? inputField.value.invoiceParams.carruerNum : '',
+      carruerNum: inputField.value.invoiceParams.carruerNum
     }
   };
+  return body;
+}
+
+async function sendResult() {
+  checkInputs();
+  const body = preprocessInput();
+
   console.log(body);
 
   try {
@@ -196,7 +216,8 @@ async function sendResult() {
     document.getElementById('_form_aiochk').submit();
     console.log(res);
   } catch (error) {
-    console.log(error);
+    message.error(error.data);
+    // console.log(error.data);
   }
 
   // alert('恭喜購買完成！歡迎繼續選購');
@@ -205,11 +226,24 @@ async function sendResult() {
   //   path: '/shop'
   // });
 }
+function checkInputs() {
+  if (!inputField.value.consignee.name || !inputField.value.consignee.cellphone ||
+  !inputField.value.consignee.addressDetailOne) {
+    return message.error('請確實填寫收件人資訊');
+  }
+  if (!inputField.value.consignee.name || !inputField.value.consignee.cellphone ||
+  !inputField.value.consignee.addressDetailOne) {
+    return message.error('請確實填寫收件人資訊');
+  }
+}
 function getEMAPData() {
   const baseURL = process.env.NODE_ENV === 'development'
     ? 'http://localhost:3000'
     : `${runtimeConfig.public.baseUrl}`;
   window.open(`https://emap.presco.com.tw/c2cemap.ashx?eshopid=870&&servicetype=1&url=${baseURL}/cvs_callback`);
+}
+function dateDisabled(ts) {
+  return ts < Date.now();
 }
 </script>
 
@@ -220,7 +254,7 @@ function getEMAPData() {
         <tbody>
           <tr v-for="item in currentMerch" :key="item.id" class="prod-tr">
             <td class="cart_img">
-              <img :src="item?.thumbnail?.url || '/products/p'+(item.id-10)+'.jpg'">
+              <img :src="item?.thumbnail?.url">
             </td>
             <td class="cart_tl">
               <h5>{{ item?.name }}</h5>
@@ -327,50 +361,67 @@ function getEMAPData() {
         <div class="ship_info">
           <input
             id="ship_name2"
-            v-model="authStore.user.nickname"
+            v-model="inputField.consignee.name"
             type="text"
             placeholder="姓名*"
             class="form-control"
             name=""
+            required
           >
           <input
             id="ship_phone2"
-            v-model="authStore.user.cellphone"
+            v-model="inputField.consignee.cellphone"
             type="text"
             placeholder="手機*"
             class="form-control"
             name=""
+            required
           >
           <input
             id="ship_address"
-            v-model="authStore.user.addressOne"
+            v-model="inputField.consignee.addressDetailOne"
             type="text"
             placeholder="地址*"
             class="form-control"
             name=""
+            required
           >
-          <input
-            v-if="cartType === ProductType.General"
-            id="shipday"
-            type="datetime-local"
-            placeholder="請選擇可收貨日期"
-            class="form-control"
-            name=""
-          >
+          <ClientOnly>
+            <n-date-picker
+              type="date"
+              placeholder="請選擇可收貨日期"
+              :is-date-disabled="dateDisabled"
+              required
+            />
+          </ClientOnly>
         </div>
       </div>
       <div v-show="inputField.consignee.deliveryType === DeliverType.Store" class="cart_info checkout-form">
         <h5>超商取貨資訊</h5>
-        <div class="ship_info">
+        <div class="emap">
           <button @click="getEMAPData">
             選擇店舖
           </button>
         </div>
-        <div class="ship_info">
-          <input id="store-name" v-model="store.name" type="text" class="form-control bold" disabled>
+        <div class="store-name">
+          <input
+            id="store-name"
+            v-model="store.name"
+            type="text"
+            required
+            class="form-control bold"
+            disabled
+          >
         </div>
-        <div class="ship_info">
-          <input id="store-address" v-model="store.address" type="text" class="form-control bold" disabled>
+        <div class="store-address">
+          <input
+            id="store-address"
+            v-model="store.address"
+            type="text"
+            required
+            class="form-control bold"
+            disabled
+          >
         </div>
         <!-- <div class="ship_info">
           <input id="store-id" v-model="store.id" type="text" class="form-control" disabled>
@@ -378,19 +429,98 @@ function getEMAPData() {
       </div>
       <div class="cart_info checkout-form">
         <h5>發票資訊</h5>
-        <div class="ship_info">
-          <input id="" type="text" placeholder="請輸入載具號碼" class="form-control" name="">
-        </div>
-        <label class="checkbox pt10 pb10">
-          <input id="change-image" type="checkbox">
-          發票要打統編
-        </label>
-        <div class="invoice_form d_none">
-          <h5>統編資訊</h5>
+        <div class="ship_info inv-info">
           <div class="ship_info">
-            <input id="" type="text" placeholder="統一編號*" class="form-control" name="">
-            <input id="" type="text" placeholder="發票抬頭*" class="form-control" name="">
-            <input id="" type="email" placeholder="發票收取E-mail" class="form-control" name="">
+            <input
+              id="inv_ship_name"
+              v-model="inputField.invoiceParams.customerName"
+              type="text"
+              placeholder="姓名*"
+              class="form-control"
+              name=""
+              required
+            >
+            <input
+              id="inv_ship_email"
+              v-model="inputField.invoiceParams.customerEmail"
+              type="text"
+              placeholder="Email*"
+              class="form-control"
+              name=""
+              required
+            >
+            <input
+              id="inv_ship_address"
+              v-model="inputField.invoiceParams.customerAddr"
+              type="text"
+              placeholder="地址*"
+              class="form-control"
+              name=""
+              required
+            >
+          </div>
+          <label class="checkbox pt10 pb10">
+            <input id="change-image" v-model="useTaxId" type="checkbox">
+            發票要打統編
+          </label>
+          <div v-if="useTaxId" class="ship_info">
+            <input
+              id=""
+              v-model="inputField.invoiceParams.customerIdentifier"
+              type="text"
+              placeholder="請輸入統一編號"
+              class="form-control"
+              required
+              name=""
+            >
+            <!-- <input id="" type="text" placeholder="發票抬頭*" class="form-control" name=""> -->
+          </div>
+        </div>
+      </div>
+      <div class="cart_info checkout-form">
+        <h5>載具資訊</h5>
+        <div class="ship_info inv-info">
+          <label class="checkbox pt10 pb10">
+            <input id="change-image" v-model="useUic" type="checkbox">
+            使用載具
+          </label>
+          <div v-if="useUic" class="ship_info">
+            <label class="radio form-check">
+              <input
+                v-model="inputField.invoiceParams.carruerType"
+                type="radio"
+                name="shipping"
+                :value="UICType.Member"
+              >
+              會員載具
+            </label>
+            <label class="radio form-check">
+              <input
+                v-model="inputField.invoiceParams.carruerType"
+                type="radio"
+                name="shipping"
+                :value="UICType.NPC"
+              >
+              自然人憑證
+            </label>
+            <label class="radio form-check">
+              <input
+                v-model="inputField.invoiceParams.carruerType"
+                type="radio"
+                name="shipping"
+                :value="UICType.Mobile"
+              >
+              手機條碼
+            </label>
+            <input
+              id="inv-carruerNum"
+              v-model="inputField.invoiceParams.carruerNum"
+              type="text"
+              placeholder="請輸入對應的載具編號"
+              class="form-control"
+              required
+              name=""
+            >
           </div>
         </div>
       </div>
@@ -425,11 +555,10 @@ function getEMAPData() {
 
       <div class="cart_info checkout-form ptb10">
         <label class="checkbox">
-          <input id="check_service" type="checkbox">
+          <input id="check_service" type="checkbox" required>
           我已經閱讀並同意以上購買須知、 <a href="/terms" target="new">會員使用條款</a>與<a href="/privacy" target="new">隱私權政策</a>，此欄位勾選才可送出。
         </label>
       </div>
-
       <div class="text-center mb-20 mt-20">
         <span id="errormsg" />
       </div>
@@ -445,15 +574,6 @@ function getEMAPData() {
           value="確認送出"
           @click="sendResult"
         >
-        <!-- <input
-          id=""
-          type="submit"
-          class="btn btn-main btn-check2 check_service_btn submit_market"
-          style="display: none;"
-          value="確認送出"
-          onclick=""
-          disabled
-        > -->
       </div>
     </form>
   </div>
@@ -468,5 +588,14 @@ function getEMAPData() {
 }
 .bold {
   font-weight: bold;
+}
+.emap {
+  padding: 8px 8px;
+}
+.form-control {
+  font-weight: 400;
+}
+.inv-info {
+  // border-bottom: 10px solid #cabdab;
 }
 </style>

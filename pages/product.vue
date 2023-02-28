@@ -103,7 +103,7 @@ function goCheckout(prod) {
                   }"
                 >
                   <SwiperSlide v-for="slide in currentProduct?.slideSet || 5" :key="slide">
-                    <img :src="slide.img || '/products/p'+(currentProduct.id-10)+'.jpg'" alt="">
+                    <img :src="slide.img" alt="">
                   </SwiperSlide>
                 </Swiper>
               </div>

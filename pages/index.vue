@@ -151,7 +151,7 @@ function addToCart(prod) {
                 </div>
                 <div class="product_img">
                   <NuxtLink :to="`/product?id=${item?.id}`">
-                    <img :src="item?.thumbnail?.url || '/products/p'+(item.id-10)+'.jpg'" alt="">
+                    <img :src="item?.thumbnail?.url" alt="">
                   </NuxtLink>
                 </div>
                 <h3>

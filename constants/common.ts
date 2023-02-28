@@ -13,3 +13,9 @@ export enum DeliverType {
   Home = 'HOME',
   Store = 'STORE'
 }
+
+export enum UICType {
+  Member = 1,
+  NPC = 2,
+  Mobile = 3
+}

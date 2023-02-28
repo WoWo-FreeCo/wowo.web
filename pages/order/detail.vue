@@ -1,11 +1,13 @@
 <script setup>
-import { GET_USER_ORDERS_DETAIL } from '@/apis/requestURL';
+import { useMessage } from 'naive-ui';
+import { GET_USER_ORDERS_DETAIL, POST_CANCEL_ORDER } from '@/apis/requestURL';
 import { ProductType } from '@/constants/common';
 
 const authStore = useAuthStore();
 const route = useRoute();
 const router = useRouter();
 const runtimeConfig = useRuntimeConfig();
+const message = useMessage();
 
 const curOrder = ref({});
 
@@ -83,6 +85,22 @@ async function fetchData() {
     console.log(error);
   }
 }
+async function cancelOrder() {
+  try {
+    const oid = route.query?.id;
+    const res = await $fetch(`${runtimeConfig.public.apiBase}/${POST_CANCEL_ORDER(oid)}`, {
+      method: 'POST',
+      headers: {
+        authorization: 'Bearer ' + localStorage.getItem('accessToken')
+      }
+    });
+    console.log(res);
+    message.success('已取消訂單');
+  } catch (error) {
+    message.error(error.data);
+  }
+  fetchData();
+}
 </script>
 
 <template>
@@ -153,7 +171,7 @@ async function fetchData() {
           <NuxtLink to="/order" type="button" class="btn btn-main btn-default">
             回上一頁
           </NuxtLink>
-          <button type="button" class="btn btn-main btn-default" data-toggle="modal" data-target="#cancel">
+          <button v-show="orderStatus !== `已取消`" type="button" class="btn btn-main btn-default" data-toggle="modal" @click="cancelOrder">
             取消訂單
           </button>
           <button type="button" class="btn btn-main btn-check">

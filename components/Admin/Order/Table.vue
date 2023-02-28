@@ -31,34 +31,34 @@ const createColumns = () => [
   {
     title: '訂單狀態',
     key: 'orderStatus'
-  },
-  {
-    title: '操作',
-    key: 'actions',
-    render(row) {
-      return [h(
-        NButton,
-        {
-          type: 'error',
-          strong: true,
-          tertiary: true,
-          size: 'small',
-          onClick: () => handlerAction(row, 'del')
-        },
-        { default: () => '刪除' }
-      ), h(
-        NButton,
-        {
-          type: 'info',
-          strong: true,
-          tertiary: true,
-          size: 'small',
-          onClick: () => handlerAction(row, 'edit')
-        },
-        { default: () => '編輯' }
-      )];
-    }
   }
+  // {
+  //   title: '操作',
+  //   key: 'actions',
+  //   render(row) {
+  //     return [h(
+  //       NButton,
+  //       {
+  //         type: 'error',
+  //         strong: true,
+  //         tertiary: true,
+  //         size: 'small',
+  //         onClick: () => handlerAction(row, 'del')
+  //       },
+  //       { default: () => '刪除' }
+  //     ), h(
+  //       NButton,
+  //       {
+  //         type: 'info',
+  //         strong: true,
+  //         tertiary: true,
+  //         size: 'small',
+  //         onClick: () => handlerAction(row, 'edit')
+  //       },
+  //       { default: () => '編輯' }
+  //     )];
+  //   }
+  // }
 ];
 
 // function renderIcon(icon) {

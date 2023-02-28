@@ -29,6 +29,7 @@ export const POST_USER_ACTIVATATION = `${prefix}/user/activity/activate`;
 export const POST_USER_DAILY_CHECK = (_id: number) => `${prefix}/user/activity/daily-check/${_id}`;
 export const POST_PAYMENT_PRE = `${prefix}/payment/pre-settlement`;
 export const POST_PAYMENT = `${prefix}/payment`;
+export const POST_CANCEL_ORDER = (_id: string) => `${prefix}/order/${_id}/cancel`;
 
 export const UPDATE_HOME_BANNER = (_id: number) => `${prefix}/admin/home-banner/${_id}`;
 export const UPDATE_PRODUCT = (_id: number) => `${prefix}/admin/product/${_id}`;

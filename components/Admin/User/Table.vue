@@ -69,35 +69,36 @@ const createColumns = () => [
   {
     title: '電話',
     key: 'telephone'
-  },
-  {
-    width: 100,
-    title: '操作',
-    key: 'actions',
-    render(row) {
-      return [h(
-        NButton,
-        {
-          type: 'error',
-          strong: true,
-          tertiary: true,
-          size: 'small',
-          onClick: () => handlerAction(row, 'del')
-        },
-        { default: () => '刪除' }
-      ), h(
-        NButton,
-        {
-          type: 'info',
-          strong: true,
-          tertiary: true,
-          size: 'small',
-          onClick: () => handlerAction(row, 'edit')
-        },
-        { default: () => '編輯' }
-      )];
-    }
   }
+  // {
+  //   width: 100,
+  //   disabled: true,
+  //   title: '操作',
+  //   key: 'actions',
+  //   render(row) {
+  //     return [h(
+  //       NButton,
+  //       {
+  //         type: 'error',
+  //         strong: true,
+  //         tertiary: true,
+  //         size: 'small',
+  //         onClick: () => handlerAction(row, 'del')
+  //       },
+  //       { default: () => '刪除' }
+  //     ), h(
+  //       NButton,
+  //       {
+  //         type: 'info',
+  //         strong: true,
+  //         tertiary: true,
+  //         size: 'small',
+  //         onClick: () => handlerAction(row, 'edit')
+  //       },
+  //       { default: () => '編輯' }
+  //     )];
+  //   }
+  // }
 ];
 
 // function renderIcon(icon) {

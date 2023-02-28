@@ -1,6 +1,6 @@
 <script setup>
 import { useMessage } from 'naive-ui';
-import { GET_USER_ORDERS } from '@/apis/requestURL';
+import { GET_USER_ORDERS, POST_CANCEL_ORDER } from '@/apis/requestURL';
 import { ProductType } from '@/constants/common';
 
 const authStore = useAuthStore();
@@ -66,7 +66,7 @@ onMounted(async() => {
 
 async function fetchData() {
   try {
-    const res = await $fetch(`${runtimeConfig.public.apiBase}/${GET_USER_ORDERS}`, {
+    const res = await $fetch(`${runtimeConfig.public.apiBase}/${GET_USER_ORDERS}?take=200`, {
       headers: {
         authorization: 'Bearer ' + localStorage.getItem('accessToken')
       }
@@ -76,6 +76,22 @@ async function fetchData() {
   } catch (error) {
     console.log(error);
   }
+}
+
+async function cancelOrder(item) {
+  try {
+    const oid = item?.id;
+    const res = await $fetch(`${runtimeConfig.public.apiBase}/${POST_CANCEL_ORDER(oid)}`, {
+      method: 'POST',
+      headers: {
+        authorization: 'Bearer ' + localStorage.getItem('accessToken')
+      }
+    });
+    message.success('已取消訂單');
+  } catch (error) {
+    message.error(error.data);
+  }
+  fetchData();
 }
 </script>
 
@@ -169,7 +185,7 @@ async function fetchData() {
                   <NuxtLink :to="`/order/detail?id=${order.id}`" class="btn btn-orderdetial">
                     查看明細
                   </NuxtLink>
-                  <button type="button" class="btn btn-orderdetial" data-toggle="modal" data-target="#cancel">
+                  <button type="button" class="btn btn-orderdetial" @click="cancelOrder(order)">
                     取消訂單
                   </button>
                 </td>
@@ -202,7 +218,7 @@ async function fetchData() {
             </tbody>
           </table>
 
-          <div class="text-center">
+          <div v-show="false" class="text-center">
             <!----------------!沒改!---------------->
             <ul class="pagination post-pagination">
               <li>

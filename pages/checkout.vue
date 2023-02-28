@@ -13,6 +13,8 @@ const cartStore = useCartStore();
 const bonusCut = ref(0);
 const useTaxId = ref(false);
 const useUic = ref(false);
+const readRules = ref(false);
+const useDonation = ref(false);
 const cartType = ref(ProductType.General);
 
 const totalPrice = computed({
@@ -183,14 +185,19 @@ function preprocessInput() {
     invoiceParams: {
       ...inputField.value.invoiceParams,
       carruerType: useUic.value ? inputField.value.invoiceParams.carruerNum : '',
-      carruerNum: inputField.value.invoiceParams.carruerNum
+      carruerNum: inputField.value.invoiceParams.carruerNum,
+      donation: useDonation.value ? 1 : 0,
+      loveCode: useDonation.value ? inputField.value.invoiceParams.loveCode : '',
+      customerIdentifier: useTaxId.value ? inputField.value.invoiceParams.customerIdentifier : '00000000'
     }
   };
   return body;
 }
 
 async function sendResult() {
-  checkInputs();
+  const isOK = checkInputs();
+  if (!isOK) return;
+
   const body = preprocessInput();
 
   console.log(body);
@@ -229,12 +236,14 @@ async function sendResult() {
 function checkInputs() {
   if (!inputField.value.consignee.name || !inputField.value.consignee.cellphone ||
   !inputField.value.consignee.addressDetailOne) {
-    return message.error('請確實填寫收件人資訊');
+    message.error('請確實填寫收件人資訊');
+    return false;
   }
-  if (!inputField.value.consignee.name || !inputField.value.consignee.cellphone ||
-  !inputField.value.consignee.addressDetailOne) {
-    return message.error('請確實填寫收件人資訊');
+  if (!readRules.value) {
+    message.error('請詳閱相關購買條款並勾選確認');
+    return false;
   }
+  return true;
 }
 function getEMAPData() {
   const baseURL = process.env.NODE_ENV === 'development'
@@ -323,12 +332,6 @@ function dateDisabled(ts) {
               name="payment"
             > 超商代碼付款
           </label>
-          <!-- <label class="radio form-check">
-            <input type="radio" name="payment" value=""> ATM 轉帳
-          </label>
-          <label class="radio form-check">
-            <input type="radio" name="payment" value=""> 貨到付款
-          </label> -->
         </div>
       </div>
       <div class="cart_info">
@@ -423,13 +426,33 @@ function dateDisabled(ts) {
             disabled
           >
         </div>
-        <!-- <div class="ship_info">
-          <input id="store-id" v-model="store.id" type="text" class="form-control" disabled>
-        </div> -->
+      </div>
+      <div class="cart_info">
+        <h5>請選擇發票選項</h5>
+        <div class="checkout-form">
+          <label class="radio form-check">
+            <input
+              v-model="useDonation"
+              type="radio"
+              name="donation"
+              :value="false"
+            >
+            開立發票
+          </label>
+          <label class="radio form-check">
+            <input
+              v-model="useDonation"
+              type="radio"
+              name="donation"
+              :value="true"
+            >
+            捐贈發票
+          </label>
+        </div>
       </div>
       <div class="cart_info checkout-form">
         <h5>發票資訊</h5>
-        <div class="ship_info inv-info">
+        <div v-if="!useDonation" class="ship_info inv-info">
           <div class="ship_info">
             <input
               id="inv_ship_name"
@@ -476,6 +499,19 @@ function dateDisabled(ts) {
             <!-- <input id="" type="text" placeholder="發票抬頭*" class="form-control" name=""> -->
           </div>
         </div>
+        <div v-else class="ship_info inv-info">
+          <div class="ship_info">
+            <input
+              id="inv_ship_lovecode"
+              v-model="inputField.invoiceParams.loveCode"
+              type="text"
+              placeholder="請輸入捐贈愛心碼*"
+              class="form-control"
+              name=""
+              required
+            >
+          </div>
+        </div>
       </div>
       <div class="cart_info checkout-form">
         <h5>載具資訊</h5>
@@ -489,7 +525,7 @@ function dateDisabled(ts) {
               <input
                 v-model="inputField.invoiceParams.carruerType"
                 type="radio"
-                name="shipping"
+                name="uic-member"
                 :value="UICType.Member"
               >
               會員載具
@@ -498,7 +534,7 @@ function dateDisabled(ts) {
               <input
                 v-model="inputField.invoiceParams.carruerType"
                 type="radio"
-                name="shipping"
+                name="uic-npc"
                 :value="UICType.NPC"
               >
               自然人憑證
@@ -507,7 +543,7 @@ function dateDisabled(ts) {
               <input
                 v-model="inputField.invoiceParams.carruerType"
                 type="radio"
-                name="shipping"
+                name="uic-mobile"
                 :value="UICType.Mobile"
               >
               手機條碼
@@ -555,7 +591,7 @@ function dateDisabled(ts) {
 
       <div class="cart_info checkout-form ptb10">
         <label class="checkbox">
-          <input id="check_service" type="checkbox" required>
+          <input id="check_service" v-model="readRules" type="checkbox" required>
           我已經閱讀並同意以上購買須知、 <a href="/terms" target="new">會員使用條款</a>與<a href="/privacy" target="new">隱私權政策</a>，此欄位勾選才可送出。
         </label>
       </div>

@@ -131,7 +131,7 @@ function goCheckout() {
             <tr v-for="item in currentMerch" :key="item.id" class="prod-tr">
               <td class="cart_img">
                 <a href="/product" target="new">
-                  <img :src="item?.thumbnail?.url">
+                  <img :src="item?.thumbnail?.url || `https://picsum.photos/500/500?${item.id}`">
                 </a>
               </td>
               <td class="cart_tl">

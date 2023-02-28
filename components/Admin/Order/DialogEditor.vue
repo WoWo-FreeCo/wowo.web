@@ -1,7 +1,7 @@
 <script setup>
 import { useMessage } from 'naive-ui';
 import { ProductType } from '@/constants/common';
-import { GET_PRODUCT_CATEGORY, UPDATE_PRODUCT, POST_PRODUCT_IMAGE } from '@/apis/requestURL';
+import { GET_PRODUCT_CATEGORY, UPDATE_PRODUCT } from '@/apis/requestURL';
 
 const emits = defineEmits(['closeDialog', 'fetchItem']);
 const props = defineProps({
@@ -59,8 +59,7 @@ const formValue = ref({
   svipPrice: props.currentItem?.svipPrice,
   skuId: props.currentItem?.skuId,
   categoryId: props.currentItem?.categoryId,
-  attribute: props.currentItem?.attribute,
-  image: props.currentItem?.image
+  attribute: props.currentItem?.attribute
 });
 
 const rules = {
@@ -118,7 +117,6 @@ async function fetchCategories() {
 
 async function handlePositiveClick() {
   console.log(formValue.value);
-  return;
   try {
     const body = {
       ...formValue.value
@@ -146,37 +144,6 @@ function handleNegativeClick() {
 function closeDialog() {
   pageStatus.toggleAdminOverlay(false);
   emits('closeDialog');
-}
-function onImageChanged($event) {
-  const fileReader = new FileReader();
-  const [file] = $event.target.files || undefined;
-
-  $event.target.value = null;
-
-  if (!file) return alert('上傳失敗! 請重新上傳圖片');
-
-  fileReader.readAsDataURL(file);
-  fileReader.onload = async() => {
-    const formData = new FormData();
-    const { size } = file;
-    const fileSize = size / 1024 / 1024;
-    if (fileSize > 5.0) {
-      return alert('圖片檔案太大了，請勿超過 5mb');
-    }
-    formData.append('image', file);
-    try {
-      const res = await $fetch(`${runtimeConfig.public.apiBase}/${POST_PRODUCT_IMAGE}`, {
-        method: 'POST',
-        headers: {
-          authorization: 'Bearer ' + localStorage.getItem('accessToken')
-        },
-        body: formData
-      });
-      console.log(res);
-    } catch (error) {
-      message.error(error.data);
-    }
-  };
 }
 </script>
 <template>
@@ -220,16 +187,6 @@ function onImageChanged($event) {
       </n-form-item>
       <n-form-item label="產品運送類別 *">
         <n-select v-model:value="formValue.attribute" :options="attrOptions" />
-      </n-form-item>
-      <n-form-item label="上傳產品圖">
-        <input
-          id="input.upload"
-          type="file"
-          accept="image/png, image/jpeg, image/svg"
-          name="upload.image"
-          multiple
-          @change="onImageChanged"
-        >
       </n-form-item>
     </n-form>
   </n-dialog>

@@ -1,15 +1,9 @@
 <script setup>
 import { useMessage } from 'naive-ui';
 import { ProductType } from '@/constants/common';
-import { GET_PRODUCT_CATEGORY, UPDATE_PRODUCT, POST_PRODUCT_IMAGE } from '@/apis/requestURL';
+import { GET_PRODUCT_CATEGORY, POST_PRODUCT } from '@/apis/requestURL';
 
 const emits = defineEmits(['closeDialog', 'fetchItem']);
-const props = defineProps({
-  currentItem: {
-    default: () => ({}),
-    type: Object
-  }
-});
 
 const pageStatus = usePageStatusStore();
 
@@ -52,15 +46,14 @@ const categoryOptions = ref([
 ]);
 
 const formValue = ref({
-  name: props.currentItem?.name,
-  price: props.currentItem?.price,
-  memberPrice: props.currentItem?.memberPrice,
-  vipPrice: props.currentItem?.vipPrice,
-  svipPrice: props.currentItem?.svipPrice,
-  skuId: props.currentItem?.skuId,
-  categoryId: props.currentItem?.categoryId,
-  attribute: props.currentItem?.attribute,
-  image: props.currentItem?.image
+  name: '',
+  price: 0,
+  memberPrice: 0,
+  vipPrice: 0,
+  svipPrice: 0,
+  skuId: '',
+  categoryId: 0,
+  attribute: attrOptions.value[0].value
 });
 
 const rules = {
@@ -111,6 +104,8 @@ async function fetchCategories() {
         value: e.id
       };
     });
+    formValue.value.categoryId = categoryOptions.value[0].id;
+    console.log(categoryOptions.value[0].id);
   } catch (error) {
     //
   }
@@ -118,22 +113,33 @@ async function fetchCategories() {
 
 async function handlePositiveClick() {
   console.log(formValue.value);
-  return;
+  if (!formValue.value.name) {
+    message.error('請輸入產品名稱');
+    return;
+  }
+  if (!formValue.value.skuId) {
+    message.error('請輸入產品編號');
+    return;
+  }
+  if (!formValue.value.categoryId) {
+    message.error('請選擇產品分類');
+    return;
+  }
   try {
     const body = {
       ...formValue.value
     };
-    if (formValue.value.attribute === ProductType.ColdChain) {
-      delete body.skuId;
-    }
-    await $fetch(`${runtimeConfig.public.apiBase}/${UPDATE_PRODUCT(props.currentItem?.id)}`, {
-      method: 'PUT',
+    // if (formValue.value.attribute === ProductType.ColdChain) {
+    //   delete body.skuId;
+    // }
+    await $fetch(`${runtimeConfig.public.apiBase}/${POST_PRODUCT}`, {
+      method: 'POST',
       headers: {
         authorization: 'Bearer ' + localStorage.getItem('accessToken')
       },
       body
     });
-    message.success('已成功更新產品');
+    message.success('已成功建立產品');
     emits('fetchItem');
   } catch (error) {
     message.error(`發生錯誤，${error.message}`);
@@ -147,45 +153,14 @@ function closeDialog() {
   pageStatus.toggleAdminOverlay(false);
   emits('closeDialog');
 }
-function onImageChanged($event) {
-  const fileReader = new FileReader();
-  const [file] = $event.target.files || undefined;
-
-  $event.target.value = null;
-
-  if (!file) return alert('上傳失敗! 請重新上傳圖片');
-
-  fileReader.readAsDataURL(file);
-  fileReader.onload = async() => {
-    const formData = new FormData();
-    const { size } = file;
-    const fileSize = size / 1024 / 1024;
-    if (fileSize > 5.0) {
-      return alert('圖片檔案太大了，請勿超過 5mb');
-    }
-    formData.append('image', file);
-    try {
-      const res = await $fetch(`${runtimeConfig.public.apiBase}/${POST_PRODUCT_IMAGE}`, {
-        method: 'POST',
-        headers: {
-          authorization: 'Bearer ' + localStorage.getItem('accessToken')
-        },
-        body: formData
-      });
-      console.log(res);
-    } catch (error) {
-      message.error(error.data);
-    }
-  };
-}
 </script>
 <template>
   <n-dialog
     :style="{...dialogStyle}"
-    title="編輯產品"
+    title="建立產品"
     content=""
     negative-text="取消"
-    positive-text="更新"
+    positive-text="建立"
     transform-origin="center"
     @positive-click="handlePositiveClick"
     @close="handleNegativeClick"
@@ -212,24 +187,18 @@ function onImageChanged($event) {
       <n-form-item label="SVIP價" path="svipPrice">
         <n-input-number v-model:value="formValue.svipPrice" min="0" placeholder="請輸入產品的SVIP價錢" />
       </n-form-item>
-      <n-form-item label="產品編號" path="skuId">
-        <n-input v-model:value="formValue.skuId" placeholder="請輸入產品編號" />
-      </n-form-item>
-      <n-form-item label="產品分類 *">
-        <n-select v-model:value="formValue.categoryId" :options="categoryOptions" />
-      </n-form-item>
       <n-form-item label="產品運送類別 *">
         <n-select v-model:value="formValue.attribute" :options="attrOptions" />
       </n-form-item>
-      <n-form-item label="上傳產品圖">
-        <input
-          id="input.upload"
-          type="file"
-          accept="image/png, image/jpeg, image/svg"
-          name="upload.image"
-          multiple
-          @change="onImageChanged"
-        >
+      <n-form-item label="產品編號" path="skuId">
+        <n-input
+          v-model:value="formValue.skuId"
+          required
+          placeholder="請輸入產品編號"
+        />
+      </n-form-item>
+      <n-form-item label="產品分類 *">
+        <n-select v-model:value="formValue.categoryId" :options="categoryOptions" />
       </n-form-item>
     </n-form>
   </n-dialog>

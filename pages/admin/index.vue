@@ -10,7 +10,7 @@ enum SiderCategory {
   ProductCategory = 'product-category-management',
   HomeBanner = 'home-banner-management',
   WebPage = 'web-page-management',
-  Account = 'account-management',
+  User = 'user-management',
   Order = 'order-management'
 }
 
@@ -63,7 +63,7 @@ const menuOptions = ref([
       {
         icon: renderIcon(EllipsisHorizontal),
         label: '所有用戶',
-        key: SiderCategory.Account + '-all'
+        key: SiderCategory.User + '-all'
       },
       {
         icon: renderIcon(EllipsisHorizontal),
@@ -110,7 +110,7 @@ function onTableUpdate(evt: any) {
           <AdminProductCategoryTable v-show="selectedItem.includes(SiderCategory.ProductCategory)" />
           <AdminHomeBannerTable v-show="selectedItem.includes(SiderCategory.HomeBanner)" />
           <AdminWebPageTable v-show="selectedItem.includes(SiderCategory.WebPage)" />
-          <AdminAccountsTable v-show="selectedItem.includes(SiderCategory.Account)" />
+          <AdminUserTable v-show="selectedItem.includes(SiderCategory.User)" />
           <AdminOrderTable v-show="selectedItem.includes(SiderCategory.Order)" />
           <!-- <n-layout style="max-height: 320px" /> -->
         </n-layout>

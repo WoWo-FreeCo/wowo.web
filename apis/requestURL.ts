@@ -7,6 +7,7 @@ export const GET_USER_ORDERS_LOG_DETAIL = (_id: number) => `${prefix}/order/${_i
 export const GET_USER_DAILY_SEQUENCE = `${prefix}/user/activity/daily-check/record`;
 export const GET_ADMIN_PROFILE = `${prefix}/admin/user/profile`;
 export const GET_ADMIN_ORDERS = `${prefix}/admin/order`;
+export const GET_ADMIN_USERS = `${prefix}/admin/normal-user/profile`;
 export const GET_ADMIN_ORDERS_DETAIL = (_id: number) => `${prefix}/admin/order/${_id}/detail`;
 export const GET_ADMIN_ORDERS_LOG_DETAIL = (_id: number) => `${prefix}/admin/order/${_id}/logistics/detail`;
 export const GET_PRODUCT = (_categoryId: '') => `${prefix}/product?categoryId=${_categoryId}`;
@@ -22,6 +23,7 @@ export const ADMIN_LOGIN = `${prefix}/admin/user/login`;
 
 export const POST_HOME_BANNER = `${prefix}/admin/home-banner`;
 export const POST_PRODUCT = `${prefix}/admin/product`;
+export const POST_PRODUCT_IMAGE = `${prefix}/image`;
 export const POST_PRODUCT_CATEGORY = `${prefix}/admin/product-category`;
 export const POST_USER_ACTIVATATION = `${prefix}/user/activity/activate`;
 export const POST_USER_DAILY_CHECK = (_id: number) => `${prefix}/user/activity/daily-check/${_id}`;

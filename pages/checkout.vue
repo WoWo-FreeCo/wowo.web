@@ -50,7 +50,7 @@ const store = ref({
 
 const deliverFee = computed(() => {
   const fee = preSettlement.value?.deliveryFee;
-  return fee <= 0 ? '免運' : fee;
+  return fee;
 });
 
 let timer = null;
@@ -74,17 +74,19 @@ onUnmounted(() => {
 
 async function fetchData() {
   try {
+    const body = preprocessInput();
     const res = await $fetch(`${runtimeConfig.public.apiBase}/${POST_PAYMENT_PRE}`, {
       method: 'POST',
-      body: {
-        attribute: cartType.value,
-        products: currentMerch.value.map((e) => {
-          return {
-            id: e.id,
-            quantity: e.amount
-          };
-        })
-      },
+      body,
+      // body: {
+      //   attribute: cartType.value,
+      //   products: currentMerch.value.map((e) => {
+      //     return {
+      //       id: e.id,
+      //       quantity: e.amount
+      //     };
+      //   })
+      // },
       headers: {
         authorization: 'Bearer ' + localStorage.getItem('accessToken')
       }
@@ -160,17 +162,14 @@ const inputField = ref({
     donation: '0',
     loveCode: ''
   },
-  products: currentMerch.value.map((e) => {
-    return {
-      id: e.id,
-      quantity: e.amount
-    };
-  })
+  products: [],
+  bonusPointRedemption: 0 // 紅利點數
 });
 
 function preprocessInput() {
   const body = {
     ...inputField.value,
+    attribute: cartType.value,
     consignee: {
       ...inputField.value.consignee,
       stationCode: inputField.value.consignee.deliveryType ===
@@ -189,7 +188,14 @@ function preprocessInput() {
       donation: useDonation.value ? 1 : 0,
       loveCode: useDonation.value ? inputField.value.invoiceParams.loveCode : '',
       customerIdentifier: useTaxId.value ? inputField.value.invoiceParams.customerIdentifier : '00000000'
-    }
+    },
+    bonusPointRedemption: bonusCut.value,
+    products: currentMerch.value.map((e) => {
+      return {
+        id: e.id,
+        quantity: e.amount
+      };
+    })
   };
   return body;
 }
@@ -202,6 +208,7 @@ async function sendResult() {
 
   console.log(body);
 
+  // return;
   try {
     const redirectURL = process.env.NODE_ENV === 'development'
       ? 'http://localhost:3000/order?payment=successful'
@@ -291,6 +298,7 @@ function dateDisabled(ts) {
               type="radio"
               name="shipping"
               :value="DeliverType.Home"
+              @click="fetchData"
             >
             宅配到府
           </label>
@@ -300,6 +308,7 @@ function dateDisabled(ts) {
               type="radio"
               name="shipping"
               :value="DeliverType.Store"
+              @click="fetchData"
             >
             超商取貨
           </label>

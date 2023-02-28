@@ -57,7 +57,7 @@ async function fetchProdCategories() {
 }
 async function fetchProd() {
   try {
-    const res = await $fetch(`${runtimeConfig.public.apiBase}/${GET_ALL_PRODUCT}`);
+    const res = await $fetch(`${runtimeConfig.public.apiBase}/${GET_ALL_PRODUCT}?take=200`);
     const { data } = res;
     products.value = data;
     currentProduct.value = data;

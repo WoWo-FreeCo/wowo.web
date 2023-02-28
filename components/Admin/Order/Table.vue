@@ -1,6 +1,6 @@
 <script setup>
 import { NButton, useDialog, useMessage } from 'naive-ui';
-import { GET_ALL_PRODUCT, DELETE_PRODUCT, GET_PRODUCT_CATEGORY } from '@/apis/requestURL';
+import { GET_ADMIN_ORDERS } from '@/apis/requestURL';
 
 const runtimeConfig = useRuntimeConfig();
 const dialog = useDialog();
@@ -12,36 +12,25 @@ const editorToggle = ref(false);
 const currentItem = ref({});
 
 const createColumns = () => [
-  // {
-  //   type: 'selection',
-  //   disabled(row) {
-  //     return row.name === 'Edward King 3';
-  //   }
-  // },
   {
-    title: '名稱',
-    key: 'name'
+    title: 'ID',
+    key: 'id'
   },
   {
-    title: '分類',
-    render: row => categories.value.find(e => e.id === row.categoryId)?.name
-    // key: 'categoryId'
+    title: '商品類型',
+    key: 'attribute'
   },
   {
     title: '售價',
     key: 'price'
   },
   {
-    title: '會員價',
-    key: 'memberPrice'
+    title: '創建日期',
+    key: 'createdAt'
   },
   {
-    title: 'VIP價',
-    key: 'vipPrice'
-  },
-  {
-    title: 'SVIP價錢',
-    key: 'svipPrice'
+    title: '訂單狀態',
+    key: 'orderStatus'
   },
   {
     title: '操作',
@@ -77,35 +66,28 @@ const createColumns = () => [
 // }
 
 const items = ref([]);
-const categories = ref([]);
 const columns = ref(createColumns());
 const checkedRowKeys = ref([]);
 const rowKey = row => row.id;
 const pagination = ref({
-  pageSize: 10
+  pageSize: 6
 });
 
 onMounted(async() => {
   await nextTick();
   fetchItem();
-  fetchCategories();
 });
-
-async function fetchCategories() {
-  try {
-    const res = await $fetch(`${runtimeConfig.public.apiBase}/${GET_PRODUCT_CATEGORY}`);
-    const { data } = res;
-    categories.value = data;
-  } catch (error) {
-    //
-  }
-}
 
 async function fetchItem() {
   try {
-    const res = await $fetch(`${runtimeConfig.public.apiBase}/${GET_ALL_PRODUCT}?take=200`);
+    const res = await $fetch(`${runtimeConfig.public.apiBase}/${GET_ADMIN_ORDERS}?take=200`, {
+      headers: {
+        authorization: 'Bearer ' + localStorage.getItem('accessToken')
+      }
+    });
     const { data } = res;
     items.value = data;
+    console.log(data);
   } catch (error) {
     //
   }

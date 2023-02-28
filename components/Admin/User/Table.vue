@@ -1,6 +1,6 @@
 <script setup>
 import { NButton, useDialog, useMessage } from 'naive-ui';
-import { GET_ALL_PRODUCT, DELETE_PRODUCT, GET_PRODUCT_CATEGORY } from '@/apis/requestURL';
+import { GET_ADMIN_USERS } from '@/apis/requestURL';
 
 const runtimeConfig = useRuntimeConfig();
 const dialog = useDialog();
@@ -12,38 +12,66 @@ const editorToggle = ref(false);
 const currentItem = ref({});
 
 const createColumns = () => [
-  // {
-  //   type: 'selection',
-  //   disabled(row) {
-  //     return row.name === 'Edward King 3';
-  //   }
-  // },
   {
     title: '名稱',
-    key: 'name'
+    key: 'nickname'
   },
   {
-    title: '分類',
-    render: row => categories.value.find(e => e.id === row.categoryId)?.name
-    // key: 'categoryId'
+    title: '用戶等級',
+    key: 'memberLevel'
   },
   {
-    title: '售價',
-    key: 'price'
+    title: 'Email',
+    key: 'email'
   },
   {
-    title: '會員價',
-    key: 'memberPrice'
+    title: '紅利',
+    key: 'rewardCredit'
   },
   {
-    title: 'VIP價',
-    key: 'vipPrice'
+    title: 'FB綁定',
+    render: (row) => {
+      return row?.FacebookGroupActivated ? 'Yes' : 'No';
+    }
   },
   {
-    title: 'SVIP價錢',
-    key: 'svipPrice'
+    title: 'IG綁定',
+    render: (row) => {
+      return row?.IGFollowActivated ? 'Yes' : 'No';
+    }
   },
   {
+    title: 'YT綁定',
+    render: (row) => {
+      return row?.YouTubeChannelActivated ? 'Yes' : 'No';
+    }
+  },
+  // {
+  //   title: '地址1',
+  //   key: 'addressOne'
+  // },
+  // {
+  //   title: '地址2',
+  //   key: 'addressTwo'
+  // },
+  // {
+  //   title: '地址3',
+  //   key: 'addressThree'
+  // },
+  {
+    title: '推薦碼',
+    key: 'recommendCode'
+  },
+  {
+    title: '統編',
+    key: 'taxIDNumber'
+  },
+  {
+    title: '電話',
+    key: 'telephone'
+  },
+  {
+    width: 100,
     title: '操作',
     key: 'actions',
     render(row) {
@@ -77,35 +105,28 @@ const createColumns = () => [
 // }
 
 const items = ref([]);
-const categories = ref([]);
 const columns = ref(createColumns());
 const checkedRowKeys = ref([]);
 const rowKey = row => row.id;
 const pagination = ref({
-  pageSize: 10
+  pageSize: 5
 });
 
 onMounted(async() => {
   await nextTick();
   fetchItem();
-  fetchCategories();
 });
-
-async function fetchCategories() {
-  try {
-    const res = await $fetch(`${runtimeConfig.public.apiBase}/${GET_PRODUCT_CATEGORY}`);
-    const { data } = res;
-    categories.value = data;
-  } catch (error) {
-    //
-  }
-}
 
 async function fetchItem() {
   try {
-    const res = await $fetch(`${runtimeConfig.public.apiBase}/${GET_ALL_PRODUCT}?take=200`);
+    const res = await $fetch(`${runtimeConfig.public.apiBase}/${GET_ADMIN_USERS}?take=200`, {
+      headers: {
+        authorization: 'Bearer ' + localStorage.getItem('accessToken')
+      }
+    });
     const { data } = res;
     items.value = data;
+    console.log(items.value);
   } catch (error) {
     //
   }

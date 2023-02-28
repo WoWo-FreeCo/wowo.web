@@ -59,6 +59,7 @@ async function fetchProdAndCategories() {
     allProd.value = resProd.data;
     maxPage.value = parseInt(allProd.value.length / 6) + 1;
     prodCategories.value = [defaultCategory, ...data];
+    // prodCategories.value = data;
   } catch (error) {
     //
   }
@@ -70,13 +71,17 @@ async function fetchProd(_categoryId, _page) {
     const take = 6;
     currentCategoryId.value = categoryId || -1;
     currentPage.value = page;
-    console.log(currentPage.value);
-    const res = await $fetch(`${runtimeConfig.public.apiBase}/${GET_ALL_PRODUCT}?take=${take}&categoryId=${categoryId}&skip=${(page - 1) * take}`);
+    let cidPattern = `categoryId=${categoryId}`;
+    if (_categoryId === -1 || route.query?.category === '-1') {
+      cidPattern = '';
+    }
+    console.log(route.query?.category);
+    const res = await $fetch(`${runtimeConfig.public.apiBase}/${GET_ALL_PRODUCT}?take=${take}&${cidPattern}&skip=${(page - 1) * take}`);
     const { data } = res;
     products.value = data;
     currentProduct.value = data;
     // DIRTY CODE
-    const resProd = await $fetch(`${runtimeConfig.public.apiBase}/${GET_ALL_PRODUCT}?take=200&categoryId=${categoryId}`);
+    const resProd = await $fetch(`${runtimeConfig.public.apiBase}/${GET_ALL_PRODUCT}?take=200&${cidPattern}`);
     allProd.value = resProd.data;
     maxPage.value = parseInt(allProd.value.length / 6) + 1;
   } catch (error) {

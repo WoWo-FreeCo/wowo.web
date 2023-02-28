@@ -31,7 +31,7 @@ var __publicField = (obj, key, value) => {
   __defNormalProp(obj, typeof key !== "symbol" ? key + "" : key, value);
   return value;
 };
-var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, _A, _B, _C, _D, _E, _F, _G, _H, _I, _J, _K, _L, _M, _N, _O, _P, _Q, _R, _S, _T, _U, _V, _W, _X, _Y, _Z;
+var _a, _b, _c, _d, _e, _f, _g, _h, _i, _j, _k, _l, _m, _n, _o, _p, _q, _r, _s, _t, _u, _v, _w, _x, _y, _z, _A, _B, _C, _D, _E, _F, _G, _H, _I, _J, _K, _L, _M, _N, _O, _P, _Q, _R, _S, _T, _U, _V, _W, _X, _Y, _Z, __, _$;
 const appConfig = useRuntimeConfig$1().app;
 const baseURL = () => appConfig.baseURL;
 const nuxtAppCtx = getContext("nuxt-app");
@@ -262,6 +262,10 @@ function useRequestHeaders(include) {
     return headers;
   }
   return Object.fromEntries(include.map((key) => key.toLowerCase()).filter((key) => headers[key]).map((key) => [key, headers[key]]));
+}
+function useRequestEvent(nuxtApp = useNuxtApp()) {
+  var _a2;
+  return (_a2 = nuxtApp.ssrContext) == null ? void 0 : _a2.event;
 }
 const firstNonUndefined = (...args) => args.find((arg) => arg !== void 0);
 const DEFAULT_EXTERNAL_REL_ATTRIBUTE = "noopener noreferrer";
@@ -885,21 +889,24 @@ const node_modules_nuxt_dist_head_runtime_lib_vueuse_head_plugin_mjs_D7WGfuP1A0 
     };
   }
 });
+const __nuxt_page_meta$q = {};
 const __nuxt_page_meta$p = {};
 const __nuxt_page_meta$o = {};
-const __nuxt_page_meta$n = {};
-const __nuxt_page_meta$m = {
+const __nuxt_page_meta$n = {
   layout: "admin"
 };
-const __nuxt_page_meta$l = {};
-const __nuxt_page_meta$k = {
+const __nuxt_page_meta$m = {};
+const __nuxt_page_meta$l = {
   layout: false
 };
+const __nuxt_page_meta$k = {};
 const __nuxt_page_meta$j = {};
 const __nuxt_page_meta$i = {};
 const __nuxt_page_meta$h = {};
 const __nuxt_page_meta$g = {};
-const __nuxt_page_meta$f = {};
+const __nuxt_page_meta$f = {
+  layout: false
+};
 const __nuxt_page_meta$e = {};
 const __nuxt_page_meta$d = {};
 const __nuxt_page_meta$c = {};
@@ -917,264 +924,274 @@ const __nuxt_page_meta$1 = {};
 const __nuxt_page_meta = {};
 const _routes = [
   {
-    name: (_a = __nuxt_page_meta$p == null ? void 0 : __nuxt_page_meta$p.name) != null ? _a : "about",
-    path: (_b = __nuxt_page_meta$p == null ? void 0 : __nuxt_page_meta$p.path) != null ? _b : "/about",
+    name: (_a = __nuxt_page_meta$q == null ? void 0 : __nuxt_page_meta$q.name) != null ? _a : "about",
+    path: (_b = __nuxt_page_meta$q == null ? void 0 : __nuxt_page_meta$q.path) != null ? _b : "/about",
     file: "/Users/chris/FreeCo/wowo/wowo.web/pages/about.vue",
+    children: [],
+    meta: __nuxt_page_meta$q,
+    alias: (__nuxt_page_meta$q == null ? void 0 : __nuxt_page_meta$q.alias) || [],
+    redirect: (__nuxt_page_meta$q == null ? void 0 : __nuxt_page_meta$q.redirect) || void 0,
+    component: () => import('./_nuxt/about.6044c054.mjs').then((m) => m.default || m)
+  },
+  {
+    name: (_c = __nuxt_page_meta$p == null ? void 0 : __nuxt_page_meta$p.name) != null ? _c : "aboutlovin",
+    path: (_d = __nuxt_page_meta$p == null ? void 0 : __nuxt_page_meta$p.path) != null ? _d : "/aboutlovin",
+    file: "/Users/chris/FreeCo/wowo/wowo.web/pages/aboutlovin.vue",
     children: [],
     meta: __nuxt_page_meta$p,
     alias: (__nuxt_page_meta$p == null ? void 0 : __nuxt_page_meta$p.alias) || [],
     redirect: (__nuxt_page_meta$p == null ? void 0 : __nuxt_page_meta$p.redirect) || void 0,
-    component: () => import('./_nuxt/about.a188e482.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/aboutlovin.3b4e45c3.mjs').then((m) => m.default || m)
   },
   {
-    name: (_c = __nuxt_page_meta$o == null ? void 0 : __nuxt_page_meta$o.name) != null ? _c : "aboutlovin",
-    path: (_d = __nuxt_page_meta$o == null ? void 0 : __nuxt_page_meta$o.path) != null ? _d : "/aboutlovin",
-    file: "/Users/chris/FreeCo/wowo/wowo.web/pages/aboutlovin.vue",
+    name: (_e = __nuxt_page_meta$o == null ? void 0 : __nuxt_page_meta$o.name) != null ? _e : "activity",
+    path: (_f = __nuxt_page_meta$o == null ? void 0 : __nuxt_page_meta$o.path) != null ? _f : "/activity",
+    file: "/Users/chris/FreeCo/wowo/wowo.web/pages/activity.vue",
     children: [],
     meta: __nuxt_page_meta$o,
     alias: (__nuxt_page_meta$o == null ? void 0 : __nuxt_page_meta$o.alias) || [],
     redirect: (__nuxt_page_meta$o == null ? void 0 : __nuxt_page_meta$o.redirect) || void 0,
-    component: () => import('./_nuxt/aboutlovin.e52c43d5.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/activity.e93b9325.mjs').then((m) => m.default || m)
   },
   {
-    name: (_e = __nuxt_page_meta$n == null ? void 0 : __nuxt_page_meta$n.name) != null ? _e : "activity",
-    path: (_f = __nuxt_page_meta$n == null ? void 0 : __nuxt_page_meta$n.path) != null ? _f : "/activity",
-    file: "/Users/chris/FreeCo/wowo/wowo.web/pages/activity.vue",
+    name: (_g = __nuxt_page_meta$n == null ? void 0 : __nuxt_page_meta$n.name) != null ? _g : "admin",
+    path: (_h = __nuxt_page_meta$n == null ? void 0 : __nuxt_page_meta$n.path) != null ? _h : "/admin",
+    file: "/Users/chris/FreeCo/wowo/wowo.web/pages/admin/index.vue",
     children: [],
     meta: __nuxt_page_meta$n,
     alias: (__nuxt_page_meta$n == null ? void 0 : __nuxt_page_meta$n.alias) || [],
     redirect: (__nuxt_page_meta$n == null ? void 0 : __nuxt_page_meta$n.redirect) || void 0,
-    component: () => import('./_nuxt/activity.741f4bf6.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/index.04e868f3.mjs').then((m) => m.default || m)
   },
   {
-    name: (_g = __nuxt_page_meta$m == null ? void 0 : __nuxt_page_meta$m.name) != null ? _g : "admin",
-    path: (_h = __nuxt_page_meta$m == null ? void 0 : __nuxt_page_meta$m.path) != null ? _h : "/admin",
-    file: "/Users/chris/FreeCo/wowo/wowo.web/pages/admin/index.vue",
+    name: (_i = __nuxt_page_meta$m == null ? void 0 : __nuxt_page_meta$m.name) != null ? _i : "admin-login",
+    path: (_j = __nuxt_page_meta$m == null ? void 0 : __nuxt_page_meta$m.path) != null ? _j : "/admin/login",
+    file: "/Users/chris/FreeCo/wowo/wowo.web/pages/admin/login.vue",
     children: [],
     meta: __nuxt_page_meta$m,
     alias: (__nuxt_page_meta$m == null ? void 0 : __nuxt_page_meta$m.alias) || [],
     redirect: (__nuxt_page_meta$m == null ? void 0 : __nuxt_page_meta$m.redirect) || void 0,
-    component: () => import('./_nuxt/index.a1671087.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/login.76a800ce.mjs').then((m) => m.default || m)
   },
   {
-    name: (_i = __nuxt_page_meta$l == null ? void 0 : __nuxt_page_meta$l.name) != null ? _i : "admin-login",
-    path: (_j = __nuxt_page_meta$l == null ? void 0 : __nuxt_page_meta$l.path) != null ? _j : "/admin/login",
-    file: "/Users/chris/FreeCo/wowo/wowo.web/pages/admin/login.vue",
+    name: (_k = __nuxt_page_meta$l == null ? void 0 : __nuxt_page_meta$l.name) != null ? _k : "api-and-store-example",
+    path: (_l = __nuxt_page_meta$l == null ? void 0 : __nuxt_page_meta$l.path) != null ? _l : "/api-and-store-example",
+    file: "/Users/chris/FreeCo/wowo/wowo.web/pages/api-and-store-example.vue",
     children: [],
     meta: __nuxt_page_meta$l,
     alias: (__nuxt_page_meta$l == null ? void 0 : __nuxt_page_meta$l.alias) || [],
     redirect: (__nuxt_page_meta$l == null ? void 0 : __nuxt_page_meta$l.redirect) || void 0,
-    component: () => import('./_nuxt/login.7d91e65c.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/api-and-store-example.52e1cc0f.mjs').then((m) => m.default || m)
   },
   {
-    name: (_k = __nuxt_page_meta$k == null ? void 0 : __nuxt_page_meta$k.name) != null ? _k : "api-and-store-example",
-    path: (_l = __nuxt_page_meta$k == null ? void 0 : __nuxt_page_meta$k.path) != null ? _l : "/api-and-store-example",
-    file: "/Users/chris/FreeCo/wowo/wowo.web/pages/api-and-store-example.vue",
+    name: (_m = __nuxt_page_meta$k == null ? void 0 : __nuxt_page_meta$k.name) != null ? _m : "bid",
+    path: (_n = __nuxt_page_meta$k == null ? void 0 : __nuxt_page_meta$k.path) != null ? _n : "/bid",
+    file: "/Users/chris/FreeCo/wowo/wowo.web/pages/bid.vue",
     children: [],
     meta: __nuxt_page_meta$k,
     alias: (__nuxt_page_meta$k == null ? void 0 : __nuxt_page_meta$k.alias) || [],
     redirect: (__nuxt_page_meta$k == null ? void 0 : __nuxt_page_meta$k.redirect) || void 0,
-    component: () => import('./_nuxt/api-and-store-example.961ab240.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/bid.fe9d160f.mjs').then((m) => m.default || m)
   },
   {
-    name: (_m = __nuxt_page_meta$j == null ? void 0 : __nuxt_page_meta$j.name) != null ? _m : "bid",
-    path: (_n = __nuxt_page_meta$j == null ? void 0 : __nuxt_page_meta$j.path) != null ? _n : "/bid",
-    file: "/Users/chris/FreeCo/wowo/wowo.web/pages/bid.vue",
+    name: (_o = __nuxt_page_meta$j == null ? void 0 : __nuxt_page_meta$j.name) != null ? _o : "bonus-point",
+    path: (_p = __nuxt_page_meta$j == null ? void 0 : __nuxt_page_meta$j.path) != null ? _p : "/bonus-point",
+    file: "/Users/chris/FreeCo/wowo/wowo.web/pages/bonus-point.vue",
     children: [],
     meta: __nuxt_page_meta$j,
     alias: (__nuxt_page_meta$j == null ? void 0 : __nuxt_page_meta$j.alias) || [],
     redirect: (__nuxt_page_meta$j == null ? void 0 : __nuxt_page_meta$j.redirect) || void 0,
-    component: () => import('./_nuxt/bid.fe9d160f.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/bonus-point.d6e368be.mjs').then((m) => m.default || m)
   },
   {
-    name: (_o = __nuxt_page_meta$i == null ? void 0 : __nuxt_page_meta$i.name) != null ? _o : "bonus-point",
-    path: (_p = __nuxt_page_meta$i == null ? void 0 : __nuxt_page_meta$i.path) != null ? _p : "/bonus-point",
-    file: "/Users/chris/FreeCo/wowo/wowo.web/pages/bonus-point.vue",
+    name: (_q = __nuxt_page_meta$i == null ? void 0 : __nuxt_page_meta$i.name) != null ? _q : "cart",
+    path: (_r = __nuxt_page_meta$i == null ? void 0 : __nuxt_page_meta$i.path) != null ? _r : "/cart",
+    file: "/Users/chris/FreeCo/wowo/wowo.web/pages/cart.vue",
     children: [],
     meta: __nuxt_page_meta$i,
     alias: (__nuxt_page_meta$i == null ? void 0 : __nuxt_page_meta$i.alias) || [],
     redirect: (__nuxt_page_meta$i == null ? void 0 : __nuxt_page_meta$i.redirect) || void 0,
-    component: () => import('./_nuxt/bonus-point.785419ad.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/cart.b2103785.mjs').then((m) => m.default || m)
   },
   {
-    name: (_q = __nuxt_page_meta$h == null ? void 0 : __nuxt_page_meta$h.name) != null ? _q : "cart",
-    path: (_r = __nuxt_page_meta$h == null ? void 0 : __nuxt_page_meta$h.path) != null ? _r : "/cart",
-    file: "/Users/chris/FreeCo/wowo/wowo.web/pages/cart.vue",
+    name: (_s = __nuxt_page_meta$h == null ? void 0 : __nuxt_page_meta$h.name) != null ? _s : "checkout",
+    path: (_t = __nuxt_page_meta$h == null ? void 0 : __nuxt_page_meta$h.path) != null ? _t : "/checkout",
+    file: "/Users/chris/FreeCo/wowo/wowo.web/pages/checkout.vue",
     children: [],
     meta: __nuxt_page_meta$h,
     alias: (__nuxt_page_meta$h == null ? void 0 : __nuxt_page_meta$h.alias) || [],
     redirect: (__nuxt_page_meta$h == null ? void 0 : __nuxt_page_meta$h.redirect) || void 0,
-    component: () => import('./_nuxt/cart.85c7bc30.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/checkout.f1c06164.mjs').then((m) => m.default || m)
   },
   {
-    name: (_s = __nuxt_page_meta$g == null ? void 0 : __nuxt_page_meta$g.name) != null ? _s : "checkout",
-    path: (_t = __nuxt_page_meta$g == null ? void 0 : __nuxt_page_meta$g.path) != null ? _t : "/checkout",
-    file: "/Users/chris/FreeCo/wowo/wowo.web/pages/checkout.vue",
+    name: (_u = __nuxt_page_meta$g == null ? void 0 : __nuxt_page_meta$g.name) != null ? _u : "contact",
+    path: (_v = __nuxt_page_meta$g == null ? void 0 : __nuxt_page_meta$g.path) != null ? _v : "/contact",
+    file: "/Users/chris/FreeCo/wowo/wowo.web/pages/contact.vue",
     children: [],
     meta: __nuxt_page_meta$g,
     alias: (__nuxt_page_meta$g == null ? void 0 : __nuxt_page_meta$g.alias) || [],
     redirect: (__nuxt_page_meta$g == null ? void 0 : __nuxt_page_meta$g.redirect) || void 0,
-    component: () => import('./_nuxt/checkout.3fe69b18.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/contact.2c33f196.mjs').then((m) => m.default || m)
   },
   {
-    name: (_u = __nuxt_page_meta$f == null ? void 0 : __nuxt_page_meta$f.name) != null ? _u : "contact",
-    path: (_v = __nuxt_page_meta$f == null ? void 0 : __nuxt_page_meta$f.path) != null ? _v : "/contact",
-    file: "/Users/chris/FreeCo/wowo/wowo.web/pages/contact.vue",
+    name: (_w = __nuxt_page_meta$f == null ? void 0 : __nuxt_page_meta$f.name) != null ? _w : "cvs_callback",
+    path: (_x = __nuxt_page_meta$f == null ? void 0 : __nuxt_page_meta$f.path) != null ? _x : "/cvs_callback",
+    file: "/Users/chris/FreeCo/wowo/wowo.web/pages/cvs_callback.vue",
     children: [],
     meta: __nuxt_page_meta$f,
     alias: (__nuxt_page_meta$f == null ? void 0 : __nuxt_page_meta$f.alias) || [],
     redirect: (__nuxt_page_meta$f == null ? void 0 : __nuxt_page_meta$f.redirect) || void 0,
-    component: () => import('./_nuxt/contact.02a16264.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/cvs_callback.49a95234.mjs').then((m) => m.default || m)
   },
   {
-    name: (_w = __nuxt_page_meta$e == null ? void 0 : __nuxt_page_meta$e.name) != null ? _w : "faq",
-    path: (_x = __nuxt_page_meta$e == null ? void 0 : __nuxt_page_meta$e.path) != null ? _x : "/faq",
+    name: (_y = __nuxt_page_meta$e == null ? void 0 : __nuxt_page_meta$e.name) != null ? _y : "faq",
+    path: (_z = __nuxt_page_meta$e == null ? void 0 : __nuxt_page_meta$e.path) != null ? _z : "/faq",
     file: "/Users/chris/FreeCo/wowo/wowo.web/pages/faq.vue",
     children: [],
     meta: __nuxt_page_meta$e,
     alias: (__nuxt_page_meta$e == null ? void 0 : __nuxt_page_meta$e.alias) || [],
     redirect: (__nuxt_page_meta$e == null ? void 0 : __nuxt_page_meta$e.redirect) || void 0,
-    component: () => import('./_nuxt/faq.03855dbe.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/faq.db32f9bd.mjs').then((m) => m.default || m)
   },
   {
-    name: (_y = __nuxt_page_meta$d == null ? void 0 : __nuxt_page_meta$d.name) != null ? _y : "favorite",
-    path: (_z = __nuxt_page_meta$d == null ? void 0 : __nuxt_page_meta$d.path) != null ? _z : "/favorite",
+    name: (_A = __nuxt_page_meta$d == null ? void 0 : __nuxt_page_meta$d.name) != null ? _A : "favorite",
+    path: (_B = __nuxt_page_meta$d == null ? void 0 : __nuxt_page_meta$d.path) != null ? _B : "/favorite",
     file: "/Users/chris/FreeCo/wowo/wowo.web/pages/favorite.vue",
     children: [],
     meta: __nuxt_page_meta$d,
     alias: (__nuxt_page_meta$d == null ? void 0 : __nuxt_page_meta$d.alias) || [],
     redirect: (__nuxt_page_meta$d == null ? void 0 : __nuxt_page_meta$d.redirect) || void 0,
-    component: () => import('./_nuxt/favorite.db710a97.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/favorite.5029a5c8.mjs').then((m) => m.default || m)
   },
   {
-    name: (_A = __nuxt_page_meta$c == null ? void 0 : __nuxt_page_meta$c.name) != null ? _A : "forget",
-    path: (_B = __nuxt_page_meta$c == null ? void 0 : __nuxt_page_meta$c.path) != null ? _B : "/forget",
+    name: (_C = __nuxt_page_meta$c == null ? void 0 : __nuxt_page_meta$c.name) != null ? _C : "forget",
+    path: (_D = __nuxt_page_meta$c == null ? void 0 : __nuxt_page_meta$c.path) != null ? _D : "/forget",
     file: "/Users/chris/FreeCo/wowo/wowo.web/pages/forget.vue",
     children: [],
     meta: __nuxt_page_meta$c,
     alias: (__nuxt_page_meta$c == null ? void 0 : __nuxt_page_meta$c.alias) || [],
     redirect: (__nuxt_page_meta$c == null ? void 0 : __nuxt_page_meta$c.redirect) || void 0,
-    component: () => import('./_nuxt/forget.49b05b67.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/forget.995001a9.mjs').then((m) => m.default || m)
   },
   {
-    name: (_C = __nuxt_page_meta$b == null ? void 0 : __nuxt_page_meta$b.name) != null ? _C : "index",
-    path: (_D = __nuxt_page_meta$b == null ? void 0 : __nuxt_page_meta$b.path) != null ? _D : "/",
+    name: (_E = __nuxt_page_meta$b == null ? void 0 : __nuxt_page_meta$b.name) != null ? _E : "index",
+    path: (_F = __nuxt_page_meta$b == null ? void 0 : __nuxt_page_meta$b.path) != null ? _F : "/",
     file: "/Users/chris/FreeCo/wowo/wowo.web/pages/index.vue",
     children: [],
     meta: __nuxt_page_meta$b,
     alias: (__nuxt_page_meta$b == null ? void 0 : __nuxt_page_meta$b.alias) || [],
     redirect: (__nuxt_page_meta$b == null ? void 0 : __nuxt_page_meta$b.redirect) || void 0,
-    component: () => import('./_nuxt/index.6f352f20.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/index.9bf6c7db.mjs').then((m) => m.default || m)
   },
   {
-    name: (_E = __nuxt_page_meta$a == null ? void 0 : __nuxt_page_meta$a.name) != null ? _E : "login",
-    path: (_F = __nuxt_page_meta$a == null ? void 0 : __nuxt_page_meta$a.path) != null ? _F : "/login",
+    name: (_G = __nuxt_page_meta$a == null ? void 0 : __nuxt_page_meta$a.name) != null ? _G : "login",
+    path: (_H = __nuxt_page_meta$a == null ? void 0 : __nuxt_page_meta$a.path) != null ? _H : "/login",
     file: "/Users/chris/FreeCo/wowo/wowo.web/pages/login.vue",
     children: [],
     meta: __nuxt_page_meta$a,
     alias: (__nuxt_page_meta$a == null ? void 0 : __nuxt_page_meta$a.alias) || [],
     redirect: (__nuxt_page_meta$a == null ? void 0 : __nuxt_page_meta$a.redirect) || void 0,
-    component: () => import('./_nuxt/login.559c0ee2.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/login.17e8b4a0.mjs').then((m) => m.default || m)
   },
   {
-    name: (_G = __nuxt_page_meta$9 == null ? void 0 : __nuxt_page_meta$9.name) != null ? _G : "order-detail",
-    path: (_H = __nuxt_page_meta$9 == null ? void 0 : __nuxt_page_meta$9.path) != null ? _H : "/order/detail",
+    name: (_I = __nuxt_page_meta$9 == null ? void 0 : __nuxt_page_meta$9.name) != null ? _I : "order-detail",
+    path: (_J = __nuxt_page_meta$9 == null ? void 0 : __nuxt_page_meta$9.path) != null ? _J : "/order/detail",
     file: "/Users/chris/FreeCo/wowo/wowo.web/pages/order/detail.vue",
     children: [],
     meta: __nuxt_page_meta$9,
     alias: (__nuxt_page_meta$9 == null ? void 0 : __nuxt_page_meta$9.alias) || [],
     redirect: (__nuxt_page_meta$9 == null ? void 0 : __nuxt_page_meta$9.redirect) || void 0,
-    component: () => import('./_nuxt/detail.2f01d39c.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/detail.dca59bc5.mjs').then((m) => m.default || m)
   },
   {
-    name: (_I = __nuxt_page_meta$8 == null ? void 0 : __nuxt_page_meta$8.name) != null ? _I : "order",
-    path: (_J = __nuxt_page_meta$8 == null ? void 0 : __nuxt_page_meta$8.path) != null ? _J : "/order",
+    name: (_K = __nuxt_page_meta$8 == null ? void 0 : __nuxt_page_meta$8.name) != null ? _K : "order",
+    path: (_L = __nuxt_page_meta$8 == null ? void 0 : __nuxt_page_meta$8.path) != null ? _L : "/order",
     file: "/Users/chris/FreeCo/wowo/wowo.web/pages/order/index.vue",
     children: [],
     meta: __nuxt_page_meta$8,
     alias: (__nuxt_page_meta$8 == null ? void 0 : __nuxt_page_meta$8.alias) || [],
     redirect: (__nuxt_page_meta$8 == null ? void 0 : __nuxt_page_meta$8.redirect) || void 0,
-    component: () => import('./_nuxt/index.d92a6b6e.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/index.42c2564c.mjs').then((m) => m.default || m)
   },
   {
-    name: (_K = __nuxt_page_meta$7 == null ? void 0 : __nuxt_page_meta$7.name) != null ? _K : "privacy",
-    path: (_L = __nuxt_page_meta$7 == null ? void 0 : __nuxt_page_meta$7.path) != null ? _L : "/privacy",
+    name: (_M = __nuxt_page_meta$7 == null ? void 0 : __nuxt_page_meta$7.name) != null ? _M : "privacy",
+    path: (_N = __nuxt_page_meta$7 == null ? void 0 : __nuxt_page_meta$7.path) != null ? _N : "/privacy",
     file: "/Users/chris/FreeCo/wowo/wowo.web/pages/privacy.vue",
     children: [],
     meta: __nuxt_page_meta$7,
     alias: (__nuxt_page_meta$7 == null ? void 0 : __nuxt_page_meta$7.alias) || [],
     redirect: (__nuxt_page_meta$7 == null ? void 0 : __nuxt_page_meta$7.redirect) || void 0,
-    component: () => import('./_nuxt/privacy.ab72f285.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/privacy.4746be56.mjs').then((m) => m.default || m)
   },
   {
-    name: (_M = __nuxt_page_meta$6 == null ? void 0 : __nuxt_page_meta$6.name) != null ? _M : "product",
-    path: (_N = __nuxt_page_meta$6 == null ? void 0 : __nuxt_page_meta$6.path) != null ? _N : "/product",
+    name: (_O = __nuxt_page_meta$6 == null ? void 0 : __nuxt_page_meta$6.name) != null ? _O : "product",
+    path: (_P = __nuxt_page_meta$6 == null ? void 0 : __nuxt_page_meta$6.path) != null ? _P : "/product",
     file: "/Users/chris/FreeCo/wowo/wowo.web/pages/product.vue",
     children: [],
     meta: __nuxt_page_meta$6,
     alias: (__nuxt_page_meta$6 == null ? void 0 : __nuxt_page_meta$6.alias) || [],
     redirect: (__nuxt_page_meta$6 == null ? void 0 : __nuxt_page_meta$6.redirect) || void 0,
-    component: () => import('./_nuxt/product.da50723c.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/product.44d3b078.mjs').then((m) => m.default || m)
   },
   {
-    name: (_O = __nuxt_page_meta$5 == null ? void 0 : __nuxt_page_meta$5.name) != null ? _O : "profile",
-    path: (_P = __nuxt_page_meta$5 == null ? void 0 : __nuxt_page_meta$5.path) != null ? _P : "/profile",
+    name: (_Q = __nuxt_page_meta$5 == null ? void 0 : __nuxt_page_meta$5.name) != null ? _Q : "profile",
+    path: (_R = __nuxt_page_meta$5 == null ? void 0 : __nuxt_page_meta$5.path) != null ? _R : "/profile",
     file: "/Users/chris/FreeCo/wowo/wowo.web/pages/profile/index.vue",
     children: [],
     meta: __nuxt_page_meta$5,
     alias: (__nuxt_page_meta$5 == null ? void 0 : __nuxt_page_meta$5.alias) || [],
     redirect: (__nuxt_page_meta$5 == null ? void 0 : __nuxt_page_meta$5.redirect) || void 0,
-    component: () => import('./_nuxt/index.09bb71d6.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/index.9ff19be6.mjs').then((m) => m.default || m)
   },
   {
-    name: (_Q = __nuxt_page_meta$4 == null ? void 0 : __nuxt_page_meta$4.name) != null ? _Q : "register",
-    path: (_R = __nuxt_page_meta$4 == null ? void 0 : __nuxt_page_meta$4.path) != null ? _R : "/register",
+    name: (_S = __nuxt_page_meta$4 == null ? void 0 : __nuxt_page_meta$4.name) != null ? _S : "register",
+    path: (_T = __nuxt_page_meta$4 == null ? void 0 : __nuxt_page_meta$4.path) != null ? _T : "/register",
     file: "/Users/chris/FreeCo/wowo/wowo.web/pages/register.vue",
     children: [],
     meta: __nuxt_page_meta$4,
     alias: (__nuxt_page_meta$4 == null ? void 0 : __nuxt_page_meta$4.alias) || [],
     redirect: (__nuxt_page_meta$4 == null ? void 0 : __nuxt_page_meta$4.redirect) || void 0,
-    component: () => import('./_nuxt/register.b92f41d5.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/register.5e5d0574.mjs').then((m) => m.default || m)
   },
   {
-    name: (_S = __nuxt_page_meta$3 == null ? void 0 : __nuxt_page_meta$3.name) != null ? _S : "return-help",
-    path: (_T = __nuxt_page_meta$3 == null ? void 0 : __nuxt_page_meta$3.path) != null ? _T : "/return-help",
+    name: (_U = __nuxt_page_meta$3 == null ? void 0 : __nuxt_page_meta$3.name) != null ? _U : "return-help",
+    path: (_V = __nuxt_page_meta$3 == null ? void 0 : __nuxt_page_meta$3.path) != null ? _V : "/return-help",
     file: "/Users/chris/FreeCo/wowo/wowo.web/pages/return-help.vue",
     children: [],
     meta: __nuxt_page_meta$3,
     alias: (__nuxt_page_meta$3 == null ? void 0 : __nuxt_page_meta$3.alias) || [],
     redirect: (__nuxt_page_meta$3 == null ? void 0 : __nuxt_page_meta$3.redirect) || void 0,
-    component: () => import('./_nuxt/return-help.7fbd9027.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/return-help.997872f7.mjs').then((m) => m.default || m)
   },
   {
-    name: (_U = __nuxt_page_meta$2 == null ? void 0 : __nuxt_page_meta$2.name) != null ? _U : "shop",
-    path: (_V = __nuxt_page_meta$2 == null ? void 0 : __nuxt_page_meta$2.path) != null ? _V : "/shop",
+    name: (_W = __nuxt_page_meta$2 == null ? void 0 : __nuxt_page_meta$2.name) != null ? _W : "shop",
+    path: (_X = __nuxt_page_meta$2 == null ? void 0 : __nuxt_page_meta$2.path) != null ? _X : "/shop",
     file: "/Users/chris/FreeCo/wowo/wowo.web/pages/shop.vue",
     children: [],
     meta: __nuxt_page_meta$2,
     alias: (__nuxt_page_meta$2 == null ? void 0 : __nuxt_page_meta$2.alias) || [],
     redirect: (__nuxt_page_meta$2 == null ? void 0 : __nuxt_page_meta$2.redirect) || void 0,
-    component: () => import('./_nuxt/shop.281122e7.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/shop.13e5c01d.mjs').then((m) => m.default || m)
   },
   {
-    name: (_W = __nuxt_page_meta$1 == null ? void 0 : __nuxt_page_meta$1.name) != null ? _W : "terms",
-    path: (_X = __nuxt_page_meta$1 == null ? void 0 : __nuxt_page_meta$1.path) != null ? _X : "/terms",
+    name: (_Y = __nuxt_page_meta$1 == null ? void 0 : __nuxt_page_meta$1.name) != null ? _Y : "terms",
+    path: (_Z = __nuxt_page_meta$1 == null ? void 0 : __nuxt_page_meta$1.path) != null ? _Z : "/terms",
     file: "/Users/chris/FreeCo/wowo/wowo.web/pages/terms.vue",
     children: [],
     meta: __nuxt_page_meta$1,
     alias: (__nuxt_page_meta$1 == null ? void 0 : __nuxt_page_meta$1.alias) || [],
     redirect: (__nuxt_page_meta$1 == null ? void 0 : __nuxt_page_meta$1.redirect) || void 0,
-    component: () => import('./_nuxt/terms.f866fa99.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/terms.83a6cfb2.mjs').then((m) => m.default || m)
   },
   {
-    name: (_Y = __nuxt_page_meta == null ? void 0 : __nuxt_page_meta.name) != null ? _Y : "wobao",
-    path: (_Z = __nuxt_page_meta == null ? void 0 : __nuxt_page_meta.path) != null ? _Z : "/wobao",
+    name: (__ = __nuxt_page_meta == null ? void 0 : __nuxt_page_meta.name) != null ? __ : "wobao",
+    path: (_$ = __nuxt_page_meta == null ? void 0 : __nuxt_page_meta.path) != null ? _$ : "/wobao",
     file: "/Users/chris/FreeCo/wowo/wowo.web/pages/wobao.vue",
     children: [],
     meta: __nuxt_page_meta,
     alias: (__nuxt_page_meta == null ? void 0 : __nuxt_page_meta.alias) || [],
     redirect: (__nuxt_page_meta == null ? void 0 : __nuxt_page_meta.redirect) || void 0,
-    component: () => import('./_nuxt/wobao.8fd86c5a.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/wobao.e7cbb266.mjs').then((m) => m.default || m)
   }
 ];
 const routerOptions0 = {
@@ -1568,8 +1585,8 @@ const _wrapIf = (component, props, slots) => {
   return { default: () => props ? h(component, props === true ? {} : props, slots) : h(Fragment, {}, slots) };
 };
 const layouts = {
-  admin: () => import('./_nuxt/admin.e740b2ca.mjs').then((m) => m.default || m),
-  default: () => import('./_nuxt/default.10044a6e.mjs').then((m) => m.default || m)
+  admin: () => import('./_nuxt/admin.0fa30d5b.mjs').then((m) => m.default || m),
+  default: () => import('./_nuxt/default.d340cd85.mjs').then((m) => m.default || m)
 };
 const LayoutLoader = defineComponent({
   props: {
@@ -1787,7 +1804,7 @@ const _sfc_main = {
   __name: "nuxt-root",
   __ssrInlineRender: true,
   setup(__props) {
-    const ErrorComponent = defineAsyncComponent(() => import('./_nuxt/error-component.38186d62.mjs').then((r) => r.default || r));
+    const ErrorComponent = defineAsyncComponent(() => import('./_nuxt/error-component.82b5b601.mjs').then((r) => r.default || r));
     const nuxtApp = useNuxtApp();
     nuxtApp.deferHydration();
     provide("_route", useRoute());
@@ -1842,5 +1859,5 @@ const plugins = normalizePlugins(_plugins);
 }
 const entry$1 = (ctx) => entry(ctx);
 
-export { _export_sfc as _, useRouter as a, useNuxtApp as b, createError as c, defineStore as d, entry$1 as default, useRoute as e, __nuxt_component_0$1 as f, useRuntimeConfig as u };
+export { _export_sfc as _, useRouter as a, useNuxtApp as b, createError as c, defineStore as d, entry$1 as default, useRoute as e, __nuxt_component_0$1 as f, useRequestEvent as g, useRuntimeConfig as u };
 //# sourceMappingURL=server.mjs.map

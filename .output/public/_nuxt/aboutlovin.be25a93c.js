@@ -1,0 +1,1 @@
+import{a as e}from"./entry.27c155a0.js";import{_ as a,Z as t,a8 as c,a9 as s,aa as _}from"./swiper-vue.ba6f8b0a.js";const n={},r=o=>(c("data-v-38ac0352"),o=o(),s(),o),d=r(()=>_("iframe",{src:"https://lovin.tw/wo-aboutlovin/",frameborder:"0"},null,-1)),p=[d];function i(o,l){return t(),a("div",null,p)}const v=e(n,[["render",i],["__scopeId","data-v-38ac0352"]]);export{v as default};

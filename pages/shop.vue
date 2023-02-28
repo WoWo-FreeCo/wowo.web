@@ -4,6 +4,7 @@ import { GET_PRODUCT_CATEGORY, GET_ALL_PRODUCT } from '@/apis/requestURL';
 // import mockLabel from '@/mocks/mockLabels.json';
 
 const runtimeConfig = useRuntimeConfig();
+const route = useRoute();
 
 const defaultCategory = {
   id: -1,
@@ -11,6 +12,9 @@ const defaultCategory = {
 };
 
 const currentCategoryId = ref(defaultCategory.id);
+const currentPage = ref(1);
+const allProd = ref([]);
+const maxPage = ref(1);
 
 const prodCategories = ref([]);
 const products = ref([]);
@@ -21,13 +25,13 @@ const collapseToggle = ref(false);
 
 const currentProduct = ref([]);
 
-watch(currentCategoryId, (_new) => {
-  if (_new === defaultCategory.id) {
-    currentProduct.value = products.value;
-    return;
-  }
-  currentProduct.value = products.value.filter(e => e.categoryId === _new);
-});
+// watch(currentCategoryId, (_new) => {
+//   if (_new === defaultCategory.id) {
+//     currentProduct.value = products.value;
+//     return;
+//   }
+//   currentProduct.value = products.value.filter(e => e.categoryId === _new);
+// });
 
 onMounted(async() => {
   await nextTick();
@@ -42,25 +46,39 @@ onMounted(async() => {
 // });
 
 function fetchData() {
-  fetchProdCategories();
+  fetchProdAndCategories();
   fetchProd();
 }
 
-async function fetchProdCategories() {
+async function fetchProdAndCategories() {
   try {
+    const categoryId = route.query?.category;
     const res = await $fetch(`${runtimeConfig.public.apiBase}/${GET_PRODUCT_CATEGORY}`);
     const { data } = res;
+    const resProd = await $fetch(`${runtimeConfig.public.apiBase}/${GET_ALL_PRODUCT}?take=200&categoryId=${categoryId}`);
+    allProd.value = resProd.data;
+    maxPage.value = parseInt(allProd.value.length / 6) + 1;
     prodCategories.value = [defaultCategory, ...data];
   } catch (error) {
     //
   }
 }
-async function fetchProd() {
+async function fetchProd(_categoryId, _page) {
   try {
-    const res = await $fetch(`${runtimeConfig.public.apiBase}/${GET_ALL_PRODUCT}?take=200`);
+    const categoryId = _categoryId || route.query?.category;
+    const page = _page || route.query?.page || 1;
+    const take = 6;
+    currentCategoryId.value = categoryId || -1;
+    currentPage.value = page;
+    console.log(currentPage.value);
+    const res = await $fetch(`${runtimeConfig.public.apiBase}/${GET_ALL_PRODUCT}?take=${take}&categoryId=${categoryId}&skip=${(page - 1) * take}`);
     const { data } = res;
     products.value = data;
     currentProduct.value = data;
+    // DIRTY CODE
+    const resProd = await $fetch(`${runtimeConfig.public.apiBase}/${GET_ALL_PRODUCT}?take=200&categoryId=${categoryId}`);
+    allProd.value = resProd.data;
+    maxPage.value = parseInt(allProd.value.length / 6) + 1;
   } catch (error) {
     //
   }
@@ -101,10 +119,11 @@ function addToCart(prod) {
                 <li
                   v-for="category in prodCategories"
                   :key="category.id"
-                  :class="{active: currentCategoryId === category.id}"
-                  @click="currentCategoryId = category.id"
+                  :class="{active: route.query?.category == category.id}"
                 >
-                  <a href="javascript:;">{{ category.name }}</a>
+                  <NuxtLink :to="`/shop?category=${category.id}`" @click="fetchProd(category.id, 1)">
+                    {{ category.name }}
+                  </NuxtLink>
                 </li>
               </ul>
             </div>
@@ -173,26 +192,17 @@ function addToCart(prod) {
         <!-- TODO: pagination -->
         <div class="text-center">
           <ul class="pagination post-pagination">
-            <li>
-              <a href="#!">上一頁</a>
-            </li>
-            <li class="active">
-              <a href="#!">1</a>
-            </li>
-            <li>
-              <a href="#!">2</a>
-            </li>
-            <li>
-              <a href="#!">3</a>
-            </li>
-            <li>
-              <a href="#!">4</a>
-            </li>
-            <li>
-              <a href="#!">5</a>
-            </li>
-            <li>
-              <a href="#!">下一頁</a>
+            <li
+              v-for="item in maxPage"
+              :key="item"
+              :class="{active: currentPage == item}"
+            >
+              <NuxtLink
+                :to="`/shop?category=${currentCategoryId}&page=${item}`"
+                @click="fetchProd(currentCategoryId, item)"
+              >
+                {{ item }}
+              </NuxtLink>
             </li>
           </ul>
         </div>

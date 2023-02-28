@@ -52,7 +52,7 @@ const formValue = ref({
   vipPrice: 0,
   svipPrice: 0,
   skuId: '',
-  categoryId: categoryOptions.value[0].value,
+  categoryId: 0,
   attribute: attrOptions.value[0].value
 });
 
@@ -104,6 +104,8 @@ async function fetchCategories() {
         value: e.id
       };
     });
+    formValue.value.categoryId = categoryOptions.value[0].id;
+    console.log(categoryOptions.value[0].id);
   } catch (error) {
     //
   }
@@ -111,13 +113,25 @@ async function fetchCategories() {
 
 async function handlePositiveClick() {
   console.log(formValue.value);
+  if (!formValue.value.name) {
+    message.error('請輸入產品名稱');
+    return;
+  }
+  if (!formValue.value.skuId) {
+    message.error('請輸入產品編號');
+    return;
+  }
+  if (!formValue.value.categoryId) {
+    message.error('請選擇產品分類');
+    return;
+  }
   try {
     const body = {
       ...formValue.value
     };
-    if (formValue.value.attribute === ProductType.ColdChain) {
-      delete body.skuId;
-    }
+    // if (formValue.value.attribute === ProductType.ColdChain) {
+    //   delete body.skuId;
+    // }
     await $fetch(`${runtimeConfig.public.apiBase}/${POST_PRODUCT}`, {
       method: 'POST',
       headers: {
@@ -176,9 +190,10 @@ function closeDialog() {
       <n-form-item label="產品運送類別 *">
         <n-select v-model:value="formValue.attribute" :options="attrOptions" />
       </n-form-item>
-      <n-form-item v-show="formValue.attribute !== ProductType.ColdChain" label="產品編號" path="skuId">
+      <n-form-item label="產品編號" path="skuId">
         <n-input
           v-model:value="formValue.skuId"
+          required
           placeholder="請輸入產品編號"
         />
       </n-form-item>

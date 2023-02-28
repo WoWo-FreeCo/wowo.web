@@ -32,7 +32,7 @@ const currentLevel = computed(() => {
 
 const inputField = ref({
   nickname: authStore.user?.nickname,
-  password: authStore.user?.password,
+  // password: authStore.user?.password,
   telephone: authStore.user?.telephone,
   cellphone: authStore.user?.cellphone,
   addressOne: authStore.user?.addressOne,
@@ -205,7 +205,7 @@ function updateProfile() {
               >
               <span class="level_tips">此信箱為會員識別憑證及通知用，一旦註冊成功將無法再做修改，請確認後填寫。</span>
             </div> -->
-            <div class="form-group">
+            <!-- <div class="form-group">
               <label>密碼*</label>
               <input
                 id="auth-password"
@@ -217,7 +217,7 @@ function updateProfile() {
                 required
                 autocomplete=""
               >
-            </div>
+            </div> -->
             <div class="form-group">
               <label>手機*</label>
               <input

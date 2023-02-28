@@ -55,7 +55,11 @@ async function fetchProdAndCategories() {
     const categoryId = route.query?.category;
     const res = await $fetch(`${runtimeConfig.public.apiBase}/${GET_PRODUCT_CATEGORY}`);
     const { data } = res;
-    const resProd = await $fetch(`${runtimeConfig.public.apiBase}/${GET_ALL_PRODUCT}?take=200&categoryId=${categoryId}`);
+    let cidPattern = `categoryId=${categoryId}`;
+    if (route.query?.category === '-1' || !route.query?.category) {
+      cidPattern = '';
+    }
+    const resProd = await $fetch(`${runtimeConfig.public.apiBase}/${GET_ALL_PRODUCT}?take=200&${cidPattern}`);
     allProd.value = resProd.data;
     maxPage.value = parseInt(allProd.value.length / 6) + 1;
     prodCategories.value = [defaultCategory, ...data];
@@ -72,7 +76,7 @@ async function fetchProd(_categoryId, _page) {
     currentCategoryId.value = categoryId || -1;
     currentPage.value = page;
     let cidPattern = `categoryId=${categoryId}`;
-    if (_categoryId === -1 || route.query?.category === '-1') {
+    if (_categoryId === -1 || route.query?.category === '-1' || !route.query?.category) {
       cidPattern = '';
     }
     console.log(route.query?.category);
@@ -124,7 +128,7 @@ function addToCart(prod) {
                 <li
                   v-for="category in prodCategories"
                   :key="category.id"
-                  :class="{active: route.query?.category == category.id}"
+                  :class="{active: route.query?.category == category.id || currentCategoryId === category.id}"
                 >
                   <NuxtLink :to="`/shop?category=${category.id}`" @click="fetchProd(category.id, 1)">
                     {{ category.name }}

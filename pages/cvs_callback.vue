@@ -26,7 +26,7 @@ onMounted(() => {
     localStorage.setItem('TempVar', TempVar.value);
     // console.log(storeid.value, storename.value, storeaddress.value, ship.value, TempVar.value);
     window.close();
-  }, 2000);
+  }, 1250);
 });
 </script>
 

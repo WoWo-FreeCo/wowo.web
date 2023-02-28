@@ -1,14 +1,12 @@
 <script setup>
 import { USER_REGISTER } from '@/apis/requestURL';
 
-const $route = useRoute();
+const route = useRoute();
 const router = useRouter();
 const config = useRuntimeConfig();
 
-const recommendedAccount = ref($route.query.recommendedAccount);
-
 const inputField = ref({
-  recommendedAccount: recommendedAccount.value,
+  recommendedAccount: '',
   realname: '',
   email: '',
   password: '',
@@ -21,7 +19,11 @@ const inputField = ref({
 });
 
 onMounted(() => {
-//
+  const recId = route.query?.recommend;
+  if (recId) {
+    inputField.value.recommendedAccount = recId;
+  }
+  console.log(inputField.value);
 });
 
 async function confirmReg() {
@@ -66,11 +68,11 @@ async function confirmReg() {
               <label>推薦帳號</label>
               <input
                 id="wb-recommended-account"
-                v-model="recommendedAccount"
+                v-model="inputField.recommendedAccount"
                 type="text"
                 placeholder="請輸入推薦帳號"
                 class="form-control"
-                name=""
+                name="wb-recommended-account"
               >
             </div>
             <div class="form-group">
@@ -200,3 +202,8 @@ async function confirmReg() {
     </section>
   </div>
 </template>
+<style lang="scss" scoped>
+.form-control {
+  font-weight: 400;
+}
+</style>

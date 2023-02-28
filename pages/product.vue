@@ -1,6 +1,6 @@
 <script setup>
 // import mockProduct from '@/mocks/mockProducts.json';
-import { GET_ALL_PRODUCT } from '@/apis/requestURL';
+import { GET_ALL_PRODUCT, GET_PRODUCT_DETAIL } from '@/apis/requestURL';
 
 const cartStore = useCartStore();
 const route = useRoute();
@@ -13,24 +13,23 @@ const loading = ref(true);
 
 const addingAmount = ref(1);
 
-const currentTag = ref(0);
+const currentTag = ref(1);
 
 onMounted(async() => {
   await nextTick();
-  fetchProd();
+  await fetchProd();
 });
 
 async function fetchProd() {
   try {
-    const res = await $fetch(`${runtimeConfig.public.apiBase}/${GET_ALL_PRODUCT}`);
-    const { data } = res;
-    products.value = data;
-    const _prod = data?.find(e => e.id === parseInt(route.query.id));
+    const res = await $fetch(`${runtimeConfig.public.apiBase}/${GET_PRODUCT_DETAIL(route.query?.id)}`);
+    products.value = res.data;
+    const _prod = res.data;
     if (!_prod) return redirectToIndex();
     currentProduct.value = _prod;
   } catch (error) {
     console.log(error);
-    redirectToIndex();
+    // redirectToIndex();
   }
   loading.value = false;
 }
@@ -175,17 +174,13 @@ function goCheckout(prod) {
 
         <div class="product_tab mt-20">
           <ul class="nav nav-tabs">
-            <li :class="{active: currentTag === 0}" @click="currentTag = 0">
-              <a data-toggle="tab" href="javascript:;" aria-expanded="true">商品介紹</a>
-            </li>
-            <li :class="{active: currentTag === 1}" @click="currentTag = 1">
-              <a href="javascript:;">頁籤 2</a>
-            </li>
-            <li :class="{active: currentTag === 2}" @click="currentTag = 2">
-              <a href="javascript:;">頁籤 3</a>
-            </li>
-            <li :class="{active: currentTag === 3}" @click="currentTag = 3">
-              <a href="javascript:;">頁籤 4</a>
+            <li
+              v-for="slot in currentProduct?.markdownInfos"
+              :key="slot.title"
+              :class="{active: currentTag === slot.index}"
+              @click="currentTag = slot.index"
+            >
+              <a data-toggle="tab" href="javascript:;" aria-expanded="true">{{ slot.title }}</a>
             </li>
           </ul>
 
@@ -193,7 +188,7 @@ function goCheckout(prod) {
             <!--商品介紹--><!--第一個要顯示的, class要加 active in-->
             <div id="details" class="tab-pane fade active in">
               <!--id可隨意取, 但須對應上面tab的 href="#"-->
-              editor
+              <div class="html-container" />
             </div><!--商品介紹 end-->
 
             <!--預留的頁籤-->

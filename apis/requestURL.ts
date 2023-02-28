@@ -14,6 +14,7 @@ export const GET_PRODUCT = (_categoryId: '') => `${prefix}/product?categoryId=${
 export const GET_ALL_PRODUCT = `${prefix}/product`;
 export const GET_WEB_PAGES = `${prefix}/web-page`;
 export const GET_PRODUCT_CATEGORY = `${prefix}/product-category`;
+export const GET_PRODUCT_DETAIL = (_id: string) => `${prefix}/product/${_id}/detail`;
 export const GET_DAILY_SEQUENCE = `${prefix}/check-content/sequence`;
 export const GET_HOME_BANNER = `${prefix}/home-banner`;
 

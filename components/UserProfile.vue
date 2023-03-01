@@ -21,7 +21,7 @@ function scrollToBottom() {
     <div class="container">
       <div class="row">
         <div class="col-lg-2 col-md-3 col-sm-3 col-xs-4 col-xxs-5 relative p-5">
-          <form>
+          <!-- <form>
             <div
               class="slim preview img-wrapper"
               data-label="請上傳個人頭像"
@@ -32,13 +32,14 @@ function scrollToBottom() {
             >
               <input type="file" name="slim[]">
             </div>
-          </form>
+          </form> -->
+          <img class="slim preview img-wrapper" src="@/assets/images/default-avatar.png" alt="">
         </div>
         <div class="col-lg-10 col-md-9 col-sm-9 col-xs-8 col-xxs-7 p-5">
           <ul class="user-profile-list">
             <li>
               <h3>{{ authStore?.user?.nickname }}</h3>
-              <span class="badge_member badge_svip">{{ authStore?.user?.memberLevel }}</span>
+              <span class="badge_member badge_svip">{{ authStore?.user?.memberLevel === 'NORMAL' ? '普通會員' : authStore?.user?.memberLevel }}</span>
               <!--會員等級icon, vip及普通會員分別為 <span class="badge_member badge_vip">VIP</span>, <span class="badge_member badge_normal">普通會員</span>-->
             </li>
             <li>

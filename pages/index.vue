@@ -195,18 +195,14 @@ function addToCart(prod) {
     </section>
 
     <!-----------------------底部廣告, 沒有限定幾則, 建議尺寸1900*325, 可輸入指定連結----------------------->
-    <div class="index_ad">
-      <!--1-->
-      <NuxtLink to="/bid">
-        <!--指定連結-->
-        <img src="@/assets/images/ad/1.jpg" alt="">
-      </NuxtLink><!--1 end-->
-      <!--2-->
+    <!-- <div class="index_ad">
       <NuxtLink to="/bid">
         <img src="@/assets/images/ad/1.jpg" alt="">
-      </NuxtLink><!--2 end-->
-    </div>
-    <!--  -->
+      </NuxtLink>
+      <NuxtLink to="/bid">
+        <img src="@/assets/images/ad/1.jpg" alt="">
+      </NuxtLink>
+    </div> -->
     <!-- bell Modal -->
   </div>
 </template>

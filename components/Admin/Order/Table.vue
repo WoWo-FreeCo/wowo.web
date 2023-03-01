@@ -144,11 +144,6 @@ function createItem() {
 
 <template>
   <div style="position: relative;">
-    <n-space horizontal>
-      <n-button type="primary" style="margin: 12px;" @click="createItem">
-        新建產品
-      </n-button>
-    </n-space>
     <n-data-table
       :columns="columns"
       :data="items"

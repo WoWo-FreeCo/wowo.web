@@ -277,7 +277,7 @@ function dateDisabled(ts) {
               <div class="product-quantity">
                 x{{ item?.amount }}
               </div>
-              <span>滿件免運</span>
+              <!-- <span>滿件免運</span> -->
             </td>
             <td class="cart_price text-right">
               <span

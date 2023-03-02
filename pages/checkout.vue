@@ -187,7 +187,11 @@ function preprocessInput() {
       carruerNum: inputField.value.invoiceParams.carruerNum,
       donation: useDonation.value ? 1 : 0,
       loveCode: useDonation.value ? inputField.value.invoiceParams.loveCode : '',
-      customerIdentifier: useTaxId.value ? inputField.value.invoiceParams.customerIdentifier : '00000000'
+      customerIdentifier: useTaxId.value ? inputField.value.invoiceParams.customerIdentifier : '00000000',
+      customerPhone: inputField.value.consignee.cellphone,
+      customerName: inputField.value.consignee.name,
+      customerAddr: inputField.value.consignee.addressDetailOne
+
     },
     bonusPointRedemption: bonusCut.value,
     products: currentMerch.value.map((e) => {
@@ -208,7 +212,7 @@ async function sendResult() {
 
   console.log(body);
 
-  // return;
+  return;
   try {
     const redirectURL = process.env.NODE_ENV === 'development'
       ? 'http://localhost:3000/order?payment=successful'
@@ -244,6 +248,11 @@ function checkInputs() {
   if (!inputField.value.consignee.name || !inputField.value.consignee.cellphone ||
   !inputField.value.consignee.addressDetailOne) {
     message.error('請確實填寫收件人資訊');
+    return false;
+  }
+  if (inputField.value.consignee.deliveryType === DeliverType.Store &&
+    (!store.value.id || !store.value.name)) {
+    message.error('請選擇欲取貨的店家');
     return false;
   }
   if (!readRules.value) {
@@ -459,56 +468,9 @@ function dateDisabled(ts) {
           </label>
         </div>
       </div>
-      <div class="cart_info checkout-form">
+      <div v-if="useDonation" class="cart_info checkout-form">
         <h5>發票資訊</h5>
-        <div v-if="!useDonation" class="ship_info inv-info">
-          <div class="ship_info">
-            <input
-              id="inv_ship_name"
-              v-model="inputField.invoiceParams.customerName"
-              type="text"
-              placeholder="姓名*"
-              class="form-control"
-              name=""
-              required
-            >
-            <input
-              id="inv_ship_email"
-              v-model="inputField.invoiceParams.customerEmail"
-              type="text"
-              placeholder="Email*"
-              class="form-control"
-              name=""
-              required
-            >
-            <input
-              id="inv_ship_address"
-              v-model="inputField.invoiceParams.customerAddr"
-              type="text"
-              placeholder="地址*"
-              class="form-control"
-              name=""
-              required
-            >
-          </div>
-          <label class="checkbox pt10 pb10">
-            <input id="change-image" v-model="useTaxId" type="checkbox">
-            發票要打統編
-          </label>
-          <div v-if="useTaxId" class="ship_info">
-            <input
-              id=""
-              v-model="inputField.invoiceParams.customerIdentifier"
-              type="text"
-              placeholder="請輸入統一編號"
-              class="form-control"
-              required
-              name=""
-            >
-            <!-- <input id="" type="text" placeholder="發票抬頭*" class="form-control" name=""> -->
-          </div>
-        </div>
-        <div v-else class="ship_info inv-info">
+        <div class="ship_info inv-info">
           <div class="ship_info">
             <input
               id="inv_ship_lovecode"

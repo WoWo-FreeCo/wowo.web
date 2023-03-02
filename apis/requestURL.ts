@@ -36,6 +36,7 @@ export const UPDATE_HOME_BANNER = (_id: number) => `${prefix}/admin/home-banner/
 export const UPDATE_PRODUCT = (_id: number) => `${prefix}/admin/product/${_id}`;
 export const UPDATE_PRODUCT_CATEGORY = (_id: number) => `${prefix}/admin/product-category/${_id}`;
 export const UPDATE_WEB_PAGES = (_id: number) => `${prefix}/admin/web-page/${_id}`;
+export const UPDATE_USER_PROFILE = `${prefix}/user/basic`;
 
 export const DELETE_HOME_BANNER = (_id: number) => `${prefix}/admin/home-banner/${_id}`;
 export const DELETE_PRODUCT = (_id: number) => `${prefix}/admin/product/${_id}`;

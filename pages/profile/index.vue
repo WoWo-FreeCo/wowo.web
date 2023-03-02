@@ -1,11 +1,13 @@
 <script setup>
-import { POST_USER_ACTIVATATION, GET_PROFILE } from '@/apis/requestURL';
+import { useMessage } from 'naive-ui';
+import { POST_USER_ACTIVATATION, GET_PROFILE, UPDATE_USER_PROFILE } from '@/apis/requestURL';
 
 const authStore = useAuthStore();
 const router = useRouter();
 const runtimeConfig = useRuntimeConfig();
 
 const config = useRuntimeConfig();
+const message = useMessage();
 
 const authUser = computed(() => authStore?.user);
 
@@ -152,8 +154,19 @@ async function activateProfileByType(type) {
   }
   updatePermission();
 }
-function updateProfile() {
-  alert('更新功能尚未完成，請稍等');
+async function updateProfile() {
+  try {
+    await $fetch(`${runtimeConfig.public.apiBase}/${UPDATE_USER_PROFILE}`, {
+      method: 'PUT',
+      body: { ...inputField.value, email: authStore.user?.email },
+      headers: {
+        authorization: 'Bearer ' + localStorage.getItem('accessToken')
+      }
+    });
+    message.success('帳戶資料已更新');
+  } catch (error) {
+    message.error(error.message);
+  }
 }
 </script>
 <template>

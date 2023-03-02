@@ -135,19 +135,19 @@ const inputField = ref({
   choosePayment: PaymentType.CreditOneTime,
   consignee: {
     deliveryType: DeliverType.Home, // HOME
-    addressDetailOne: authStore.user?.addressOne,
     city: '', // 城市
-    district: '', // 區
     email: authStore.user?.email,
     idNo: '', // 身分證字號
     idType: '1', //
     cellphone: authStore.user?.cellphone,
     name: authStore.user?.nickname,
-    province: '',
     remark: '', // 收件備註
     senderRemark: '', // 寄件備註
     stationCode: '', // 超商代碼 / 條碼?
     stationName: '', // 超商名稱?
+    addressDetailOne: authStore.user?.addressOne,
+    province: '',
+    district: '', // 區
     town: '', // 城鎮名
     zipCode: '' // 郵遞區號
   },
@@ -424,9 +424,45 @@ function dateDisabled(ts) {
           >
           <input
             id="ship_address"
+            v-model="inputField.consignee.province"
+            type="text"
+            placeholder="省*"
+            class="form-control"
+            name=""
+            required
+          >
+          <input
+            id="ship_address"
+            v-model="inputField.consignee.district"
+            type="text"
+            placeholder="行政區*"
+            class="form-control"
+            name=""
+            required
+          >
+          <input
+            id="ship_address"
+            v-model="inputField.consignee.city"
+            type="text"
+            placeholder="城市*"
+            class="form-control"
+            name=""
+            required
+          >
+          <input
+            id="ship_address"
+            v-model="inputField.consignee.zipCode"
+            type="text"
+            placeholder="郵遞區號*"
+            class="form-control"
+            name=""
+            required
+          >
+          <input
+            id="ship_address"
             v-model="inputField.consignee.addressDetailOne"
             type="text"
-            placeholder="地址*"
+            placeholder="收件地址*"
             class="form-control"
             name=""
             required

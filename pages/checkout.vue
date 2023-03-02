@@ -184,7 +184,7 @@ function preprocessInput() {
     invoiceParams: {
       ...inputField.value.invoiceParams,
       carruerType: useUic.value ? inputField.value.invoiceParams.carruerNum : '',
-      carruerNum: inputField.value.invoiceParams.carruerNum,
+      carruerNum: inputField.value.invoiceParams.carruerType >= 2 ? inputField.value.invoiceParams.carruerNum : '',
       donation: useDonation.value ? 1 : 0,
       loveCode: useDonation.value ? inputField.value.invoiceParams.loveCode : '',
       customerIdentifier: useTaxId.value ? inputField.value.invoiceParams.customerIdentifier : '00000000',
@@ -254,6 +254,30 @@ function checkInputs() {
     (!store.value.id || !store.value.name)) {
     message.error('請選擇欲取貨的店家');
     return false;
+  }
+  if (useDonation.value) {
+    const regex = /^\d{3,7}$/;
+    const _string = inputField.value.invoiceParams.loveCode;
+    if (!regex.test(_string)) {
+      message.error('愛心碼請輸入3-7碼的數字組合');
+      return;
+    }
+  }
+  if (useUic.value) {
+    let regex, hint;
+    if (inputField.value.invoiceParams.carruerType === 2) {
+      regex = /^[a-zA-Z]{2}[0-9]{14}$/;
+      hint = '16碼的英數組合';
+    }
+    if (inputField.value.invoiceParams.carruerType === 3) {
+      regex = /^\/{1}[0-9A-Z]{7}$/;
+      hint = '8碼的英數組合';
+    }
+    const _string = inputField.value.invoiceParams.carruerNum;
+    if (inputField.value.invoiceParams.carruerType >= 2 && !regex.test(_string)) {
+      message.error(`請輸入符合格式的載具資料(${hint})`);
+      return;
+    }
   }
   if (!readRules.value) {
     message.error('請詳閱相關購買條款並勾選確認');
@@ -520,6 +544,7 @@ function dateDisabled(ts) {
               手機條碼
             </label>
             <input
+              v-if="inputField.invoiceParams.carruerType >= 2"
               id="inv-carruerNum"
               v-model="inputField.invoiceParams.carruerNum"
               type="text"

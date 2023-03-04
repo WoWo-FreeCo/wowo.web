@@ -101,8 +101,8 @@ function goCheckout(prod) {
                     },
                   }"
                 >
-                  <SwiperSlide v-for="slide,index in currentProduct?.slideSet || 5" :key="slide">
-                    <img :src="slide.img || `https://picsum.photos/500/500?${index}`" alt="">
+                  <SwiperSlide v-for="slide in currentProduct?.images" :key="slide?.img">
+                    <img :src="slide.img" alt="">
                   </SwiperSlide>
                 </Swiper>
               </div>

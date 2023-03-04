@@ -86,6 +86,7 @@ function goCheckout(prod) {
                   :modules="[SwiperAutoplay, SwiperEffectCreative, SwiperController, SwiperNavigation]"
                   :slides-per-view="1"
                   :loop="true"
+                  :initial-slide="1"
                   :effect="'creative'"
                   :autoplay="{
                     delay: 4000,

@@ -18,6 +18,7 @@ const currentTag = ref(1);
 onMounted(async() => {
   await nextTick();
   await fetchProd();
+  fetchHTMLPage();
 });
 
 async function fetchProd() {
@@ -59,6 +60,11 @@ function goCheckout(prod) {
       ...query
     }
   });
+}
+function fetchHTMLPage(tag = 1) {
+  const htmlContainer = document.querySelector('.html-container');
+  htmlContainer.innerHTML = currentProduct.value?.markdownInfos[tag].text;
+  currentTag.value = tag;
 }
 </script>
 <template>
@@ -176,10 +182,10 @@ function goCheckout(prod) {
         <div class="product_tab mt-20">
           <ul class="nav nav-tabs">
             <li
-              v-for="slot in currentProduct?.markdownInfos"
+              v-for="slot,index in currentProduct?.markdownInfos"
               :key="slot.title"
-              :class="{active: currentTag === slot.index}"
-              @click="currentTag = slot.index"
+              :class="{active: currentTag === index}"
+              @click="fetchHTMLPage(index)"
             >
               <a data-toggle="tab" href="javascript:;" aria-expanded="true">{{ slot.title }}</a>
             </li>

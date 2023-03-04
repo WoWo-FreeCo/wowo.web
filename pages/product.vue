@@ -63,7 +63,7 @@ function goCheckout(prod) {
 }
 function fetchHTMLPage(tag = 0) {
   const htmlContainer = document.querySelector('.html-container');
-  htmlContainer.innerHTML = currentProduct.value?.markdownInfos[tag].text;
+  htmlContainer.innerHTML = currentProduct.value?.markdownInfos[tag]?.text;
   currentTag.value = tag;
 }
 </script>

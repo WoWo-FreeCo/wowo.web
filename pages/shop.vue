@@ -47,7 +47,9 @@ onMounted(async() => {
 
 function fetchData() {
   fetchProdAndCategories();
-  fetchProd();
+  fetchProd({
+    _categoryId: route.query?.category || -1
+  });
 }
 
 async function fetchProdAndCategories() {
@@ -68,7 +70,9 @@ async function fetchProdAndCategories() {
     //
   }
 }
-async function fetchProd(_categoryId, _page) {
+async function fetchProd(props = { _categoryId: -1, _page: 1, mount: false }) {
+  const { _categoryId, _page, mount } = props;
+  console.log(props);
   try {
     const categoryId = _categoryId || route.query?.category;
     const page = _page || route.query?.page || 1;
@@ -76,10 +80,11 @@ async function fetchProd(_categoryId, _page) {
     currentCategoryId.value = categoryId || -1;
     currentPage.value = page;
     let cidPattern = `categoryId=${categoryId}`;
-    if (_categoryId === -1 || route.query?.category === '-1' || !route.query?.category) {
+    if (_categoryId == -1 || !route.query?.category || mount) {
       cidPattern = '';
     }
     console.log(route.query?.category);
+    console.log('b', _categoryId);
     const res = await $fetch(`${runtimeConfig.public.apiBase}/${GET_ALL_PRODUCT}?take=${take}&${cidPattern}&skip=${(page - 1) * take}`);
     const { data } = res;
     products.value = data;
@@ -130,7 +135,7 @@ function addToCart(prod) {
                   :key="category.id"
                   :class="{active: route.query?.category == category.id || currentCategoryId === category.id}"
                 >
-                  <NuxtLink :to="`/shop?category=${category.id}`" @click="fetchProd(category.id, 1)">
+                  <NuxtLink :to="`/shop?category=${category.id}`" @click="fetchProd({_categoryId: category.id, _page: 1})">
                     {{ category.name }}
                   </NuxtLink>
                 </li>
@@ -208,7 +213,7 @@ function addToCart(prod) {
             >
               <NuxtLink
                 :to="`/shop?category=${currentCategoryId}&page=${item}`"
-                @click="fetchProd(currentCategoryId, item)"
+                @click="fetchProd({_categoryId: currentCategoryId, _page: item})"
               >
                 {{ item }}
               </NuxtLink>

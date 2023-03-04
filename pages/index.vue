@@ -188,7 +188,7 @@ function addToCart(prod) {
             </div>
           </div><!--tab 1 end-->
         </div>
-        <NuxtLink to="/shop" class="btn btn-main btn-large btn-more mt-50">
+        <NuxtLink to="/shop?category=-1" class="btn btn-main btn-large btn-more mt-20 more-prod">
           更多商品
         </NuxtLink>
       </div>
@@ -239,5 +239,8 @@ function addToCart(prod) {
       flex-basis: 47.5%;
     }
   }
+}
+.more-prod {
+  margin-bottom: 40px;
 }
 </style>

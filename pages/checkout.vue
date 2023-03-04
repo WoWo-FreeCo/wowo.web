@@ -246,7 +246,9 @@ async function sendResult() {
 }
 function checkInputs() {
   if (!inputField.value.consignee.name || !inputField.value.consignee.cellphone ||
-  !inputField.value.consignee.addressDetailOne) {
+  !inputField.value.consignee.addressDetailOne || !inputField.value.consignee.province ||
+  !inputField.value.consignee.district || !inputField.value.consignee.city ||
+  !inputField.value.consignee.zipCode) {
     message.error('請確實填寫收件人資訊');
     return false;
   }
@@ -254,6 +256,14 @@ function checkInputs() {
     (!store.value.id || !store.value.name)) {
     message.error('請選擇欲取貨的店家');
     return false;
+  }
+  if (inputField.value?.consignee?.cellphone) {
+    const _string = inputField.value?.consignee?.cellphone;
+    const regex = /^[0-9]{10}$/g;
+    if (!regex.test(_string)) {
+      message.error('請輸入正確的手機格式 ex.0912345678');
+      return;
+    }
   }
   if (useDonation.value) {
     const regex = /^\d{3,7}$/;
@@ -405,66 +415,66 @@ function dateDisabled(ts) {
         <h5>收件人資訊</h5>
         <div class="ship_info">
           <input
-            id="ship_name2"
+            id="ship_name-2"
             v-model="inputField.consignee.name"
             type="text"
             placeholder="姓名*"
             class="form-control"
-            name=""
+            name="ship_name-2"
             required
           >
           <input
-            id="ship_phone2"
+            id="ship_phone-2"
             v-model="inputField.consignee.cellphone"
             type="text"
             placeholder="手機*"
             class="form-control"
-            name=""
+            name="ship_phone-2"
             required
           >
           <input
-            id="ship_address"
+            id="ship-province"
             v-model="inputField.consignee.province"
             type="text"
             placeholder="省*"
             class="form-control"
-            name=""
+            name="ship-province"
             required
           >
           <input
-            id="ship_address"
+            id="ship-district"
             v-model="inputField.consignee.district"
             type="text"
             placeholder="行政區*"
             class="form-control"
-            name=""
+            name="ship-district"
             required
           >
           <input
-            id="ship_address"
+            id="ship-city"
             v-model="inputField.consignee.city"
             type="text"
             placeholder="城市*"
             class="form-control"
-            name=""
+            name="ship-city"
             required
           >
           <input
-            id="ship_address"
+            id="ship-zipCode"
             v-model="inputField.consignee.zipCode"
             type="text"
             placeholder="郵遞區號*"
             class="form-control"
-            name=""
+            name="ship-zipCode"
             required
           >
           <input
-            id="ship_address"
+            id="ship-address-home"
             v-model="inputField.consignee.addressDetailOne"
             type="text"
             placeholder="收件地址*"
             class="form-control"
-            name=""
+            name="ship-address-home"
             required
           >
           <ClientOnly>

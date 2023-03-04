@@ -100,7 +100,7 @@ async function acceptDailyCheck(item) {
       duration: 2000
     });
   } catch (error) {
-    message.error(error?.data?.data?.message || '簽到失敗');
+    message.error(error?.data?.data?.message === 'User already checked in today.' ? '今日已簽到' : '簽到失敗' || '簽到失敗');
   }
   fetchDailySequence();
 }

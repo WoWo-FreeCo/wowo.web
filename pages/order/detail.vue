@@ -110,7 +110,7 @@ async function cancelOrder() {
         <div class="order_div">
           <div class="order_tl">
             訂單編號：<span>{{ curOrder?.id }}</span>
-            <a href="#" data-toggle="modal" data-target="#back" class="back_span">我要退貨</a>
+            <a href="#" data-toggle="modal" data-target="#back" class="back_span">申請取消訂單</a>
           </div>
           <ul>
             <li>訂單狀態：<span>{{ orderStatus }}</span></li>

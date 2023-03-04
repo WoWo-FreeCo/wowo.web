@@ -3,6 +3,7 @@ import { ProductType } from '@/constants/common';
 
 const routes = useRoute();
 const router = useRouter();
+const route = useRoute();
 
 const authStore = useAuthStore();
 const cartStore = useCartStore();
@@ -75,6 +76,15 @@ function deleteItem(item) {
 }
 
 function goCheckout() {
+  if (!authStore.status.loggedIn) {
+    return router.push({
+      path: '/login',
+      query: {
+        ...route.query,
+        redirect: '/order'
+      }
+    });
+  }
   router.push({ path: '/checkout', query: { ...routes.query } });
 }
 </script>

@@ -41,12 +41,12 @@ function copyUrl() {
             <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.facebook.com%2FLOVIN2022" target="_blank">
               <i class="fa-brands fa-facebook" style="font-size: 28px;" />
             </a>
-            <a href="https://www.instagram.com/p/Co1EeQHpvmD/?igshid=MDJmNzVkMjY=" target="_blank">
+            <!-- <a href="https://www.instagram.com/p/Co1EeQHpvmD/?igshid=MDJmNzVkMjY=" target="_blank">
               <i class="fa-brands fa-instagram" style="font-size: 28px;" />
             </a>
             <a href="https://youtu.be/9RlTDp0BBUw" target="_blank">
               <i class="fa-brands fa-youtube" style="font-size: 28px;" />
-            </a>
+            </a> -->
             <br>
 
             <a id="copy-btn" class="btn btn-main btn-check" :data-clipboard-text="shareURL" @click="copyUrl">複製分享網址</a>

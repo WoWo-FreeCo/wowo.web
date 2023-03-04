@@ -303,7 +303,7 @@ function dateDisabled(ts) {
         <tbody>
           <tr v-for="item in currentMerch" :key="item.id" class="prod-tr">
             <td class="cart_img">
-              <img :src="item?.thumbnail?.url || `https://picsum.photos/500/500?${item.id}`">
+              <img :src="item?.coverImg">
             </td>
             <td class="cart_tl">
               <h5>{{ item?.name }}</h5>

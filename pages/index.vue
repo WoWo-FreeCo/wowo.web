@@ -70,7 +70,7 @@ async function fetchProdCategories() {
 }
 async function fetchProd() {
   try {
-    const res = await $fetch(`${runtimeConfig.public.apiBase}/${GET_ALL_PRODUCT}?take=15`);
+    const res = await $fetch(`${runtimeConfig.public.apiBase}/${GET_ALL_PRODUCT}?take=30`);
     const { data } = res;
     products.value = data;
     currentProduct.value = data;
@@ -151,7 +151,7 @@ function addToCart(prod) {
                 </div>
                 <div class="product_img">
                   <NuxtLink :to="`/product?id=${item?.id}`">
-                    <img :src="item?.thumbnail?.url || `https://picsum.photos/500/500?${item.id}`" alt="">
+                    <img :src="item?.coverImg" alt="">
                   </NuxtLink>
                 </div>
                 <h3>

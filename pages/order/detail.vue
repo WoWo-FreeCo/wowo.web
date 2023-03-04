@@ -136,7 +136,7 @@ async function cancelOrder() {
             >
               <td class="cart_img">
                 <NuxtLink :to="`/product?id=${prod?.productId}`" target="new">
-                  <img src="@/assets/images/product/2.jpg">
+                  <img :src="prod?.coverImg">
                 </NuxtLink>
               </td>
               <td class="cart_tl">

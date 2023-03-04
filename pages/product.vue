@@ -13,7 +13,7 @@ const loading = ref(true);
 
 const addingAmount = ref(1);
 
-const currentTag = ref(1);
+const currentTag = ref(0);
 
 onMounted(async() => {
   await nextTick();
@@ -61,7 +61,7 @@ function goCheckout(prod) {
     }
   });
 }
-function fetchHTMLPage(tag = 1) {
+function fetchHTMLPage(tag = 0) {
   const htmlContainer = document.querySelector('.html-container');
   htmlContainer.innerHTML = currentProduct.value?.markdownInfos[tag].text;
   currentTag.value = tag;

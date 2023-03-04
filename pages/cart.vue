@@ -140,12 +140,12 @@ function goCheckout() {
           <tbody>
             <tr v-for="item in currentMerch" :key="item.id" class="prod-tr">
               <td class="cart_img">
-                <a href="/product" target="new">
+                <a :href="`/product?id=${item.id}`">
                   <img :src="item?.coverImg">
                 </a>
               </td>
               <td class="cart_tl">
-                <a href="/product" target="new">
+                <a :href="`/product?id=${item.id}`">
                   <h5>{{ item?.name }}</h5>
                 </a>
                 <n-input-number v-model:value="item.amount" :min="1" :style="{ width: '150px' }">

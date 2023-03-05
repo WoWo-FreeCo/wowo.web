@@ -81,7 +81,7 @@ function goCheckout() {
       path: '/login',
       query: {
         ...route.query,
-        redirect: '/order'
+        redirect: '/cart'
       }
     });
   }

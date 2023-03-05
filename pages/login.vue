@@ -1,11 +1,12 @@
 <script setup>
 // ! TODO: 目前串假資料，之後接APIs
 // import mockAccount from '@/mocks/mockAccounts.json';
+import { useMessage } from 'naive-ui';
 import { ADMIN_LOGIN, USER_LOGIN, GET_PROFILE } from '@/apis/requestURL';
 
 const routes = useRoute();
 const router = useRouter();
-// const message = useMessage();
+const message = useMessage();
 
 const authStore = useAuthStore();
 const config = useRuntimeConfig();
@@ -26,8 +27,10 @@ onMounted(async() => {
       });
       authStore.loginSuccess(accessToken);
       authStore.updateUser(res.data);
+      message.success('已自動登入');
     } catch (error) {
       authStore.logout();
+      message.error('登入已逾期，請重新登入');
     }
     rediectPath();
   }
@@ -39,11 +42,13 @@ async function tryLogin() {
       method: 'POST',
       body: inputField.value
     });
-    console.log(res);
+    // console.log(res);
     setLoginResponse(res.data);
+    message.success('登入成功');
   } catch (error) {
     if (error.statusCode) {
-      alert('請輸入正確的帳號及密碼');
+      message.error('請輸入正確的帳號及密碼');
+      // alert('請輸入正確的帳號及密碼');
     }
   }
 }

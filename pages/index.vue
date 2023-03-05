@@ -146,7 +146,7 @@ function addToCart(prod) {
             <div class="index_pslide">
               <!---1--->
               <!--一個類別只要顯示9個產品, 請以此div類推--><!----------------------!!!!!!!!新版改, ul 裡的價錢標籤!!!!!!!!---------------------->
-              <div v-for="item in currentProduct" :key="item.key" class="product_frame">
+              <div v-for="item in currentProduct" v-show="item?.inventory?.quantity >= 1" :key="item.key" class="product_frame">
                 <div v-show="item?.brief" class="hot_sale2">
                   {{ item.brief }}
                 </div>

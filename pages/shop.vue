@@ -161,7 +161,7 @@ function addToCart(prod) {
         <div class="row">
           <!---1--->
           <div class="flex-row col-lg-4 col-md-6 col-sm-12">
-            <div v-for="item in currentProduct" :key="item.id" class="product_frame">
+            <div v-for="item in currentProduct" v-show="item?.inventory?.quantity >= 1" :key="item.id" class="product_frame">
               <div v-show="item.brief" class="hot_sale2">
                 <!--灌水熱銷組-->
                 <span>{{ item.brief }}</span>

@@ -13,6 +13,9 @@ const cartStore = useCartStore();
 const bonusCut = ref(0);
 const useTaxId = ref(false);
 const useUic = ref(false);
+const deliverDate = ref();
+const deliverTimeStart = ref();
+const deliverTimeEnd = ref();
 const readRules = ref(false);
 const useDonation = ref(false);
 const cartType = ref(ProductType.General);
@@ -163,7 +166,11 @@ const inputField = ref({
     loveCode: ''
   },
   products: [],
-  bonusPointRedemption: 0 // 紅利點數
+  bonusPointRedemption: 0, // 紅利點數
+  requiredDeliveryTimeslots: [{ // 可送貨時間 區間
+    date: '2023-03-02T00:00:00Z',
+    slot: '14:00-18:00' // 14:00-18:00
+  }]
 });
 
 function preprocessInput() {
@@ -191,7 +198,6 @@ function preprocessInput() {
       customerPhone: inputField.value.consignee.cellphone,
       customerName: inputField.value.consignee.name,
       customerAddr: inputField.value.consignee.addressDetailOne
-
     },
     bonusPointRedemption: bonusCut.value,
     products: currentMerch.value.map((e) => {
@@ -199,18 +205,33 @@ function preprocessInput() {
         id: e.id,
         quantity: e.amount
       };
-    })
+    }),
+    requiredDeliveryTimeslots: [
+      {
+        date: new Date(deliverDate.value).toISOString(),
+        slot: `${getPickedTime(deliverTimeStart.value)}-${getPickedTime(deliverTimeEnd.value)}`
+      }
+    ]
   };
   return body;
 }
+function getPickedTime(time) {
+  const date = new Date(time);
 
+  const hours = date.getHours();
+  const minutes = date.getMinutes();
+
+  const _time = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+  // xx:xx format
+  return _time;
+}
 async function sendResult() {
   const isOK = checkInputs();
   if (!isOK) return;
 
   const body = preprocessInput();
 
-  console.log(body);
+  console.log(body, deliverTimeStart.value, deliverTimeEnd.value);
 
   // return;
   try {
@@ -255,6 +276,11 @@ function checkInputs() {
   if (inputField.value.consignee.deliveryType === DeliverType.Store &&
     (!store.value.id || !store.value.name)) {
     message.error('請選擇欲取貨的店家');
+    return false;
+  }
+  if (inputField.value.consignee.deliveryType === DeliverType.Home &&
+    (!deliverDate.value || !deliverTimeStart.value || !deliverTimeEnd.value)) {
+    message.error('請選擇可取貨的時間區段');
     return false;
   }
   if (inputField.value?.consignee?.cellphone) {
@@ -479,11 +505,30 @@ function dateDisabled(ts) {
           >
           <ClientOnly>
             <n-date-picker
+              v-if="inputField.consignee.deliveryType !== DeliverType.Store"
+              v-model:value="deliverDate"
               type="date"
               placeholder="請選擇可收貨日期"
               :is-date-disabled="dateDisabled"
               required
             />
+            <n-space>
+              <n-time-picker
+                v-if="inputField.consignee.deliveryType !== DeliverType.Store"
+                v-model:value="deliverTimeStart"
+                format="h:mm a"
+                placeholder="收貨時間點-開始"
+                required
+              />
+              <n-time-picker
+                v-if="inputField.consignee.deliveryType !== DeliverType.Store"
+                v-model:value="deliverTimeEnd"
+                format="h:mm a"
+                :disabled="!deliverTimeStart"
+                placeholder="收貨時間-結束"
+                required
+              />
+            </n-space>
           </ClientOnly>
         </div>
       </div>

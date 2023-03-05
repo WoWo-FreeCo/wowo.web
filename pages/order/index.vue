@@ -55,7 +55,7 @@ const orderStatus = (order) => {
   case OrderStatus.Cancelled:
     return '已取消';
   case OrderStatus.Revoked:
-    return '退貨/退款';
+    return '已退貨';
   default:
     return curOrder.value.orderStatus;
   }

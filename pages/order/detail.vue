@@ -35,7 +35,7 @@ const orderStatus = computed(() => {
   case 'CANCELLED':
     return '已取消';
   case 'REVOKED':
-    return '退貨';
+    return '已退貨';
   default:
     return curOrder.value.orderStatus;
   }

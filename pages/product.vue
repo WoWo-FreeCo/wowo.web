@@ -179,7 +179,7 @@ function fetchHTMLPage(tag = 0) {
 
               <div class="nums">
                 <n-input-number v-show="!loading" v-model:value="addingAmount" :min="1" style="width: 150px;" />
-                <span>庫存：{{ currentProduct?.quantity || 99 }}</span>
+                <span>庫存：{{ currentProduct?.inventory?.quantity || 0 }}</span>
               </div>
 
               <!-- <div class="product-quantity"> -->
@@ -326,5 +326,6 @@ function fetchHTMLPage(tag = 0) {
   display: flex;
   gap: 12px;
   margin-top: 24px;
+  align-items: center;
 }
 </style>

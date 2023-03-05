@@ -3,8 +3,8 @@ import { defineStore } from 'pinia';
 // const user = JSON.parse(localStorage.getItem('user') as string);
 
 type State = {
-  merch: [];
-  favMerch: [];
+  merch: any[];
+  favMerch: any[];
 }
 
 const initialState: State = {
@@ -21,14 +21,14 @@ export const useCartStore = defineStore({
   },
   actions: {
     updateMerch(_merch: []) {
-      this.merch = _merch;
+      this.merch = _merch.filter((e: any) => e?.inventory?.quantity >= 1);
       localStorage.setItem('cart-product', JSON.stringify(this.merch));
       // console.log('–––––––– update merch');
     },
     updateFavMerch(_favMerch: []) {
-      this.favMerch = _favMerch;
+      this.favMerch = _favMerch.filter((e: any) => e?.inventory?.quantity >= 1);
       localStorage.setItem('cart-fav-product', JSON.stringify(this.favMerch));
-      console.log('–––––––– update fav merch');
+      // console.log('–––––––– update fav merch');
     }
   }
 });

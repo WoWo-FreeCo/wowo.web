@@ -452,4 +452,7 @@ async function updateProfile() {
     display: none;
   }
 }
+.btn {
+  font-weight: 400;
+}
 </style>

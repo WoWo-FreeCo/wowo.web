@@ -49,7 +49,7 @@ const orderStatus = (order) => {
   case OrderStatus.WaitDeliver:
     return '待出貨';
   case OrderStatus.WaitReceive:
-    return '待取貨';
+    return '已出貨';
   case OrderStatus.Completed:
     return '已完成';
   case OrderStatus.Cancelled:

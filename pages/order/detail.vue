@@ -1,4 +1,6 @@
 <script setup>
+import dayjs from 'dayjs';
+
 import { useMessage } from 'naive-ui';
 import { GET_USER_ORDERS_DETAIL, POST_CANCEL_ORDER } from '@/apis/requestURL';
 import { ProductType } from '@/constants/common';
@@ -101,6 +103,10 @@ async function cancelOrder() {
   }
   fetchData();
 }
+function getFormattedData(date) {
+  const _date = dayjs(date);
+  return _date.format('YYYY/MM/DD A hh:mm');
+}
 </script>
 
 <template>
@@ -114,9 +120,9 @@ async function cancelOrder() {
           </div>
           <ul>
             <li>訂單狀態：<span>{{ orderStatus }}</span></li>
-            <li>訂單日期：<span>{{ curOrder?.createdAt }}</span></li>
+            <li>訂單日期：<span>{{ getFormattedData(curOrder?.createdAt) }}</span></li>
             <li>付款方式：<span>{{ curOrder?.paymentType }}</span></li>
-            <li>寄送方式：<span>{{ curOrder?.createdAt }}</span></li>
+            <li>寄送方式：<span>{{ }}</span></li>
             <li>住   址：<span>{{ curOrder?.consignee?.addressDetailOne }}</span></li>
             <li>可收貨日：<span>{{ "" }}</span></li>
             <li>發票類型：<span>{{ "" }}</span></li>

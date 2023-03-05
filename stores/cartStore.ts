@@ -18,8 +18,11 @@ export const useCartStore = defineStore({
     // coldChainMerch: state => state.cartMerch.coldChain
   },
   actions: {
-    updateMerch(_category: 'Normal' | 'ColdChain', _items: []) {
+    updateMerch(_merch: []) {
       // TODO: add merch updating flow
+      this.merch = _merch;
+      localStorage.setItem('cart-product', JSON.stringify(this.merch));
+      console.log('–––––––– update merch');
     }
   }
 });

@@ -71,8 +71,8 @@ function updateCartType() {
 }
 
 function deleteItem(item) {
-  cartStore.merch = cartStore.merch.filter(e => e.id !== item.id);
-  // console.log(item);
+  const _merch = cartStore.merch.filter(e => e.id !== item.id);
+  cartStore.updateMerch(_merch);
 }
 
 function goCheckout() {

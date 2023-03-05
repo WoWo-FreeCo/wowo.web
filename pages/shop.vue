@@ -105,7 +105,8 @@ function addToCart(prod) {
   } else {
     existProd.amount++;
   }
-  console.log(cartStore.merch);
+  const _merch = cartStore.merch;
+  cartStore.updateMerch(_merch);
 }
 </script>
 

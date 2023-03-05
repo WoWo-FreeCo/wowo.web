@@ -48,6 +48,8 @@ function addToCart(prod) {
   } else {
     existProd.amount = amount;
   }
+  const _merch = cartStore.merch;
+  cartStore.updateMerch(_merch);
 }
 function goCheckout(prod) {
   addToCart(prod);

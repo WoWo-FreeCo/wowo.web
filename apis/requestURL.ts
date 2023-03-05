@@ -17,6 +17,7 @@ export const GET_PRODUCT_CATEGORY = `${prefix}/product-category`;
 export const GET_PRODUCT_DETAIL = (_id: string) => `${prefix}/product/${_id}/detail`;
 export const GET_DAILY_SEQUENCE = `${prefix}/check-content/sequence`;
 export const GET_HOME_BANNER = `${prefix}/home-banner`;
+export const GET_REFRESH_TOKEN = `${prefix}/user/refresh`;
 
 export const USER_REGISTER = `${prefix}/user/register`;
 export const USER_LOGIN = `${prefix}/user/login`;

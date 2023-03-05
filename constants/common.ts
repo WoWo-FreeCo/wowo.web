@@ -19,3 +19,12 @@ export enum UICType {
   NPC = 2,
   Mobile = 3
 }
+
+export enum OrderStatus {
+  WaitPayment = 'WAIT_PAYMENT',
+  WaitDeliver = 'WAIT_DELIVER',
+  WaitReceive = 'WAIT_RECEIVE',
+  Completed = 'COMPLETED',
+  Cancelled = 'CANCELLED',
+  Revoked = 'REVOKED',
+}

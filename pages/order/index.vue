@@ -2,7 +2,7 @@
 import { useMessage } from 'naive-ui';
 import dayjs from 'dayjs';
 import { GET_USER_ORDERS, POST_CANCEL_ORDER } from '@/apis/requestURL';
-import { ProductType } from '@/constants/common';
+import { ProductType, OrderStatus } from '@/constants/common';
 
 const authStore = useAuthStore();
 const message = useMessage();
@@ -11,31 +11,50 @@ const route = useRoute();
 const runtimeConfig = useRuntimeConfig();
 
 const orders = ref([]);
+const selectStatus = ref(-1);
 
 const curProdType = ref(ProductType.General);
 
 const curOrders = computed(() => {
+  let _orders = [];
   switch (curProdType.value) {
   case ProductType.ColdChain:
-    return orders.value?.filter(e => e.attribute === ProductType.ColdChain);
+    _orders = [...orders.value?.filter(e => e.attribute === ProductType.ColdChain)];
+    break;
   default:
-    return orders.value?.filter(e => e.attribute === ProductType.General);
+    _orders = [...orders.value?.filter(e => e.attribute === ProductType.General)];
+    break;
+  }
+  switch (selectStatus.value) {
+  case OrderStatus.WaitPayment:
+    return _orders?.filter(e => e.orderStatus === OrderStatus.WaitPayment);
+  case OrderStatus.WaitDeliver:
+    return _orders?.filter(e => e.orderStatus === OrderStatus.WaitDeliver);
+  case OrderStatus.WaitReceive:
+    return _orders?.filter(e => e.orderStatus === OrderStatus.WaitReceive);
+  case OrderStatus.Completed:
+    return _orders?.filter(e => e.orderStatus === OrderStatus.Completed);
+  case OrderStatus.Cancelled:
+    return _orders?.filter(e => e.orderStatus === OrderStatus.Cancelled);
+  case OrderStatus.Revoked:
+    return _orders?.filter(e => e.orderStatus === OrderStatus.Revoked);
+  default: return _orders;
   }
 });
 
 const orderStatus = (order) => {
   switch (order?.orderStatus) {
-  case 'WAIT_PAYMENT':
+  case OrderStatus.WaitPayment:
     return '待付款';
-  case 'WAIT_DELIVER':
+  case OrderStatus.WaitDeliver:
     return '運送中';
-  case 'WAIT_RECEIVE':
+  case OrderStatus.WaitReceive:
     return '待取貨';
-  case 'COMPLETED':
+  case OrderStatus.Completed:
     return '已完成';
-  case 'CANCELLED':
+  case OrderStatus.Cancelled:
     return '已取消';
-  case 'REVOKED':
+  case OrderStatus.Revoked:
     return '退貨';
   default:
     return curOrder.value.orderStatus;
@@ -130,21 +149,27 @@ async function cancelOrder(item) {
           </ul>
 
           <div class="select r0t0">
-            <select>
-              <option selected>
+            <select v-model="selectStatus">
+              <option value="-1">
                 訂單狀態
               </option>
-              <option value="">
+              <option :value="OrderStatus.WaitPayment">
                 待付款
               </option>
-              <option value="">
-                已付款
+              <option :value="OrderStatus.WaitDeliver">
+                運送中
               </option>
-              <option value="">
-                已出貨
+              <option :value="OrderStatus.WaitReceive">
+                待取貨
               </option>
-              <option value="">
+              <option :value="OrderStatus.Completed">
+                已完成
+              </option>
+              <option :value="OrderStatus.Cancelled">
                 已取消
+              </option>
+              <option :value="OrderStatus.Revoked">
+                退貨
               </option>
             </select>
           </div>

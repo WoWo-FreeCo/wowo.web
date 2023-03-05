@@ -31,6 +31,7 @@ onMounted(async() => {
     } catch (error) {
       authStore.logout();
       message.error('登入已逾期，請重新登入');
+      return;
     }
     rediectPath();
   }

@@ -177,7 +177,10 @@ function fetchHTMLPage(tag = 0) {
                 <NuxtLink to="/profile">我要升等</NuxtLink>
               </span><!--未到達的VIP價右邊顯示連結-->
 
-              <n-input-number v-show="!loading" v-model:value="addingAmount" :min="1" style="width: 150px;margin-top: 24px;" />
+              <div style="margin-top: 24px;">
+                <n-input-number v-show="!loading" v-model:value="addingAmount" :min="1" style="width: 150px;" />
+                <span>庫存：{{ currentProduct?.quantity || 99 }}</span>
+              </div>
 
               <!-- <div class="product-quantity"> -->
               <!-- <span>數量</span>

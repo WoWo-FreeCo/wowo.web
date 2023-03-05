@@ -177,7 +177,7 @@ function fetchHTMLPage(tag = 0) {
                 <NuxtLink to="/profile">我要升等</NuxtLink>
               </span><!--未到達的VIP價右邊顯示連結-->
 
-              <div style="margin-top: 24px;">
+              <div class="nums">
                 <n-input-number v-show="!loading" v-model:value="addingAmount" :min="1" style="width: 150px;" />
                 <span>庫存：{{ currentProduct?.quantity || 99 }}</span>
               </div>
@@ -321,5 +321,10 @@ function fetchHTMLPage(tag = 0) {
 }
 .btn-check {
   margin-left: 12px;
+}
+.nums {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
 }
 </style>

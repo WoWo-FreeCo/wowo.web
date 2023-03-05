@@ -2,7 +2,7 @@
 // ! TODO: 目前串假資料，之後接APIs
 // import mockAccount from '@/mocks/mockAccounts.json';
 import { useMessage } from 'naive-ui';
-import { ADMIN_LOGIN, USER_LOGIN, GET_PROFILE } from '@/apis/requestURL';
+import { USER_LOGIN, GET_PROFILE } from '@/apis/requestURL';
 
 const routes = useRoute();
 const router = useRouter();

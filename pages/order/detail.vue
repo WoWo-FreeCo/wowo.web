@@ -11,14 +11,14 @@ const message = useMessage();
 
 const curOrder = ref({});
 
-const oderAttr = computed(() => {
-  switch (curOrder.value?.attribute) {
-  case ProductType.ColdChain:
-    return '一般商品';
-  default:
-    return '冷鏈商品';
-  }
-});
+// const oderAttr = computed(() => {
+//   switch (curOrder.value?.attribute) {
+//   case ProductType.ColdChain:
+//     return '一般商品';
+//   default:
+//     return '冷鏈商品';
+//   }
+// });
 
 const orderStatus = computed(() => {
   switch (curOrder.value?.orderStatus) {

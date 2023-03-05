@@ -1,6 +1,6 @@
 <script setup>
 // import mockProduct from '@/mocks/mockProducts.json';
-import { GET_ALL_PRODUCT, GET_PRODUCT_DETAIL } from '@/apis/requestURL';
+import { GET_PRODUCT_DETAIL } from '@/apis/requestURL';
 
 const cartStore = useCartStore();
 const route = useRoute();
@@ -14,6 +14,8 @@ const loading = ref(true);
 const addingAmount = ref(1);
 
 const currentTag = ref(0);
+
+const isFavorite = computed(() => cartStore.favMerch?.find(e => e.id === currentProduct.value.id));
 
 onMounted(async() => {
   await nextTick();
@@ -51,6 +53,16 @@ function addToCart(prod) {
   const _merch = cartStore.merch;
   cartStore.updateMerch(_merch);
 }
+function addToFavorite() {
+  const existProd = cartStore.favMerch.find(e => e.id === currentProduct.value.id);
+  if (!existProd) {
+    cartStore.favMerch.push(currentProduct.value);
+  } else {
+    cartStore.favMerch = cartStore.favMerch.filter(e => e.id !== currentProduct.value.id);
+  }
+  const _merch = cartStore.favMerch;
+  cartStore.updateFavMerch(_merch);
+}
 function goCheckout(prod) {
   addToCart(prod);
   const query = prod?.attribute === 'COLD_CHAIN'
@@ -78,9 +90,16 @@ function fetchHTMLPage(tag = 0) {
             <!----------------!!!!!!!!!!!! class加col-sm-12 !!!!!!!!!!!!---------------->
             <div class="product_frame">
               <span class="pagingInfo" />
-              <button class="add_like">
-                <i class="far fa-heart" />
-              </button><!--點擊之後, 加入最愛, class改 class="fa-solid fa-heart"-->
+              <button class="add_like" @click="addToFavorite">
+                <i
+                  class="far fa-heart"
+                  :class="{
+                    'fa-solid': isFavorite,
+                    'fa-heart': isFavorite
+                  }"
+                />
+              </button>
+              <!--點擊之後, 加入最愛, class改 class="fa-solid fa-heart"-->
 
               <!--灌水熱銷組, 後臺沒輸入不出現-->
               <div class="hot_sale">
@@ -287,5 +306,17 @@ function fetchHTMLPage(tag = 0) {
 .prod-name {
   margin: 12px 0;
   min-height: 36px;
+}
+.add_like {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 99;
+}
+.btn {
+  font-weight: 400;
+}
+.btn-check {
+  margin-left: 12px;
 }
 </style>

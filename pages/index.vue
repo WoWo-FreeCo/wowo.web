@@ -243,5 +243,6 @@ function addToCart(prod) {
 }
 .more-prod {
   margin-bottom: 40px;
+  font-weight: 400;
 }
 </style>

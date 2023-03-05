@@ -87,7 +87,7 @@ async function fetchData() {
 async function cancelOrder(item) {
   try {
     const oid = item?.id;
-    const res = await $fetch(`${runtimeConfig.public.apiBase}/${POST_CANCEL_ORDER(oid)}`, {
+    await $fetch(`${runtimeConfig.public.apiBase}/${POST_CANCEL_ORDER(oid)}`, {
       method: 'POST',
       headers: {
         authorization: 'Bearer ' + localStorage.getItem('accessToken')

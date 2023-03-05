@@ -1,16 +1,23 @@
 <script setup>
 const authStore = useAuthStore();
+const cartStore = useCartStore();
 const router = useRouter();
+const route = useRoute();
+
+const favProduct = computed(() => cartStore.favMerch);
+const maxPage = ref(1);
 
 onMounted(() => {
   if (!authStore.status.loggedIn) {
     router.push({
       path: '/login',
       query: {
+        ...route.query,
         redirect: '/favorite'
       }
     });
   }
+  maxPage.value = parseInt(favProduct.value.length / 6) + 1;
 });
 </script>
 <template>
@@ -24,83 +31,76 @@ onMounted(() => {
             按讚好物
           </h3>
           <!----------------!!!!!!!!!!!!class 改 h3_tl & border_bottom!!!!!!!!!!!!---------------->
-          <div class="total_love">
-            共1項商品
+          <div v-if="favProduct.length" class="total_love">
+            共 {{ favProduct.length }} 項商品
+          </div>
+          <div v-else class="empty-hint">
+            目前還沒有最愛商品哦
+            <br>
+            <NuxtLink to="/shop?category=-1" class="btn btn-main btn-large btn-more mt-20 more-prod">
+              來去逛逛
+            </NuxtLink>
           </div>
           <!--總加入最愛數量-->
-          <div class="row favs-row">
+          <div class="row">
             <!---1--->
-            <div class="col-lg-4 col-md-6 col-sm-12">
-              <div class="product_frame">
-                <!----------------------!!!!!!!!新版改, ul 裡的價錢標籤!!!!!!!!---------------------->
-                <div class="hot_sale2">
+            <div class="flex-row col-lg-4 col-md-6 col-sm-12">
+              <div v-for="item in favProduct" :key="item.id" class="product_frame">
+                <div v-show="item.brief" class="hot_sale2">
                   <!--灌水熱銷組-->
-                  熱銷<span>30</span>組
+                  <span>{{ item.brief }}</span>
                 </div>
                 <div class="product_img">
-                  <a href="/product" target="_blank">
-                    <img src="@/assets/images/product/2009.jpg" alt=""><!--建議 600*400-->
-                  </a>
+                  <NuxtLink :to="`/product?id=${item.id}`">
+                    <img :src="item?.coverImg" alt="">
+                  </NuxtLink>
                 </div>
                 <h3>
-                  <a href="/product" target="_blank">產品名稱產品名稱產品名稱產品名稱產品名稱產品名稱1</a>
+                  <NuxtLink :to="`/product?id=${item.id}`">
+                    {{ item.name }}
+                  </NuxtLink>
                 </h3>
                 <ul>
-                  <!----------------------!!!!!!!!新版改, 價錢標籤!!!!!!!!---------------------->
                   <li>
-                    $130
+                    ${{ item?.price }}
                     <span>市場價</span>
                   </li>
                   <li>
-                    $130
+                    ${{ item?.memberPrice }}
                     <span>會員價</span>
                   </li>
                   <li>
-                    $130
+                    ${{ item?.vipPrice }}
                     <span>VIP價</span>
                   </li>
                   <li>
-                    $130
+                    ${{ item?.svipPrice }}
                     <span>SVIP價</span>
                   </li>
                   <li>
-                    <button><i class="fa-solid fa-cart-shopping" /><!----------------!!!!!!!!!!!! <i class="fa-solid fa-cart-plus"></i> 改<i class="fa-solid fa-cart-shopping"></i> !!!!!!!!!!!!----------------></button>
+                    <button @click="addToCart(item)">
+                      <i class="fa-solid fa-cart-shopping" />
+                    </button>
                   </li>
                 </ul>
               </div>
-            </div><!---1 end--->
+            </div>
           </div>
-          <div class="text-center">
+          <!-- <div v-if="favProduct.length" class="text-center">
             <ul class="pagination post-pagination">
-              <li>
-                <a href="#!">上一頁</a>
-              </li>
-              <li class="active">
-                <a href="#!">1</a>
-              </li>
-              <li>
-                <a href="#!">2</a>
-              </li>
-              <li>
-                <a href="#!">3</a>
-              </li>
-              <li>
-                <a href="#!">4</a>
-              </li>
-              <li>
-                <a href="#!">5</a>
-              </li>
-              <li>
-                <a href="#!">下一頁</a>
+              <li v-for="item,index in maxPage" :key="index" class="active">
+                <NuxtLink :to="`/favorite?page=${index+1}`">
+                  {{ index + 1 }}
+                </NuxtLink>
               </li>
             </ul>
-          </div>
-
-          <h3 class="h3_tl border_top pt-20">
+          </div> -->
+          <!--
+          <h3  class="h3_tl border_top pt-20">
             已買過商品
-          </h3>
+          </h3> -->
 
-          <div class="product_slide2">
+          <div v-if="false" class="product_slide2">
             <!---1--->
             <div class="product_frame">
               <div class="hot_sale2">
@@ -156,5 +156,25 @@ onMounted(() => {
 }
 .favs-row {
   margin: 0;
+}
+.flex-row {
+  @media screen and (min-width: 992px) {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    .product_frame {
+      width: 33.33%;
+    }
+  }
+}
+.empty-hint {
+  font-size: 24px;
+  text-align: center;
+  margin-top: 24px;
+  font-weight: 500;
+}
+.more-prod {
+  margin-bottom: 28px;
+  font-weight: 400;
 }
 </style>

@@ -27,10 +27,16 @@ async function fetchAuth() {
 }
 
 function fetchLocalCart() {
-  const cart = localStorage.getItem('cart-product');
-  if (!cart) return;
-  const _merch = JSON.parse(cart);
-  cartStore.updateMerch(_merch);
+  const merch = localStorage.getItem('cart-product');
+  const favMerch = localStorage.getItem('cart-fav-product');
+  if (merch) {
+    const _merch = JSON.parse(merch);
+    cartStore.updateMerch(_merch);
+  }
+  if (favMerch) {
+    const _merch = JSON.parse(favMerch);
+    cartStore.updateFavMerch(_merch);
+  }
 }
 </script>
 

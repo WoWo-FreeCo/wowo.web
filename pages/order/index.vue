@@ -47,7 +47,7 @@ const orderStatus = (order) => {
   case OrderStatus.WaitPayment:
     return '待付款';
   case OrderStatus.WaitDeliver:
-    return '已出貨';
+    return '待出貨';
   case OrderStatus.WaitReceive:
     return '待取貨';
   case OrderStatus.Completed:
@@ -55,7 +55,7 @@ const orderStatus = (order) => {
   case OrderStatus.Cancelled:
     return '已取消';
   case OrderStatus.Revoked:
-    return '已退貨';
+    return '退貨/退款';
   default:
     return curOrder.value.orderStatus;
   }

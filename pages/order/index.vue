@@ -1,5 +1,6 @@
 <script setup>
 import { useMessage } from 'naive-ui';
+import dayjs from 'dayjs';
 import { GET_USER_ORDERS, POST_CANCEL_ORDER } from '@/apis/requestURL';
 import { ProductType } from '@/constants/common';
 
@@ -40,6 +41,11 @@ const orderStatus = (order) => {
     return curOrder.value.orderStatus;
   }
 };
+
+function getFormattedData(date) {
+  const _date = dayjs(date);
+  return _date.format('YYYY/MM/DD A hh:mm');
+}
 
 const orderAttr = (order) => {
   if (order?.attribute === ProductType.General) return '一般商品';
@@ -170,7 +176,7 @@ async function cancelOrder(item) {
                   {{ order?.id }}
                 </td>
                 <td data-th="訂單日期">
-                  {{ order?.createdAt }}
+                  {{ getFormattedData(order?.createdAt) }}
                 </td>
                 <td data-th="訂單類型">
                   {{ orderAttr(order) }}

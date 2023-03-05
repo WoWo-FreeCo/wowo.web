@@ -113,11 +113,11 @@ async function acceptDailyCheck(item) {
 
     <div class="container signpoint_content">
       <h4 class="text-center mypoint">
-        <a href="mypoint.html" target="new">
+        <NuxtLink to="/bonus-point">
           我的紅利
           <i class="fas fa-parking" />
           {{ authStore.user?.rewardCredit }}
-        </a><!--顯示目前此會員剩餘紅利-->
+        </NuxtLink><!--顯示目前此會員剩餘紅利-->
       </h4>
       <div class="text-center">
         已累計簽到：{{ acceptedCount }}次

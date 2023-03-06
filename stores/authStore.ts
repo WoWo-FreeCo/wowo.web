@@ -27,10 +27,11 @@ export const useAuthStore = defineStore({
     updateUser(data: {}) {
       this.user = data;
     },
-    loginSuccess(_token = '') {
+    loginSuccess(_token = '', _rt = '') {
       // TODO: add login flow
       this.status.loggedIn = true;
       localStorage.setItem('accessToken', _token);
+      localStorage.setItem('refreshToken', _rt);
     },
     logout() {
       this.status.loggedIn = false;

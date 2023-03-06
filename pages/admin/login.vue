@@ -50,9 +50,9 @@ async function tryLogin() {
 }
 
 async function setLoginResponse(data) {
-  const { accessToken } = data;
+  const { accessToken, refreshToken } = data;
   // console.log(accessToken);
-  authStore.loginSuccess(accessToken);
+  authStore.loginSuccess(accessToken, refreshToken);
 
   const res = await $fetch(`${config.public.apiBase}/${GET_ADMIN_PROFILE}`, {
     method: 'GET',

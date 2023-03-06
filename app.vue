@@ -11,18 +11,24 @@ onMounted(async() => {
 
 async function fetchAuth() {
   const accessToken = localStorage.getItem('accessToken');
+  const refreshToken = localStorage.getItem('refreshToken');
   if (!accessToken) {
-    // console.log('尚未登入');
+    console.log('尚未登入');
     return;
   }
   try {
-    const res = await $fetch(`${config.public.apiBase}/${GET_REFRESH_TOKEN}`);
-    authStore.loginSuccess(accessToken);
-    authStore.updateUser(res.data);
-    // console.log('成功登入');
+    const res = await $fetch(`${config.public.apiBase}/${GET_REFRESH_TOKEN}`, {
+      method: 'GET',
+      headers: {
+        authorization: 'Bearer ' + refreshToken
+      }
+    });
+    const _data = await res.data;
+    authStore.loginSuccess(_data?.accessToken);
+    authStore.updateUser(_data);
+    console.log('成功登入');
   } catch (error) {
-    console.log(error);
-    // console.log('登入時間已逾期，請重新登入');
+    console.log('refreshToken失敗 or 登入時間已逾期，請重新登入');
   }
 }
 

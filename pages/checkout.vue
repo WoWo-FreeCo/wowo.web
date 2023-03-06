@@ -77,19 +77,12 @@ onUnmounted(() => {
 
 async function fetchData() {
   try {
-    const body = preprocessInput();
+    const body = preprocessInput(true);
+    delete body.requiredDeliveryTimeslots;
+    console.log('123,, ', body);
     const res = await $fetch(`${runtimeConfig.public.apiBase}/${POST_PAYMENT_PRE}`, {
       method: 'POST',
       body,
-      // body: {
-      //   attribute: cartType.value,
-      //   products: currentMerch.value.map((e) => {
-      //     return {
-      //       id: e.id,
-      //       quantity: e.amount
-      //     };
-      //   })
-      // },
       headers: {
         authorization: 'Bearer ' + localStorage.getItem('accessToken')
       }
@@ -98,6 +91,7 @@ async function fetchData() {
     preSettlement.value = res.data;
   } catch (error) {
     //
+    console.log(error);
   }
 }
 
@@ -173,7 +167,14 @@ const inputField = ref({
   }]
 });
 
-function preprocessInput() {
+function preprocessInput(pre = false) {
+  const requiredDeliveryTimeslots = inputField.value.consignee.deliveryType ===
+      DeliverType.Home && !pre
+    ? {
+      date: new Date(deliverDate.value).toISOString(),
+      slot: `${getPickedTime(deliverTimeStart.value)}-${getPickedTime(deliverTimeEnd.value)}`
+    }
+    : {};
   const body = {
     ...inputField.value,
     attribute: cartType.value,
@@ -207,10 +208,7 @@ function preprocessInput() {
       };
     }),
     requiredDeliveryTimeslots: [
-      {
-        date: new Date(deliverDate.value).toISOString(),
-        slot: `${getPickedTime(deliverTimeStart.value)}-${getPickedTime(deliverTimeEnd.value)}`
-      }
+      requiredDeliveryTimeslots
     ]
   };
   return body;

@@ -55,9 +55,8 @@ async function tryLogin() {
 }
 
 async function setLoginResponse(data) {
-  const { accessToken } = data;
-  // console.log(accessToken);
-  authStore.loginSuccess(accessToken);
+  const { accessToken, refreshToken } = data;
+  authStore.loginSuccess(accessToken, refreshToken);
 
   const res = await $fetch(`${config.public.apiBase}/${GET_PROFILE}`, {
     method: 'GET',

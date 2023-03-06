@@ -311,7 +311,7 @@ async function updateProfile() {
       <div id="member_vip" class="level_frame">
         <h3 class="level_tl">
           <span>目前級別：</span>{{ currentLevel }}
-          <a href="#" data-toggle="modal" data-target="#vipdesc"><i class="fa-solid fa-circle-question" /> <u>查看升等方式</u></a>
+          <!-- <a href="#" data-toggle="modal" data-target="#vipdesc"><i class="fa-solid fa-circle-question" /> <u>查看升等方式</u></a> -->
         </h3>
         <div class="row level_content">
           <div v-if="authUser.memberLevel === 'NORMAL'">
@@ -397,7 +397,7 @@ async function updateProfile() {
       <div v-if="false" class="level_frame">
         <h3 class="level_tl">
           <span>目前級別：</span>VIP會員
-          <a href="#" data-toggle="modal" data-target="#vipdesc"><i class="fa-solid fa-circle-question" /> <u>查看升等方式</u></a>
+          <!-- <a href="#" data-toggle="modal" data-target="#vipdesc"><i class="fa-solid fa-circle-question" /> <u>查看升等方式</u></a> -->
         </h3>
         <div class="row level_content">
           <h4>我要解鎖成為<span>SVIP</span>：<span class="level_tips">『A.綁定SVIP激活碼』或『B.按讚WO粉絲團+C.訂閱WO頻道』，即可成為SVIP!</span></h4>

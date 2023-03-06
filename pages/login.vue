@@ -140,12 +140,12 @@ function scrollToTop() {
             </div>
           </form>
 
-          <div class="text-center mt-30">
+          <!-- <div class="text-center mt-30">
             <i class="fa-regular fa-circle-question" />
             <NuxtLink to="/forget">
               忘記密碼?
             </NuxtLink>
-          </div>
+          </div> -->
 
           <div class="other_function">
             沒有帳號?

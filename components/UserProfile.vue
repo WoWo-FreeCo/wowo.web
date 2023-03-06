@@ -2,6 +2,7 @@
 const authStore = useAuthStore();
 const pageStauts = usePageStatusStore();
 const authUser = computed(() => authStore?.user);
+const router = useRouter();
 
 onMounted(() => {
   console.log(authStore.user);
@@ -11,7 +12,10 @@ function shareAccount() {
   pageStauts.toggleShareAccount(true);
 }
 function scrollToBottom() {
-  document.querySelector('#member_vip_root').scrollIntoView();
+  router.push({ path: '/profile' });
+  setTimeout(() => {
+    document.querySelector('#member_vip_root').scrollIntoView();
+  }, 100);
 }
 
 </script>
@@ -71,7 +75,7 @@ function scrollToBottom() {
           <div class="btn btn-check" @click="scrollToBottom">
             <i class="fa-regular fa-circle-up" />我要升等
           </div>
-          <a href="#" data-toggle="modal" data-target="#vipdesc" class="lvdesc_a">等級說明</a>
+          <!-- <a href="#" data-toggle="modal" data-target="#vipdesc" class="lvdesc_a">等級說明</a> -->
         </li>
         <li @click="shareAccount()">
           <a href="#" data-toggle="modal" data-target="#shareaccount" class="btn btn-check"><i class="fa-solid fa-share-nodes" />分享帳號</a>

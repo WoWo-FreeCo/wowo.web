@@ -533,9 +533,9 @@ function dateDisabled(ts) {
       <div v-show="inputField.consignee.deliveryType === DeliverType.Store" class="cart_info checkout-form">
         <h5>超商取貨資訊</h5>
         <div class="emap">
-          <button @click="getEMAPData">
+          <div @click.prevent="getEMAPData">
             選擇店舖
-          </button>
+          </div>
         </div>
         <div class="store-name">
           <input
@@ -711,7 +711,19 @@ function dateDisabled(ts) {
   font-weight: bold;
 }
 .emap {
-  padding: 8px 8px;
+  border-radius: 4px;
+  font-size: 14px;
+  padding: 4px 4px;
+  width: 74px;
+  height: 32px;
+  color: #555;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #cabdab;
+  margin: 4px 0 4px 4px;
+  cursor: pointer;
+  white-space: nowrap;
 }
 .form-control {
   font-weight: 400;

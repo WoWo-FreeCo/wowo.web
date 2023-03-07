@@ -30,6 +30,8 @@ export const useAuthStore = defineStore({
     loginSuccess(_token = '', _rt = '') {
       // TODO: add login flow
       this.status.loggedIn = true;
+      console.log('abc, ', _rt);
+
       localStorage.setItem('accessToken', _token);
       localStorage.setItem('refreshToken', _rt);
     },

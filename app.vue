@@ -24,7 +24,7 @@ async function fetchAuth() {
       }
     });
     const _data = await res.data;
-    authStore.loginSuccess(_data?.accessToken);
+    authStore.loginSuccess(_data?.accessToken, _data?.refreshToken);
     authStore.updateUser(_data);
     console.log('成功登入');
   } catch (error) {

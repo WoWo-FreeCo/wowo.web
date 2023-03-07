@@ -53,11 +53,12 @@ onMounted(() => {
 async function updatePermission() {
   try {
     const accessToken = localStorage.getItem('accessToken');
+    const refreshToken = localStorage.getItem('refreshToken');
     const res = await $fetch(`${config.public.apiBase}/${GET_PROFILE}`, {
       method: 'GET',
       headers: { Authorization: 'Bearer ' + accessToken }
     });
-    authStore.loginSuccess(accessToken);
+    authStore.loginSuccess(accessToken, refreshToken);
     authStore.updateUser(res.data);
     clickedFB.value = res.data?.FacebookGroupActivated;
     clickedYT.value = res.data?.YouTubeChannelActivated;

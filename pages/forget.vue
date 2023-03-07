@@ -18,13 +18,14 @@ const inputField = ref({
 onMounted(async() => {
 //
   const accessToken = localStorage.getItem('accessToken');
+  const refreshToken = localStorage.getItem('refreshToken');
   if (accessToken) {
     try {
       const res = await $fetch(`${config.public.apiBase}/${GET_PROFILE}`, {
         method: 'GET',
         headers: { Authorization: 'Bearer ' + accessToken }
       });
-      authStore.loginSuccess(accessToken);
+      authStore.loginSuccess(accessToken, refreshToken);
       authStore.updateUser(res.data);
     } catch (error) {
       authStore.logout();
@@ -49,9 +50,9 @@ async function tryLogin() {
 }
 
 async function setLoginResponse(data) {
-  const { accessToken } = data;
+  const { accessToken, refreshToken } = data;
   // console.log(accessToken);
-  authStore.loginSuccess(accessToken);
+  authStore.loginSuccess(accessToken, refreshToken);
 
   const res = await $fetch(`${config.public.apiBase}/${GET_PROFILE}`, {
     method: 'GET',

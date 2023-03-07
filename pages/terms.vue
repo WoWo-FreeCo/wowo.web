@@ -14,7 +14,7 @@ function fetchData() {
 
 async function fetchWebPage() {
   try {
-    const res = await $fetch(`${runtimeConfig.public.apiBase}/${GET_WEB_PAGES}/5`);
+    const res = await $fetch(`${runtimeConfig.public.apiBase}/${GET_WEB_PAGES}/3`);
     const htmlContainer = document.querySelector('.html-container');
     htmlContainer.innerHTML = res;
   } catch (error) {

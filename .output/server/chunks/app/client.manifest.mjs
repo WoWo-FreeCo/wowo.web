@@ -1,4 +1,10 @@
 const client_manifest = {
+  "assets/css/fontawesome/webfonts/fa-solid-900.woff2": {
+    "resourceType": "font",
+    "mimeType": "font/woff2",
+    "file": "fa-solid-900.52bbd916.woff2",
+    "src": "assets/css/fontawesome/webfonts/fa-solid-900.woff2"
+  },
   "assets/css/fontawesome/webfonts/fa-regular-400.woff2": {
     "resourceType": "font",
     "mimeType": "font/woff2",
@@ -17,17 +23,17 @@ const client_manifest = {
     "file": "fa-v4compatibility.b8f0081f.woff2",
     "src": "assets/css/fontawesome/webfonts/fa-v4compatibility.woff2"
   },
-  "assets/css/fontawesome/webfonts/fa-solid-900.woff2": {
-    "resourceType": "font",
-    "mimeType": "font/woff2",
-    "file": "fa-solid-900.52bbd916.woff2",
-    "src": "assets/css/fontawesome/webfonts/fa-solid-900.woff2"
-  },
   "assets/css/fontawesome/webfonts/fa-regular-400.ttf": {
     "resourceType": "font",
     "mimeType": "font/ttf",
     "file": "fa-regular-400.e2d44fc8.ttf",
     "src": "assets/css/fontawesome/webfonts/fa-regular-400.ttf"
+  },
+  "assets/css/fontawesome/webfonts/fa-solid-900.ttf": {
+    "resourceType": "font",
+    "mimeType": "font/ttf",
+    "file": "fa-solid-900.5808ca8f.ttf",
+    "src": "assets/css/fontawesome/webfonts/fa-solid-900.ttf"
   },
   "assets/css/fontawesome/webfonts/fa-brands-400.ttf": {
     "resourceType": "font",
@@ -41,12 +47,6 @@ const client_manifest = {
     "file": "fa-v4compatibility.58ccbdf2.ttf",
     "src": "assets/css/fontawesome/webfonts/fa-v4compatibility.ttf"
   },
-  "assets/css/fontawesome/webfonts/fa-solid-900.ttf": {
-    "resourceType": "font",
-    "mimeType": "font/ttf",
-    "file": "fa-solid-900.5808ca8f.ttf",
-    "src": "assets/css/fontawesome/webfonts/fa-solid-900.ttf"
-  },
   "assets/images/footer_bg.jpg": {
     "resourceType": "image",
     "mimeType": "image/jpeg",
@@ -59,17 +59,17 @@ const client_manifest = {
     "file": "2009.cb07c592.jpg",
     "src": "assets/images/product/2009.jpg"
   },
-  "assets/images/banner/1.jpg": {
-    "resourceType": "image",
-    "mimeType": "image/jpeg",
-    "file": "1.c672514a.jpg",
-    "src": "assets/images/banner/1.jpg"
-  },
   "assets/images/member/1.jpg": {
     "resourceType": "image",
     "mimeType": "image/jpeg",
     "file": "1.3d691caf.jpg",
     "src": "assets/images/member/1.jpg"
+  },
+  "assets/images/banner/1.jpg": {
+    "resourceType": "image",
+    "mimeType": "image/jpeg",
+    "file": "1.c672514a.jpg",
+    "src": "assets/images/banner/1.jpg"
   },
   "assets/images/wobao/wo_treature.jpg": {
     "resourceType": "image",
@@ -98,11 +98,11 @@ const client_manifest = {
   "node_modules/nuxt/dist/app/entry.mjs": {
     "resourceType": "script",
     "module": true,
-    "file": "entry.0d24aa84.js",
+    "file": "entry.b2c13a7d.js",
     "src": "node_modules/nuxt/dist/app/entry.mjs",
     "isEntry": true,
     "imports": [
-      "_swiper-vue.cf16a99e.js"
+      "_swiper-vue.6d0a2b42.js"
     ],
     "dynamicImports": [
       "layouts/admin.vue",
@@ -110,7 +110,7 @@ const client_manifest = {
       "virtual:nuxt:/Users/chris/FreeCo/wowo/wowo.web/.nuxt/error-component.mjs"
     ],
     "css": [
-      "entry.f90034a7.css"
+      "entry.3a5c4347.css"
     ],
     "assets": [
       "fa-brands-400.967394d1.woff2",
@@ -124,8 +124,8 @@ const client_manifest = {
       "footer_bg.dbde9adb.jpg"
     ]
   },
-  "entry.f90034a7.css": {
-    "file": "entry.f90034a7.css",
+  "entry.3a5c4347.css": {
+    "file": "entry.3a5c4347.css",
     "resourceType": "style"
   },
   "fa-brands-400.967394d1.woff2": {
@@ -173,10 +173,10 @@ const client_manifest = {
     "resourceType": "image",
     "mimeType": "image/jpeg"
   },
-  "_swiper-vue.cf16a99e.js": {
+  "_swiper-vue.6d0a2b42.js": {
     "resourceType": "script",
     "module": true,
-    "file": "swiper-vue.cf16a99e.js",
+    "file": "swiper-vue.6d0a2b42.js",
     "css": [
       "swiper-vue.c8055770.css"
     ]
@@ -188,12 +188,12 @@ const client_manifest = {
   "virtual:nuxt:/Users/chris/FreeCo/wowo/wowo.web/.nuxt/error-component.mjs": {
     "resourceType": "script",
     "module": true,
-    "file": "error-component.2a44e178.js",
+    "file": "error-component.fddecec1.js",
     "src": "virtual:nuxt:/Users/chris/FreeCo/wowo/wowo.web/.nuxt/error-component.mjs",
     "isDynamicEntry": true,
     "imports": [
       "node_modules/nuxt/dist/app/entry.mjs",
-      "_swiper-vue.cf16a99e.js"
+      "_swiper-vue.6d0a2b42.js"
     ],
     "dynamicImports": [
       "node_modules/@nuxt/ui-templates/dist/templates/error-404.vue",
@@ -203,20 +203,20 @@ const client_manifest = {
   "pages/about.vue": {
     "resourceType": "script",
     "module": true,
-    "file": "about.110498a0.js",
+    "file": "about.3c7f6e9f.js",
     "src": "pages/about.vue",
     "isDynamicEntry": true,
     "imports": [
       "node_modules/nuxt/dist/app/entry.mjs",
-      "_swiper-vue.cf16a99e.js"
+      "_swiper-vue.6d0a2b42.js"
     ],
     "css": [],
     "assets": [
       "1.c672514a.jpg"
     ]
   },
-  "about.6db8193d.css": {
-    "file": "about.6db8193d.css",
+  "about.d42efbea.css": {
+    "file": "about.d42efbea.css",
     "resourceType": "style"
   },
   "1.c672514a.jpg": {
@@ -227,32 +227,32 @@ const client_manifest = {
   "pages/aboutlovin.vue": {
     "resourceType": "script",
     "module": true,
-    "file": "aboutlovin.763f012e.js",
+    "file": "aboutlovin.b54da605.js",
     "src": "pages/aboutlovin.vue",
     "isDynamicEntry": true,
     "imports": [
       "node_modules/nuxt/dist/app/entry.mjs",
-      "_swiper-vue.cf16a99e.js"
+      "_swiper-vue.6d0a2b42.js"
     ],
     "css": [],
     "assets": [
       "1.c672514a.jpg"
     ]
   },
-  "aboutlovin.3b68e28b.css": {
-    "file": "aboutlovin.3b68e28b.css",
+  "aboutlovin.db61f6f7.css": {
+    "file": "aboutlovin.db61f6f7.css",
     "resourceType": "style"
   },
   "pages/activity.vue": {
     "resourceType": "script",
     "module": true,
-    "file": "activity.94281be0.js",
+    "file": "activity.14cb04b3.js",
     "src": "pages/activity.vue",
     "isDynamicEntry": true,
     "imports": [
       "_2009.5abd421b.js",
       "node_modules/nuxt/dist/app/entry.mjs",
-      "_swiper-vue.cf16a99e.js"
+      "_swiper-vue.6d0a2b42.js"
     ],
     "css": []
   },
@@ -276,16 +276,16 @@ const client_manifest = {
   "pages/admin/index.vue": {
     "resourceType": "script",
     "module": true,
-    "file": "index.edca4449.js",
+    "file": "index.398af92d.js",
     "src": "pages/admin/index.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_pageStatusStore.6ad0c7a8.js",
+      "_pageStatusStore.aaad6bba.js",
       "node_modules/nuxt/dist/app/entry.mjs",
       "_common.cb49f5bd.js",
-      "_swiper-vue.cf16a99e.js",
-      "_client-only.2d3cf038.js",
-      "_authStore.b10d9d8e.js"
+      "_swiper-vue.6d0a2b42.js",
+      "_client-only.46688fa6.js",
+      "_authStore.8141f46b.js"
     ],
     "css": []
   },
@@ -293,26 +293,26 @@ const client_manifest = {
     "file": "index.491e31c3.css",
     "resourceType": "style"
   },
-  "_client-only.2d3cf038.js": {
+  "_client-only.46688fa6.js": {
     "resourceType": "script",
     "module": true,
-    "file": "client-only.2d3cf038.js",
+    "file": "client-only.46688fa6.js",
     "imports": [
-      "_swiper-vue.cf16a99e.js"
+      "_swiper-vue.6d0a2b42.js"
     ]
   },
-  "_authStore.b10d9d8e.js": {
+  "_authStore.8141f46b.js": {
     "resourceType": "script",
     "module": true,
-    "file": "authStore.b10d9d8e.js",
+    "file": "authStore.8141f46b.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.mjs"
     ]
   },
-  "_pageStatusStore.6ad0c7a8.js": {
+  "_pageStatusStore.aaad6bba.js": {
     "resourceType": "script",
     "module": true,
-    "file": "pageStatusStore.6ad0c7a8.js",
+    "file": "pageStatusStore.aaad6bba.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.mjs"
     ]
@@ -325,26 +325,26 @@ const client_manifest = {
   "pages/admin/login.vue": {
     "resourceType": "script",
     "module": true,
-    "file": "login.c1e732fc.js",
+    "file": "login.2f90ab4c.js",
     "src": "pages/admin/login.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_client-only.2d3cf038.js",
+      "_client-only.46688fa6.js",
       "node_modules/nuxt/dist/app/entry.mjs",
-      "_swiper-vue.cf16a99e.js",
-      "_authStore.b10d9d8e.js"
+      "_swiper-vue.6d0a2b42.js",
+      "_authStore.8141f46b.js"
     ]
   },
   "pages/api-and-store-example.vue": {
     "resourceType": "script",
     "module": true,
-    "file": "api-and-store-example.f2434042.js",
+    "file": "api-and-store-example.1693c702.js",
     "src": "pages/api-and-store-example.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_composables.cfc69936.js",
+      "_composables.b5e72133.js",
       "node_modules/nuxt/dist/app/entry.mjs",
-      "_swiper-vue.cf16a99e.js"
+      "_swiper-vue.6d0a2b42.js"
     ],
     "css": [
       "api-and-store-example.dd64dcb9.css"
@@ -354,10 +354,10 @@ const client_manifest = {
     "file": "api-and-store-example.dd64dcb9.css",
     "resourceType": "style"
   },
-  "_composables.cfc69936.js": {
+  "_composables.b5e72133.js": {
     "resourceType": "script",
     "module": true,
-    "file": "composables.cfc69936.js",
+    "file": "composables.b5e72133.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.mjs"
     ]
@@ -365,13 +365,13 @@ const client_manifest = {
   "pages/bid.vue": {
     "resourceType": "script",
     "module": true,
-    "file": "bid.af339c9d.js",
+    "file": "bid.4004f9bb.js",
     "src": "pages/bid.vue",
     "isDynamicEntry": true,
     "imports": [
       "_2009.5abd421b.js",
       "_1.8956a96f.js",
-      "_swiper-vue.cf16a99e.js"
+      "_swiper-vue.6d0a2b42.js"
     ]
   },
   "_1.8956a96f.js": {
@@ -390,31 +390,31 @@ const client_manifest = {
   "pages/bonus-point.vue": {
     "resourceType": "script",
     "module": true,
-    "file": "bonus-point.8334c35f.js",
+    "file": "bonus-point.190c818b.js",
     "src": "pages/bonus-point.vue",
     "isDynamicEntry": true,
     "imports": [
       "node_modules/nuxt/dist/app/entry.mjs",
-      "_authStore.b10d9d8e.js",
-      "_pageStatusStore.6ad0c7a8.js",
-      "_swiper-vue.cf16a99e.js"
+      "_authStore.8141f46b.js",
+      "_pageStatusStore.aaad6bba.js",
+      "_swiper-vue.6d0a2b42.js"
     ],
     "css": []
   },
-  "bonus-point.4093d536.css": {
-    "file": "bonus-point.4093d536.css",
+  "bonus-point.5a615b44.css": {
+    "file": "bonus-point.5a615b44.css",
     "resourceType": "style"
   },
   "pages/cart.vue": {
     "resourceType": "script",
     "module": true,
-    "file": "cart.03a2ab47.js",
+    "file": "cart.99b5107c.js",
     "src": "pages/cart.vue",
     "isDynamicEntry": true,
     "imports": [
       "node_modules/nuxt/dist/app/entry.mjs",
-      "_swiper-vue.cf16a99e.js",
-      "_authStore.b10d9d8e.js",
+      "_swiper-vue.6d0a2b42.js",
+      "_authStore.8141f46b.js",
       "_common.cb49f5bd.js"
     ],
     "css": []
@@ -426,31 +426,31 @@ const client_manifest = {
   "pages/checkout.vue": {
     "resourceType": "script",
     "module": true,
-    "file": "checkout.b32b6d73.js",
+    "file": "checkout.be234be0.js",
     "src": "pages/checkout.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_client-only.2d3cf038.js",
+      "_client-only.46688fa6.js",
       "node_modules/nuxt/dist/app/entry.mjs",
-      "_swiper-vue.cf16a99e.js",
-      "_authStore.b10d9d8e.js",
+      "_swiper-vue.6d0a2b42.js",
+      "_authStore.8141f46b.js",
       "_common.cb49f5bd.js"
     ],
     "css": []
   },
-  "checkout.eb31b12b.css": {
-    "file": "checkout.eb31b12b.css",
+  "checkout.e95501fe.css": {
+    "file": "checkout.e95501fe.css",
     "resourceType": "style"
   },
   "pages/contact.vue": {
     "resourceType": "script",
     "module": true,
-    "file": "contact.b7d8de05.js",
+    "file": "contact.deb9c601.js",
     "src": "pages/contact.vue",
     "isDynamicEntry": true,
     "imports": [
       "node_modules/nuxt/dist/app/entry.mjs",
-      "_swiper-vue.cf16a99e.js"
+      "_swiper-vue.6d0a2b42.js"
     ],
     "css": [],
     "assets": [
@@ -464,33 +464,33 @@ const client_manifest = {
   "pages/cvs_callback.vue": {
     "resourceType": "script",
     "module": true,
-    "file": "cvs_callback.89c74bcb.js",
+    "file": "cvs_callback.17f56627.js",
     "src": "pages/cvs_callback.vue",
     "isDynamicEntry": true,
     "imports": [
       "node_modules/nuxt/dist/app/entry.mjs",
-      "_cookie.425352c2.js",
-      "_swiper-vue.cf16a99e.js"
+      "_cookie.b1d8b275.js",
+      "_swiper-vue.6d0a2b42.js"
     ]
   },
-  "_cookie.425352c2.js": {
+  "_cookie.b1d8b275.js": {
     "resourceType": "script",
     "module": true,
-    "file": "cookie.425352c2.js",
+    "file": "cookie.b1d8b275.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.mjs",
-      "_swiper-vue.cf16a99e.js"
+      "_swiper-vue.6d0a2b42.js"
     ]
   },
   "pages/faq.vue": {
     "resourceType": "script",
     "module": true,
-    "file": "faq.d29a8b12.js",
+    "file": "faq.7688722f.js",
     "src": "pages/faq.vue",
     "isDynamicEntry": true,
     "imports": [
       "node_modules/nuxt/dist/app/entry.mjs",
-      "_swiper-vue.cf16a99e.js"
+      "_swiper-vue.6d0a2b42.js"
     ],
     "css": [],
     "assets": [
@@ -504,15 +504,15 @@ const client_manifest = {
   "pages/favorite.vue": {
     "resourceType": "script",
     "module": true,
-    "file": "favorite.3986c284.js",
+    "file": "favorite.f6832aff.js",
     "src": "pages/favorite.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_ProfileSidebar.5bfe2507.js",
+      "_ProfileSidebar.fbe7fdf9.js",
       "node_modules/nuxt/dist/app/entry.mjs",
-      "_authStore.b10d9d8e.js",
-      "_swiper-vue.cf16a99e.js",
-      "_pageStatusStore.6ad0c7a8.js"
+      "_authStore.8141f46b.js",
+      "_swiper-vue.6d0a2b42.js",
+      "_pageStatusStore.aaad6bba.js"
     ],
     "css": []
   },
@@ -520,15 +520,15 @@ const client_manifest = {
     "file": "favorite.6d6ba15a.css",
     "resourceType": "style"
   },
-  "_ProfileSidebar.5bfe2507.js": {
+  "_ProfileSidebar.fbe7fdf9.js": {
     "resourceType": "script",
     "module": true,
-    "file": "ProfileSidebar.5bfe2507.js",
+    "file": "ProfileSidebar.fbe7fdf9.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.mjs",
-      "_authStore.b10d9d8e.js",
-      "_pageStatusStore.6ad0c7a8.js",
-      "_swiper-vue.cf16a99e.js"
+      "_authStore.8141f46b.js",
+      "_pageStatusStore.aaad6bba.js",
+      "_swiper-vue.6d0a2b42.js"
     ],
     "assets": [
       "default-avatar.145ff9f9.png"
@@ -542,26 +542,26 @@ const client_manifest = {
   "pages/forget.vue": {
     "resourceType": "script",
     "module": true,
-    "file": "forget.a4e8b212.js",
+    "file": "forget.0a3631f9.js",
     "src": "pages/forget.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_client-only.2d3cf038.js",
+      "_client-only.46688fa6.js",
       "node_modules/nuxt/dist/app/entry.mjs",
-      "_swiper-vue.cf16a99e.js",
-      "_authStore.b10d9d8e.js"
+      "_swiper-vue.6d0a2b42.js",
+      "_authStore.8141f46b.js"
     ]
   },
   "pages/index.vue": {
     "resourceType": "script",
     "module": true,
-    "file": "index.806d40ce.js",
+    "file": "index.b4e589b6.js",
     "src": "pages/index.vue",
     "isDynamicEntry": true,
     "imports": [
       "node_modules/nuxt/dist/app/entry.mjs",
-      "_swiper-vue.cf16a99e.js",
-      "_cookie.425352c2.js"
+      "_swiper-vue.6d0a2b42.js",
+      "_cookie.b1d8b275.js"
     ],
     "css": []
   },
@@ -572,27 +572,27 @@ const client_manifest = {
   "pages/login.vue": {
     "resourceType": "script",
     "module": true,
-    "file": "login.5e2e3670.js",
+    "file": "login.8ee4991b.js",
     "src": "pages/login.vue",
     "isDynamicEntry": true,
     "imports": [
       "node_modules/nuxt/dist/app/entry.mjs",
-      "_client-only.2d3cf038.js",
-      "_swiper-vue.cf16a99e.js",
-      "_authStore.b10d9d8e.js"
+      "_client-only.46688fa6.js",
+      "_swiper-vue.6d0a2b42.js",
+      "_authStore.8141f46b.js"
     ]
   },
   "pages/order/detail.vue": {
     "resourceType": "script",
     "module": true,
-    "file": "detail.6456ea49.js",
+    "file": "detail.cb23324a.js",
     "src": "pages/order/detail.vue",
     "isDynamicEntry": true,
     "imports": [
       "node_modules/nuxt/dist/app/entry.mjs",
-      "_authStore.b10d9d8e.js",
-      "_swiper-vue.cf16a99e.js",
-      "_dayjs.min.9492d815.js"
+      "_authStore.8141f46b.js",
+      "_swiper-vue.6d0a2b42.js",
+      "_dayjs.min.3fd62679.js"
     ],
     "css": []
   },
@@ -600,10 +600,10 @@ const client_manifest = {
     "file": "detail.b0740b0d.css",
     "resourceType": "style"
   },
-  "_dayjs.min.9492d815.js": {
+  "_dayjs.min.3fd62679.js": {
     "resourceType": "script",
     "module": true,
-    "file": "dayjs.min.9492d815.js",
+    "file": "dayjs.min.3fd62679.js",
     "imports": [
       "node_modules/nuxt/dist/app/entry.mjs"
     ]
@@ -611,17 +611,17 @@ const client_manifest = {
   "pages/order/index.vue": {
     "resourceType": "script",
     "module": true,
-    "file": "index.545a065b.js",
+    "file": "index.558d32fb.js",
     "src": "pages/order/index.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_ProfileSidebar.5bfe2507.js",
+      "_ProfileSidebar.fbe7fdf9.js",
       "node_modules/nuxt/dist/app/entry.mjs",
-      "_authStore.b10d9d8e.js",
-      "_swiper-vue.cf16a99e.js",
-      "_dayjs.min.9492d815.js",
+      "_authStore.8141f46b.js",
+      "_swiper-vue.6d0a2b42.js",
+      "_dayjs.min.3fd62679.js",
       "_common.cb49f5bd.js",
-      "_pageStatusStore.6ad0c7a8.js"
+      "_pageStatusStore.aaad6bba.js"
     ],
     "css": []
   },
@@ -632,30 +632,30 @@ const client_manifest = {
   "pages/privacy.vue": {
     "resourceType": "script",
     "module": true,
-    "file": "privacy.c4add78b.js",
+    "file": "privacy.703a8ebb.js",
     "src": "pages/privacy.vue",
     "isDynamicEntry": true,
     "imports": [
       "node_modules/nuxt/dist/app/entry.mjs",
-      "_swiper-vue.cf16a99e.js"
+      "_swiper-vue.6d0a2b42.js"
     ],
     "css": [],
     "assets": [
       "1.c672514a.jpg"
     ]
   },
-  "privacy.067cf92a.css": {
-    "file": "privacy.067cf92a.css",
+  "privacy.7c5ab4a6.css": {
+    "file": "privacy.7c5ab4a6.css",
     "resourceType": "style"
   },
   "pages/product.vue": {
     "resourceType": "script",
     "module": true,
-    "file": "product.47edabc9.js",
+    "file": "product.c7aa9033.js",
     "src": "pages/product.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_swiper-vue.cf16a99e.js",
+      "_swiper-vue.6d0a2b42.js",
       "node_modules/nuxt/dist/app/entry.mjs"
     ],
     "css": []
@@ -667,31 +667,31 @@ const client_manifest = {
   "pages/profile/index.vue": {
     "resourceType": "script",
     "module": true,
-    "file": "index.015f16a4.js",
+    "file": "index.96ab6ef1.js",
     "src": "pages/profile/index.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_ProfileSidebar.5bfe2507.js",
+      "_ProfileSidebar.fbe7fdf9.js",
       "node_modules/nuxt/dist/app/entry.mjs",
-      "_authStore.b10d9d8e.js",
-      "_swiper-vue.cf16a99e.js",
-      "_pageStatusStore.6ad0c7a8.js"
+      "_authStore.8141f46b.js",
+      "_swiper-vue.6d0a2b42.js",
+      "_pageStatusStore.aaad6bba.js"
     ],
     "css": []
   },
-  "index.95da4304.css": {
-    "file": "index.95da4304.css",
+  "index.7a0cf164.css": {
+    "file": "index.7a0cf164.css",
     "resourceType": "style"
   },
   "pages/register.vue": {
     "resourceType": "script",
     "module": true,
-    "file": "register.4ea47d99.js",
+    "file": "register.ac1aa855.js",
     "src": "pages/register.vue",
     "isDynamicEntry": true,
     "imports": [
       "node_modules/nuxt/dist/app/entry.mjs",
-      "_swiper-vue.cf16a99e.js"
+      "_swiper-vue.6d0a2b42.js"
     ],
     "css": []
   },
@@ -702,31 +702,31 @@ const client_manifest = {
   "pages/return-help.vue": {
     "resourceType": "script",
     "module": true,
-    "file": "return-help.5eba8c8b.js",
+    "file": "return-help.4683c0f6.js",
     "src": "pages/return-help.vue",
     "isDynamicEntry": true,
     "imports": [
       "node_modules/nuxt/dist/app/entry.mjs",
-      "_swiper-vue.cf16a99e.js"
+      "_swiper-vue.6d0a2b42.js"
     ],
     "css": [],
     "assets": [
       "1.c672514a.jpg"
     ]
   },
-  "return-help.c4ffe3f3.css": {
-    "file": "return-help.c4ffe3f3.css",
+  "return-help.12284b8b.css": {
+    "file": "return-help.12284b8b.css",
     "resourceType": "style"
   },
   "pages/shop.vue": {
     "resourceType": "script",
     "module": true,
-    "file": "shop.e91a946a.js",
+    "file": "shop.ae088466.js",
     "src": "pages/shop.vue",
     "isDynamicEntry": true,
     "imports": [
       "node_modules/nuxt/dist/app/entry.mjs",
-      "_swiper-vue.cf16a99e.js"
+      "_swiper-vue.6d0a2b42.js"
     ],
     "css": []
   },
@@ -737,32 +737,32 @@ const client_manifest = {
   "pages/terms.vue": {
     "resourceType": "script",
     "module": true,
-    "file": "terms.f2481256.js",
+    "file": "terms.4e6c3115.js",
     "src": "pages/terms.vue",
     "isDynamicEntry": true,
     "imports": [
       "node_modules/nuxt/dist/app/entry.mjs",
-      "_swiper-vue.cf16a99e.js"
+      "_swiper-vue.6d0a2b42.js"
     ],
     "css": [],
     "assets": [
       "1.c672514a.jpg"
     ]
   },
-  "terms.ff182d63.css": {
-    "file": "terms.ff182d63.css",
+  "terms.f4d46697.css": {
+    "file": "terms.f4d46697.css",
     "resourceType": "style"
   },
   "pages/wobao.vue": {
     "resourceType": "script",
     "module": true,
-    "file": "wobao.9f8db50e.js",
+    "file": "wobao.5a814845.js",
     "src": "pages/wobao.vue",
     "isDynamicEntry": true,
     "imports": [
       "_1.8956a96f.js",
       "node_modules/nuxt/dist/app/entry.mjs",
-      "_swiper-vue.cf16a99e.js"
+      "_swiper-vue.6d0a2b42.js"
     ],
     "assets": [
       "wo_treature.666886f2.jpg"
@@ -776,13 +776,13 @@ const client_manifest = {
   "layouts/admin.vue": {
     "resourceType": "script",
     "module": true,
-    "file": "admin.731f43ce.js",
+    "file": "admin.258a65c6.js",
     "src": "layouts/admin.vue",
     "isDynamicEntry": true,
     "imports": [
       "node_modules/nuxt/dist/app/entry.mjs",
-      "_swiper-vue.cf16a99e.js",
-      "_pageStatusStore.6ad0c7a8.js"
+      "_swiper-vue.6d0a2b42.js",
+      "_pageStatusStore.aaad6bba.js"
     ],
     "css": []
   },
@@ -793,14 +793,14 @@ const client_manifest = {
   "layouts/default.vue": {
     "resourceType": "script",
     "module": true,
-    "file": "default.829efc50.js",
+    "file": "default.fcbbcf39.js",
     "src": "layouts/default.vue",
     "isDynamicEntry": true,
     "imports": [
       "node_modules/nuxt/dist/app/entry.mjs",
-      "_authStore.b10d9d8e.js",
-      "_pageStatusStore.6ad0c7a8.js",
-      "_swiper-vue.cf16a99e.js"
+      "_authStore.8141f46b.js",
+      "_pageStatusStore.aaad6bba.js",
+      "_swiper-vue.6d0a2b42.js"
     ],
     "css": [],
     "assets": [
@@ -825,13 +825,13 @@ const client_manifest = {
   "node_modules/@nuxt/ui-templates/dist/templates/error-404.vue": {
     "resourceType": "script",
     "module": true,
-    "file": "error-404.133f18af.js",
+    "file": "error-404.56e06f56.js",
     "src": "node_modules/@nuxt/ui-templates/dist/templates/error-404.vue",
     "isDynamicEntry": true,
     "imports": [
       "node_modules/nuxt/dist/app/entry.mjs",
-      "_composables.cfc69936.js",
-      "_swiper-vue.cf16a99e.js"
+      "_composables.b5e72133.js",
+      "_swiper-vue.6d0a2b42.js"
     ],
     "css": []
   },
@@ -842,13 +842,13 @@ const client_manifest = {
   "node_modules/@nuxt/ui-templates/dist/templates/error-500.vue": {
     "resourceType": "script",
     "module": true,
-    "file": "error-500.01e03c13.js",
+    "file": "error-500.26180989.js",
     "src": "node_modules/@nuxt/ui-templates/dist/templates/error-500.vue",
     "isDynamicEntry": true,
     "imports": [
-      "_composables.cfc69936.js",
+      "_composables.b5e72133.js",
       "node_modules/nuxt/dist/app/entry.mjs",
-      "_swiper-vue.cf16a99e.js"
+      "_swiper-vue.6d0a2b42.js"
     ],
     "css": []
   },
@@ -856,10 +856,35 @@ const client_manifest = {
     "file": "error-500.aa16ed4d.css",
     "resourceType": "style"
   },
-  "pages/faq.css": {
+  "pages/product.css": {
     "resourceType": "style",
-    "file": "faq.1b6eb67a.css",
-    "src": "pages/faq.css"
+    "file": "product.4dd1ba15.css",
+    "src": "pages/product.css"
+  },
+  "pages/about.css": {
+    "resourceType": "style",
+    "file": "about.d42efbea.css",
+    "src": "pages/about.css"
+  },
+  "pages/activity.css": {
+    "resourceType": "style",
+    "file": "activity.cf145749.css",
+    "src": "pages/activity.css"
+  },
+  "pages/privacy.css": {
+    "resourceType": "style",
+    "file": "privacy.7c5ab4a6.css",
+    "src": "pages/privacy.css"
+  },
+  "pages/order/detail.css": {
+    "resourceType": "style",
+    "file": "detail.b0740b0d.css",
+    "src": "pages/order/detail.css"
+  },
+  "layouts/default.css": {
+    "resourceType": "style",
+    "file": "default.b47ab782.css",
+    "src": "layouts/default.css"
   },
   "pages/register.css": {
     "resourceType": "style",
@@ -868,127 +893,102 @@ const client_manifest = {
   },
   "pages/terms.css": {
     "resourceType": "style",
-    "file": "terms.ff182d63.css",
+    "file": "terms.f4d46697.css",
     "src": "pages/terms.css"
   },
-  "pages/favorite.css": {
+  "pages/profile/index.css": {
     "resourceType": "style",
-    "file": "favorite.6d6ba15a.css",
-    "src": "pages/favorite.css"
+    "file": "index.7a0cf164.css",
+    "src": "pages/profile/index.css"
   },
-  "layouts/default.css": {
+  "pages/checkout.css": {
     "resourceType": "style",
-    "file": "default.b47ab782.css",
-    "src": "layouts/default.css"
-  },
-  "pages/return-help.css": {
-    "resourceType": "style",
-    "file": "return-help.c4ffe3f3.css",
-    "src": "pages/return-help.css"
+    "file": "checkout.e95501fe.css",
+    "src": "pages/checkout.css"
   },
   "layouts/admin.css": {
     "resourceType": "style",
     "file": "admin.b3d9343e.css",
     "src": "layouts/admin.css"
   },
-  "pages/order/index.css": {
+  "pages/contact.css": {
     "resourceType": "style",
-    "file": "index.21be5bf0.css",
-    "src": "pages/order/index.css"
+    "file": "contact.da4a15fd.css",
+    "src": "pages/contact.css"
   },
   "pages/aboutlovin.css": {
     "resourceType": "style",
-    "file": "aboutlovin.3b68e28b.css",
+    "file": "aboutlovin.db61f6f7.css",
     "src": "pages/aboutlovin.css"
+  },
+  "pages/favorite.css": {
+    "resourceType": "style",
+    "file": "favorite.6d6ba15a.css",
+    "src": "pages/favorite.css"
   },
   "pages/shop.css": {
     "resourceType": "style",
     "file": "shop.88ba4a99.css",
     "src": "pages/shop.css"
   },
-  "pages/checkout.css": {
+  "pages/faq.css": {
     "resourceType": "style",
-    "file": "checkout.eb31b12b.css",
-    "src": "pages/checkout.css"
-  },
-  "pages/contact.css": {
-    "resourceType": "style",
-    "file": "contact.da4a15fd.css",
-    "src": "pages/contact.css"
-  },
-  "pages/bonus-point.css": {
-    "resourceType": "style",
-    "file": "bonus-point.4093d536.css",
-    "src": "pages/bonus-point.css"
-  },
-  "pages/product.css": {
-    "resourceType": "style",
-    "file": "product.4dd1ba15.css",
-    "src": "pages/product.css"
-  },
-  "pages/order/detail.css": {
-    "resourceType": "style",
-    "file": "detail.b0740b0d.css",
-    "src": "pages/order/detail.css"
-  },
-  "pages/profile/index.css": {
-    "resourceType": "style",
-    "file": "index.95da4304.css",
-    "src": "pages/profile/index.css"
-  },
-  "pages/activity.css": {
-    "resourceType": "style",
-    "file": "activity.cf145749.css",
-    "src": "pages/activity.css"
-  },
-  "pages/cart.css": {
-    "resourceType": "style",
-    "file": "cart.600ced6c.css",
-    "src": "pages/cart.css"
-  },
-  "pages/about.css": {
-    "resourceType": "style",
-    "file": "about.6db8193d.css",
-    "src": "pages/about.css"
-  },
-  "pages/privacy.css": {
-    "resourceType": "style",
-    "file": "privacy.067cf92a.css",
-    "src": "pages/privacy.css"
-  },
-  "pages/index.css": {
-    "resourceType": "style",
-    "file": "index.e3ef265c.css",
-    "src": "pages/index.css"
-  },
-  "node_modules/@nuxt/ui-templates/dist/templates/error-500.css": {
-    "resourceType": "style",
-    "file": "error-500.aa16ed4d.css",
-    "src": "node_modules/@nuxt/ui-templates/dist/templates/error-500.css"
-  },
-  "pages/admin/index.css": {
-    "resourceType": "style",
-    "file": "index.491e31c3.css",
-    "src": "pages/admin/index.css"
+    "file": "faq.1b6eb67a.css",
+    "src": "pages/faq.css"
   },
   "node_modules/@nuxt/ui-templates/dist/templates/error-404.css": {
     "resourceType": "style",
     "file": "error-404.23f2309d.css",
     "src": "node_modules/@nuxt/ui-templates/dist/templates/error-404.css"
   },
-  "pages/api-and-store-example.css": {
+  "node_modules/@nuxt/ui-templates/dist/templates/error-500.css": {
     "resourceType": "style",
-    "file": "api-and-store-example.dd64dcb9.css",
-    "src": "pages/api-and-store-example.css"
+    "file": "error-500.aa16ed4d.css",
+    "src": "node_modules/@nuxt/ui-templates/dist/templates/error-500.css"
+  },
+  "pages/order/index.css": {
+    "resourceType": "style",
+    "file": "index.21be5bf0.css",
+    "src": "pages/order/index.css"
+  },
+  "pages/return-help.css": {
+    "resourceType": "style",
+    "file": "return-help.12284b8b.css",
+    "src": "pages/return-help.css"
+  },
+  "pages/bonus-point.css": {
+    "resourceType": "style",
+    "file": "bonus-point.5a615b44.css",
+    "src": "pages/bonus-point.css"
+  },
+  "pages/index.css": {
+    "resourceType": "style",
+    "file": "index.e3ef265c.css",
+    "src": "pages/index.css"
+  },
+  "pages/cart.css": {
+    "resourceType": "style",
+    "file": "cart.600ced6c.css",
+    "src": "pages/cart.css"
+  },
+  "pages/admin/index.css": {
+    "resourceType": "style",
+    "file": "index.491e31c3.css",
+    "src": "pages/admin/index.css"
   },
   "swiper-vue.css": {
     "resourceType": "style",
     "file": "swiper-vue.c8055770.css",
     "src": "swiper-vue.css"
   },
+  "pages/api-and-store-example.css": {
+    "resourceType": "style",
+    "file": "api-and-store-example.dd64dcb9.css",
+    "src": "pages/api-and-store-example.css"
+  },
   "node_modules/nuxt/dist/app/entry.css": {
     "resourceType": "style",
-    "file": "entry.f90034a7.css",
+    "file": "entry.3a5c4347.css",
     "src": "node_modules/nuxt/dist/app/entry.css"
   }
 };

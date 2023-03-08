@@ -6,6 +6,7 @@ const authStore = useAuthStore();
 const config = useRuntimeConfig();
 
 onMounted(async() => {
+  await nextTick();
   await fetchAuth();
   fetchLocalCart();
 });

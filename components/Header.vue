@@ -115,7 +115,7 @@ function menuClose() {
               我要賺紅利
             </NuxtLink>
           </li>
-          <li @click="menuClose">
+          <li v-show="false" @click="menuClose">
             <NuxtLink to="/activity">
               WO活動
             </NuxtLink>

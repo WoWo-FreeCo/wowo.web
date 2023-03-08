@@ -2,6 +2,7 @@
 import { GET_REFRESH_TOKEN } from '@/apis/requestURL';
 
 const cartStore = useCartStore();
+const authStore = useAuthStore();
 const config = useRuntimeConfig();
 
 onMounted(async() => {
@@ -13,7 +14,7 @@ async function fetchAuth() {
   const accessToken = localStorage.getItem('accessToken');
   const refreshToken = localStorage.getItem('refreshToken');
   if (!accessToken) {
-    console.log('尚未登入');
+    // console.log('尚未登入');
     return;
   }
   try {
@@ -23,12 +24,14 @@ async function fetchAuth() {
         authorization: 'Bearer ' + refreshToken
       }
     });
+    console.log('init refresh token: ');
     const _data = await res.data;
     authStore.loginSuccess(_data?.accessToken, _data?.refreshToken);
     authStore.updateUser(_data);
     console.log('成功登入');
   } catch (error) {
-    console.log('refreshToken失敗 or 登入時間已逾期，請重新登入');
+    console.log(error);
+    // console.log('refreshToken失敗 or 登入時間已逾期，請重新登入');
   }
 }
 

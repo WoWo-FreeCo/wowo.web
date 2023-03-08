@@ -42,7 +42,7 @@ const orderStatus = computed(() => {
 });
 
 const deliverFee = computed(() => {
-  const _item = curOrder.value?.items?.find(e => e.productId === null);
+  const _item = curOrder.value?.items?.find(e => e.productId === null && e?.name !== '紅利折抵');
   if (_item?.price === 0) return '免運';
   return _item ? _item.price : '免運';
 });

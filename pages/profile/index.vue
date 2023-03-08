@@ -16,7 +16,7 @@ const clickedYT = ref(false);
 const clickedIG = ref(false);
 
 const igURL = ref('https://www.instagram.com/lovin.520/');
-const youtubeURL = ref('https://youtu.be/9RITDp0BBUw');
+const youtubeURL = ref('https://www.youtube.com/watch?v=9RlTDp0BBUw');
 const fbURL = ref('https://www.facebook.com/LOVIN2022');
 const inputVIPCode = ref('');
 const inputSVIPCode = ref('');

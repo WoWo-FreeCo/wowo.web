@@ -154,19 +154,19 @@ function fetchHTMLPage(tag = 0) {
               <ul class="product-price mt-0">
                 <!----------------!!!!!!!!!!!!!! 價錢"$"改寫法 !!!!!!!!!!!!!!---------------->
                 <li>
-                  <span>市場價</span>
+                  <span>市價</span>
                   <span class="m_icon">$</span>{{ currentProduct?.price || 0 }}
                 </li>
                 <li>
-                  <span>會員價</span>
+                  <span>會員</span>
                   <span class="m_icon">$</span>{{ currentProduct?.memberPrice || 0 }}
                 </li>
                 <li class="vip_price">
-                  <span>VIP價</span>
+                  <span>VIP</span>
                   <span class="m_icon">$</span>{{ currentProduct?.vipPrice || 0 }}
                 </li>
                 <li class="vip_price">
-                  <span>SVIP價</span>
+                  <span>SVIP</span>
                   <span class="m_icon">$</span>{{ currentProduct?.svipPrice || 0 }}
                 </li>
               </ul><!--產品價錢 end-->
@@ -263,19 +263,19 @@ function fetchHTMLPage(tag = 0) {
               <!----------------------!!!!!!!!新版改, 價錢標籤!!!!!!!!---------------------->
               <li>
                 $130
-                <span>市場價</span>
+                <span>市價</span>
               </li>
               <li>
                 $130
-                <span>會員價</span>
+                <span>會員</span>
               </li>
               <li>
                 $130
-                <span>VIP價</span>
+                <span>VIP</span>
               </li>
               <li>
                 $130
-                <span>SVIP價</span>
+                <span>SVIP</span>
               </li>
               <li>
                 <button><i class="fa-solid fa-cart-shopping" /><!----------------!!!!!!!!!!!! <i class="fa-solid fa-cart-plus"></i> 改<i class="fa-solid fa-cart-shopping"></i> !!!!!!!!!!!!----------------></button>

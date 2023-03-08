@@ -63,19 +63,19 @@ onMounted(() => {
                 <ul>
                   <li>
                     ${{ item?.price }}
-                    <span>市場價</span>
+                    <span>市價</span>
                   </li>
                   <li>
                     ${{ item?.memberPrice }}
-                    <span>會員價</span>
+                    <span>會員</span>
                   </li>
                   <li>
                     ${{ item?.vipPrice }}
-                    <span>VIP價</span>
+                    <span>VIP</span>
                   </li>
                   <li>
                     ${{ item?.svipPrice }}
-                    <span>SVIP價</span>
+                    <span>SVIP</span>
                   </li>
                   <li>
                     <button @click="addToCart(item)">
@@ -119,19 +119,19 @@ onMounted(() => {
                 <!----------------------!!!!!!!!新版改, 價錢標籤!!!!!!!!---------------------->
                 <li>
                   $130
-                  <span>市場價</span>
+                  <span>市價</span>
                 </li>
                 <li>
                   $130
-                  <span>會員價</span>
+                  <span>會員</span>
                 </li>
                 <li>
                   $130
-                  <span>VIP價</span>
+                  <span>VIP</span>
                 </li>
                 <li>
                   $130
-                  <span>SVIP價</span>
+                  <span>SVIP</span>
                 </li>
                 <li>
                   <button>

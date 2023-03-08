@@ -163,19 +163,19 @@ function addToCart(prod) {
                 <ul>
                   <li>
                     ${{ item?.price }}
-                    <span>市場價</span>
+                    <span>市價</span>
                   </li>
                   <li>
                     ${{ item?.memberPrice }}
-                    <span>會員價</span>
+                    <span>會員</span>
                   </li>
                   <li>
                     ${{ item?.vipPrice }}
-                    <span>VIP價</span>
+                    <span>VIP</span>
                   </li>
                   <li>
                     ${{ item?.svipPrice }}
-                    <span>SVIP價</span>
+                    <span>SVIP</span>
                   </li>
                   <li @click="addToCart(item)">
                     <button>

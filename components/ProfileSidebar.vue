@@ -23,14 +23,14 @@ const path = computed(() => route.path);
         </div>
         <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
           <ul>
-            <li :class="{active: path?.toLowerCase().includes('/profile')}">
-              <NuxtLink to="/profile">
-                基本資料管理
-              </NuxtLink>
-            </li>
             <li :class="{active: path?.toLowerCase().includes('/favorite')}">
               <NuxtLink to="/favorite">
                 我的最愛
+              </NuxtLink>
+            </li>
+            <li :class="{active: path?.toLowerCase().includes('/profile')}">
+              <NuxtLink to="/profile">
+                基本資料管理
               </NuxtLink>
             </li>
             <li :class="{active: path?.toLowerCase().includes('/order')}">

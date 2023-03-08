@@ -47,7 +47,7 @@ onMounted(() => {
     router.push({ path: '/login' });
   }
   updatePermission();
-  console.log('!! - ', authUser.value);
+  // console.log('!! - ', authUser.value);
 });
 
 async function updatePermission() {

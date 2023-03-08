@@ -5,7 +5,7 @@ const authUser = computed(() => authStore?.user);
 const router = useRouter();
 
 onMounted(() => {
-  console.log(authStore.user);
+  // console.log(authStore.user);
 });
 
 function shareAccount() {

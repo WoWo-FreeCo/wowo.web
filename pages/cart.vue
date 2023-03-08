@@ -42,7 +42,7 @@ const totalPrice = computed({
 });
 
 onMounted(() => {
-  console.log(authStore.user);
+  // console.log(authStore.user);
   updateCartType();
 });
 

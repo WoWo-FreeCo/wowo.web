@@ -381,6 +381,37 @@ function dateDisabled(ts) {
           </label>
         </div>
       </div>
+      <div
+        v-show="inputField.consignee.deliveryType === DeliverType.Store"
+        class="cart_info checkout-form"
+      >
+        <h5>超商取貨資訊</h5>
+        <div class="emap">
+          <div @click.prevent="getEMAPData">
+            選擇店舖
+          </div>
+        </div>
+        <div class="store-name">
+          <input
+            id="store-name"
+            v-model="store.name"
+            type="text"
+            required
+            class="form-control bold"
+            disabled
+          >
+        </div>
+        <div class="store-address">
+          <input
+            id="store-address"
+            v-model="store.address"
+            type="text"
+            required
+            class="form-control bold"
+            disabled
+          >
+        </div>
+      </div>
       <div class="cart_info">
         <h5>付款方式</h5>
         <div class="checkout-form">
@@ -528,34 +559,6 @@ function dateDisabled(ts) {
               />
             </n-space>
           </ClientOnly>
-        </div>
-      </div>
-      <div v-show="inputField.consignee.deliveryType === DeliverType.Store" class="cart_info checkout-form">
-        <h5>超商取貨資訊</h5>
-        <div class="emap">
-          <div @click.prevent="getEMAPData">
-            選擇店舖
-          </div>
-        </div>
-        <div class="store-name">
-          <input
-            id="store-name"
-            v-model="store.name"
-            type="text"
-            required
-            class="form-control bold"
-            disabled
-          >
-        </div>
-        <div class="store-address">
-          <input
-            id="store-address"
-            v-model="store.address"
-            type="text"
-            required
-            class="form-control bold"
-            disabled
-          >
         </div>
       </div>
       <div class="cart_info">

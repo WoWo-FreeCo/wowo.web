@@ -89,7 +89,7 @@ function fetchHTMLPage(tag = 0) {
           <div class="col-md-6 col-sm-12 single-product-slider">
             <!----------------!!!!!!!!!!!! class加col-sm-12 !!!!!!!!!!!!---------------->
             <div class="product_frame">
-              <span class="pagingInfo" />
+              <!-- <span class="pagingInfo" /> -->
               <button class="add_like" @click="addToFavorite">
                 <i
                   class="far fa-heart"
@@ -102,14 +102,14 @@ function fetchHTMLPage(tag = 0) {
               <!--點擊之後, 加入最愛, class改 class="fa-solid fa-heart"-->
 
               <!--灌水熱銷組, 後臺沒輸入不出現-->
-              <div class="hot_sale">
+              <div v-show="currentProduct?.brief" class="hot_sale">
                 <span>{{ currentProduct?.brief }}</span>
               </div>
               <!--灌水熱銷組 end-->
 
               <div class="main_product">
                 <Swiper
-                  class="swiper-root"
+                  class="swiper-root swiper-prod"
                   :modules="[SwiperAutoplay, SwiperEffectCreative, SwiperController, SwiperNavigation]"
                   :slides-per-view="1"
                   :loop="true"
@@ -129,7 +129,11 @@ function fetchHTMLPage(tag = 0) {
                     },
                   }"
                 >
-                  <SwiperSlide v-for="slide in currentProduct?.images" :key="slide?.img">
+                  <SwiperSlide
+                    v-for="slide in currentProduct?.images"
+                    :key="slide?.img"
+                    class="swiper-prod-slide"
+                  >
                     <img :src="slide.img" alt="">
                   </SwiperSlide>
                 </Swiper>
@@ -312,8 +316,8 @@ function fetchHTMLPage(tag = 0) {
 }
 .add_like {
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 4px;
+  right: 20px;
   z-index: 99;
 }
 .btn {
@@ -328,4 +332,5 @@ function fetchHTMLPage(tag = 0) {
   margin-top: 24px;
   align-items: center;
 }
+
 </style>

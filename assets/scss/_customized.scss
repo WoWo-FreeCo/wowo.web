@@ -87,3 +87,20 @@ iframe {
   height: 100vh;
   display: block;
 }
+
+.swiper-prod {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-prod .swiper-prod-slide {
+  height: 400px;
+}
+
+.swiper-prod-slide img {
+  display: block;
+  width: 100%;
+  background: #fff;
+  height: 100%;
+  object-fit: contain;
+}

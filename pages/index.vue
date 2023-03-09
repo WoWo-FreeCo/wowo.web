@@ -80,6 +80,21 @@ async function fetchProd() {
   }
 }
 
+function isFavorite(item) {
+  return cartStore.favMerch?.find(e => e.id === item?.id);
+}
+
+function addToFavorite(item) {
+  const existProd = cartStore.favMerch.find(e => e.id === item?.id);
+  if (!existProd) {
+    cartStore.favMerch.push(item);
+  } else {
+    cartStore.favMerch = cartStore.favMerch.filter(e => e.id !== item?.id);
+  }
+  const _merch = cartStore.favMerch;
+  cartStore.updateFavMerch(_merch);
+}
+
 function addToCart(prod) {
   const existProd = cartStore.merch.find(e => e.id === prod.id);
   if (!existProd) {
@@ -146,7 +161,21 @@ function addToCart(prod) {
             <div class="index_pslide">
               <!---1--->
               <!--一個類別只要顯示9個產品, 請以此div類推--><!----------------------!!!!!!!!新版改, ul 裡的價錢標籤!!!!!!!!---------------------->
-              <div v-for="item in currentProduct" v-show="item?.inventory?.quantity >= 1" :key="item.key" class="product_frame">
+              <div
+                v-for="item in currentProduct"
+                v-show="item?.inventory?.quantity >= 1"
+                :key="item.key"
+                class="product_frame"
+              >
+                <button class="add_like" @click="addToFavorite(item)">
+                  <i
+                    class="far fa-heart"
+                    :class="{
+                      'fa-solid': isFavorite(item),
+                      'fa-heart': isFavorite(item)
+                    }"
+                  />
+                </button>
                 <div v-show="item?.brief" class="hot_sale2">
                   {{ item.brief }}
                 </div>
@@ -218,6 +247,13 @@ function addToCart(prod) {
     flex-basis: 100%;
   }
 }
+.product_frame {
+  > ul {
+    display: flex;
+    justify-content: space-evenly;
+    padding: 8px 4px;
+  }
+}
 .not-found {
   font-size: 24px;
   font-weight: 500;
@@ -244,5 +280,13 @@ function addToCart(prod) {
 .more-prod {
   margin-bottom: 40px;
   font-weight: 400;
+}
+.add_like {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  top: 0px;
+  right: 12px;
+  z-index: 99;
 }
 </style>

@@ -230,6 +230,12 @@ function goCheckout() {
     display: flex;
   }
 }
+.del_btn {
+  @media screen and (max-width: 375px) {
+    right: 0 !important;
+    bottom: 12px;
+  }
+}
 .type-name {
   position: relative;
 }

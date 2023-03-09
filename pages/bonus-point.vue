@@ -82,13 +82,11 @@ async function updatePermission() {
 async function dailyClickHandler(item) {
   if (item.accepted) return;
   if (item.isMission) {
-    console.debug(item.video);
     pageStatus.setDailyVideoURL(item.video);
     pageStatus.toggleVideoDialog(true);
-    return;
-    // await new Promise((resolve) => {
-    //   setTimeout(() => resolve(), 5000);
-    // });
+    await new Promise((resolve) => {
+      setTimeout(() => resolve(), 5000);
+    });
   }
   acceptDailyCheck(item);
 }

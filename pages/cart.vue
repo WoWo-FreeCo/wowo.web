@@ -215,6 +215,21 @@ function goCheckout() {
 .dashboard-menu li {
   margin: 0 12px;
 }
+.cart_container {
+  @media screen and (max-width: 375px) {
+    padding: 0 12px;
+  }
+}
+.cart_tl, .cart_img {
+  @media screen and (max-width: 375px) {
+    padding: 4px 0 0 0 !important;
+  }
+}
+.dashboard-menu {
+  @media screen and (max-width: 375px) {
+    display: flex;
+  }
+}
 .type-name {
   position: relative;
 }
@@ -233,6 +248,7 @@ function goCheckout() {
   border-radius: 50%;
 }
 .prod-tr {
+  position: relative;
   // min-height: 100px;
   // display: flex;
   // justify-content: space-between;

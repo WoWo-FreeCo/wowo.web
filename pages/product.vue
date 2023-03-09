@@ -192,7 +192,7 @@ function fetchHTMLPage(tag = 0) {
                   <input id="product-quantity" type="num" value="1" name="product-quantity" onkeyup="if(event.keyCode !=37 && event.keyCode != 39)value=value.replace(/\D/g,'');if(value==0) value=1;">
                 </div> -->
               <!-- </div> -->
-              <div class="mt-20">
+              <div class="mt-20 btns">
                 <!----------------!!!!!!!結帳按鈕改位置!!!!!!!---------------->
                 <button class="btn btn-main btn-bag" @click="addToCart(currentProduct)">
                   <i class="fa-solid fa-cart-shopping" />加入購物車
@@ -332,5 +332,16 @@ function fetchHTMLPage(tag = 0) {
   margin-top: 24px;
   align-items: center;
 }
-
+.single-product-slider {
+  @media screen and (max-width: 375px){
+    padding: 0 12px;
+  }
+}
+.btns {
+  @media screen and (max-width: 375px) {
+    .go_cart {
+      margin: 0;
+    }
+  }
+}
 </style>

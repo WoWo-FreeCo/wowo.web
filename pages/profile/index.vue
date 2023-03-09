@@ -456,4 +456,20 @@ async function updateProfile() {
 .btn {
   font-weight: 400;
 }
+.level_frame {
+  @media screen and (max-width: 375px) {
+    padding: 4px 12px 16px 12px;
+  }
+}
+.level_content {
+  @media screen and (max-width: 375px) {
+    padding: 20px 12px;
+    .level_tips {
+      margin: 8px 0 0 0;
+    }
+    .col-sm-6 {
+      padding: 0;
+    }
+  }
+}
 </style>

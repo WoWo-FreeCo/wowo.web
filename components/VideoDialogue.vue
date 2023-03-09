@@ -5,6 +5,10 @@ const pageStatus = usePageStatusStore();
 
 let timer = null;
 
+const videoURL = computed(() => {
+  return pageStatus.dailyVideoURL;
+});
+
 onMounted(() => {
   timer = setInterval(() => {
     if (countdown.value <= 0) {
@@ -16,6 +20,21 @@ onMounted(() => {
 });
 function close() {
   pageStatus.toggleVideoDialog(false);
+}
+function getYoutubeEmbedURL(_url) {
+  const regex =
+  /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+  const isValidUrl = regex.test(_url);
+  if (!isValidUrl) return '';
+  const match = _url.match(regex);
+  let embedId = match && match[2].length === 11 ? match[2] : null;
+  if (!embedId && _url.includes('shorts')) {
+    const regex =
+    /(youtu.*be.*)\/(watch\?v=|embed\/|v|shorts|)(.*?((?=[&#?])|$))/gm;
+    // @ts-ignore
+    embedId = regex.exec(_url)[3];
+  }
+  return `https://www.youtube.com/embed/${embedId}`;
 }
 </script>
 <template>
@@ -36,9 +55,10 @@ function close() {
           <div class="embed-responsive embed-responsive-16by9">
             <!-- <iframe id="video" class="embed-responsive-item" src="" allowscriptaccess="always" allow="autoplay" /> -->
             <iframe
+              id="yt-iframe"
               width="560"
               height="315"
-              src="https://www.youtube.com/embed/oy8m9i9Mtx4"
+              :src="getYoutubeEmbedURL(videoURL)"
               title="YouTube video player"
               frameborder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture;"

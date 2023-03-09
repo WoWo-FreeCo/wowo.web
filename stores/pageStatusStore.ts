@@ -5,13 +5,15 @@ type State = {
   adminOverlayToggle: boolean;
   videoDialogToggle: boolean;
   shareAccountToggle: boolean;
+  dailyVideoURL: string;
 }
 
 const initialState: State = {
   bellMessageToggle: false,
   adminOverlayToggle: false,
   videoDialogToggle: false,
-  shareAccountToggle: false
+  shareAccountToggle: false,
+  dailyVideoURL: ''
 };
 
 export const usePageStatusStore = defineStore({
@@ -32,6 +34,10 @@ export const usePageStatusStore = defineStore({
     },
     toggleShareAccount(_toggle: boolean) {
       this.shareAccountToggle = _toggle;
+    },
+    setDailyVideoURL(_url: string) {
+      this.dailyVideoURL = _url;
+      console.log(_url);
     }
   }
 });

@@ -57,7 +57,7 @@ async function fetchDailySequence() {
       };
     });
     dailyCheck.value = _result;
-    console.log(dailyCheck.value);
+    // console.log('final ', dailyCheck.value);
   } catch (error) {
     console.log(error);
   }
@@ -82,10 +82,13 @@ async function updatePermission() {
 async function dailyClickHandler(item) {
   if (item.accepted) return;
   if (item.isMission) {
+    console.debug(item.video);
+    pageStatus.setDailyVideoURL(item.video);
     pageStatus.toggleVideoDialog(true);
-    await new Promise((resolve) => {
-      setTimeout(() => resolve(), 5000);
-    });
+    return;
+    // await new Promise((resolve) => {
+    //   setTimeout(() => resolve(), 5000);
+    // });
   }
   acceptDailyCheck(item);
 }
@@ -143,7 +146,7 @@ async function acceptDailyCheck(item) {
               }"
               @click="dailyClickHandler(day)"
             >
-              <span>+{{ day.credit }}</span>
+              <span class="t1">+{{ day.credit }}</span>
               <a href="javascript:;">
                 <i
                   class="fa-solid"
@@ -154,7 +157,7 @@ async function acceptDailyCheck(item) {
                   }"
                 />
               </a>
-              <span class="sign_day">{{ dayText(day) }}</span>
+              <span class="t2 sign_day">{{ dayText(day) }}</span>
             </li>
             <!-- <li class="mission_lock sign">
               <span>+1</span>
@@ -185,12 +188,56 @@ async function acceptDailyCheck(item) {
   display: flex;
   flex-wrap: wrap;
   width: 1200px;
-
+  @media screen and (max-width: 1260px) {
+    width: 920px;
+    margin: 0 auto;
+  }
+  @media screen and (max-width: 1060px) {
+    width: 576px;
+  }
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    justify-content: center;
+  }
 }
 .day-slot {
   width: 108px;
   margin: 4px 4px;
   cursor: pointer;
+  @media screen and (max-width: 1260px) {
+    width: 84px;
+    height: 84px;
+    > .t1 {
+      font-size: 12px;
+    }
+    > a {
+      display: block;
+      height: 32px;
+      li {
+        height: 20px;
+      }
+    }
+    > .t2 {
+      font-size: 12px;
+    }
+  }
+  @media screen and (max-width: 1060px) {
+    width: 104px;;
+    height: 104px;
+  }
+  @media screen and (max-width: 576px) {
+    width: 132px;;
+    height: 132px;
+    > .t1 {
+      font-size: 20px;
+    }
+    > .t2 {
+      font-size: 18px;
+    }
+  }
+  > span {
+    font-weight: 500 !important;
+  }
   &.mission {
     background-color: #c28000;
     i {

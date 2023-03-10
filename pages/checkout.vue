@@ -14,8 +14,8 @@ const bonusCut = ref(0);
 const useTaxId = ref(false);
 const useUic = ref(false);
 const deliverDate = ref();
-const deliverTimeStart = ref();
-const deliverTimeEnd = ref();
+// const deliverTimeStart = ref();
+// const deliverTimeEnd = ref();
 const readRules = ref(false);
 const useDonation = ref(false);
 const cartType = ref(ProductType.General);
@@ -77,7 +77,7 @@ onUnmounted(() => {
 
 async function fetchData() {
   try {
-    const body = preprocessInput(true);
+    const body = preprocessInput();
     delete body.requiredDeliveryTimeslots;
     console.log('123,, ', body);
     const res = await $fetch(`${runtimeConfig.public.apiBase}/${POST_PAYMENT_PRE}`, {
@@ -143,7 +143,7 @@ const inputField = ref({
     stationCode: '', // 超商代碼 / 條碼?
     stationName: '', // 超商名稱?
     addressDetailOne: authStore.user?.addressOne,
-    province: '',
+    province: '台灣',
     district: '', // 區
     town: '', // 城鎮名
     zipCode: '' // 郵遞區號
@@ -160,21 +160,21 @@ const inputField = ref({
     loveCode: ''
   },
   products: [],
-  bonusPointRedemption: 0, // 紅利點數
-  requiredDeliveryTimeslots: [{ // 可送貨時間 區間
-    date: '2023-03-02T00:00:00Z',
-    slot: '14:00-18:00' // 14:00-18:00
-  }]
+  bonusPointRedemption: 0 // 紅利點數
+  // requiredDeliveryTimeslots: [{ // 可送貨時間 區間
+  //   date: '2023-03-02T00:00:00Z',
+  //   slot: '14:00-18:00' // 14:00-18:00
+  // }]
 });
 
-function preprocessInput(pre = false) {
-  const requiredDeliveryTimeslots = inputField.value.consignee.deliveryType ===
-      DeliverType.Home && !pre
-    ? {
-      date: new Date(deliverDate.value).toISOString(),
-      slot: `${getPickedTime(deliverTimeStart.value)}-${getPickedTime(deliverTimeEnd.value)}`
-    }
-    : {};
+function preprocessInput() {
+  // const requiredDeliveryTimeslots = inputField.value.consignee.deliveryType ===
+  //     DeliverType.Home && !pre
+  //   ? {
+  //     date: new Date(deliverDate.value).toISOString(),
+  //     slot: `${getPickedTime(deliverTimeStart.value)}-${getPickedTime(deliverTimeEnd.value)}`
+  //   }
+  //   : {};
   const body = {
     ...inputField.value,
     attribute: cartType.value,
@@ -206,30 +206,30 @@ function preprocessInput(pre = false) {
         id: e.id,
         quantity: e.amount
       };
-    }),
-    requiredDeliveryTimeslots: [
-      requiredDeliveryTimeslots
-    ]
+    })
+    // requiredDeliveryTimeslots: [
+    //   requiredDeliveryTimeslots
+    // ]
   };
   return body;
 }
-function getPickedTime(time) {
-  const date = new Date(time);
+// function getPickedTime(time) {
+//   const date = new Date(time);
 
-  const hours = date.getHours();
-  const minutes = date.getMinutes();
+//   const hours = date.getHours();
+//   const minutes = date.getMinutes();
 
-  const _time = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
-  // xx:xx format
-  return _time;
-}
+//   const _time = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+//   // xx:xx format
+//   return _time;
+// }
 async function sendResult() {
   const isOK = checkInputs();
   if (!isOK) return;
 
   const body = preprocessInput();
 
-  console.log(body, deliverTimeStart.value, deliverTimeEnd.value);
+  console.log(body);
 
   // return;
   try {
@@ -276,9 +276,8 @@ function checkInputs() {
     message.error('請選擇欲取貨的店家');
     return false;
   }
-  if (inputField.value.consignee.deliveryType === DeliverType.Home &&
-    (!deliverDate.value || !deliverTimeStart.value || !deliverTimeEnd.value)) {
-    message.error('請選擇可取貨的時間區段');
+  if (inputField.value.consignee.deliveryType === DeliverType.Home && !deliverDate.value) {
+    message.error('請選擇可取貨的日期');
     return false;
   }
   if (inputField.value?.consignee?.cellphone) {
@@ -487,7 +486,7 @@ function dateDisabled(ts) {
             name="ship_phone-2"
             required
           >
-          <input
+          <!-- <input
             id="ship-province"
             v-model="inputField.consignee.province"
             type="text"
@@ -495,7 +494,7 @@ function dateDisabled(ts) {
             class="form-control"
             name="ship-province"
             required
-          >
+          > -->
           <input
             id="ship-district"
             v-model="inputField.consignee.district"
@@ -541,7 +540,7 @@ function dateDisabled(ts) {
               :is-date-disabled="dateDisabled"
               required
             />
-            <n-space>
+            <!-- <n-space>
               <n-time-picker
                 v-if="inputField.consignee.deliveryType !== DeliverType.Store"
                 v-model:value="deliverTimeStart"
@@ -557,7 +556,7 @@ function dateDisabled(ts) {
                 placeholder="收貨時間-結束"
                 required
               />
-            </n-space>
+            </n-space> -->
           </ClientOnly>
         </div>
       </div>
@@ -680,7 +679,7 @@ function dateDisabled(ts) {
       <div class="cart_info checkout-form ptb10">
         <label class="checkbox">
           <input id="check_service" v-model="readRules" type="checkbox" required>
-          我已經閱讀並同意以上購買須知、 <a href="/terms" target="new">會員使用條款</a>與<a href="/privacy" target="new">隱私權政策</a>，此欄位勾選才可送出。
+          我已經閱讀並同意以上購買須知、 <a href="/terms" target="new">會員使用條款</a>與<a href="/privacy" target="new">隱私權政策</a>
         </label>
       </div>
       <div class="text-center mb-20 mt-20">

@@ -173,7 +173,7 @@ function goCheckout() {
                 </span>
                 價錢 ${{ getCurrentPriceByAuth(item) }}<!--此顯示當下會員等級的價格就好-->
               </td>
-              <td class="cart_price text-right">
+              <td class="cart_price cart_trash text-right">
                 <button type="button" class="del_btn" @click="deleteItem(item)">
                   <i class="fa-solid fa-trash-can" />
                 </button><!--點擊刪除此商品-->
@@ -225,6 +225,15 @@ function goCheckout() {
     padding: 4px 0 0 0 !important;
   }
 }
+.cart_img {
+  img {
+    // object-fit: contain;
+    @media screen and (max-width: 375px) {
+      height: 100px;
+      // width: 100px;
+    }
+  }
+}
 .dashboard-menu {
   @media screen and (max-width: 375px) {
     display: flex;
@@ -255,11 +264,25 @@ function goCheckout() {
 }
 .prod-tr {
   position: relative;
+  display: flex;
+  gap: 4px;
+  @media screen and (max-width: 375px) {
+    padding: 8px 0;
+  }
   // min-height: 100px;
   // display: flex;
   // justify-content: space-between;
-  // .cart_price {
-  //   align-self: center;
-  // }
+}
+.cart_price {
+  @media screen and (max-width: 375px) {
+    text-align: right !important;
+  }
+}
+.cart_trash {
+  @media screen and (max-width: 375px) {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
 }
 </style>

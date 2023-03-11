@@ -137,7 +137,7 @@ async function confirmReg() {
                 required
               >
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
               <label>市話*</label>
               <input
                 id="wb-telephone"
@@ -148,7 +148,7 @@ async function confirmReg() {
                 name=""
                 required
               >
-            </div>
+            </div> -->
             <div class="form-group">
               <label>送貨地址*</label>
               <input

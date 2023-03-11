@@ -100,7 +100,7 @@ function goCheckout() {
             class="type-name"
             :class="{active: cartType === ProductType.General}"
           >
-            一般商品
+            一般物流商品
             <span v-show="generalMerch.length" class="cart-amount">{{ generalMerch.length }}</span>
           </NuxtLink>
         </li>
@@ -110,7 +110,7 @@ function goCheckout() {
             class="type-name"
             :class="{active: cartType === ProductType.ColdChain}"
           >
-            冷鍊商品
+            特殊物流商品
             <span v-show="coldMerch.length" class="cart-amount">{{ coldMerch.length }}</span>
           </NuxtLink>
         </li>

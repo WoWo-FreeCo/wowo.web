@@ -244,7 +244,7 @@ async function updateProfile() {
                 required
               >
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
               <label>市話*</label>
               <input
                 id="auth-tele"
@@ -255,7 +255,7 @@ async function updateProfile() {
                 name=""
                 required
               >
-            </div>
+            </div> -->
             <div class="form-group">
               <label>送貨地址*</label>
               <input

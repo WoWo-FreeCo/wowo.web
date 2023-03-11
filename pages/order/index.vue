@@ -67,8 +67,8 @@ function getFormattedData(date) {
 }
 
 const orderAttr = (order) => {
-  if (order?.attribute === ProductType.General) return '一般商品';
-  if (order?.attribute === ProductType.ColdChain) return '冷鏈商品';
+  if (order?.attribute === ProductType.General) return '一般物流商品';
+  if (order?.attribute === ProductType.ColdChain) return '特殊物流商品';
   else return order.attribute;
 };
 
@@ -134,7 +134,7 @@ async function cancelOrder(item) {
                 :class="{active: curProdType === ProductType.General}"
                 @click="curProdType = ProductType.General"
               >
-                一般商品
+                一般物流商品
               </a>
             </li>
             <li>
@@ -143,7 +143,7 @@ async function cancelOrder(item) {
                 :class="{active: curProdType === ProductType.ColdChain}"
                 @click="curProdType = ProductType.ColdChain"
               >
-                冷鏈商品
+                特殊物流商品
               </a>
             </li>
           </ul>

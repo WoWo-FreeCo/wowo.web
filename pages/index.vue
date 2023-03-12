@@ -264,6 +264,11 @@ function addToCart(prod) {
 }
 .swiper-root {
   margin-top: 120px;
+  // min width
+  @media screen and (min-width: 576px) {
+    min-height: 392px;
+  }
+  // max width
   @media screen and (max-width: 576px) {
     margin-top: 145px;
   }

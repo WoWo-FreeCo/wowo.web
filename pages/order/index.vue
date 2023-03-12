@@ -212,7 +212,7 @@ async function cancelOrder(item) {
                 <td data-th="訂單狀態">
                   {{ orderStatus(order) }}
                 </td>
-                <td>
+                <td class="action-btns">
                   <NuxtLink :to="`/order/detail?id=${order.id}`" class="btn btn-orderdetial">
                     查看明細
                   </NuxtLink>
@@ -290,5 +290,14 @@ async function cancelOrder(item) {
 }
 .cancel-btn {
   margin-left: 12px;
+}
+.action-btns {
+  display: flex;
+  @media screen and (max-width: 992px) {
+    flex-direction: column;
+    .btn {
+      margin: 4px 0;
+    }
+  }
 }
 </style>

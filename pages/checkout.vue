@@ -200,7 +200,7 @@ function preprocessInput() {
       carruerNum: inputField.value.invoiceParams.carruerType >= 2 ? inputField.value.invoiceParams.carruerNum : '',
       donation: (invoiceType.value === InvoiceType.Donation) ? 1 : 0,
       loveCode: (invoiceType.value === InvoiceType.Donation) ? inputField.value.invoiceParams.loveCode : '',
-      customerIdentifier: (invoiceType.value === InvoiceType.CustomerId) ? inputField.value.invoiceParams.customerIdentifier : '',
+      customerIdentifier: (invoiceType.value === InvoiceType.CustomerId) ? inputField.value.invoiceParams.customerIdentifier : '00000000',
       customerPhone: inputField.value.consignee.cellphone,
       customerName: inputField.value.consignee.name,
       customerAddr: inputField.value.consignee.addressDetailOne,
@@ -217,6 +217,9 @@ function preprocessInput() {
     //   requiredDeliveryTimeslots
     // ]
   };
+  // if (invoiceType.value === InvoiceType.Normal) {
+  //   delete body.invoiceParams.customerIdentifier;
+  // }
   return body;
 }
 // function getPickedTime(time) {

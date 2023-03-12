@@ -194,7 +194,7 @@ async function updateProfile() {
                 id="auth-realname"
                 v-model="inputField.nickname"
                 type="text"
-                placeholder="姓名*"
+                placeholder="請輸入姓名"
                 class="form-control"
                 name=""
                 required
@@ -244,7 +244,7 @@ async function updateProfile() {
                 id="auth-mobile"
                 v-model="inputField.cellphone"
                 type="text"
-                placeholder="手機*"
+                placeholder="請輸入手機號碼"
                 class="form-control"
                 name=""
                 required
@@ -268,7 +268,7 @@ async function updateProfile() {
                 id="auth-address1"
                 v-model="inputField.addressOne"
                 type="text"
-                placeholder="地址*"
+                placeholder="請輸入地址"
                 class="form-control"
                 name=""
                 required

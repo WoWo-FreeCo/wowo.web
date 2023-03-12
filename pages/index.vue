@@ -270,8 +270,8 @@ function addToCart(prod) {
   position: relative;
   margin-top: 120px;
   // min width
-  @media screen and (min-width: 576px) {
-    min-height: 450px;
+  @media screen and (min-width: 375px) {
+    min-height: 34vw;
   }
   // max width
   @media screen and (max-width: 576px) {

@@ -17,6 +17,7 @@ const prodCategories = ref([]);
 const products = ref([]);
 const homeBanner = ref([]);
 
+const authStore = useAuthStore();
 const cartStore = useCartStore();
 
 const fakeProds = Array.from({ length: 30 }, () => ({ type: 'fake' }));
@@ -194,19 +195,35 @@ function addToCart(prod) {
                   </NuxtLink>
                 </h3>
                 <ul>
-                  <li>
+                  <li
+                    :class="{
+                      'vip_price': !authStore.user?.memberLevel
+                    }"
+                  >
                     ${{ item?.price }}
                     <span>市價</span>
                   </li>
-                  <li>
+                  <li
+                    :class="{
+                      'vip_price': authStore.user?.memberLevel === 'NORMAL'
+                    }"
+                  >
                     ${{ item?.memberPrice }}
                     <span>會員</span>
                   </li>
-                  <li>
+                  <li
+                    :class="{
+                      'vip_price': authStore.user?.memberLevel === 'VIP'
+                    }"
+                  >
                     ${{ item?.vipPrice }}
                     <span>VIP</span>
                   </li>
-                  <li>
+                  <li
+                    :class="{
+                      'vip_price': authStore.user?.memberLevel === 'SVIP'
+                    }"
+                  >
                     ${{ item?.svipPrice }}
                     <span>SVIP</span>
                   </li>
@@ -256,6 +273,9 @@ function addToCart(prod) {
     display: flex;
     justify-content: space-evenly;
     padding: 8px 4px;
+    > li {
+      text-align: center;
+    }
   }
 }
 .not-found {
@@ -311,18 +331,8 @@ function addToCart(prod) {
   background-color: rgba(0,0,0, 0.3);
   animation: skeleton-anim .75s infinite alternate;
 }
-
-// Skeleton CSS
-// .card{
-//   width: 200px;
-//   min-height: 350px;
-//   box-shadow: 0 0 5px rgba(0,0,0,0.5);
-// }
-/* SKELETON EFFECT */
 @keyframes skeleton-anim{
   0% {opacity: 0.3}
   100% {opacity: 0.8}
-  // 0% {transform: translateX(-100%)}
-  // 100% {transform: translateX(0%);}
 }
 </style>

@@ -40,6 +40,7 @@ function menuClose() {
           <li>
             <NuxtLink to="/favorite">
               <i class="fa-regular fa-heart" />
+              <span v-show="cartStore?.favMerch.length > 0" class="badge badge-pink">{{ cartStore?.favMerch.length }}</span>
             </NuxtLink>
           </li>
           <li class="top_cart">
@@ -144,5 +145,11 @@ function menuClose() {
     width: 20px;
     height: 20px;
   }
+}
+.badge-pink {
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  line-height: 16px;
 }
 </style>

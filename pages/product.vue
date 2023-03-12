@@ -3,6 +3,7 @@
 import { GET_PRODUCT_DETAIL } from '@/apis/requestURL';
 
 const cartStore = useCartStore();
+const authStore = useAuthStore();
 const route = useRoute();
 const router = useRouter();
 const runtimeConfig = useRuntimeConfig();
@@ -157,20 +158,36 @@ function fetchHTMLPage(tag = 0) {
               <!--產品價錢4種全show-->
               <ul class="product-price mt-0">
                 <!----------------!!!!!!!!!!!!!! 價錢"$"改寫法 !!!!!!!!!!!!!!---------------->
-                <li>
-                  <span>市價</span>
+                <li
+                  :class="{
+                    'vip_price': !authStore.user?.memberLevel
+                  }"
+                >
+                  <span class="price-title">市價</span>
                   <span class="m_icon">$</span>{{ currentProduct?.price || 0 }}
                 </li>
-                <li>
-                  <span>會員</span>
+                <li
+                  :class="{
+                    'vip_price': authStore.user?.memberLevel === 'NORMAL'
+                  }"
+                >
+                  <span class="price-title">會員</span>
                   <span class="m_icon">$</span>{{ currentProduct?.memberPrice || 0 }}
                 </li>
-                <li class="vip_price">
-                  <span>VIP</span>
+                <li
+                  :class="{
+                    'vip_price': authStore.user?.memberLevel === 'VIP'
+                  }"
+                >
+                  <span class="price-title">VIP</span>
                   <span class="m_icon">$</span>{{ currentProduct?.vipPrice || 0 }}
                 </li>
-                <li class="vip_price">
-                  <span>SVIP</span>
+                <li
+                  :class="{
+                    'vip_price': authStore.user?.memberLevel === 'SVIP'
+                  }"
+                >
+                  <span class="price-title">SVIP</span>
                   <span class="m_icon">$</span>{{ currentProduct?.svipPrice || 0 }}
                 </li>
               </ul><!--產品價錢 end-->
@@ -243,50 +260,6 @@ function fetchHTMLPage(tag = 0) {
             </div><!--預留的頁籤 end-->
           </div>
         </div>
-
-        <!-- <h3 class="text-center">
-          猜你喜歡的
-        </h3> -->
-
-        <div v-if="false" class="product_slide">
-          <!---1---><!---1個div為一筆產品---><!----------------------!!!!!!!!新版改, ul 裡的價錢標籤!!!!!!!!---------------------->
-          <div class="product_frame">
-            <div class="hot_sale2">
-              <!--灌水熱銷組-->
-              熱銷<span>30</span>組
-            </div>
-            <div class="product_img">
-              <a href="/product" target="_blank">
-                <img src="@/assets/images/product/2009.jpg" alt=""><!--建議 600*400-->
-              </a>
-            </div>
-            <h3>
-              <a href="/product" target="_blank">產品名稱產品名稱產品名稱產品名稱產品名稱產品名稱1</a>
-            </h3>
-            <ul>
-              <!----------------------!!!!!!!!新版改, 價錢標籤!!!!!!!!---------------------->
-              <li>
-                $130
-                <span>市價</span>
-              </li>
-              <li>
-                $130
-                <span>會員</span>
-              </li>
-              <li>
-                $130
-                <span>VIP</span>
-              </li>
-              <li>
-                $130
-                <span>SVIP</span>
-              </li>
-              <li>
-                <button><i class="fa-solid fa-cart-shopping" /><!----------------!!!!!!!!!!!! <i class="fa-solid fa-cart-plus"></i> 改<i class="fa-solid fa-cart-shopping"></i> !!!!!!!!!!!!----------------></button>
-              </li>
-            </ul>
-          </div>
-        </div>
       </div>
     </section>
   </div>
@@ -302,6 +275,12 @@ function fetchHTMLPage(tag = 0) {
   li > span:first-child {
     margin-right: 8px;
   }
+  li {
+    font-weight: 500;
+  }
+}
+.price-title {
+  min-width: 60px;
 }
 .breadcrumb {
   margin-bottom: 4px;

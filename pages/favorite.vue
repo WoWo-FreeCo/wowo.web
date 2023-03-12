@@ -61,19 +61,35 @@ onMounted(() => {
                   </NuxtLink>
                 </h3>
                 <ul>
-                  <li>
+                  <li
+                    :class="{
+                      'vip_price': !authStore.user?.memberLevel
+                    }"
+                  >
                     ${{ item?.price }}
                     <span>市價</span>
                   </li>
-                  <li>
+                  <li
+                    :class="{
+                      'vip_price': authStore.user?.memberLevel === 'NORMAL'
+                    }"
+                  >
                     ${{ item?.memberPrice }}
                     <span>會員</span>
                   </li>
-                  <li>
+                  <li
+                    :class="{
+                      'vip_price': authStore.user?.memberLevel === 'VIP'
+                    }"
+                  >
                     ${{ item?.vipPrice }}
                     <span>VIP</span>
                   </li>
-                  <li>
+                  <li
+                    :class="{
+                      'vip_price': authStore.user?.memberLevel === 'SVIP'
+                    }"
+                  >
                     ${{ item?.svipPrice }}
                     <span>SVIP</span>
                   </li>
@@ -152,6 +168,13 @@ onMounted(() => {
   display: flex;
   .product_frame {
     flex-basis: 33.33%;
+  }
+}
+.product_frame {
+  > ul {
+    > li {
+      text-align: center;
+    }
   }
 }
 .favs-row {

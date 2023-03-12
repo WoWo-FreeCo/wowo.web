@@ -19,6 +19,7 @@ const maxPage = ref(1);
 const prodCategories = ref([]);
 const products = ref([]);
 
+const authStore = useAuthStore();
 const cartStore = useCartStore();
 
 const collapseToggle = ref(false);
@@ -211,19 +212,35 @@ function addToCart(prod) {
                 </NuxtLink>
               </h3>
               <ul>
-                <li>
+                <li
+                  :class="{
+                    'vip_price': !authStore.user?.memberLevel
+                  }"
+                >
                   ${{ item?.price }}
                   <span>市價</span>
                 </li>
-                <li>
+                <li
+                  :class="{
+                    'vip_price': authStore.user?.memberLevel === 'NORMAL'
+                  }"
+                >
                   ${{ item?.memberPrice }}
                   <span>會員</span>
                 </li>
-                <li>
+                <li
+                  :class="{
+                    'vip_price': authStore.user?.memberLevel === 'VIP'
+                  }"
+                >
                   ${{ item?.vipPrice }}
                   <span>VIP</span>
                 </li>
-                <li>
+                <li
+                  :class="{
+                    'vip_price': authStore.user?.memberLevel === 'SVIP'
+                  }"
+                >
                   ${{ item?.svipPrice }}
                   <span>SVIP</span>
                 </li>
@@ -276,6 +293,9 @@ function addToCart(prod) {
     display: flex;
     justify-content: space-evenly;
     padding: 8px 4px;
+    > li {
+      text-align: center;
+    }
   }
 }
 .not-found {

@@ -1,7 +1,13 @@
 <script setup>
 import { useMessage } from 'naive-ui';
 import { POST_PAYMENT, POST_PAYMENT_PRE } from '@/apis/requestURL';
-import { ProductType, PaymentType, DeliverType, UICType } from '@/constants/common';
+import {
+  ProductType,
+  PaymentType,
+  DeliverType,
+  UICType,
+  InvoiceType
+} from '@/constants/common';
 
 const routes = useRoute();
 const router = useRouter();
@@ -11,13 +17,12 @@ const authStore = useAuthStore();
 const cartStore = useCartStore();
 
 const bonusCut = ref(0);
-const useTaxId = ref(false);
 const useUic = ref(false);
 const deliverDate = ref();
 // const deliverTimeStart = ref();
 // const deliverTimeEnd = ref();
 const readRules = ref(false);
-const useDonation = ref(false);
+const invoiceType = ref(InvoiceType.Normal);
 const cartType = ref(ProductType.General);
 
 const totalPrice = computed({
@@ -193,12 +198,13 @@ function preprocessInput() {
       ...inputField.value.invoiceParams,
       carruerType: useUic.value ? inputField.value.invoiceParams.carruerNum : '',
       carruerNum: inputField.value.invoiceParams.carruerType >= 2 ? inputField.value.invoiceParams.carruerNum : '',
-      donation: useDonation.value ? 1 : 0,
-      loveCode: useDonation.value ? inputField.value.invoiceParams.loveCode : '',
-      customerIdentifier: useTaxId.value ? inputField.value.invoiceParams.customerIdentifier : '00000000',
+      donation: (invoiceType.value === InvoiceType.Donation) ? 1 : 0,
+      loveCode: (invoiceType.value === InvoiceType.Donation) ? inputField.value.invoiceParams.loveCode : '',
+      customerIdentifier: (invoiceType.value === InvoiceType.CustomerId) ? inputField.value.invoiceParams.customerIdentifier : '',
       customerPhone: inputField.value.consignee.cellphone,
       customerName: inputField.value.consignee.name,
-      customerAddr: inputField.value.consignee.addressDetailOne
+      customerAddr: inputField.value.consignee.addressDetailOne,
+      customerEmail: authStore?.user?.email
     },
     bonusPointRedemption: bonusCut.value,
     products: currentMerch.value.map((e) => {
@@ -288,7 +294,15 @@ function checkInputs() {
       return;
     }
   }
-  if (useDonation.value) {
+  if (invoiceType.value === InvoiceType.CustomerId) {
+    const regex = /^[0-9]{8}$/;
+    const _string = inputField.value.invoiceParams.customerIdentifier;
+    if (!regex.test(_string)) {
+      message.error('請輸入正確的統一編號');
+      return;
+    }
+  }
+  if (invoiceType.value === InvoiceType.Donation) {
     const regex = /^\d{3,7}$/;
     const _string = inputField.value.invoiceParams.loveCode;
     if (!regex.test(_string)) {
@@ -565,36 +579,56 @@ function dateDisabled(ts) {
         <div class="checkout-form">
           <label class="radio form-check">
             <input
-              v-model="useDonation"
+              v-model="invoiceType"
               type="radio"
               name="donation"
-              :value="false"
+              :value="InvoiceType.Normal"
             >
-            開立發票
+            開立一般發票
           </label>
           <label class="radio form-check">
             <input
-              v-model="useDonation"
+              v-model="invoiceType"
               type="radio"
               name="donation"
-              :value="true"
+              :value="InvoiceType.CustomerId"
+            >
+            開立統一編號
+          </label>
+          <label class="radio form-check">
+            <input
+              v-model="invoiceType"
+              type="radio"
+              name="donation"
+              :value="InvoiceType.Donation"
             >
             捐贈發票
           </label>
         </div>
       </div>
-      <div v-if="useDonation" class="cart_info checkout-form">
+      <div v-if="invoiceType !== InvoiceType.Normal" class="cart_info checkout-form">
         <h5>發票資訊</h5>
         <div class="ship_info inv-info">
           <div class="ship_info">
             <input
+              v-if="invoiceType === InvoiceType.Donation"
               id="inv_ship_lovecode"
               v-model="inputField.invoiceParams.loveCode"
               type="text"
               placeholder="請輸入捐贈愛心碼*"
               class="form-control"
-              name=""
+              name="inv_ship_lovecode"
               required
+            >
+            <!-- 統編 -->
+            <input
+              v-if="invoiceType === InvoiceType.CustomerId"
+              id="inv_ship_identification"
+              v-model="inputField.invoiceParams.customerIdentifier"
+              type="text"
+              placeholder="請輸入統一編號*"
+              class="form-control"
+              name="inv_ship_identification"
             >
           </div>
         </div>

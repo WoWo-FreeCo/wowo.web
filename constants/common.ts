@@ -28,3 +28,9 @@ export enum OrderStatus {
   Cancelled = 'CANCELLED',
   Revoked = 'REVOKED',
 }
+
+export enum InvoiceType {
+  Normal = 0,
+  CustomerId,
+  Donation,
+}

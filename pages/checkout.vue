@@ -460,7 +460,7 @@ function dateDisabled(ts) {
       <div class="cart_info">
         <h5>紅利扣點 (目前可用紅利：{{ rewardCredit }} 點)</h5>
         <div class="checkout-form">
-          <n-input-number v-model:value="bonusCut" min="0" :max="rewardCredit" :style="{ width: '150px', margin: '4px 0 4px 15px' }" />
+          <n-input-number v-model:value="bonusCut" min="0" :max="rewardCredit" :style="{ width: '150px', margin: '4px 0 4px 15px' }" placeholder="123" />
           <!-- <input
             id=""
             v-model="bonusCut"

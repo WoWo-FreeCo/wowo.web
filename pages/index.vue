@@ -133,6 +133,7 @@ function addToCart(prod) {
         },
       }"
     >
+      <div class="skeleton" />
       <SwiperSlide v-for="slide in homeBanner" :key="slide.id">
         <NuxtLink :to="`${slide.href}`">
           <img :src="slide.img" alt="">
@@ -266,10 +267,11 @@ function addToCart(prod) {
   text-align: center;
 }
 .swiper-root {
+  position: relative;
   margin-top: 120px;
   // min width
   @media screen and (min-width: 576px) {
-    min-height: 445px;
+    min-height: 450px;
   }
   // max width
   @media screen and (max-width: 576px) {
@@ -300,7 +302,7 @@ function addToCart(prod) {
   right: 12px;
   z-index: 99;
 }
-.product_img > .skeleton {
+.skeleton {
   position: absolute;
   top: 0;
   left: 0;

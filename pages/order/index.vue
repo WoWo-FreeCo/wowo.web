@@ -216,8 +216,12 @@ async function cancelOrder(item) {
                   <NuxtLink :to="`/order/detail?id=${order.id}`" class="btn btn-orderdetial">
                     查看明細
                   </NuxtLink>
-                  <button type="button" class="btn btn-orderdetial cancel-btn" @click="cancelOrder(order)">
+
+                  <button v-if="order.orderStatus !== 'CANCELLED'" type="button" class="btn btn-orderdetial cancel-btn" @click="cancelOrder(order)">
                     取消訂單
+                  </button>
+                  <button v-if="order.orderStatus !== 'WAIT_PAYMENT' && order.orderStatus !== 'CANCELLED'" type="button" class="btn btn-orderdetial cancel-btn" @click="">
+                    申請退貨
                   </button>
                 </td>
               </tr>

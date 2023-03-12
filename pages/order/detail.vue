@@ -13,23 +13,23 @@ const message = useMessage();
 
 const curOrder = ref({});
 
-// const oderAttr = computed(() => {
-//   switch (curOrder.value?.attribute) {
-//   case ProductType.ColdChain:
-//     return '一般商品';
-//   default:
-//     return '冷鏈商品';
-//   }
-// });
+const orderAttr = computed(() => {
+  switch (curOrder.value?.attribute) {
+  case ProductType.ColdChain:
+    return '一般';
+  default:
+    return '冷鏈';
+  }
+});
 
 const orderStatus = computed(() => {
   switch (curOrder.value?.orderStatus) {
   case 'WAIT_PAYMENT':
     return '待付款';
   case 'WAIT_DELIVER':
-    return '運送中';
+    return '待出貨';
   case 'WAIT_RECEIVE':
-    return '待取貨';
+    return '已出貨';
   case 'COMPLETED':
     return '已完成';
   case 'CANCELLED':
@@ -119,19 +119,30 @@ function getFormattedData(date) {
             <a href="#" data-toggle="modal" data-target="#back" class="back_span">申請取消訂單</a>
           </div>
           <ul>
+            <li>商品運送類型：<span>{{ orderAttr }}</span></li>
+            <li>成立日期：<span>{{ getFormattedData(curOrder?.createdAt) }}</span></li>
             <li>訂單狀態：<span>{{ orderStatus }}</span></li>
-            <li>訂單日期：<span>{{ getFormattedData(curOrder?.createdAt) }}</span></li>
-            <li>付款方式：<span>{{ curOrder?.paymentType }}</span></li>
-            <li>寄送方式：<span>{{ }}</span></li>
-            <li>住   址：<span>{{ curOrder?.consignee?.addressDetailOne }}</span></li>
-            <li>可收貨日：<span>{{ "" }}</span></li>
-            <li>發票類型：<span>{{ "" }}</span></li>
-            <li>發票抬頭：<span>{{ "" }}</span></li>
-            <li>發票統編：<span>{{ "" }}</span></li>
           </ul>
         </div>
-        <div class="order_tl">
-          購物清單
+        <div class="order_div">
+          <div class="order_tl">
+            付款人資訊
+          </div>
+          <ul>
+            <li>姓名：<span>{{ curOrder?.consignee?.name }}</span></li>
+            <li>Email：<span>{{ curOrder?.consignee?.email }}</span></li>
+            <li>省份：<span>{{ curOrder?.consignee?.province }}</span></li>
+            <li>縣市：<span>{{ curOrder?.consignee?.district }}</span></li>
+            <li>城市：<span>{{ curOrder?.consignee?.city }}</span></li>
+            <li>城鎮：<span>{{ curOrder?.consignee?.town }}</span></li>
+            <li>郵遞區號：<span>{{ curOrder?.consignee?.zipCode }}</span></li>
+            <li>行動電話：<span>{{ curOrder?.consignee?.cellphone }}</span></li>
+            <li>地址：<span>{{ curOrder?.consignee?.addressDetailOne }}</span></li>
+            <li>取貨店家名稱：<span>{{ curOrder?.consignee?.stationName }}</span></li>
+            <li>取貨店家編號：<span>{{ curOrder?.consignee?.stationCode }}</span></li>
+            <li>收件備註：<span>{{ curOrder?.consignee?.remark }}</span></li>
+            <li>寄件備註：<span>{{ curOrder?.consignee?.senderRemark }}</span></li>
+          </ul>
         </div>
         <table class="cart_list">
           <tbody>
@@ -192,5 +203,11 @@ function getFormattedData(date) {
 .cart-price {
   color: #000;
   text-align: right;
+}
+.order_div ul {
+  line-height: 1.8;
+}
+.order_div li span {
+  padding-left: 0;
 }
 </style>

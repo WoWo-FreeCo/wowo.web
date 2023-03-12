@@ -19,14 +19,16 @@ const homeBanner = ref([]);
 
 const cartStore = useCartStore();
 
-let currentProduct = ref([]);
+const fakeProds = Array.from({ length: 30 }, () => ({ type: 'fake' }));
+
+const currentProduct = ref(fakeProds);
 
 watch(currentCategoryId, (_new) => {
   if (_new === defaultCategory.id) {
-    currentProduct = products.value;
+    currentProduct.value = products.value;
     return;
   }
-  currentProduct = products.value.filter(e => e.categoryId === _new);
+  currentProduct.value = products.value.filter(e => e.categoryId === _new);
 });
 
 // useAsyncData('fetch-products', async() => {
@@ -163,8 +165,8 @@ function addToCart(prod) {
               <!--一個類別只要顯示9個產品, 請以此div類推--><!----------------------!!!!!!!!新版改, ul 裡的價錢標籤!!!!!!!!---------------------->
               <div
                 v-for="item in currentProduct"
-                v-show="item?.inventory?.quantity >= 1"
-                :key="item.key"
+                v-show="item?.inventory?.quantity >= 1 || item?.type === 'fake'"
+                :key="item?.id"
                 class="product_frame"
               >
                 <button class="add_like" @click="addToFavorite(item)">
@@ -179,7 +181,8 @@ function addToCart(prod) {
                 <div v-show="item?.brief" class="hot_sale2">
                   {{ item.brief }}
                 </div>
-                <div class="product_img">
+                <div class="product_img card">
+                  <div class="skeleton" />
                   <NuxtLink :to="`/product?id=${item?.id}`">
                     <img :src="item?.coverImg" alt="">
                   </NuxtLink>
@@ -266,7 +269,7 @@ function addToCart(prod) {
   margin-top: 120px;
   // min width
   @media screen and (min-width: 576px) {
-    min-height: 392px;
+    min-height: 445px;
   }
   // max width
   @media screen and (max-width: 576px) {
@@ -274,6 +277,9 @@ function addToCart(prod) {
   }
 }
 .labels-flex {
+  @media screen and (min-width: 576px) {
+    min-height: 90px;
+  }
   @media screen and (max-width: 576px) {
     display: flex;
     flex-wrap: wrap;
@@ -293,5 +299,28 @@ function addToCart(prod) {
   top: 0px;
   right: 12px;
   z-index: 99;
+}
+.product_img > .skeleton {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0, 0.3);
+  animation: skeleton-anim .75s infinite alternate;
+}
+
+// Skeleton CSS
+// .card{
+//   width: 200px;
+//   min-height: 350px;
+//   box-shadow: 0 0 5px rgba(0,0,0,0.5);
+// }
+/* SKELETON EFFECT */
+@keyframes skeleton-anim{
+  0% {opacity: 0.3}
+  100% {opacity: 0.8}
+  // 0% {transform: translateX(-100%)}
+  // 100% {transform: translateX(0%);}
 }
 </style>

@@ -148,7 +148,7 @@ function goCheckout() {
                 <a :href="`/product?id=${item.id}`">
                   <h5>{{ item?.name }}</h5>
                 </a>
-                <n-input-number v-model:value="item.amount" :min="1" :style="{ width: '150px' }">
+                <n-input-number v-model:value="item.amount" :min="1" :style="{ width: '150px' }" placeholder="請輸入數量">
                   <!-- <div class="product-quantity">
                   <div class="product-quantity-slider">
                     <input

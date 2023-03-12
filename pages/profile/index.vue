@@ -114,10 +114,6 @@ async function activateProfileByType(type) {
       alert('綁定失敗，請稍後再試一次');
     }
   } else if (type === 'vip') {
-    // if (!allowActivateVIP.value) {
-    //   alert('請先綁定 FB / YT 連結');
-    //   return;
-    // }
     try {
       console.log(inputVIPCode.value);
       await $fetch(`${runtimeConfig.public.apiBase}/${POST_USER_ACTIVATATION}`, {
@@ -154,6 +150,18 @@ async function activateProfileByType(type) {
   updatePermission();
 }
 async function updateProfile() {
+  if (!inputField.value.nickname) {
+    message.error('請輸入姓名');
+    return;
+  }
+  if (!inputField.value.cellphone) {
+    message.error('請輸入手機號碼');
+    return;
+  }
+  if (!inputField.value.addressOne) {
+    message.error('請輸入地址');
+    return;
+  }
   try {
     await $fetch(`${runtimeConfig.public.apiBase}/${UPDATE_USER_PROFILE}`, {
       method: 'PUT',
@@ -255,12 +263,12 @@ async function updateProfile() {
               >
             </div> -->
             <div class="form-group">
-              <label>送貨地址*</label>
+              <label>地址*</label>
               <input
                 id="auth-address1"
                 v-model="inputField.addressOne"
                 type="text"
-                placeholder="送貨地址*"
+                placeholder="地址*"
                 class="form-control"
                 name=""
                 required

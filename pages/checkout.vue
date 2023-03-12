@@ -22,6 +22,7 @@ const deliverDate = ref();
 // const deliverTimeStart = ref();
 // const deliverTimeEnd = ref();
 const readRules = ref(false);
+const readRevoke = ref(false);
 const invoiceType = ref(InvoiceType.Normal);
 const cartType = ref(ProductType.General);
 
@@ -331,6 +332,10 @@ function checkInputs() {
   }
   if (!readRules.value) {
     message.error('請詳閱相關購買條款並勾選確認');
+    return false;
+  }
+  if (!readRevoke.value) {
+    message.error('請詳閱相關退貨條款並勾選確認');
     return false;
   }
   return true;
@@ -718,6 +723,10 @@ function dateDisabled(ts) {
         <label class="checkbox">
           <input id="check_service" v-model="readRules" type="checkbox" required>
           我已經閱讀並同意以上購買須知、 <a href="/terms" target="new">會員使用條款</a>與<a href="/privacy" target="new">隱私權政策</a>
+        </label>
+        <label class="checkbox">
+          <input id="check_service" v-model="readRevoke" type="checkbox" required>
+          我同意辦理退貨時，由WO平台代為處理發票及銷貨退回證明單，以加速退貨退款流程作業。
         </label>
       </div>
       <div class="text-center mb-20 mt-20">

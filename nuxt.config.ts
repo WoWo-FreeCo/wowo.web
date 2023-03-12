@@ -5,7 +5,8 @@ export default defineNuxtConfig({
   app: {
     head: {
       script: [
-        { src: 'https://wowjs.uk/dist/wow.min.js', body: true }
+        { src: 'https://wowjs.uk/dist/wow.min.js', body: true },
+        { src: 'https://accounts.google.com/gsi/client', async: true, defer: true }
       ],
       link: [
         { rel: 'icon', type: 'image/png', href: '/favicon.png' },
@@ -37,7 +38,9 @@ export default defineNuxtConfig({
     public: {
       // 預設值
       baseUrl: 'https://wo.wowo.tw',
-      apiBase: 'https://api.wowo.tw'
+      apiBase: 'https://api.wowo.tw',
+      googleClientId: '',
+      googleSecret: ''
     }
   },
   build: {

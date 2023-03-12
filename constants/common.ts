@@ -34,3 +34,10 @@ export enum InvoiceType {
   CustomerId,
   Donation,
 }
+
+export enum BonusRecordActivity {
+  Register = 'REGISTEr',
+  Upgrad = 'UPGRADE',
+  Reward = 'REWARD',
+  Redeem = 'REDEEM',
+}

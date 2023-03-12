@@ -5,6 +5,7 @@ export const GET_USER_ORDERS = `${prefix}/order`;
 export const GET_USER_ORDERS_DETAIL = (_id: number) => `${prefix}/order/${_id}/detail`;
 export const GET_USER_ORDERS_LOG_DETAIL = (_id: number) => `${prefix}/order/${_id}/logistics/detail`;
 export const GET_USER_DAILY_SEQUENCE = `${prefix}/user/activity/daily-check/record`;
+export const GET_USER_BONUS_RECORDS = `${prefix}/user/bonus-point-records`;
 export const GET_ADMIN_PROFILE = `${prefix}/admin/user/profile`;
 export const GET_ADMIN_ORDERS = `${prefix}/admin/order`;
 export const GET_ADMIN_USERS = `${prefix}/admin/normal-user/profile`;
@@ -21,6 +22,7 @@ export const GET_REFRESH_TOKEN = `${prefix}/user/refresh`;
 
 export const USER_REGISTER = `${prefix}/user/register`;
 export const USER_LOGIN = `${prefix}/user/login`;
+export const GOOGLE_LOGIN = `${prefix}/user/google-login`;
 export const ADMIN_LOGIN = `${prefix}/admin/user/login`;
 
 export const POST_HOME_BANNER = `${prefix}/admin/home-banner`;

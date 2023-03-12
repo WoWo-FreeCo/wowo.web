@@ -2,7 +2,7 @@
 // ! TODO: 目前串假資料，之後接APIs
 // import mockAccount from '@/mocks/mockAccounts.json';
 import { useMessage } from 'naive-ui';
-import { USER_LOGIN, GET_PROFILE } from '@/apis/requestURL';
+import { USER_LOGIN, GET_PROFILE, GOOGLE_LOGIN } from '@/apis/requestURL';
 
 const routes = useRoute();
 const router = useRouter();
@@ -36,7 +36,38 @@ onMounted(async() => {
     }
     rediectPath();
   }
+  initGoogleLoginBtn();
 });
+
+function execGoogleLogin() {
+  if (!google) return;
+  google.accounts.id.prompt();
+}
+
+function initGoogleLoginBtn() {
+  if (!google) return;
+  google.accounts.id.initialize({
+    client_id: config.public.googleClientId,
+    callback: handleCredentialResponse
+  });
+}
+
+async function handleCredentialResponse(res) {
+  try {
+    const _response = await $fetch(`${config.public.apiBase}/${GOOGLE_LOGIN}`, {
+      method: 'POST',
+      body: {
+        accessToken: res?.credential
+      }
+    });
+    setLoginResponse(_response.data);
+    message.success('登入成功');
+  } catch (error) {
+    if (error.statusCode) {
+      message.error('請輸入正確的帳號及密碼');
+    }
+  }
+}
 
 async function tryLogin() {
   try {
@@ -44,13 +75,11 @@ async function tryLogin() {
       method: 'POST',
       body: inputField.value
     });
-    // console.log(res);
     setLoginResponse(res.data);
     message.success('登入成功');
   } catch (error) {
     if (error.statusCode) {
       message.error('請輸入正確的帳號及密碼');
-      // alert('請輸入正確的帳號及密碼');
     }
   }
 }
@@ -95,21 +124,26 @@ function scrollToTop() {
           Error
         </n-button> -->
 
-        <!-- <div class="social_login">
+        <div class="social_login">
           使用：
-          <a href="" class="btn btn-check bg-facebook" style="margin: 3px;">
+          <!-- <a href="" class="btn btn-check bg-facebook" style="margin: 3px;">
             <i class="fa-brands fa-facebook-f" />
             facebook帳號登入
-          </a>
-          <a href="" class="btn btn-check bg-google" style="margin: 3px;">
+          </a> -->
+          <button
+            id="google-login"
+            class="btn btn-check bg-google"
+            style="margin: 4px;"
+            @click="execGoogleLogin"
+          >
             <i class="fa-brands fa-google-plus-g" />
             Google帳號登入
-          </a>
-          <a href="" class="btn btn-check bg-line" style="margin: 3px;">
+          </button>
+          <!-- <a href="" class="btn btn-check bg-line" style="margin: 3px;">
             <i class="fa-brands fa-line" />
             Line帳號登入
-          </a>
-        </div> -->
+          </a> -->
+        </div>
         <div class="contact-form">
           <form id="" method="post" action="javascript:;">
             <div class="form-group">

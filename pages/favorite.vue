@@ -19,6 +19,17 @@ onMounted(() => {
   }
   maxPage.value = parseInt(favProduct.value.length / 6) + 1;
 });
+
+function addToCart(prod) {
+  const existProd = cartStore.merch.find(e => e.id === prod.id);
+  if (!existProd) {
+    cartStore.merch.push({ ...prod, amount: 1 });
+  } else {
+    existProd.amount++;
+  }
+  const _merch = cartStore.merch;
+  cartStore.updateMerch(_merch);
+}
 </script>
 <template>
   <div>

@@ -28,6 +28,11 @@ const path = computed(() => route.path);
                 基本資料管理
               </NuxtLink>
             </li>
+            <li :class="{active: path?.toLowerCase().includes('/bonus-record')}">
+              <NuxtLink to="/bonus-record">
+                我的紅利點數
+              </NuxtLink>
+            </li>
             <li :class="{active: path?.toLowerCase().includes('/favorite')}">
               <NuxtLink to="/favorite">
                 我的最愛

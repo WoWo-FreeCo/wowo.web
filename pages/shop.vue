@@ -23,7 +23,9 @@ const cartStore = useCartStore();
 
 const collapseToggle = ref(false);
 
-const currentProduct = ref([]);
+const fakeProds = Array.from({ length: 6 }, () => ({ type: 'fake' }));
+
+const currentProduct = ref(fakeProds);
 
 // watch(currentCategoryId, (_new) => {
 //   if (_new === defaultCategory.id) {
@@ -176,7 +178,12 @@ function addToCart(prod) {
         <div class="row">
           <!---1--->
           <div class="flex-row col-lg-4 col-md-6 col-sm-12">
-            <div v-for="item in currentProduct" v-show="item?.inventory?.quantity >= 1" :key="item.id" class="product_frame">
+            <div
+              v-for="item in currentProduct"
+              v-show="item?.inventory?.quantity >= 1 || item?.type === 'fake'"
+              :key="item.id"
+              class="product_frame"
+            >
               <!-- Favorite Button -->
               <button class="add_like" @click="addToFavorite(item)">
                 <i
@@ -193,6 +200,7 @@ function addToCart(prod) {
                 <span>{{ item.brief }}</span>
               </div>
               <div class="product_img">
+                <div class="skeleton" />
                 <NuxtLink :to="`/product?id=${item.id}`">
                   <img :src="item?.coverImg" alt="">
                 </NuxtLink>
@@ -294,5 +302,18 @@ function addToCart(prod) {
   top: 0px;
   right: 12px;
   z-index: 99;
+}
+.skeleton {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0, 0.3);
+  animation: skeleton-anim .75s infinite alternate;
+}
+@keyframes skeleton-anim{
+  0% {opacity: 0.3}
+  100% {opacity: 0.8}
 }
 </style>

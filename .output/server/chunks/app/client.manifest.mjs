@@ -1,9 +1,9 @@
 const client_manifest = {
-  "assets/css/fontawesome/webfonts/fa-regular-400.woff2": {
+  "assets/css/fontawesome/webfonts/fa-brands-400.woff2": {
     "resourceType": "font",
     "mimeType": "font/woff2",
-    "file": "fa-regular-400.52ec4d83.woff2",
-    "src": "assets/css/fontawesome/webfonts/fa-regular-400.woff2"
+    "file": "fa-brands-400.967394d1.woff2",
+    "src": "assets/css/fontawesome/webfonts/fa-brands-400.woff2"
   },
   "assets/css/fontawesome/webfonts/fa-solid-900.woff2": {
     "resourceType": "font",
@@ -11,11 +11,11 @@ const client_manifest = {
     "file": "fa-solid-900.52bbd916.woff2",
     "src": "assets/css/fontawesome/webfonts/fa-solid-900.woff2"
   },
-  "assets/css/fontawesome/webfonts/fa-brands-400.woff2": {
+  "assets/css/fontawesome/webfonts/fa-regular-400.woff2": {
     "resourceType": "font",
     "mimeType": "font/woff2",
-    "file": "fa-brands-400.967394d1.woff2",
-    "src": "assets/css/fontawesome/webfonts/fa-brands-400.woff2"
+    "file": "fa-regular-400.52ec4d83.woff2",
+    "src": "assets/css/fontawesome/webfonts/fa-regular-400.woff2"
   },
   "assets/css/fontawesome/webfonts/fa-v4compatibility.woff2": {
     "resourceType": "font",
@@ -23,17 +23,17 @@ const client_manifest = {
     "file": "fa-v4compatibility.b8f0081f.woff2",
     "src": "assets/css/fontawesome/webfonts/fa-v4compatibility.woff2"
   },
-  "assets/css/fontawesome/webfonts/fa-regular-400.ttf": {
-    "resourceType": "font",
-    "mimeType": "font/ttf",
-    "file": "fa-regular-400.e2d44fc8.ttf",
-    "src": "assets/css/fontawesome/webfonts/fa-regular-400.ttf"
-  },
   "assets/css/fontawesome/webfonts/fa-brands-400.ttf": {
     "resourceType": "font",
     "mimeType": "font/ttf",
     "file": "fa-brands-400.2cd4cf89.ttf",
     "src": "assets/css/fontawesome/webfonts/fa-brands-400.ttf"
+  },
+  "assets/css/fontawesome/webfonts/fa-regular-400.ttf": {
+    "resourceType": "font",
+    "mimeType": "font/ttf",
+    "file": "fa-regular-400.e2d44fc8.ttf",
+    "src": "assets/css/fontawesome/webfonts/fa-regular-400.ttf"
   },
   "assets/css/fontawesome/webfonts/fa-solid-900.ttf": {
     "resourceType": "font",
@@ -53,17 +53,17 @@ const client_manifest = {
     "file": "footer_bg.dbde9adb.jpg",
     "src": "assets/images/footer_bg.jpg"
   },
-  "assets/images/banner/1.jpg": {
-    "resourceType": "image",
-    "mimeType": "image/jpeg",
-    "file": "1.c672514a.jpg",
-    "src": "assets/images/banner/1.jpg"
-  },
   "assets/images/product/2009.jpg": {
     "resourceType": "image",
     "mimeType": "image/jpeg",
     "file": "2009.cb07c592.jpg",
     "src": "assets/images/product/2009.jpg"
+  },
+  "assets/images/banner/1.jpg": {
+    "resourceType": "image",
+    "mimeType": "image/jpeg",
+    "file": "1.c672514a.jpg",
+    "src": "assets/images/banner/1.jpg"
   },
   "assets/images/member/1.jpg": {
     "resourceType": "image",
@@ -851,135 +851,135 @@ const client_manifest = {
     "file": "error-500.aa16ed4d.css",
     "resourceType": "style"
   },
+  "pages/faq.css": {
+    "resourceType": "style",
+    "file": "faq.1b6eb67a.css",
+    "src": "pages/faq.css"
+  },
   "pages/shop.css": {
     "resourceType": "style",
     "file": "shop.e874f7e6.css",
     "src": "pages/shop.css"
-  },
-  "pages/activity.css": {
-    "resourceType": "style",
-    "file": "activity.cf145749.css",
-    "src": "pages/activity.css"
-  },
-  "pages/order/detail.css": {
-    "resourceType": "style",
-    "file": "detail.57f08844.css",
-    "src": "pages/order/detail.css"
-  },
-  "pages/product.css": {
-    "resourceType": "style",
-    "file": "product.1ec72b67.css",
-    "src": "pages/product.css"
-  },
-  "pages/order/index.css": {
-    "resourceType": "style",
-    "file": "index.5d940550.css",
-    "src": "pages/order/index.css"
-  },
-  "pages/about.css": {
-    "resourceType": "style",
-    "file": "about.acda05d1.css",
-    "src": "pages/about.css"
-  },
-  "pages/terms.css": {
-    "resourceType": "style",
-    "file": "terms.f4d46697.css",
-    "src": "pages/terms.css"
-  },
-  "pages/cart.css": {
-    "resourceType": "style",
-    "file": "cart.1512202b.css",
-    "src": "pages/cart.css"
-  },
-  "pages/checkout.css": {
-    "resourceType": "style",
-    "file": "checkout.e29f39c1.css",
-    "src": "pages/checkout.css"
-  },
-  "node_modules/@nuxt/ui-templates/dist/templates/error-500.css": {
-    "resourceType": "style",
-    "file": "error-500.aa16ed4d.css",
-    "src": "node_modules/@nuxt/ui-templates/dist/templates/error-500.css"
   },
   "pages/aboutlovin.css": {
     "resourceType": "style",
     "file": "aboutlovin.db61f6f7.css",
     "src": "pages/aboutlovin.css"
   },
-  "pages/register.css": {
-    "resourceType": "style",
-    "file": "register.f4526c4e.css",
-    "src": "pages/register.css"
-  },
-  "pages/admin/index.css": {
-    "resourceType": "style",
-    "file": "index.491e31c3.css",
-    "src": "pages/admin/index.css"
-  },
-  "layouts/admin.css": {
-    "resourceType": "style",
-    "file": "admin.b3d9343e.css",
-    "src": "layouts/admin.css"
-  },
   "layouts/default.css": {
     "resourceType": "style",
     "file": "default.20b70bd9.css",
     "src": "layouts/default.css"
-  },
-  "node_modules/@nuxt/ui-templates/dist/templates/error-404.css": {
-    "resourceType": "style",
-    "file": "error-404.23f2309d.css",
-    "src": "node_modules/@nuxt/ui-templates/dist/templates/error-404.css"
   },
   "pages/index.css": {
     "resourceType": "style",
     "file": "index.b079d5e3.css",
     "src": "pages/index.css"
   },
-  "swiper-vue.css": {
+  "pages/terms.css": {
     "resourceType": "style",
-    "file": "swiper-vue.c8055770.css",
-    "src": "swiper-vue.css"
+    "file": "terms.f4d46697.css",
+    "src": "pages/terms.css"
   },
-  "pages/contact.css": {
+  "pages/checkout.css": {
     "resourceType": "style",
-    "file": "contact.da4a15fd.css",
-    "src": "pages/contact.css"
+    "file": "checkout.e29f39c1.css",
+    "src": "pages/checkout.css"
   },
-  "pages/faq.css": {
+  "pages/about.css": {
     "resourceType": "style",
-    "file": "faq.1b6eb67a.css",
-    "src": "pages/faq.css"
-  },
-  "pages/return-help.css": {
-    "resourceType": "style",
-    "file": "return-help.12284b8b.css",
-    "src": "pages/return-help.css"
-  },
-  "pages/profile/index.css": {
-    "resourceType": "style",
-    "file": "index.cc83bde3.css",
-    "src": "pages/profile/index.css"
+    "file": "about.acda05d1.css",
+    "src": "pages/about.css"
   },
   "pages/privacy.css": {
     "resourceType": "style",
     "file": "privacy.7c5ab4a6.css",
     "src": "pages/privacy.css"
   },
+  "pages/order/index.css": {
+    "resourceType": "style",
+    "file": "index.5d940550.css",
+    "src": "pages/order/index.css"
+  },
+  "pages/favorite.css": {
+    "resourceType": "style",
+    "file": "favorite.05ddb706.css",
+    "src": "pages/favorite.css"
+  },
+  "node_modules/@nuxt/ui-templates/dist/templates/error-500.css": {
+    "resourceType": "style",
+    "file": "error-500.aa16ed4d.css",
+    "src": "node_modules/@nuxt/ui-templates/dist/templates/error-500.css"
+  },
+  "pages/activity.css": {
+    "resourceType": "style",
+    "file": "activity.cf145749.css",
+    "src": "pages/activity.css"
+  },
+  "pages/product.css": {
+    "resourceType": "style",
+    "file": "product.1ec72b67.css",
+    "src": "pages/product.css"
+  },
+  "layouts/admin.css": {
+    "resourceType": "style",
+    "file": "admin.b3d9343e.css",
+    "src": "layouts/admin.css"
+  },
   "pages/bonus-point.css": {
     "resourceType": "style",
     "file": "bonus-point.ad69f556.css",
     "src": "pages/bonus-point.css"
+  },
+  "pages/profile/index.css": {
+    "resourceType": "style",
+    "file": "index.cc83bde3.css",
+    "src": "pages/profile/index.css"
+  },
+  "pages/admin/index.css": {
+    "resourceType": "style",
+    "file": "index.491e31c3.css",
+    "src": "pages/admin/index.css"
+  },
+  "pages/order/detail.css": {
+    "resourceType": "style",
+    "file": "detail.57f08844.css",
+    "src": "pages/order/detail.css"
+  },
+  "pages/cart.css": {
+    "resourceType": "style",
+    "file": "cart.1512202b.css",
+    "src": "pages/cart.css"
   },
   "pages/api-and-store-example.css": {
     "resourceType": "style",
     "file": "api-and-store-example.dd64dcb9.css",
     "src": "pages/api-and-store-example.css"
   },
-  "pages/favorite.css": {
+  "pages/return-help.css": {
     "resourceType": "style",
-    "file": "favorite.05ddb706.css",
-    "src": "pages/favorite.css"
+    "file": "return-help.12284b8b.css",
+    "src": "pages/return-help.css"
+  },
+  "pages/register.css": {
+    "resourceType": "style",
+    "file": "register.f4526c4e.css",
+    "src": "pages/register.css"
+  },
+  "swiper-vue.css": {
+    "resourceType": "style",
+    "file": "swiper-vue.c8055770.css",
+    "src": "swiper-vue.css"
+  },
+  "node_modules/@nuxt/ui-templates/dist/templates/error-404.css": {
+    "resourceType": "style",
+    "file": "error-404.23f2309d.css",
+    "src": "node_modules/@nuxt/ui-templates/dist/templates/error-404.css"
+  },
+  "pages/contact.css": {
+    "resourceType": "style",
+    "file": "contact.da4a15fd.css",
+    "src": "pages/contact.css"
   },
   "node_modules/nuxt/dist/app/entry.css": {
     "resourceType": "style",

@@ -240,6 +240,10 @@ function goCheckout() {
   }
 }
 .del_btn {
+  @media screen and (max-width: 768px) {
+    right: 0 !important;
+    bottom: 12px;
+  }
   @media screen and (max-width: 375px) {
     right: 0 !important;
     bottom: 12px;

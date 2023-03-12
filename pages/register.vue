@@ -1,21 +1,22 @@
 <script setup>
+import { useMessage } from 'naive-ui';
 import { USER_REGISTER } from '@/apis/requestURL';
 
 const route = useRoute();
 const router = useRouter();
 const config = useRuntimeConfig();
+const message = useMessage();
 
 const inputField = ref({
   recommendedAccount: '',
-  realname: '',
   email: '',
   password: '',
   nickname: '',
   cellphone: '',
   telephone: '',
-  addressOne: '',
-  addressTwo: '',
-  addressThree: ''
+  addressOne: ''
+  // addressTwo: '',
+  // addressThree: ''
 });
 
 onMounted(() => {
@@ -32,11 +33,16 @@ async function confirmReg() {
       method: 'POST',
       body: inputField.value
     });
-    router.push({ path: '/login' });
-    alert('恭喜你註冊成功，即將跳轉登入頁');
+    message.success('恭喜註冊成功，即將跳轉登入頁', {
+      duration: 1000,
+      onAfterLeave: () => {
+        router.push({ path: '/login' });
+      }
+    });
   } catch (error) {
     // console.log(error.data);
-    alert(error.data?.message || '請輸入正確的資訊與必填欄位');
+    // alert(error.data?.message || '請輸入正確的資訊與必填欄位');
+    message.error(error.data?.message || '請輸入正確的資訊與必填欄位');
   }
 }
 </script>
@@ -75,7 +81,7 @@ async function confirmReg() {
                 name="wb-recommended-account"
               >
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
               <label>姓名*</label>
               <input
                 id="wb-realname"
@@ -86,14 +92,14 @@ async function confirmReg() {
                 name=""
                 required
               >
-            </div>
+            </div> -->
             <div class="form-group">
-              <label>暱稱*</label>
+              <label>姓名*</label>
               <input
                 id="wb-nickname"
                 v-model="inputField.nickname"
                 type="text"
-                placeholder="請輸入用戶暱稱"
+                placeholder="請輸入真實姓名"
                 class="form-control"
                 name=""
                 required
@@ -161,7 +167,7 @@ async function confirmReg() {
                 required
               >
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
               <label>送貨地址2</label>
               <input
                 id="wb-address2"
@@ -171,8 +177,8 @@ async function confirmReg() {
                 class="form-control"
                 name=""
               >
-            </div>
-            <div class="form-group">
+            </div> -->
+            <!-- <div class="form-group">
               <label>送貨地址3</label>
               <input
                 id="wb-address3"
@@ -182,7 +188,7 @@ async function confirmReg() {
                 class="form-control"
                 name=""
               >
-            </div>
+            </div> -->
             <div class="text-center">
               <button type="reset" class="btn btn-main btn-default">
                 取消重填

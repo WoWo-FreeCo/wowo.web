@@ -35,11 +35,9 @@ const currentLevel = computed(() => {
 const inputField = ref({
   nickname: authStore.user?.nickname,
   // password: authStore.user?.password,
-  telephone: authStore.user?.telephone,
+  // telephone: authStore.user?.telephone,
   cellphone: authStore.user?.cellphone,
-  addressOne: authStore.user?.addressOne,
-  addressTwo: authStore.user?.addressTwo,
-  addressThree: authStore.user?.addressThree
+  addressOne: authStore.user?.addressOne
 });
 
 onMounted(() => {
@@ -268,7 +266,7 @@ async function updateProfile() {
                 required
               >
             </div>
-            <div class="form-group">
+            <!-- <div class="form-group">
               <label>送貨地址2</label>
               <input
                 id="auth-address2"
@@ -278,8 +276,8 @@ async function updateProfile() {
                 class="form-control"
                 name=""
               >
-            </div>
-            <div class="form-group">
+            </div> -->
+            <!-- <div class="form-group">
               <label>送貨地址3</label>
               <input
                 id="auth-address3"
@@ -289,7 +287,7 @@ async function updateProfile() {
                 class="form-control"
                 name=""
               >
-            </div>
+            </div> -->
             <div class="text-center">
               <button type="reset" class="btn btn-main btn-default">
                 取消重填

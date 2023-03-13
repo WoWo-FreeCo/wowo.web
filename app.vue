@@ -8,7 +8,7 @@ const config = useRuntimeConfig();
 onMounted(async() => {
   await nextTick();
   await fetchAuth();
-  // fetchLocalCart();
+  await fetchCart();
 });
 
 async function fetchAuth() {
@@ -35,18 +35,23 @@ async function fetchAuth() {
   }
 }
 
-function fetchLocalCart() {
-  const merch = localStorage.getItem('cart-product');
-  const favMerch = localStorage.getItem('cart-fav-product');
-  if (merch) {
-    const _merch = JSON.parse(merch);
-    cartStore.updateMerch(_merch);
-  }
-  if (favMerch) {
-    const _merch = JSON.parse(favMerch);
-    cartStore.updateFavMerch(_merch);
-  }
+async function fetchCart() {
+  //
 }
+
+// function fetchLocalCart() {
+//
+// const merch = localStorage.getItem('cart-product');
+// const favMerch = localStorage.getItem('cart-fav-product');
+// if (merch) {
+//   const _merch = JSON.parse(merch);
+//   cartStore.updateMerch(_merch);
+// }
+// if (favMerch) {
+//   const _merch = JSON.parse(favMerch);
+//   cartStore.updateFavMerch(_merch);
+// }
+// }
 </script>
 
 <template>

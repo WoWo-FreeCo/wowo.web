@@ -1,5 +1,5 @@
 <script setup>
-import { GET_REFRESH_TOKEN } from '@/apis/requestURL';
+import { REFRESH_TOKEN } from '@/apis/requestURL';
 
 const cartStore = useCartStore();
 const authStore = useAuthStore();
@@ -19,7 +19,7 @@ async function fetchAuth() {
     return;
   }
   try {
-    const res = await $fetch(`${config.public.apiBase}/${GET_REFRESH_TOKEN}`, {
+    const res = await $fetch(`${config.public.apiBase}/${REFRESH_TOKEN}`, {
       method: 'GET',
       headers: {
         authorization: 'Bearer ' + refreshToken
@@ -29,10 +29,10 @@ async function fetchAuth() {
     const _data = await res.data;
     authStore.loginSuccess(_data?.accessToken, _data?.refreshToken);
     authStore.updateUser(_data);
-    console.log('成功登入');
+    console.debug('refresh token 成功登入');
   } catch (error) {
     console.log(error);
-    // console.log('refreshToken失敗 or 登入時間已逾期，請重新登入');
+    console.log('refreshToken失敗 or 登入時間已逾期，請重新登入');
   }
 }
 

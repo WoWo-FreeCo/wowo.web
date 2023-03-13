@@ -45,3 +45,13 @@ export const UPDATE_USER_PROFILE = `${prefix}/user/basic`;
 export const DELETE_HOME_BANNER = (_id: number) => `${prefix}/admin/home-banner/${_id}`;
 export const DELETE_PRODUCT = (_id: number) => `${prefix}/admin/product/${_id}`;
 export const DELETE_PRODUCT_CATEGORY = (_id: number) => `${prefix}/admin/product-category/${_id}`;
+
+// ! cart realated
+export const POST_USER_CART = `${prefix}/user/shopping-session`;
+export const GET_USER_CART = `${prefix}/user/shopping-session`;
+export const GET_USER_CART_DETAIL = (_id: number) => `${prefix}/user/shopping-session/${_id}/detail`;
+export const DELETE_USER_CART = (_id: number) => `${prefix}/user/shopping-session/${_id}`;
+
+export const POST_USER_CART_ITEM = (_id: number) => `${prefix}/user/shopping-session/cart-item`;
+export const UPDATE_USER_CART_ITEM = (_sid: number, _id: number) => `${prefix}/user/shopping-session/${_sid}/cart-item/${_id}`;
+export const DELETE_USER_CART_ITEM = (_sid: number, _id: number) => `${prefix}/user/shopping-session/${_sid}/cart-item/${_id}`;

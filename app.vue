@@ -1,5 +1,5 @@
 <script setup>
-import { REFRESH_TOKEN } from '@/apis/requestURL';
+import { REFRESH_TOKEN, GET_USER_CART, POST_USER_CART } from '@/apis/requestURL';
 
 const cartStore = useCartStore();
 const authStore = useAuthStore();
@@ -8,7 +8,7 @@ const config = useRuntimeConfig();
 onMounted(async() => {
   await nextTick();
   await fetchAuth();
-  await fetchCart();
+  await cartStore.fetchCart();
 });
 
 async function fetchAuth() {
@@ -34,11 +34,6 @@ async function fetchAuth() {
     console.log('refreshToken失敗 or 登入時間已逾期，請重新登入');
   }
 }
-
-async function fetchCart() {
-  //
-}
-
 // function fetchLocalCart() {
 //
 // const merch = localStorage.getItem('cart-product');

@@ -33,7 +33,7 @@ const generalMerch = computed(() => {
 const totalPrice = computed({
   get: () => {
     return currentMerch.value.reduce(
-      (total, cur) => total + getCurrentPriceByAuth(cur) * cur.amount, 0
+      (total, cur) => total + getCurrentPriceByAuth(cur) * cur?.quantity, 0
     );
   },
   set: (_new) => {

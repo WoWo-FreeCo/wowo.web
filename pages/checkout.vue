@@ -29,7 +29,7 @@ const cartType = ref(ProductType.General);
 const totalPrice = computed({
   get: () => {
     return currentMerch.value.reduce(
-      (total, cur) => total + getCurrentPriceByAuth(cur) * cur.amount, 0
+      (total, cur) => total + getCurrentPriceByAuth(cur) * cur.quantity, 0
     );
   },
   set: (_new) => {
@@ -211,7 +211,7 @@ function preprocessInput() {
     products: currentMerch.value.map((e) => {
       return {
         id: e.id,
-        quantity: e.amount
+        quantity: e.quantity
       };
     })
     // requiredDeliveryTimeslots: [
@@ -363,7 +363,7 @@ function dateDisabled(ts) {
             <td class="cart_tl">
               <h5>{{ item?.name }}</h5>
               <div class="product-quantity">
-                x{{ item?.amount }}
+                x{{ item?.quantity }}
               </div>
               <!-- <span>滿件免運</span> -->
             </td>

@@ -43,7 +43,7 @@ onMounted(async() => {
   await nextTick();
   fetchData();
   // console.log(process.env.NODE_ENV, runtimeConfig.public.baseUrl);
-  console.log(cookie.value);
+  // console.log(cookie.value);
 });
 
 function fetchData() {
@@ -57,7 +57,7 @@ async function fetchHomeBanner() {
     const res = await $fetch(`${runtimeConfig.public.apiBase}/${GET_HOME_BANNER}`);
     const { data } = res;
     homeBanner.value = data;
-    console.log(data);
+    // console.log(data);
   } catch (error) {
     //
   }
@@ -77,7 +77,7 @@ async function fetchProd() {
     const { data } = res;
     products.value = data;
     currentProduct.value = data;
-    console.log(currentProduct.value, data);
+    // console.log(currentProduct.value, data);
   } catch (error) {
     //
   }

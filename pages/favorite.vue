@@ -8,15 +8,15 @@ const favProduct = computed(() => cartStore.favMerch);
 const maxPage = ref(1);
 
 onMounted(() => {
-  // if (!authStore.status.loggedIn) {
-  //   router.push({
-  //     path: '/login',
-  //     query: {
-  //       ...route.query,
-  //       redirect: '/favorite'
-  //     }
-  //   });
-  // }
+  if (!authStore.status.loggedIn) {
+    router.push({
+      path: '/login',
+      query: {
+        ...route.query,
+        redirect: '/favorite'
+      }
+    });
+  }
   maxPage.value = parseInt(favProduct.value.length / 6) + 1;
 });
 

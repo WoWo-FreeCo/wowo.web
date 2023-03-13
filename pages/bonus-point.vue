@@ -30,14 +30,14 @@ const dayText = (day) => {
 };
 
 onMounted(() => {
-  // if (!authStore.status.loggedIn) {
-  //   router.push({
-  //     path: '/login',
-  //     query: {
-  //       redirect: '/bonus-point'
-  //     }
-  //   });
-  // }
+  if (!authStore.status.loggedIn) {
+    router.push({
+      path: '/login',
+      query: {
+        redirect: '/bonus-point'
+      }
+    });
+  }
   fetchDailySequence();
 });
 

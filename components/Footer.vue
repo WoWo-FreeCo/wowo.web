@@ -15,25 +15,39 @@
         <div class="col-md-8 text-right">
           <ul class="footer-menu">
             <li>
-              <a href="/order">我的訂單查詢</a>
+              <NuxtLink to="/order">
+                我的訂單查詢
+              </NuxtLink>
             </li>
             <li>
-              <a href="/contact">聯絡我們</a>
+              <NuxtLink to="/contact">
+                聯絡我們
+              </NuxtLink>
             </li>
             <li>
-              <a href="/about">關於我們</a>
+              <NuxtLink to="/about">
+                關於我們
+              </NuxtLink>
             </li>
             <li>
-              <a href="/faq">常見問題</a>
+              <NuxtLink to="/faq">
+                常見問題
+              </NuxtLink>
             </li>
             <li>
-              <a href="/return-help">退換貨說明</a>
+              <NuxtLink to="/return-help">
+                退換貨說明
+              </NuxtLink>
             </li>
             <li>
-              <a href="/privacy">隱私權政策</a>
+              <NuxtLink to="/privacy">
+                隱私權政策
+              </NuxtLink>
             </li>
             <li>
-              <a href="/terms">會員條款</a>
+              <NuxtLink to="/terms">
+                會員條款
+              </NuxtLink>
             </li>
           </ul>
           <ul class="footer-menu social_icon">

@@ -118,6 +118,10 @@ async function cancelOrder(item) {
   }
   fetchData();
 }
+
+async function sendRevoke(item) {
+  console.log(item);
+}
 </script>
 
 <template>
@@ -220,7 +224,7 @@ async function cancelOrder(item) {
                   <button v-if="order.orderStatus !== 'CANCELLED'" type="button" class="btn btn-orderdetial cancel-btn" @click="cancelOrder(order)">
                     取消訂單
                   </button>
-                  <button v-if="order.orderStatus !== 'WAIT_PAYMENT' && order.orderStatus !== 'CANCELLED'" type="button" class="btn btn-orderdetial cancel-btn" @click="">
+                  <button v-if="order.orderStatus !== 'WAIT_PAYMENT' && order.orderStatus !== 'CANCELLED'" type="button" class="btn btn-orderdetial cancel-btn" @click="sendRevoke(order)">
                     申請退貨
                   </button>
                 </td>

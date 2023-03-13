@@ -8,7 +8,7 @@ const config = useRuntimeConfig();
 onMounted(async() => {
   await nextTick();
   await fetchAuth();
-  fetchLocalCart();
+  // fetchLocalCart();
 });
 
 async function fetchAuth() {
@@ -28,7 +28,6 @@ async function fetchAuth() {
     console.log('init refresh token: ');
     const _data = await res.data;
     authStore.loginSuccess(_data?.accessToken, _data?.refreshToken);
-    authStore.updateUser(_data);
     console.debug('refresh token 成功登入');
   } catch (error) {
     console.log(error);

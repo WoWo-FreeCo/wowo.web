@@ -34,8 +34,6 @@ const currentLevel = computed(() => {
 
 const inputField = ref({
   nickname: authStore.user?.nickname,
-  // password: authStore.user?.password,
-  // telephone: authStore.user?.telephone,
   cellphone: authStore.user?.cellphone,
   addressOne: authStore.user?.addressOne
 });
@@ -45,7 +43,6 @@ onMounted(() => {
     router.push({ path: '/login' });
   }
   updatePermission();
-  // console.log('!! - ', authUser.value);
 });
 
 async function updatePermission() {
@@ -61,6 +58,12 @@ async function updatePermission() {
     clickedFB.value = res.data?.FacebookGroupActivated;
     clickedYT.value = res.data?.YouTubeChannelActivated;
     clickedIG.value = res.data?.IGFollowActivated;
+
+    inputField.value = {
+      nickname: authStore.user?.nickname,
+      cellphone: authStore.user?.cellphone,
+      addressOne: authStore.user?.addressOne
+    };
   } catch (error) {
     authStore.logout();
   }

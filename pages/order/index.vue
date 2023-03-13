@@ -73,15 +73,15 @@ const orderAttr = (order) => {
 };
 
 onMounted(async() => {
-  if (!authStore.status.loggedIn) {
-    return router.push({
-      path: '/login',
-      query: {
-        ...route.query,
-        redirect: '/order'
-      }
-    });
-  }
+  // if (!authStore.status.loggedIn) {
+  //   return router.push({
+  //     path: '/login',
+  //     query: {
+  //       ...route.query,
+  //       redirect: '/order'
+  //     }
+  //   });
+  // }
   if (route.query?.payment === 'successful') {
     message.success('已成功付款！');
     router.replace({ query: null });

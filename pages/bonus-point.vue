@@ -8,7 +8,7 @@ import {
 } from '@/apis/requestURL';
 
 const message = useMessage();
-const router = useRouter();
+// const router = useRouter();
 const authStore = useAuthStore();
 const pageStatus = usePageStatusStore();
 
@@ -30,14 +30,14 @@ const dayText = (day) => {
 };
 
 onMounted(() => {
-  if (!authStore.status.loggedIn) {
-    router.push({
-      path: '/login',
-      query: {
-        redirect: '/bonus-point'
-      }
-    });
-  }
+  // if (!authStore.status.loggedIn) {
+  //   router.push({
+  //     path: '/login',
+  //     query: {
+  //       redirect: '/bonus-point'
+  //     }
+  //   });
+  // }
   fetchDailySequence();
 });
 
@@ -181,6 +181,9 @@ async function acceptDailyCheck(item) {
 .signpoint_content {
   padding: 32px 12px;
   margin: 0 auto 32px auto;
+  @media screen and (min-width: 992px) {
+    min-height: 75vh;
+  }
 }
 .signpoint_li {
   display: flex;

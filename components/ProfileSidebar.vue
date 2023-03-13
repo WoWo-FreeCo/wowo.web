@@ -11,14 +11,9 @@ const path = computed(() => route.path);
       <div class="panel panel-default">
         <div id="headingOne" class="panel-heading" role="tab">
           <h4 class="panel-title">
-            <a
-              role="button"
-              data-toggle="collapse"
-              data-parent="#member_menu"
-              aria-controls="collapseOne"
-            >
+            <div class="panel-title-div">
               會員資料
-            </a>
+            </div>
           </h4>
         </div>
         <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
@@ -49,3 +44,16 @@ const path = computed(() => route.path);
     </div>
   </div>
 </template>
+<style lang="scss" scoped>
+.panel-title-div {
+  width: 100%;
+  background-color: #444;
+  color: #fff;
+  font-weight: 500;
+  font-size: 16px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  padding: 10px 15px;
+}
+</style>

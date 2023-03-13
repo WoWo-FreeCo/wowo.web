@@ -62,14 +62,14 @@ const realProdPrice = computed(() => {
 });
 
 onMounted(async() => {
-  if (!authStore.status.loggedIn) {
-    return router.push({
-      path: '/login',
-      query: {
-        redirect: '/order'
-      }
-    });
-  }
+  // if (!authStore.status.loggedIn) {
+  //   return router.push({
+  //     path: '/login',
+  //     query: {
+  //       redirect: '/order'
+  //     }
+  //   });
+  // }
   await fetchData();
 });
 

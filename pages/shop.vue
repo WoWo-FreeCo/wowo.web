@@ -141,6 +141,7 @@ function addToCart(prod) {
                 <a
                   role="button"
                   href="javascript:;"
+                  class="prod-type-a"
                   @click="collapseToggle = !collapseToggle"
                 >
                   產品類別
@@ -331,6 +332,11 @@ function addToCart(prod) {
   height: 100%;
   background-color: rgba(0,0,0, 0.3);
   animation: skeleton-anim .75s infinite alternate;
+}
+.prod-type-a {
+  &::before {
+    content: none !important;
+  }
 }
 @keyframes skeleton-anim{
   0% {opacity: 0.3}

@@ -16,14 +16,14 @@ const runtimeConfig = useRuntimeConfig();
 const bonusRecords = ref([]);
 
 watchEffect(() => {
-  if (!authStore.status.loggedIn) {
-    router.push({
-      path: '/login',
-      query: {
-        redirect: '/bonus-record'
-      }
-    });
-  }
+  // if (!authStore.status.loggedIn) {
+  //   router.push({
+  //     path: '/login',
+  //     query: {
+  //       redirect: '/bonus-record'
+  //     }
+  //   });
+  // }
   fetchData();
 });
 

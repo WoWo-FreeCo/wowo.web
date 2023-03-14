@@ -8,6 +8,7 @@ const routes = useRoute();
 const router = useRouter();
 const message = useMessage();
 
+const cartStore = useCartStore();
 const authStore = useAuthStore();
 const config = useRuntimeConfig();
 
@@ -31,6 +32,7 @@ onMounted(async() => {
       message.success('已自動登入');
     } catch (error) {
       authStore.logout();
+      cartStore.clearMerch();
       message.error('登入已逾期，請重新登入');
       return;
     }

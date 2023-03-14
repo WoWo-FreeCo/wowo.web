@@ -8,6 +8,7 @@ const router = useRouter();
 // const message = useMessage();
 
 const authStore = useAuthStore();
+const cartStore = useCartStore();
 const config = useRuntimeConfig();
 
 const inputField = ref({
@@ -29,6 +30,7 @@ onMounted(async() => {
       authStore.updateUser(res.data);
     } catch (error) {
       authStore.logout();
+      cartStore.clearMerch();
     }
     rediectPath();
   }

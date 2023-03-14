@@ -3,6 +3,7 @@ import { useMessage } from 'naive-ui';
 import { POST_USER_ACTIVATATION, GET_PROFILE, UPDATE_USER_PROFILE } from '@/apis/requestURL';
 
 const authStore = useAuthStore();
+const cartStore = useCartStore();
 const router = useRouter();
 const runtimeConfig = useRuntimeConfig();
 
@@ -66,6 +67,7 @@ async function updatePermission() {
     };
   } catch (error) {
     authStore.logout();
+    cartStore.clearMerch();
   }
   console.log('updated permission');
 }

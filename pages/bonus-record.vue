@@ -9,6 +9,7 @@ import { BonusRecordActivity } from '@/constants/common';
 
 const message = useMessage();
 const router = useRouter();
+const cartStore = useCartStore();
 const authStore = useAuthStore();
 
 const runtimeConfig = useRuntimeConfig();
@@ -55,6 +56,7 @@ async function updatePermission() {
     authStore.updateUser(res.data);
   } catch (error) {
     authStore.logout();
+    cartStore.clearMerch();
   }
 }
 

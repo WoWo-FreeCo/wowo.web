@@ -10,6 +10,7 @@ import {
 const message = useMessage();
 const router = useRouter();
 const authStore = useAuthStore();
+const cartStore = useCartStore();
 const pageStatus = usePageStatusStore();
 
 const runtimeConfig = useRuntimeConfig();
@@ -76,6 +77,7 @@ async function updatePermission() {
     authStore.updateUser(res.data);
   } catch (error) {
     authStore.logout();
+    cartStore.clearMerch();
   }
 }
 

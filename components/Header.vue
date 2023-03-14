@@ -18,6 +18,7 @@ onMounted(() => {
 function logout() {
   authStore.logout();
   authStore.updateUser({});
+  cartStore.clearMerch();
   router.push({ path: '/' });
 }
 

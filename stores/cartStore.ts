@@ -50,6 +50,9 @@ export const useCartStore = defineStore({
       console.log('–––––––– update merch');
       console.log(this.merch);
     },
+    clearMerch() {
+      this.merch = [];
+    },
     updateFavMerch(_favMerch: []) {
       this.favMerch = _favMerch.filter((e: any) => e?.inventory?.quantity >= 1);
       localStorage.setItem('cart-fav-product', JSON.stringify(this.favMerch));

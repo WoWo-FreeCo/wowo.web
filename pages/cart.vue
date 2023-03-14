@@ -70,9 +70,19 @@ function updateCartType() {
   }
 }
 
-function deleteItem(item) {
-  const _merch = cartStore.merch.filter(e => e.id !== item.id);
-  cartStore.updateMerch(_merch);
+async function deleteItem(item) {
+  // const _merch = cartStore.merch.filter(e => e.id !== item.id);
+  // cartStore.updateMerch(_merch);
+  try {
+    console.log(item);
+    await cartStore.deleteCartItem({
+      type: item?.attribute,
+      productId: item?.cartItemId
+    });
+    await cartStore.fetchCart();
+  } catch (e) {
+    console.log(e);
+  }
 }
 
 function goCheckout() {
@@ -138,7 +148,7 @@ function goCheckout() {
 
         <table class="cart_list">
           <tbody>
-            <tr v-for="item in currentMerch" :key="item.id" class="prod-tr">
+            <tr v-for="item in currentMerch" :key="item?.cartItemId" class="prod-tr">
               <td class="cart_img">
                 <a :href="`/product?id=${item.id}`">
                   <img :src="item?.coverImg">
@@ -148,20 +158,12 @@ function goCheckout() {
                 <a :href="`/product?id=${item.id}`">
                   <h5>{{ item?.name }}</h5>
                 </a>
-                <n-input-number v-model:value="item.amount" :min="1" :style="{ width: '150px' }" placeholder="請輸入數量">
-                  <!-- <div class="product-quantity">
-                  <div class="product-quantity-slider">
-                    <input
-                      id="product-quantity"
-                      v-model.lazy="item.amount"
-                      :data-id="`${item.id}`"
-                      type="number"
-                      name="product-quantity"
-                      onkeyup="if(event.keyCode !=37 && event.keyCode != 39)value=value.replace(/\D/g,'');if(value==0) value=1;"
-                      @change="onAmountChange"
-                    >
-                  </div>
-                </div> -->
+                <n-input-number
+                  v-model:value="item.quantity"
+                  :min="1"
+                  :style="{ width: '150px' }"
+                  placeholder="請輸入數量"
+                >
                   <span>滿額免運</span><!--當個產品的運費計算, 這裡的運費都是後臺制定統一價, 可有滿額免運, 滿件免運等-->
                 </n-input-number>
               </td>

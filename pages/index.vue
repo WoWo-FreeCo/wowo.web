@@ -1,10 +1,12 @@
 <script setup>
+import { useMessage } from 'naive-ui';
 import { GET_PRODUCT_CATEGORY, GET_ALL_PRODUCT, GET_HOME_BANNER } from '@/apis/requestURL';
 
+const message = useMessage();
 const runtimeConfig = useRuntimeConfig();
-const cookie = useCookie('emap_711', {
-  maxAge: 60 * 60 * 24
-});
+// const cookie = useCookie('emap_711', {
+//   maxAge: 60 * 60 * 24
+// });
 
 const defaultCategory = {
   id: -1,
@@ -98,17 +100,31 @@ function addToFavorite(item) {
   cartStore.updateFavMerch(_merch);
 }
 
-function addToCart(prod) {
-  const existProd = cartStore.merch.find(e => e.id === prod.id);
-  if (!existProd) {
-    cartStore.merch.push({ ...prod, amount: 1 });
-  } else {
-    existProd.amount++;
+async function addToCart(item) {
+  try {
+    const existProd = cartStore.merch.find(e => e.id === item.id);
+    if (existProd) {
+      const quantity = existProd?.quantity + 1;
+      await cartStore.updateCartItem({
+        type: item?.attribute,
+        cartItemId: existProd?.cartItemId,
+        productId: existProd?.id,
+        quantity
+      });
+      message.success(`此商品已存在購物車，目前總數：${quantity}`);
+    } else {
+      await cartStore.postCartItem({
+        type: item?.attribute,
+        productId: item?.id,
+        quantity: 1
+      });
+      message.success('商品已加入購物車');
+    }
+    await cartStore.fetchCart();
+  } catch (e) {
+    console.log(e);
   }
-  const _merch = cartStore.merch;
-  cartStore.updateMerch(_merch);
 }
-
 </script>
 
 <template>

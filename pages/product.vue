@@ -1,11 +1,13 @@
 <script setup>
 // import mockProduct from '@/mocks/mockProducts.json';
+import { useMessage } from 'naive-ui';
 import { GET_PRODUCT_DETAIL } from '@/apis/requestURL';
 
 const cartStore = useCartStore();
 const authStore = useAuthStore();
 const route = useRoute();
 const router = useRouter();
+const message = useMessage();
 const runtimeConfig = useRuntimeConfig();
 
 const products = ref([]);
@@ -43,16 +45,31 @@ function redirectToIndex() {
   });
 }
 
-function addToCart(prod) {
-  const existProd = cartStore.merch.find(e => e.id === prod.id);
-  const amount = addingAmount.value;
-  if (!existProd) {
-    cartStore.merch.push({ ...prod, amount });
-  } else {
-    existProd.amount = amount;
+async function addToCart(item) {
+  try {
+    const existProd = cartStore.merch.find(e => e.id === item.id);
+    if (existProd) {
+      const quantity = existProd?.quantity + addingAmount.value;
+      await cartStore.updateCartItem({
+        type: item?.attribute,
+        cartItemId: existProd?.cartItemId,
+        productId: existProd?.id,
+        quantity
+      });
+      message.success(`此商品已存在購物車，目前總數：${quantity}`);
+    } else {
+      await cartStore.postCartItem({
+        type: item?.attribute,
+        productId: item?.id,
+        quantity: 1
+      });
+      message.success('商品已加入購物車');
+    }
+    await cartStore.fetchCart();
+  } catch (e) {
+    message.error(e.message);
+    console.log(e);
   }
-  const _merch = cartStore.merch;
-  cartStore.updateMerch(_merch);
 }
 function addToFavorite() {
   const existProd = cartStore.favMerch.find(e => e.id === currentProduct.value.id);
@@ -64,8 +81,8 @@ function addToFavorite() {
   const _merch = cartStore.favMerch;
   cartStore.updateFavMerch(_merch);
 }
-function goCheckout(prod) {
-  addToCart(prod);
+async function goCheckout(prod) {
+  await addToCart(prod);
   const query = prod?.attribute === 'COLD_CHAIN'
     ? { type: 'cold-chain' }
     : {};
@@ -199,7 +216,13 @@ function fetchHTMLPage(tag = 0) {
               </span><!--未到達的VIP價右邊顯示連結-->
 
               <div class="nums">
-                <n-input-number v-show="!loading" v-model:value="addingAmount" :min="1" style="width: 150px;" />
+                <n-input-number
+                  v-show="!loading"
+                  v-model:value="addingAmount"
+                  :min="1"
+                  :max="currentProduct?.inventory?.quantity"
+                  style="width: 150px;"
+                />
                 <span>庫存：{{ currentProduct?.inventory?.quantity || 0 }}</span>
               </div>
 

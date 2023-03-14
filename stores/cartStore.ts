@@ -1,5 +1,12 @@
 import { defineStore } from 'pinia';
-import { GET_USER_CART, POST_USER_CART, GET_USER_CART_DETAIL } from '@/apis/requestURL';
+import {
+  GET_USER_CART,
+  POST_USER_CART,
+  GET_USER_CART_DETAIL,
+  DELETE_USER_CART_ITEM,
+  POST_USER_CART_ITEM,
+  UPDATE_USER_CART_ITEM
+} from '@/apis/requestURL';
 import { ProductType } from '@/constants/common';
 
 // const user = JSON.parse(localStorage.getItem('user') as string);
@@ -9,13 +16,25 @@ type State = {
   coldMerch: any[];
   generalMerch: any[];
   favMerch: any[];
+  //
+  generalCartId: number;
+  coldCartId: number;
+}
+
+type CartItem = {
+  type: ProductType;
+  productId: number;
+  cartItemId?: number;
+  quantity?: number;
 }
 
 const initialState: State = {
   merch: [],
   coldMerch: [],
   generalMerch: [],
-  favMerch: []
+  favMerch: [],
+  generalCartId: -1,
+  coldCartId: -1
 };
 
 export const useCartStore = defineStore({
@@ -86,7 +105,9 @@ export const useCartStore = defineStore({
       coldId: number
     }) {
       const config = useRuntimeConfig();
-      console.log(generalId, coldId);
+      console.debug('Update CartId, ', generalId, coldId);
+      this.coldCartId = coldId;
+      this.generalCartId = generalId;
       try {
         // 先取得一般商品購物車
         const resGeneral = await $fetch(`${config.public.apiBase}/${GET_USER_CART_DETAIL(generalId)}`, {
@@ -109,7 +130,9 @@ export const useCartStore = defineStore({
           generalMerch.push(
             {
               ...e?.product,
-              quantity: e?.quantity
+              quantity: e?.quantity,
+              cartItemId: e?.id
+              // maxQuantity: e?.inventory?.quantity
             } as never
           );
         });
@@ -118,7 +141,8 @@ export const useCartStore = defineStore({
           coldMerch.push(
             {
               ...e?.product,
-              quantity: e?.quantity
+              quantity: e?.quantity,
+              cartItemId: e?.id
             } as never
           );
         });
@@ -127,10 +151,67 @@ export const useCartStore = defineStore({
           ...generalMerch,
           ...coldMerch
         ]);
-        console.log(resGeneral, resCold);
       } catch (e) {
         console.log(e);
       }
+    },
+    async deleteCartItem({
+      type,
+      productId
+    }: CartItem) {
+      const config = useRuntimeConfig();
+      const sid = type === ProductType.General ? this.generalCartId : this.coldCartId;
+      return await $fetch(`${config.public.apiBase}/${DELETE_USER_CART_ITEM(
+        sid, productId
+      )}`, {
+        method: 'DELETE',
+        headers: {
+          authorization: 'Bearer ' + localStorage.getItem('accessToken')
+        }
+      });
+    },
+    async postCartItem({
+      type,
+      productId,
+      quantity
+    }: CartItem) {
+      //
+      if (!quantity) return;
+      const config = useRuntimeConfig();
+      const sid = type === ProductType.General ? this.generalCartId : this.coldCartId;
+      return await $fetch(`${config.public.apiBase}/${POST_USER_CART_ITEM(
+        sid
+      )}`, {
+        method: 'POST',
+        headers: {
+          authorization: 'Bearer ' + localStorage.getItem('accessToken')
+        },
+        body: {
+          productId,
+          quantity
+        }
+      });
+    },
+    async updateCartItem({
+      type,
+      productId,
+      cartItemId,
+      quantity
+    }: CartItem) {
+      const config = useRuntimeConfig();
+      const sid = type === ProductType.General ? this.generalCartId : this.coldCartId;
+      return await $fetch(`${config.public.apiBase}/${UPDATE_USER_CART_ITEM(
+        sid, cartItemId as number
+      )}`, {
+        method: 'PUT',
+        headers: {
+          authorization: 'Bearer ' + localStorage.getItem('accessToken')
+        },
+        body: {
+          productId,
+          quantity
+        }
+      });
     }
   }
 });

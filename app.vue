@@ -1,14 +1,14 @@
 <script setup>
-import { REFRESH_TOKEN, GET_USER_CART, POST_USER_CART } from '@/apis/requestURL';
+import { REFRESH_TOKEN } from '@/apis/requestURL';
 
-const cartStore = useCartStore();
+// const cartStore = useCartStore();
 const authStore = useAuthStore();
 const config = useRuntimeConfig();
 
 onMounted(async() => {
   await nextTick();
   await fetchAuth();
-  await cartStore.fetchCart();
+  // await cartStore.fetchCart();
 });
 
 async function fetchAuth() {

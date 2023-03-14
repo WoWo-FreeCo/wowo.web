@@ -47,8 +47,8 @@ export const useCartStore = defineStore({
   actions: {
     updateMerch(_merch: []) {
       this.merch = _merch;
-      console.log('–––––––– update merch');
-      console.log(this.merch);
+      // console.log('–––––––– update merch');
+      // console.log(this.merch);
     },
     clearMerch() {
       this.merch = [];

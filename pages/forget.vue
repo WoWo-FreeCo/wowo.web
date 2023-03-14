@@ -30,7 +30,6 @@ onMounted(async() => {
       authStore.updateUser(res.data);
     } catch (error) {
       authStore.logout();
-      cartStore.clearMerch();
     }
     rediectPath();
   }

@@ -77,7 +77,6 @@ async function updatePermission() {
     authStore.updateUser(res.data);
   } catch (error) {
     authStore.logout();
-    cartStore.clearMerch();
   }
 }
 

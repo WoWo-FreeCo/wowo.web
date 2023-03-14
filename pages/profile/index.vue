@@ -67,7 +67,6 @@ async function updatePermission() {
     };
   } catch (error) {
     authStore.logout();
-    cartStore.clearMerch();
   }
   console.log('updated permission');
 }

@@ -32,7 +32,6 @@ onMounted(async() => {
       message.success('已自動登入');
     } catch (error) {
       authStore.logout();
-      cartStore.clearMerch();
       message.error('登入已逾期，請重新登入');
       return;
     }

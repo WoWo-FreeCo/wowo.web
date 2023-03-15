@@ -85,6 +85,12 @@ async function fetchData() {
   try {
     const body = preprocessInput();
     delete body.requiredDeliveryTimeslots;
+    if (!inputField.value.consignee.district)
+      delete body.consignee.district;
+    if (!inputField.value.consignee.city)
+      delete body.consignee.city;
+    if (!inputField.value.consignee.zipCode)
+      delete body.consignee.zipCode;
     console.log('123,, ', body);
     const res = await $fetch(`${runtimeConfig.public.apiBase}/${POST_PAYMENT_PRE}`, {
       method: 'POST',
@@ -138,7 +144,6 @@ const inputField = ref({
   choosePayment: PaymentType.CreditOneTime,
   consignee: {
     deliveryType: DeliverType.Home, // HOME
-    city: '', // 城市
     email: authStore.user?.email,
     idNo: '', // 身分證字號
     idType: '1', //
@@ -150,9 +155,10 @@ const inputField = ref({
     stationName: '', // 超商名稱?
     addressDetailOne: authStore.user?.addressOne,
     province: '台灣',
-    district: '', // 區
-    town: '', // 城鎮名
-    zipCode: '' // 郵遞區號
+    district: authStore.user?.district, // 縣市
+    city: authStore.user?.city, // 城市
+    town: authStore.user?.town, // ! 城鎮名, not using currently
+    zipCode: authStore.user?.zipCode // 郵遞區號
   },
   invoiceParams: {
     customerName: authStore.user?.nickname,
@@ -508,20 +514,11 @@ function dateDisabled(ts) {
             name="ship_phone-2"
             required
           >
-          <!-- <input
-            id="ship-province"
-            v-model="inputField.consignee.province"
-            type="text"
-            placeholder="省*"
-            class="form-control"
-            name="ship-province"
-            required
-          > -->
           <input
             id="ship-district"
             v-model="inputField.consignee.district"
             type="text"
-            placeholder="行政區*"
+            placeholder="縣市*"
             class="form-control"
             name="ship-district"
             required

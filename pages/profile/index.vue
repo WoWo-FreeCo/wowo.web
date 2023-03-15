@@ -43,7 +43,7 @@ onMounted(() => {
   if (!authStore.status.loggedIn) {
     router.push({ path: '/login' });
   }
-  updatePermission();
+  // updatePermission();
 });
 
 async function updatePermission() {

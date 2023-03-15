@@ -17,7 +17,6 @@ onMounted(() => {
 
 function logout() {
   authStore.logout();
-  authStore.updateUser({});
   router.push({ path: '/' });
 }
 

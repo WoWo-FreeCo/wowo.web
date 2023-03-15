@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia';
 import { useCartStore } from './cartStore';
+import { GET_PROFILE } from '@/apis/requestURL';
 
 // const user = JSON.parse(localStorage.getItem('user') as string);
 
@@ -36,6 +37,7 @@ export const useAuthStore = defineStore({
       localStorage.setItem('refreshToken', _rt);
       const cartStore = useCartStore();
       await cartStore.fetchCart();
+      await this.fetchUserProfile();
     },
     logout() {
       const cartStore = useCartStore();
@@ -43,6 +45,20 @@ export const useAuthStore = defineStore({
       this.user = {};
       localStorage.removeItem('accessToken');
       cartStore.clearMerch();
+    },
+    async fetchUserProfile() {
+      const config = useRuntimeConfig();
+      const accessToken = localStorage.getItem('accessToken');
+      try {
+        const res = await $fetch(`${config.public.apiBase}/${GET_PROFILE}`, {
+          method: 'GET',
+          headers: { Authorization: 'Bearer ' + accessToken }
+        });
+        this.updateUser(res.data);
+        console.log(res.data);
+      } catch (e) {
+        console.log(e);
+      }
     }
   }
 });

@@ -23,12 +23,12 @@ onMounted(async() => {
   const refreshToken = localStorage.getItem('refreshToken');
   if (accessToken) {
     try {
-      const res = await $fetch(`${config.public.apiBase}/${GET_PROFILE}`, {
+      await $fetch(`${config.public.apiBase}/${GET_PROFILE}`, {
         method: 'GET',
         headers: { Authorization: 'Bearer ' + accessToken }
       });
       authStore.loginSuccess(accessToken, refreshToken);
-      authStore.updateUser(res.data);
+      // authStore.updateUser(res.data);
       message.success('已自動登入');
     } catch (error) {
       authStore.logout();
@@ -89,11 +89,11 @@ async function setLoginResponse(data) {
   const { accessToken, refreshToken } = data;
   authStore.loginSuccess(accessToken, refreshToken);
 
-  const res = await $fetch(`${config.public.apiBase}/${GET_PROFILE}`, {
+  await $fetch(`${config.public.apiBase}/${GET_PROFILE}`, {
     method: 'GET',
     headers: { Authorization: 'Bearer ' + accessToken }
   });
-  authStore.updateUser(res.data);
+  // authStore.updateUser(res.data);
   rediectPath();
 }
 

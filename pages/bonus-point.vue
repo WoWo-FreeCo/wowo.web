@@ -62,19 +62,19 @@ async function fetchDailySequence() {
   } catch (error) {
     console.log(error);
   }
-  updatePermission();
+  // updatePermission();
 }
 
-async function updatePermission() {
+function updatePermission() {
   try {
     const accessToken = localStorage.getItem('accessToken');
     const refreshToken = localStorage.getItem('refreshToken');
-    const res = await $fetch(`${runtimeConfig.public.apiBase}/${GET_PROFILE}`, {
-      method: 'GET',
-      headers: { Authorization: 'Bearer ' + accessToken }
-    });
+    // const res = await $fetch(`${runtimeConfig.public.apiBase}/${GET_PROFILE}`, {
+    //   method: 'GET',
+    //   headers: { Authorization: 'Bearer ' + accessToken }
+    // });
     authStore.loginSuccess(accessToken, refreshToken);
-    authStore.updateUser(res.data);
+    // authStore.updateUser(res.data);
   } catch (error) {
     authStore.logout();
   }

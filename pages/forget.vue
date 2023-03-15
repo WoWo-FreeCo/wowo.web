@@ -22,12 +22,11 @@ onMounted(async() => {
   const refreshToken = localStorage.getItem('refreshToken');
   if (accessToken) {
     try {
-      const res = await $fetch(`${config.public.apiBase}/${GET_PROFILE}`, {
+      await $fetch(`${config.public.apiBase}/${GET_PROFILE}`, {
         method: 'GET',
         headers: { Authorization: 'Bearer ' + accessToken }
       });
       authStore.loginSuccess(accessToken, refreshToken);
-      authStore.updateUser(res.data);
     } catch (error) {
       authStore.logout();
     }
@@ -50,16 +49,16 @@ async function tryLogin() {
   }
 }
 
-async function setLoginResponse(data) {
+function setLoginResponse(data) {
   const { accessToken, refreshToken } = data;
   // console.log(accessToken);
   authStore.loginSuccess(accessToken, refreshToken);
 
-  const res = await $fetch(`${config.public.apiBase}/${GET_PROFILE}`, {
-    method: 'GET',
-    headers: { Authorization: 'Bearer ' + accessToken }
-  });
-  authStore.updateUser(res.data);
+  // const res = await $fetch(`${config.public.apiBase}/${GET_PROFILE}`, {
+  //   method: 'GET',
+  //   headers: { Authorization: 'Bearer ' + accessToken }
+  // });
+  // authStore.updateUser(res.data);
   rediectPath();
 }
 

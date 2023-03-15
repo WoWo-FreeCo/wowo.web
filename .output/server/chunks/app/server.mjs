@@ -928,7 +928,7 @@ const _routes = [
     meta: __nuxt_page_meta$p,
     alias: (__nuxt_page_meta$p == null ? void 0 : __nuxt_page_meta$p.alias) || [],
     redirect: (__nuxt_page_meta$p == null ? void 0 : __nuxt_page_meta$p.redirect) || void 0,
-    component: () => import('./_nuxt/about.cc323ad5.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/about.473e64fd.mjs').then((m) => m.default || m)
   },
   {
     name: (_c = __nuxt_page_meta$o == null ? void 0 : __nuxt_page_meta$o.name) != null ? _c : "aboutlovin",
@@ -938,7 +938,7 @@ const _routes = [
     meta: __nuxt_page_meta$o,
     alias: (__nuxt_page_meta$o == null ? void 0 : __nuxt_page_meta$o.alias) || [],
     redirect: (__nuxt_page_meta$o == null ? void 0 : __nuxt_page_meta$o.redirect) || void 0,
-    component: () => import('./_nuxt/aboutlovin.4a8d256c.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/aboutlovin.bd90ff7c.mjs').then((m) => m.default || m)
   },
   {
     name: (_e = __nuxt_page_meta$n == null ? void 0 : __nuxt_page_meta$n.name) != null ? _e : "activity",
@@ -948,7 +948,7 @@ const _routes = [
     meta: __nuxt_page_meta$n,
     alias: (__nuxt_page_meta$n == null ? void 0 : __nuxt_page_meta$n.alias) || [],
     redirect: (__nuxt_page_meta$n == null ? void 0 : __nuxt_page_meta$n.redirect) || void 0,
-    component: () => import('./_nuxt/activity.bd4919d3.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/activity.6380e5dd.mjs').then((m) => m.default || m)
   },
   {
     name: (_g = __nuxt_page_meta$m == null ? void 0 : __nuxt_page_meta$m.name) != null ? _g : "api-and-store-example",
@@ -958,7 +958,7 @@ const _routes = [
     meta: __nuxt_page_meta$m,
     alias: (__nuxt_page_meta$m == null ? void 0 : __nuxt_page_meta$m.alias) || [],
     redirect: (__nuxt_page_meta$m == null ? void 0 : __nuxt_page_meta$m.redirect) || void 0,
-    component: () => import('./_nuxt/api-and-store-example.f76c661a.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/api-and-store-example.1ac37e27.mjs').then((m) => m.default || m)
   },
   {
     name: (_i = __nuxt_page_meta$l == null ? void 0 : __nuxt_page_meta$l.name) != null ? _i : "bid",
@@ -978,7 +978,7 @@ const _routes = [
     meta: __nuxt_page_meta$k,
     alias: (__nuxt_page_meta$k == null ? void 0 : __nuxt_page_meta$k.alias) || [],
     redirect: (__nuxt_page_meta$k == null ? void 0 : __nuxt_page_meta$k.redirect) || void 0,
-    component: () => import('./_nuxt/bonus-point.a86b4f6f.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/bonus-point.c44bf79e.mjs').then((m) => m.default || m)
   },
   {
     name: (_m = __nuxt_page_meta$j == null ? void 0 : __nuxt_page_meta$j.name) != null ? _m : "bonus-record",
@@ -988,7 +988,7 @@ const _routes = [
     meta: __nuxt_page_meta$j,
     alias: (__nuxt_page_meta$j == null ? void 0 : __nuxt_page_meta$j.alias) || [],
     redirect: (__nuxt_page_meta$j == null ? void 0 : __nuxt_page_meta$j.redirect) || void 0,
-    component: () => import('./_nuxt/bonus-record.cc05b0b9.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/bonus-record.4d1934f8.mjs').then((m) => m.default || m)
   },
   {
     name: (_o = __nuxt_page_meta$i == null ? void 0 : __nuxt_page_meta$i.name) != null ? _o : "cart",
@@ -998,7 +998,7 @@ const _routes = [
     meta: __nuxt_page_meta$i,
     alias: (__nuxt_page_meta$i == null ? void 0 : __nuxt_page_meta$i.alias) || [],
     redirect: (__nuxt_page_meta$i == null ? void 0 : __nuxt_page_meta$i.redirect) || void 0,
-    component: () => import('./_nuxt/cart.b50d0312.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/cart.edb13640.mjs').then((m) => m.default || m)
   },
   {
     name: (_q = __nuxt_page_meta$h == null ? void 0 : __nuxt_page_meta$h.name) != null ? _q : "checkout",
@@ -1008,7 +1008,7 @@ const _routes = [
     meta: __nuxt_page_meta$h,
     alias: (__nuxt_page_meta$h == null ? void 0 : __nuxt_page_meta$h.alias) || [],
     redirect: (__nuxt_page_meta$h == null ? void 0 : __nuxt_page_meta$h.redirect) || void 0,
-    component: () => import('./_nuxt/checkout.68e3abb9.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/checkout.bd2cd028.mjs').then((m) => m.default || m)
   },
   {
     name: (_s = __nuxt_page_meta$g == null ? void 0 : __nuxt_page_meta$g.name) != null ? _s : "contact",
@@ -1018,7 +1018,7 @@ const _routes = [
     meta: __nuxt_page_meta$g,
     alias: (__nuxt_page_meta$g == null ? void 0 : __nuxt_page_meta$g.alias) || [],
     redirect: (__nuxt_page_meta$g == null ? void 0 : __nuxt_page_meta$g.redirect) || void 0,
-    component: () => import('./_nuxt/contact.71fa6e09.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/contact.59f48792.mjs').then((m) => m.default || m)
   },
   {
     name: (_u = __nuxt_page_meta$f == null ? void 0 : __nuxt_page_meta$f.name) != null ? _u : "cvs_callback",
@@ -1028,7 +1028,7 @@ const _routes = [
     meta: __nuxt_page_meta$f,
     alias: (__nuxt_page_meta$f == null ? void 0 : __nuxt_page_meta$f.alias) || [],
     redirect: (__nuxt_page_meta$f == null ? void 0 : __nuxt_page_meta$f.redirect) || void 0,
-    component: () => import('./_nuxt/cvs_callback.8db91406.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/cvs_callback.5495952e.mjs').then((m) => m.default || m)
   },
   {
     name: (_w = __nuxt_page_meta$e == null ? void 0 : __nuxt_page_meta$e.name) != null ? _w : "faq",
@@ -1038,7 +1038,7 @@ const _routes = [
     meta: __nuxt_page_meta$e,
     alias: (__nuxt_page_meta$e == null ? void 0 : __nuxt_page_meta$e.alias) || [],
     redirect: (__nuxt_page_meta$e == null ? void 0 : __nuxt_page_meta$e.redirect) || void 0,
-    component: () => import('./_nuxt/faq.2d5f6ce9.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/faq.29b5795d.mjs').then((m) => m.default || m)
   },
   {
     name: (_y = __nuxt_page_meta$d == null ? void 0 : __nuxt_page_meta$d.name) != null ? _y : "favorite",
@@ -1048,7 +1048,7 @@ const _routes = [
     meta: __nuxt_page_meta$d,
     alias: (__nuxt_page_meta$d == null ? void 0 : __nuxt_page_meta$d.alias) || [],
     redirect: (__nuxt_page_meta$d == null ? void 0 : __nuxt_page_meta$d.redirect) || void 0,
-    component: () => import('./_nuxt/favorite.c6211d29.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/favorite.d9639e4b.mjs').then((m) => m.default || m)
   },
   {
     name: (_A = __nuxt_page_meta$c == null ? void 0 : __nuxt_page_meta$c.name) != null ? _A : "forget",
@@ -1058,7 +1058,7 @@ const _routes = [
     meta: __nuxt_page_meta$c,
     alias: (__nuxt_page_meta$c == null ? void 0 : __nuxt_page_meta$c.alias) || [],
     redirect: (__nuxt_page_meta$c == null ? void 0 : __nuxt_page_meta$c.redirect) || void 0,
-    component: () => import('./_nuxt/forget.6b8591b3.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/forget.3e85ddc3.mjs').then((m) => m.default || m)
   },
   {
     name: (_C = __nuxt_page_meta$b == null ? void 0 : __nuxt_page_meta$b.name) != null ? _C : "index",
@@ -1068,7 +1068,7 @@ const _routes = [
     meta: __nuxt_page_meta$b,
     alias: (__nuxt_page_meta$b == null ? void 0 : __nuxt_page_meta$b.alias) || [],
     redirect: (__nuxt_page_meta$b == null ? void 0 : __nuxt_page_meta$b.redirect) || void 0,
-    component: () => import('./_nuxt/index.189a043a.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/index.6971bc6b.mjs').then((m) => m.default || m)
   },
   {
     name: (_E = __nuxt_page_meta$a == null ? void 0 : __nuxt_page_meta$a.name) != null ? _E : "login",
@@ -1078,7 +1078,7 @@ const _routes = [
     meta: __nuxt_page_meta$a,
     alias: (__nuxt_page_meta$a == null ? void 0 : __nuxt_page_meta$a.alias) || [],
     redirect: (__nuxt_page_meta$a == null ? void 0 : __nuxt_page_meta$a.redirect) || void 0,
-    component: () => import('./_nuxt/login.fe894a41.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/login.b1b8852c.mjs').then((m) => m.default || m)
   },
   {
     name: (_G = __nuxt_page_meta$9 == null ? void 0 : __nuxt_page_meta$9.name) != null ? _G : "order-detail",
@@ -1088,7 +1088,7 @@ const _routes = [
     meta: __nuxt_page_meta$9,
     alias: (__nuxt_page_meta$9 == null ? void 0 : __nuxt_page_meta$9.alias) || [],
     redirect: (__nuxt_page_meta$9 == null ? void 0 : __nuxt_page_meta$9.redirect) || void 0,
-    component: () => import('./_nuxt/detail.f2b28ecf.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/detail.e91aa32f.mjs').then((m) => m.default || m)
   },
   {
     name: (_I = __nuxt_page_meta$8 == null ? void 0 : __nuxt_page_meta$8.name) != null ? _I : "order",
@@ -1098,7 +1098,7 @@ const _routes = [
     meta: __nuxt_page_meta$8,
     alias: (__nuxt_page_meta$8 == null ? void 0 : __nuxt_page_meta$8.alias) || [],
     redirect: (__nuxt_page_meta$8 == null ? void 0 : __nuxt_page_meta$8.redirect) || void 0,
-    component: () => import('./_nuxt/index.7a917ba4.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/index.a85f4f20.mjs').then((m) => m.default || m)
   },
   {
     name: (_K = __nuxt_page_meta$7 == null ? void 0 : __nuxt_page_meta$7.name) != null ? _K : "privacy",
@@ -1108,7 +1108,7 @@ const _routes = [
     meta: __nuxt_page_meta$7,
     alias: (__nuxt_page_meta$7 == null ? void 0 : __nuxt_page_meta$7.alias) || [],
     redirect: (__nuxt_page_meta$7 == null ? void 0 : __nuxt_page_meta$7.redirect) || void 0,
-    component: () => import('./_nuxt/privacy.f89d33b1.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/privacy.cf1aaf93.mjs').then((m) => m.default || m)
   },
   {
     name: (_M = __nuxt_page_meta$6 == null ? void 0 : __nuxt_page_meta$6.name) != null ? _M : "product",
@@ -1118,7 +1118,7 @@ const _routes = [
     meta: __nuxt_page_meta$6,
     alias: (__nuxt_page_meta$6 == null ? void 0 : __nuxt_page_meta$6.alias) || [],
     redirect: (__nuxt_page_meta$6 == null ? void 0 : __nuxt_page_meta$6.redirect) || void 0,
-    component: () => import('./_nuxt/product.e0f2dc32.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/product.25b6c045.mjs').then((m) => m.default || m)
   },
   {
     name: (_O = __nuxt_page_meta$5 == null ? void 0 : __nuxt_page_meta$5.name) != null ? _O : "profile",
@@ -1128,7 +1128,7 @@ const _routes = [
     meta: __nuxt_page_meta$5,
     alias: (__nuxt_page_meta$5 == null ? void 0 : __nuxt_page_meta$5.alias) || [],
     redirect: (__nuxt_page_meta$5 == null ? void 0 : __nuxt_page_meta$5.redirect) || void 0,
-    component: () => import('./_nuxt/index.024b5d9d.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/index.77342351.mjs').then((m) => m.default || m)
   },
   {
     name: (_Q = __nuxt_page_meta$4 == null ? void 0 : __nuxt_page_meta$4.name) != null ? _Q : "register",
@@ -1138,7 +1138,7 @@ const _routes = [
     meta: __nuxt_page_meta$4,
     alias: (__nuxt_page_meta$4 == null ? void 0 : __nuxt_page_meta$4.alias) || [],
     redirect: (__nuxt_page_meta$4 == null ? void 0 : __nuxt_page_meta$4.redirect) || void 0,
-    component: () => import('./_nuxt/register.bbfda11f.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/register.6101618f.mjs').then((m) => m.default || m)
   },
   {
     name: (_S = __nuxt_page_meta$3 == null ? void 0 : __nuxt_page_meta$3.name) != null ? _S : "return-help",
@@ -1148,7 +1148,7 @@ const _routes = [
     meta: __nuxt_page_meta$3,
     alias: (__nuxt_page_meta$3 == null ? void 0 : __nuxt_page_meta$3.alias) || [],
     redirect: (__nuxt_page_meta$3 == null ? void 0 : __nuxt_page_meta$3.redirect) || void 0,
-    component: () => import('./_nuxt/return-help.7eff65ae.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/return-help.3c14e202.mjs').then((m) => m.default || m)
   },
   {
     name: (_U = __nuxt_page_meta$2 == null ? void 0 : __nuxt_page_meta$2.name) != null ? _U : "shop",
@@ -1158,7 +1158,7 @@ const _routes = [
     meta: __nuxt_page_meta$2,
     alias: (__nuxt_page_meta$2 == null ? void 0 : __nuxt_page_meta$2.alias) || [],
     redirect: (__nuxt_page_meta$2 == null ? void 0 : __nuxt_page_meta$2.redirect) || void 0,
-    component: () => import('./_nuxt/shop.6fa328b2.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/shop.7588dd01.mjs').then((m) => m.default || m)
   },
   {
     name: (_W = __nuxt_page_meta$1 == null ? void 0 : __nuxt_page_meta$1.name) != null ? _W : "terms",
@@ -1168,7 +1168,7 @@ const _routes = [
     meta: __nuxt_page_meta$1,
     alias: (__nuxt_page_meta$1 == null ? void 0 : __nuxt_page_meta$1.alias) || [],
     redirect: (__nuxt_page_meta$1 == null ? void 0 : __nuxt_page_meta$1.redirect) || void 0,
-    component: () => import('./_nuxt/terms.c61b0da9.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/terms.c20017de.mjs').then((m) => m.default || m)
   },
   {
     name: (_Y = __nuxt_page_meta == null ? void 0 : __nuxt_page_meta.name) != null ? _Y : "wobao",
@@ -1178,7 +1178,7 @@ const _routes = [
     meta: __nuxt_page_meta,
     alias: (__nuxt_page_meta == null ? void 0 : __nuxt_page_meta.alias) || [],
     redirect: (__nuxt_page_meta == null ? void 0 : __nuxt_page_meta.redirect) || void 0,
-    component: () => import('./_nuxt/wobao.24a197f5.mjs').then((m) => m.default || m)
+    component: () => import('./_nuxt/wobao.9e876424.mjs').then((m) => m.default || m)
   }
 ];
 const routerOptions0 = {
@@ -1578,8 +1578,8 @@ const _wrapIf = (component, props, slots) => {
   return { default: () => props ? h(component, props === true ? {} : props, slots) : h(Fragment, {}, slots) };
 };
 const layouts = {
-  admin: () => import('./_nuxt/admin.3220d51e.mjs').then((m) => m.default || m),
-  default: () => import('./_nuxt/default.3cdd6a72.mjs').then((m) => m.default || m)
+  admin: () => import('./_nuxt/admin.c70735c6.mjs').then((m) => m.default || m),
+  default: () => import('./_nuxt/default.e64cbc45.mjs').then((m) => m.default || m)
 };
 const LayoutLoader = defineComponent({
   props: {
@@ -1725,7 +1725,6 @@ const prefix = "api/v1";
 const GET_PROFILE = `${prefix}/user/profile`;
 const GET_USER_BONUS_RECORDS = `${prefix}/user/bonus-point-records`;
 const GET_ALL_PRODUCT = `${prefix}/product`;
-const USER_LOGIN = `${prefix}/user/login`;
 const POST_USER_ACTIVATATION = `${prefix}/user/activity/activate`;
 const POST_USER_CART = `${prefix}/user/shopping-session`;
 const GET_USER_CART = `${prefix}/user/shopping-session`;
@@ -2083,7 +2082,7 @@ const _sfc_main = {
   __name: "nuxt-root",
   __ssrInlineRender: true,
   setup(__props) {
-    const ErrorComponent = defineAsyncComponent(() => import('./_nuxt/error-component.2d524b42.mjs').then((r) => r.default || r));
+    const ErrorComponent = defineAsyncComponent(() => import('./_nuxt/error-component.118c28be.mjs').then((r) => r.default || r));
     const nuxtApp = useNuxtApp();
     nuxtApp.deferHydration();
     provide("_route", useRoute());
@@ -2138,5 +2137,5 @@ const plugins = normalizePlugins(_plugins);
 }
 const entry$1 = (ctx) => entry(ctx);
 
-export { DeliverType as D, GET_USER_BONUS_RECORDS as G, InvoiceType as I, OrderStatus as O, ProductType as P, UICType as U, _export_sfc as _, useNuxtApp as a, useRouter as b, createError as c, defineStore as d, entry$1 as default, useAuthStore as e, useCartStore as f, __nuxt_component_0$1 as g, useRoute as h, PaymentType as i, useRequestEvent as j, USER_LOGIN as k, POST_USER_ACTIVATATION as l, GET_PROFILE as m, GET_ALL_PRODUCT as n, useRuntimeConfig as u };
+export { DeliverType as D, GET_USER_BONUS_RECORDS as G, InvoiceType as I, OrderStatus as O, ProductType as P, UICType as U, _export_sfc as _, useNuxtApp as a, useRouter as b, createError as c, defineStore as d, entry$1 as default, useAuthStore as e, useCartStore as f, __nuxt_component_0$1 as g, useRoute as h, PaymentType as i, useRequestEvent as j, POST_USER_ACTIVATATION as k, GET_PROFILE as l, GET_ALL_PRODUCT as m, useRuntimeConfig as u };
 //# sourceMappingURL=server.mjs.map

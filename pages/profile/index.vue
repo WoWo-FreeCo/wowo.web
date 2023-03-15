@@ -330,9 +330,9 @@ async function updateProfile() {
               >
             </div>
             <div class="text-center">
-              <button type="reset" class="btn btn-main btn-default">
+              <!-- <button type="reset" class="btn btn-main btn-default">
                 取消重填
-              </button>
+              </button> -->
               <input
                 id="edit-confirm"
                 type="submit"
@@ -384,7 +384,7 @@ async function updateProfile() {
             }"
             class="col-sm-6 border-right svip-code"
           >
-            <h5>A.SVIP激活碼<span class="level_tips">(綁定推薦人帳號後將無法解鎖！)</span></h5>
+            <h5>A.SVIP激活碼</h5>
             <form id="svip_rec" action="javascript:;" class="form-group">
               <input
                 v-show="!authUser.SVIPActivated"

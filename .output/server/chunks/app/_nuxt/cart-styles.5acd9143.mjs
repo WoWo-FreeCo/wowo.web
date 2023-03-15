@@ -1,6 +1,0 @@
-const cart_vue_vue_type_style_index_0_scoped_83d706bd_lang = ".dashboard-menu li[data-v-83d706bd]{margin:0 12px}@media screen and (max-width:375px){.cart_container[data-v-83d706bd]{padding:0 12px}.cart_img[data-v-83d706bd],.cart_tl[data-v-83d706bd]{padding:4px 0 0!important}.cart_img img[data-v-83d706bd]{height:100px}.dashboard-menu[data-v-83d706bd]{display:flex}}@media screen and (max-width:768px){.del_btn[data-v-83d706bd]{bottom:12px;right:0!important}}@media screen and (max-width:375px){.del_btn[data-v-83d706bd]{bottom:12px;right:0!important}}.type-name[data-v-83d706bd]{position:relative}.cart-amount[data-v-83d706bd]{background-color:#fb693c;border-radius:50%;color:#fff;display:block;font-size:12px;height:20px;line-height:20px;position:absolute;right:-10px;top:0;translate:0 -50%;width:20px}.prod-tr[data-v-83d706bd]{display:flex;gap:4px;position:relative}@media screen and (max-width:375px){.prod-tr[data-v-83d706bd]{padding:8px 0}.cart_price[data-v-83d706bd]{text-align:right!important}.cart_trash[data-v-83d706bd]{bottom:0;position:absolute;right:0}}";
-
-const cartStyles_5acd9143 = [cart_vue_vue_type_style_index_0_scoped_83d706bd_lang];
-
-export { cartStyles_5acd9143 as default };
-//# sourceMappingURL=cart-styles.5acd9143.mjs.map

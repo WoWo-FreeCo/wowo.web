@@ -261,9 +261,9 @@ async function confirmReg() {
               >
             </div> -->
             <div class="text-center">
-              <button type="reset" class="btn btn-main btn-default">
+              <!-- <button type="reset" class="btn btn-main btn-default">
                 取消重填
-              </button>
+              </button> -->
               <input
                 id="wb-reg-confirm"
                 type="submit"

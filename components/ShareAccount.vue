@@ -42,7 +42,7 @@ function copyUrl() {
               <i class="fa-brands fa-facebook" style="font-size: 28px;" />
             </a>
             <p class="share-text">
-              您的親友從FB貼文內的路徑進入WO平台並加入會員時，<br>系統將直接綁定推薦人關係。
+              您的親友從FB貼文內的路徑進入WO平台並加入會員時，系統將直接綁定推薦人關係。
             </p>
             <!-- <a href="https://www.instagram.com/p/Co1EeQHpvmD/?igshid=MDJmNzVkMjY=" target="_blank">
               <i class="fa-brands fa-instagram" style="font-size: 28px;" />
@@ -92,7 +92,7 @@ function copyUrl() {
   margin: 0 auto;
   width: 450px;
   max-width: 80vw;
-  text-align: left;
+  text-align: justify;
   margin-top: 12px;
   color: #6f5f48;
   font-weight: 500;

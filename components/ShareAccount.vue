@@ -37,10 +37,13 @@ function copyUrl() {
 
           方式：點選下方按鈕免費加入會員, 完成流程後, 就能享受VIP 和SVIP的超低特惠價
           <div class="text-center">
-            分享<br>
+            <!-- 分享<br> -->
             <a :href="`https://www.facebook.com/sharer/sharer.php?u=${shareURL}`" target="_blank">
               <i class="fa-brands fa-facebook" style="font-size: 28px;" />
             </a>
+            <p class="share-text">
+              您的親友從FB貼文內的路徑進入WO平台並加入會員時，<br>系統將直接綁定推薦人關係。
+            </p>
             <!-- <a href="https://www.instagram.com/p/Co1EeQHpvmD/?igshid=MDJmNzVkMjY=" target="_blank">
               <i class="fa-brands fa-instagram" style="font-size: 28px;" />
             </a>
@@ -48,8 +51,10 @@ function copyUrl() {
               <i class="fa-brands fa-youtube" style="font-size: 28px;" />
             </a> -->
             <br>
-
             <a id="copy-btn" class="btn btn-main btn-check" :data-clipboard-text="shareURL" @click="copyUrl">複製分享網址</a>
+            <p class="share-text">
+              按上方複製鈕後，需在LINE或其他通訊軟體進行貼上，從該路徑進入WO平台並加入會員時，系統將直接綁定推薦人關係。
+            </p>
           </div>
         </div>
         <div class="modal-footer">
@@ -82,5 +87,14 @@ function copyUrl() {
 .btn-main {
   margin: 4px 0;
   font-weight: 400;
+}
+.share-text {
+  margin: 0 auto;
+  width: 450px;
+  max-width: 80vw;
+  text-align: left;
+  margin-top: 12px;
+  color: #6f5f48;
+  font-weight: 500;
 }
 </style>

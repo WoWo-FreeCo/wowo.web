@@ -32,12 +32,9 @@ function copyUrl() {
         </div>
         <div class="modal-body">
           <img class="main-img" src="@/assets/images/share_ad.jpg" alt="">
-          好東西,當然要再分享給口袋名單!<br>
-          分享這則優惠給好友,也讓好友一起拿到超低優惠價<br><br>
-
-          方式：點選下方按鈕免費加入會員, 完成流程後, 就能享受VIP 和SVIP的超低特惠價
           <div class="text-center">
             <!-- 分享<br> -->
+            <br>
             <a :href="`https://www.facebook.com/sharer/sharer.php?u=${shareURL}`" target="_blank">
               <i class="fa-brands fa-facebook" style="font-size: 28px;" />
             </a>

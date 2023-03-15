@@ -371,7 +371,7 @@ function dateDisabled(ts) {
               <span
                 v-show="authStore.user?.memberLevel && authStore.user?.memberLevel !== 'NORMAL'"
               >市價 ${{ item?.price }}</span>
-              價錢 ${{ getCurrentPriceByAuth(item) }}
+              價錢 ${{ getCurrentPriceByAuth(item) * item?.quantity }}
             </td>
           </tr>
         </tbody>

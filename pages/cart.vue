@@ -221,7 +221,7 @@ function validateMerch() {
         運送提醒，ex：宅配填寫到貨時間
       </div> -->
       <div v-show="currentMerch.length" class="alert alert-warning alert-common" role="alert">
-        貼心提醒: 一般常溫商品,無法與冷鍊商品同時出貨, 敬請分開結帳,謝謝您
+        貼心提醒: 一般物流商品,無法與特殊物流商品同時出貨, 敬請分開結帳,謝謝您
       </div>
       <!--購物清單,空的不顯示 end--->
     </div>

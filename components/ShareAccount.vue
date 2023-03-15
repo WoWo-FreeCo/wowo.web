@@ -38,7 +38,7 @@ function copyUrl() {
           方式：點選下方按鈕免費加入會員, 完成流程後, 就能享受VIP 和SVIP的超低特惠價
           <div class="text-center">
             分享<br>
-            <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.facebook.com%2FLOVIN2022" target="_blank">
+            <a :href="`https://www.facebook.com/sharer/sharer.php?u=${shareURL}`" target="_blank">
               <i class="fa-brands fa-facebook" style="font-size: 28px;" />
             </a>
             <!-- <a href="https://www.instagram.com/p/Co1EeQHpvmD/?igshid=MDJmNzVkMjY=" target="_blank">

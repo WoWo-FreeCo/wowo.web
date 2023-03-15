@@ -174,6 +174,7 @@ function validateMerch() {
                 <n-input-number
                   v-model:value="item.quantity"
                   :min="1"
+                  :max="item?.inventory?.quantity"
                   :style="{ width: '150px' }"
                   placeholder="請輸入數量"
                 >

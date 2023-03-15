@@ -14,7 +14,10 @@ const inputField = ref({
   nickname: '',
   cellphone: '',
   telephone: '',
-  addressOne: ''
+  addressOne: '',
+  district: '',
+  city: '',
+  zipCode: ''
   // addressTwo: '',
   // addressThree: ''
 });
@@ -28,6 +31,38 @@ onMounted(() => {
 });
 
 async function confirmReg() {
+  if (!inputField.value.nickname) {
+    message.error('請輸入姓名');
+    return;
+  }
+  if (!inputField.value.password) {
+    message.error('請輸入密碼');
+    return;
+  }
+  if (!inputField.value.email) {
+    message.error('請輸入Email');
+    return;
+  }
+  if (!inputField.value.cellphone) {
+    message.error('請輸入手機號碼');
+    return;
+  }
+  if (!inputField.value.district) {
+    message.error('請輸入縣市名稱');
+    return;
+  }
+  if (!inputField.value.city) {
+    message.error('請輸入城市名稱');
+    return;
+  }
+  if (!inputField.value.zipCode) {
+    message.error('請輸入郵遞區號');
+    return;
+  }
+  if (!inputField.value.addressOne) {
+    message.error('請輸入地址');
+    return;
+  }
   try {
     await $fetch(`${config.public.apiBase}/${USER_REGISTER}`, {
       method: 'POST',
@@ -156,6 +191,42 @@ async function confirmReg() {
               >
             </div> -->
             <div class="form-group">
+              <label>縣市*</label>
+              <input
+                id="auth-address-district"
+                v-model="inputField.district"
+                type="text"
+                placeholder="請輸入所在的縣市"
+                class="form-control"
+                name="form-control-district"
+                required
+              >
+            </div>
+            <div class="form-group">
+              <label>城市*</label>
+              <input
+                id="auth-address-city"
+                v-model="inputField.city"
+                type="text"
+                placeholder="請輸入所在的城市"
+                class="form-control"
+                name="form-control-city"
+                required
+              >
+            </div>
+            <div class="form-group">
+              <label>郵遞區號*</label>
+              <input
+                id="auth-address-zipCode"
+                v-model="inputField.zipCode"
+                type="text"
+                placeholder="請輸入住址的郵遞區號"
+                class="form-control"
+                name="form-control-zipCode"
+                required
+              >
+            </div>
+            <div class="form-group">
               <label>送貨地址*</label>
               <input
                 id="wb-address1"
@@ -193,7 +264,13 @@ async function confirmReg() {
               <button type="reset" class="btn btn-main btn-default">
                 取消重填
               </button>
-              <input id="wb-reg-confirm" type="submit" class="btn btn-main btn-bag" value="確認送出" @click="confirmReg">
+              <input
+                id="wb-reg-confirm"
+                type="submit"
+                class="btn btn-main btn-bag"
+                value="確認送出"
+                @click="confirmReg"
+              >
             </div>
           </form>
 

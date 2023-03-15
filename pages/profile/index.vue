@@ -36,14 +36,17 @@ const currentLevel = computed(() => {
 const inputField = ref({
   nickname: authStore.user?.nickname,
   cellphone: authStore.user?.cellphone,
-  addressOne: authStore.user?.addressOne
+  addressOne: authStore.user?.addressOne,
+  district: authStore.user?.district,
+  city: authStore.user?.city,
+  zipCode: authStore.user?.zipCode
 });
 
 onMounted(() => {
   if (!authStore.status.loggedIn) {
     router.push({ path: '/login' });
   }
-  // updatePermission();
+  updatePermission();
 });
 
 async function updatePermission() {
@@ -63,7 +66,10 @@ async function updatePermission() {
     inputField.value = {
       nickname: authStore.user?.nickname,
       cellphone: authStore.user?.cellphone,
-      addressOne: authStore.user?.addressOne
+      addressOne: authStore.user?.addressOne,
+      district: authStore.user?.district,
+      city: authStore.user?.city,
+      zipCode: authStore.user?.zipCode
     };
   } catch (error) {
     authStore.logout();
@@ -160,6 +166,18 @@ async function updateProfile() {
   }
   if (!inputField.value.cellphone) {
     message.error('請輸入手機號碼');
+    return;
+  }
+  if (!inputField.value.district) {
+    message.error('請輸入縣市名稱');
+    return;
+  }
+  if (!inputField.value.city) {
+    message.error('請輸入城市名稱');
+    return;
+  }
+  if (!inputField.value.zipCode) {
+    message.error('請輸入郵遞區號');
     return;
   }
   if (!inputField.value.addressOne) {
@@ -267,6 +285,39 @@ async function updateProfile() {
               >
             </div> -->
             <div class="form-group">
+              <label>縣市*</label>
+              <input
+                id="auth-address-district"
+                v-model="inputField.district"
+                type="text"
+                placeholder="請輸入所在的縣市"
+                class="form-control"
+                name="form-control-district"
+              >
+            </div>
+            <div class="form-group">
+              <label>城市*</label>
+              <input
+                id="auth-address-city"
+                v-model="inputField.city"
+                type="text"
+                placeholder="請輸入所在的城市"
+                class="form-control"
+                name="form-control-city"
+              >
+            </div>
+            <div class="form-group">
+              <label>郵遞區號*</label>
+              <input
+                id="auth-address-zipCode"
+                v-model="inputField.zipCode"
+                type="text"
+                placeholder="請輸入住址的郵遞區號"
+                class="form-control"
+                name="form-control-zipCode"
+              >
+            </div>
+            <div class="form-group">
               <label>地址*</label>
               <input
                 id="auth-address1"
@@ -278,28 +329,6 @@ async function updateProfile() {
                 required
               >
             </div>
-            <!-- <div class="form-group">
-              <label>送貨地址2</label>
-              <input
-                id="auth-address2"
-                v-model="inputField.addressTwo"
-                type="text"
-                placeholder="送貨地址2"
-                class="form-control"
-                name=""
-              >
-            </div> -->
-            <!-- <div class="form-group">
-              <label>送貨地址3</label>
-              <input
-                id="auth-address3"
-                v-model="inputField.addressThree"
-                type="text"
-                placeholder="送貨地址3"
-                class="form-control"
-                name=""
-              >
-            </div> -->
             <div class="text-center">
               <button type="reset" class="btn btn-main btn-default">
                 取消重填
@@ -326,13 +355,21 @@ async function updateProfile() {
         </h3>
         <div class="row level_content">
           <div v-if="authUser.memberLevel === 'NORMAL'">
-            <h4>我要解鎖成為<span>VIP</span>：<span class="level_tips">『A.綁定VIP推薦人』+『B.按讚WO粉絲團或C.訂閱WO頻道』，即可成為VIP!</span></h4>
+            <h4>
+              我要解鎖成為<span>VIP</span>：<span class="level_tips">
+                『A.綁定VIP推薦人』+『B. 按讚WO粉絲團 / C. 訂閱WO頻道 / D.追蹤WO IG』，即可成為VIP!</span>
+            </h4>
           </div>
           <div v-if="authUser.memberLevel === 'VIP'">
             <h4>我要解鎖成為<span>SVIP</span>：<span class="level_tips">『D.綁定SVIP激活碼』或『B.按讚WO粉絲團+C.訂閱WO頻道』，即可成為SVIP!</span></h4>
           </div>
           <div v-if="authUser.memberLevel === 'NORMAL'" class="col-sm-6 border-right">
-            <h5>A.VIP推薦人<span class="level_tips">(綁定推薦人帳號後將無法解鎖！)</span></h5>
+            <h5>
+              A.VIP推薦人<span class="level_tips">
+                綁定推薦人『推薦代碼』
+                （消費金額5%將成為紅利點數貢獻給推薦人，系統允許朋親好友互為推薦人；如果沒有親朋好友，請輸入88888888，由WO為您推薦）
+              </span>
+            </h5>
             <form id="vip_rec" action="javascript:;" class="form-group">
               <input v-show="!authUser.VIPActivated" v-model="inputVIPCode" type="text" placeholder="請輸入VIP推薦帳號 (會員帳號)" class="form-control">
               <button type="button" class="btn btn-block" :class="{'btn-check': !authUser.VIPActivated, 'btn-default': authUser.VIPActivated}" :disabled="authUser.VIPActivated" @click="activateProfileByType('vip')">
@@ -411,7 +448,11 @@ async function updateProfile() {
           <!-- <a href="#" data-toggle="modal" data-target="#vipdesc"><i class="fa-solid fa-circle-question" /> <u>查看升等方式</u></a> -->
         </h3>
         <div class="row level_content">
-          <h4>我要解鎖成為<span>SVIP</span>：<span class="level_tips">『A.綁定SVIP激活碼』或『B.按讚WO粉絲團+C.訂閱WO頻道』，即可成為SVIP!</span></h4>
+          <h4>
+            我要解鎖成為<span>SVIP</span>：<span class="level_tips">
+              『A.綁定SVIP激活碼』或『B.按讚WO粉絲團 + C.訂閱WO頻道』，
+              即可成為SVIP!</span>
+          </h4>
           <div class="col-sm-6 border-right">
             <h5>D.SVIP激活碼<span class="level_tips">(綁定激活碼後將無法解鎖！)</span></h5>
             <form id="svip_rec" method="post" action="" class="form-group">
@@ -481,5 +522,14 @@ async function updateProfile() {
       padding: 0;
     }
   }
+}
+.level_content h5 span.level_tips {
+  color: #555;
+  font-size: 16px;
+  text-align: justify;
+  margin-left: 5px;
+  line-height: 1.4;
+  font-weight: 400;
+  letter-spacing: 0.04em;
 }
 </style>

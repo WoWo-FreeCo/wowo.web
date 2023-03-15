@@ -1,4 +1,5 @@
 <script setup>
+import { useMessage } from 'naive-ui';
 import { ProductType } from '@/constants/common';
 
 const routes = useRoute();
@@ -7,6 +8,7 @@ const route = useRoute();
 
 const authStore = useAuthStore();
 const cartStore = useCartStore();
+const message = useMessage();
 
 const cartType = ref(ProductType.General);
 
@@ -86,6 +88,10 @@ async function deleteItem(item) {
 }
 
 function goCheckout() {
+  if (!validateMerch()) {
+    message.error('請確認產品數量！');
+    return;
+  }
   if (!authStore.status.loggedIn) {
     return router.push({
       path: '/login',
@@ -96,6 +102,13 @@ function goCheckout() {
     });
   }
   router.push({ path: '/checkout', query: { ...routes.query } });
+}
+
+function validateMerch() {
+  for (const merch of currentMerch.value) {
+    if (!merch?.quantity) return false;
+  }
+  return true;
 }
 </script>
 <template>

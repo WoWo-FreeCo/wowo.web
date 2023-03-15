@@ -64,20 +64,20 @@ function getFormattedData(date) {
   return _date.format('YYYY/MM/DD A hh:mm');
 }
 
-function getActivityDescription(event) {
-  switch (event) {
-  case BonusRecordActivity.Redeem:
-    return '使用紅利';
-  case BonusRecordActivity.Reward:
-    return '消費回饋';
-  case BonusRecordActivity.Upgrad:
-    return '會員升級';
-  case BonusRecordActivity.Register:
-    return '會員註冊';
-  default:
-    return '未定義';
-  }
-}
+// function getActivityDescription(event) {
+//   switch (event) {
+//   case BonusRecordActivity.Redeem:
+//     return '使用紅利';
+//   case BonusRecordActivity.Reward:
+//     return '消費回饋';
+//   case BonusRecordActivity.Upgrad:
+//     return '會員升級';
+//   case BonusRecordActivity.Register:
+//     return '會員註冊';
+//   default:
+//     return '未定義';
+//   }
+// }
 </script>
 
 <template>
@@ -116,7 +116,7 @@ function getActivityDescription(event) {
                 {{ getFormattedData(record?.createdAt) }}
               </td>
               <td data-th="異動說明">
-                {{ getActivityDescription(record?.activityType) }}
+                {{ record?.rules?.name || '紅利點數' }}
               </td>
               <td data-th="點數">
                 {{ record?.points }}

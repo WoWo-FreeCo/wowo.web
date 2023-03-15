@@ -51,10 +51,10 @@ function scrollToBottom() {
             </li>
             <li>
               <span>我的推薦代碼：{{ authStore?.user?.recommendCode }}</span>
-              <!--分享帳號給別人的推薦代碼-->
             </li>
             <li style="font-size: 12px; color: red">
-              <span>(使用推薦代碼註冊後，成功消費總金額1%，將會回饋紅利點數給您，推薦越多人賺越多!)</span>
+              <span>（此碼是成為VIP的必要條件，他人輸入您的『推薦代碼』後，其消費金額5%將成為您的紅利點數；
+                <br>官方也將會配合特殊活動調整%上限）</span>
             </li>
             <li>
               <span>紅利點數：{{ authStore?.user?.rewardCredit }}</span>
@@ -78,7 +78,14 @@ function scrollToBottom() {
           <!-- <a href="#" data-toggle="modal" data-target="#vipdesc" class="lvdesc_a">等級說明</a> -->
         </li>
         <li @click="shareAccount()">
-          <a href="#" data-toggle="modal" data-target="#shareaccount" class="btn btn-check"><i class="fa-solid fa-share-nodes" />分享帳號</a>
+          <a
+            href="#"
+            data-toggle="modal"
+            data-target="#shareaccount"
+            class="btn btn-check"
+          ><i
+            class="fa-solid fa-share-nodes"
+          />分享我的推薦代碼</a>
         </li>
       </ul>
     </div>
